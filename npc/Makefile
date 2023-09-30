@@ -3,7 +3,7 @@ VFILE=.v
 WAVEFILE=wave.vcd
 CSRC=$(wildcard *${CFILE})
 VSRC=$(wildcard *${VFILE})
-TGS=$(patsubst %.v,%,${VSRC})
+TGS=V$(patsubst %.v,%,${VSRC})
 
 all:
 	@echo "Write this Makefile by your self."
