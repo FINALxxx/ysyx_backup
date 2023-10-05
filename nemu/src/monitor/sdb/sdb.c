@@ -20,7 +20,7 @@
 #include "sdb.h"
 #include <stdio.h>
 #include <debug.h>
-#include <memory/paddr.h>
+#include <memory/vaddr.h>
 
 static int is_batch_mode = false;
 
@@ -96,7 +96,7 @@ static int cmd_x(char* args){
 			sscanf(visit_len_s,"%d",&visit_len);
 			printf("test:%d\n",visit_len);
 			//paddr_t paddr_loc=quest_to_host(visit_addr);//找到offset后的位置
-			printf("0x%x:\t%u\n",visit_addr,paddr_read(visit_addr,visit_len));//read后打印，这里的word_t是uint32_t的
+			printf("0x%x:\t%u\n",visit_addr,vaddr_read(visit_addr,visit_len));//read后打印，这里的word_t是uint32_t的
 		}
 	}
 	return 0;
