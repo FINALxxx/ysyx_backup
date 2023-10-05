@@ -95,7 +95,7 @@ static int cmd_x(char* args){
 			sscanf(visit_len_s,"%d",&visit_len);
 			for(int i=0;i<visit_len;i++){
 				//printf("log:%x\n",visit_addr);
-				printf("%#x:\t%x\n",visit_addr,vaddr_read(visit_addr,4));//read后打印(参看read_host)，另外，这里的word_t是uint32_t的
+				printf("%#x:\t%08x\n",visit_addr,vaddr_read(visit_addr,4));//read后打印(参看read_host)，另外，这里的word_t是uint32_t的
 				visit_addr+=4;
 			}
 		}
