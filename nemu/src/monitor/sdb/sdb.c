@@ -92,6 +92,8 @@ static int cmd_x(char* args){
 			uint8_t* visit_addr=NULL;
 			int visit_len=0;
 			sscanf(visit_addr_s,"%p",&visit_addr);
+			printf("test:%p\n",visit_addr);
+
 			sscanf(visit_len_s,"%d",&visit_len);
 			paddr_t paddr_loc=host_to_guest(visit_addr);//找到位置
 			printf("%p:\t%u\n",visit_addr,paddr_read(paddr_loc,visit_len));//read后打印，这里的word_t是uint32_t的
