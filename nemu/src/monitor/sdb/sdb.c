@@ -92,12 +92,12 @@ static int cmd_x(char* args){
 			//typedef MUXDEF(PMEM64, uint64_t, uint32_t) paddr_t;
 			paddr_t visit_addr;
 			int visit_len=0;
-			sscanf(visit_addr_s,"%d",&visit_addr);
-			printf("test:%d\n",visit_addr);
+			sscanf(visit_addr_s,"%u",&visit_addr);
+			printf("test:%u\n",visit_addr);
 
 			sscanf(visit_len_s,"%d",&visit_len);
 			//paddr_t paddr_loc=quest_to_host(visit_addr);//找到offset后的位置
-			printf("%d:\t%u\n",visit_addr,paddr_read(visit_addr,visit_len));//read后打印，这里的word_t是uint32_t的
+			printf("%u:\t%u\n",visit_addr,paddr_read(visit_addr,visit_len));//read后打印，这里的word_t是uint32_t的
 		}
 	}
 	return 0;
