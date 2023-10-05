@@ -51,20 +51,33 @@ static int cmd_c(char *args) {
 
 
 static int cmd_q(char *args)  {
-  return -1;//-1表示程序退出，正常函数退出return 0就行
+  return -1;//-1表示模拟器退出，正常函数退出return 0就行
 }
 
 static int cmd_help(char *args);
 
-static int cmd_si(char *args){
+static int cmd_si(char* args){
 	char *arg=strtok(NULL," ");	
-	if(arg==NULL){   
+	if(arg==NULL){    
 		cpu_exec(1);//single-step
 	}else{
 		uint64_t n=1;
 		Assert(sscanf(arg,"%lu",&n),"嗨害嗨");
 		cpu_exec(n);
 	}
+	return 0;
+}
+
+static int cmd_info(char* args){
+	char *arg=strtok(NULL," ");
+	if(arg==NULL){    
+		printf("Without any argument...");
+	}else{
+		if(!strcmp(arg,"r")) isa_reg_display();
+		else if(!strcmp(arg,"w")) printf("TODO"); //TODO:添加一个info w
+		else printf("Unknown argument '%s'\n",arg);
+	}
+
 	return 0;
 }
 
@@ -78,6 +91,7 @@ static struct {
   { "q", "Exit NEMU", cmd_q },
   /* TODO: Add more commands */
   { "si", "single-step execution", cmd_si},
+  { "info", "check the information of registers or watch points", cmd_info},
 };
 
 #define NR_CMD ARRLEN(cmd_table)
@@ -87,14 +101,14 @@ static int cmd_help(char *args) {//rl_gets会自动获取参数，并由框架�
   char *arg = strtok(NULL, " ");//mainloop中已经使用过一次strtok了，这里直接传NULL就能继续切割参数
   int i;
 
-  if (arg == NULL) {
+  if (arg == NULL) { 
     /* no argument given */
-    for (i = 0; i < NR_CMD; i ++) {
+    for (i = 0; i <  NR_CMD; i ++) {
       printf("%s - %s\n", cmd_table[i].name, cmd_table[i].description);
     }
   }
-  else {
-    for (i = 0; i < NR_CMD; i ++) {
+  else { 
+    for (i = 0; i <  NR_CMD; i ++) {
       if (strcmp(arg, cmd_table[i].name) == 0) {
         printf("%s - %s\n", cmd_table[i].name, cmd_table[i].description);
         return 0;
