@@ -20,6 +20,7 @@
 #include "sdb.h"
 #include <stdio.h>
 #include <debug.h>
+#include <memory/paddr.h>
 
 static int is_batch_mode = false;
 
@@ -81,6 +82,24 @@ static int cmd_info(char* args){
 	return 0;
 }
 
+static int cmd_x(char* args){
+	char* visit_len_s=strtok(NULL," ");
+	if(visit_len_s==NULL) printf("Without any argument...");
+	else{
+		char* visit_addr_s=strtok(NULL," ");
+		if(visit_addr_s==NULL) printf("Incomplete argument...");
+		else{
+			uint8_t* visit_addr=NULL;
+			int visit_len=0;
+			sscanf(visit_addr_s,"%p",&visit_addr);
+			sscanf(visit_len_s,"%d",&visit_len);
+			paddr_t paddr_loc=host_to_guest(visit_addr);//找到位置
+			printf("%p:\t%u\n",visit_addr,paddr_read(paddr_loc,visit_len));//read后打印，这里的word_t是uint32_t的
+		}
+	}
+	return 0;
+}
+
 static struct { 
   const char *name;
   const char *description;
@@ -92,6 +111,7 @@ static struct {
   /* TODO: Add more commands */
   { "si", "single-step execution", cmd_si},
   { "info", "check the information of registers or watch points", cmd_info},
+  { "x", "visit the corresponding contents in memory", cmd_x },
 };
 
 #define NR_CMD ARRLEN(cmd_table)
