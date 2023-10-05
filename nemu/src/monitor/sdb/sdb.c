@@ -89,14 +89,15 @@ static int cmd_x(char* args){
 		char* visit_addr_s=strtok(NULL," ");
 		if(visit_addr_s==NULL) printf("Incomplete argument...");
 		else{
-			uint8_t* visit_addr=NULL;
+			//typedef MUXDEF(PMEM64, uint64_t, uint32_t) paddr_t;
+			paddr_t visit_addr;
 			int visit_len=0;
-			sscanf(visit_addr_s,"%p",&visit_addr);
-			printf("test:%p\n",visit_addr);
+			sscanf(visit_addr_s,"%d",&visit_addr);
+			printf("test:%d\n",visit_addr);
 
 			sscanf(visit_len_s,"%d",&visit_len);
-			paddr_t paddr_loc=host_to_guest(visit_addr);//找到位置
-			printf("%p:\t%u\n",visit_addr,paddr_read(paddr_loc,visit_len));//read后打印，这里的word_t是uint32_t的
+			//paddr_t paddr_loc=quest_to_host(visit_addr);//找到offset后的位置
+			printf("%d:\t%u\n",visit_addr,paddr_read(visit_addr,visit_len));//read后打印，这里的word_t是uint32_t的
 		}
 	}
 	return 0;
