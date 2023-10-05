@@ -90,11 +90,11 @@ static int cmd_x(char* args){
 		if(visit_addr_s==NULL) printf("Incomplete argument...");
 		else{
 			//typedef MUXDEF(PMEM64, uint64_t, uint32_t) paddr_t;
-			paddr_t visit_addr;
+			vaddr_t visit_addr;
 			int visit_len=0;
 			sscanf(visit_addr_s,"%x",&visit_addr);
 			sscanf(visit_len_s,"%d",&visit_len);
-			printf("test:%d\n",visit_len);
+			printf("test:%x\n",visit_addr);
 			//paddr_t paddr_loc=quest_to_host(visit_addr);//找到offset后的位置
 			printf("0x%x:\t%u\n",visit_addr,vaddr_read(visit_addr,visit_len));//read后打印，这里的word_t是uint32_t的
 		}
