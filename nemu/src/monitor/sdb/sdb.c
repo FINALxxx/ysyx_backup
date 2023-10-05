@@ -74,7 +74,7 @@ static int cmd_info(char* args){
 		printf("Without any argument...");
 	}else{
 		if(!strcmp(arg,"r")) isa_reg_display();
-		else if(!strcmp(arg,"w")) printf("TODO"); //TODO:添加一个info w
+		else if(!strcmp(arg,"w")) printf("TODO\n"); //TODO:添加一个info w
 		else printf("Unknown argument '%s'\n",arg);
 	}
 
