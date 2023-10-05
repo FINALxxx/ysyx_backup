@@ -113,7 +113,7 @@ void cpu_exec(uint64_t n) {//如果赋值为-1，会下溢到uint64_t的max值�
   uint64_t timer_end = get_time();
   g_timer += timer_end - timer_start;
 
-  switch (nemu_s tate.state) {
+  switch (nemu_state.state) {
     case NEMU_RUNNING: nemu_state.state = NEMU_STOP; break;
 
     case NEMU_END: case NEMU_ABORT:
