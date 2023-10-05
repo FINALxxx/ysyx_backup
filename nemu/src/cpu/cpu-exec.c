@@ -71,9 +71,9 @@ static void exec_once(Decode *s, vaddr_t pc) {
 #endif
 }
 
-static void execute(uint64_t n) {
+static void execute(uint64_t n) {//如果传入很大的值n，for循环将执行n次
   Decode s;
-  for (;n > 0; n --) {
+  for (;n > 0; n --) { 
     exec_once(&s, cpu.pc);
     g_nr_guest_inst ++;
     trace_and_difftest(&s, cpu.pc);
@@ -97,7 +97,7 @@ void assert_fail_msg() {
 }
 
 /* Simulate how the CPU works. */
-void cpu_exec(uint64_t n) {
+void cpu_exec(uint64_t n) {//如果赋值为-1，会下溢到uint64_t的max值，使得g_print_step为假，execute传入一个很大的值
   g_print_step = (n < MAX_INST_TO_PRINT);
   switch (nemu_state.state) {
     case NEMU_END: case NEMU_ABORT:
