@@ -180,6 +180,7 @@ int op(int l,int r){
 
 
 int eval(int l,int r){
+	printf("l=%d,r=%d\n",l,r);
 	if(l>r){
 		//Assert(0,"illegal expr!\n");
 		//printf("l=%d,r=%d\n",l,r);
@@ -194,7 +195,7 @@ int eval(int l,int r){
 		}
 		else return 0;//if not a number,then return bad expr
 	}else if(check_paren(l,r)==1){
-		printf("l=%d,r=%d\n",l,r);
+		//printf("l=%d,r=%d\n",l,r);
 		return eval(l+1,r-1);//目的是去掉括号，递归查看内部表达式
 	}else if(check_paren(l,r)==-1){
 		Assert(0,"illegal expr:parentheses cannot be matched\n");
@@ -203,7 +204,7 @@ int eval(int l,int r){
 		int operator=op(l,r);
 		int val1=eval(l,operator-1);
 		int val2=eval(operator+1,r);
-		printf("l=%d,op=%s,r=%d\n",l,tokens[operator].str,r);
+		//printf("l=%d,op=%s,r=%d\n",l,tokens[operator].str,r);
 		switch (tokens[operator].type) { 
 			case '+': return val1 + val2;
 			case '-': return val1 - val2;
