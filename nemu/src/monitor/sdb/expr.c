@@ -194,7 +194,7 @@ int eval(int l,int r){
 	}else if(check_paren(l,r)==1){
 		return eval(l+1,r-1);//目的是去掉括号，递归查看内部表达式
 	}else if(check_paren(l,r)==-1){
-		printf("illegal expr!\n");
+		printf("illegal expr:parentheses cannot be matched\n");
 		return 0;
 	}else{
 		int operator=op(l,r);
@@ -204,7 +204,7 @@ int eval(int l,int r){
 			case '+': return val1 + val2;
 			case '-': return val1 - val2;
 			case '*': return val1 * val2;
-			case '/': Assert(val2!=0,"division by 0!"); return val1 / val2; 
+			case '/': Assert(val2!=0,"illegal expr:division by 0!"); return val1 / val2; 
 			default: assert(0);
 		}	
 	}
