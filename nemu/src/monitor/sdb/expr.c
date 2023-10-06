@@ -21,7 +21,7 @@
 #include <regex.h>
 
 enum {
-  TK_NOTYPE = 256, TK_EQ,NUM
+  TK_NOTYPE = 256, TK_EQ,NUM,L_PAREN,R_PAREN
   /* TODO: Add more token types */
 
 };
@@ -41,6 +41,8 @@ static struct rule {
   {"\\*", '*'},			// times
   {"\\/", '/'},			// devide
   {"\\b[0-9]+\\b", NUM},// number
+  {"\\(", L_PAREN},		// left parenthese，parenthese=括弧，你甚至能学到英语hhh
+  {"\\)", R_PAREN},		// right parenthese
   {"==", TK_EQ},        // equal
 };
 
@@ -104,7 +106,7 @@ static bool make_token(char *e) {
 			default: tokens[nr_token].type=rules[i].token_type;
 					 strncpy(tokens[nr_token].str,substr_start,substr_len);
 					 tokstr_pos=sizeof(tokens[nr_token].str)-1;
-					 tokens[nr_token].str[tokstr_pos]='\0';
+					 tokens[nr_token++].str[tokstr_pos]='\0';
         }
 
         break;
