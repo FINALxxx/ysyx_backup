@@ -167,7 +167,7 @@ int check_paren(int l,int r){
 //如果要降低时间复杂度的话，可以将check_paren()和op()合并，或者用stack来实现计算
 int op(int l,int r){
 	int ptr=l,main_op=-1,cnt=0;//cnt用于检测当前运算符是否在括号内
-	int main_op_rank=0;
+	int main_op_rank=3;//防止被选中
 	while(ptr<=r){
 		int type=tokens[ptr].type;
 		if(type==L_PAREN) cnt++;
