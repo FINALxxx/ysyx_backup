@@ -202,6 +202,7 @@ int eval(int l,int r){
 		int operator=op(l,r);
 		int val1=eval(l,operator-1);
 		int val2=eval(operator+1,r);
+		printf("val1=%d,op=%s,val2=%d\n",val1,tokens[operator].str,val2);
 		switch (tokens[operator].type) { 
 			case '+': return val1 + val2;
 			case '-': return val1 - val2;
