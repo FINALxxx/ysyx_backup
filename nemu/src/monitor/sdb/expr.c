@@ -15,10 +15,16 @@
 
 #include <isa.h>
 #include <string.h>
+#include <math.h>
+#include <debug.h>
 /* We use the POSIX regex functions to process regular expressions.
  * Type 'man regex' for more information about POSIX regex functions.
  */
 #include <regex.h>
+
+#define MAX(a,b) (a)>(b) ? (a) : (b)
+
+static int eval(int l,int r);
 
 enum {
   TK_NOTYPE = 256, TK_EQ,NUM,L_PAREN,R_PAREN
@@ -58,9 +64,9 @@ void init_regex() {
   char error_msg[128];
   int ret;
 
-  for (i = 0; i < NR_REGEX; i ++) {
+  for (i = 0; i < NR_REGEX;  i ++) {
     ret = regcomp(&re[i], rules[i].regex, REG_EXTENDED);
-    if (ret != 0) {
+    if (ret != 0) { 
       regerror(ret, &re[i], error_msg, 128);
       panic("regex compilation failed: %s\n%s", error_msg, rules[i].regex);
     }
@@ -82,10 +88,10 @@ static bool make_token(char *e) {
 
   nr_token = 0;
 
-  while (e[position] != '\0') {
+  while (e[position] != '\0')  {
     /* Try all rules one by one. */
-    for (i = 0; i < NR_REGEX; i ++) {
-      if (regexec(&re[i], e + position, 1, &pmatch, 0) == 0 && pmatch.rm_so == 0) {
+    for (i = 0; i < NR_REGEX; i  ++) {
+      if (regexec(&re[i], e +  position, 1, &pmatch, 0) == 0 && pmatch.rm_so == 0) {
         char *substr_start = e + position;//当前子串
         int substr_len = pmatch.rm_eo;//匹配长度
 
@@ -124,13 +130,83 @@ static bool make_token(char *e) {
 
 
 word_t expr(char *e, bool *success) {//由于函数的return有其他用途，所以success用指针方式修改
-  if (!make_token(e)) {
+  if (!make_token(e)) { 
     *success = false;
     return 0;
   }
 
   /* TODO: Insert codes to evaluate the expression. */
-  //TODO();
+  int l=0,r=nr_token-1;
+  return eval(l,r);
+}
 
-  return 0;
+
+//一般来说可以直接用stack实现整个eval函数，不过确实懒得写一个栈了，所以直接找一个指针模拟过程就行
+//return：
+//0=不被括号包围，但不一定非法
+//1=被括号包围
+//-1=评价为纯纯的错误，建议remake（
+int check_paren(int l,int r){
+	if(!(tokens[l].type==L_PAREN) || !(tokens[r].type==R_PAREN)){
+		return 0;
+	}
+
+	int stk_ptr=l,cnt=0;
+	while(stk_ptr<=r){
+		if(tokens[stk_ptr].type==L_PAREN) cnt++;
+		else if(tokens[stk_ptr].type==R_PAREN) cnt--;
+
+		if(cnt<0) return -1;
+		stk_ptr++;
+	}
+	if(!cnt) return 1;
+	else return -1;
+}
+
+//这样会导致一个expr被扫描两次，O(2n)了，不过这样做的可维护性和可读性都比较高，而且比较好做unit test，所以就这么写吧
+//如果要降低时间复杂度的话，可以将check_paren()和op()合并，或者用stack来实现计算
+int op(int l,int r){
+	int ptr=l,main_op=-1,cnt=0;//cnt用于检测当前运算符是否在括号内
+	while(ptr<=r){
+		int type=tokens[ptr].type;
+		if(type==L_PAREN) cnt++;
+		else if(type==R_PAREN) cnt--;
+		else if(type!=NUM && !cnt) 
+			main_op=MAX(main_op,ptr);//选择较后的op
+		ptr++;
+	}
+	return main_op;
+}
+
+
+int eval(int l,int r){
+	if(l>r){
+		printf("illegal expr!\n");
+		return 0;//bad expr
+	}else if(l==r){
+		//in this case,it must be a number(the smallest expr),and return its value.
+		if(tokens[l].type==NUM ){
+			int val=0;
+			sscanf(tokens[l].str,"%d",&val);
+			return val;
+		}
+		else return 0;//if not a number,then return bad expr
+	}else if(check_paren(l,r)==1){
+		return eval(l+1,r-1);//目的是去掉括号，递归查看内部表达式
+	}else if(check_paren(l,r)==-1){
+		printf("illegal expr!\n");
+		return 0;
+	}else{
+		int operator=op(l,r);
+		int val1=eval(l,operator-1);
+		int val2=eval(operator+1,r);
+		switch (tokens[operator].type) { 
+			case '+': return val1 + val2;
+			case '-': return val1 - val2;
+			case '*': return val1 * val2;
+			case '/': Assert(val2!=0,"division by 0!"); return val1 / val2; 
+			default: assert(0);
+		}	
+	}
+
 }

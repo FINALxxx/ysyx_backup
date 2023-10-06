@@ -110,8 +110,8 @@ static int cmd_p(char* args){
 	else{
 		bool success=true;
 		expr(expr_s,&success);
-		if(success) printf("匹配通过\n");
-		else printf("匹配不通过\n");
+		//if(success) printf("匹配通过\n");
+		//else printf("匹配不通过\n");
 	}
 
 	return 0;
