@@ -181,7 +181,7 @@ int op(int l,int r){
 
 int eval(int l,int r){
 	if(l>r){
-		printf("illegal expr!\n");
+		Assert(0,"illegal expr!\n");
 		return 0;//bad expr
 	}else if(l==r){
 		//in this case,it must be a number(the smallest expr),and return its value.
@@ -194,7 +194,7 @@ int eval(int l,int r){
 	}else if(check_paren(l,r)==1){
 		return eval(l+1,r-1);//目的是去掉括号，递归查看内部表达式
 	}else if(check_paren(l,r)==-1){
-		printf("illegal expr:parentheses cannot be matched\n");
+		Assert(0,"illegal expr:parentheses cannot be matched\n");
 		return 0;
 	}else{
 		int operator=op(l,r);
