@@ -176,7 +176,7 @@ int op(int l,int r){
 			int ptr_rank=0;
 			if(type=='*'||type=='/') ptr_rank=1; 
 			if(ptr_rank==main_op_rank) main_op=MAX(main_op,ptr);//同等级：选择较后的op
-			else if(ptr_rank>main_op_rank) main_op=ptr;//一般选择等级高的
+			else if(ptr_rank<main_op_rank) main_op=ptr;//一般选择等级低的
 			main_op_rank=ptr_rank;
 		}
 		ptr++;
