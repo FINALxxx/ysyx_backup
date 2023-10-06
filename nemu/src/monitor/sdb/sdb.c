@@ -112,7 +112,7 @@ static int cmd_p(char* args){
 		int result=expr(expr_s,&success);
 		//if(success) printf("匹配通过\n");
 		//else printf("匹配不通过\n");
-		printf("the result=%d",result);
+		printf("the result=%d\n",result);
 	}
 
 	return 0;
