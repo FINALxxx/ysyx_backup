@@ -181,7 +181,9 @@ int op(int l,int r){
 
 int eval(int l,int r){
 	if(l>r){
-		Assert(0,"illegal expr!\n");
+		//Assert(0,"illegal expr!\n");
+		printf("log=%s",tokens[l].str);
+		assert(0);
 		return 0;//bad expr
 	}else if(l==r){
 		//in this case,it must be a number(the smallest expr),and return its value.
