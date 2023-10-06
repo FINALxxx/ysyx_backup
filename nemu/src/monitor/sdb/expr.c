@@ -182,7 +182,7 @@ int op(int l,int r){
 int eval(int l,int r){
 	if(l>r){
 		//Assert(0,"illegal expr!\n");
-		printf("log=%s\n",tokens[r].str);
+		printf("l=%d,r=%d\n",l,r);
 		assert(0);
 		return 0;//bad expr
 	}else if(l==r){
