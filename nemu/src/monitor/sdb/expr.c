@@ -121,7 +121,7 @@ static bool make_token(char *e) {
 }
 
 
-word_t expr(char *e, bool *success) {
+word_t expr(char *e, bool *success) {//由于函数的return有其他用途，所以success用指针方式修改
   if (!make_token(e)) {
     *success = false;
     return 0;

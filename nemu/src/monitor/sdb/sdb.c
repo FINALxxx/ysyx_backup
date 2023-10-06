@@ -26,6 +26,7 @@ static int is_batch_mode = false;
 
 void init_regex();
 void init_wp_pool();
+word_t expr(char* e,bool *success);
 
 /* We use the `readline' library to provide more flexibility to read from stdin. */
 static char* rl_gets() {//获取一行输入，如果指针有指向，且指向的字符串存在，则返回这行输入
@@ -59,7 +60,7 @@ static int cmd_help(char *args);
 
 static int cmd_si(char* args){
 	char *arg=strtok(NULL," ");	
-	if(arg==NULL){     
+	if(arg==NULL){      
 		cpu_exec(1);//single-step
 	}else{
 		uint64_t n=1;
@@ -85,7 +86,7 @@ static int cmd_info(char* args){
 static int cmd_x(char* args){
 	char* visit_len_s=strtok(NULL," ");
 	if(visit_len_s==NULL) printf("Without any argument...");
-	else{
+	else{ 
 		char* visit_addr_s=strtok(NULL," ");
 		if(visit_addr_s==NULL) printf("Incomplete argument...");
 		else{
@@ -103,6 +104,19 @@ static int cmd_x(char* args){
 	return 0;
 }
 
+static int cmd_p(char* args){
+	char* expr_s=strtok(NULL,"");
+	if(expr_s==NULL) printf("Without any argument...");
+	else{
+		bool success=true;
+		expr(expr_s,&success);
+		if(success) printf("匹配通过\n");
+		else printf("匹配不通过\n");
+	}
+
+	return 0;
+}
+
 static struct { 
   const char *name;
   const char *description;
@@ -115,6 +129,7 @@ static struct {
   { "si", "single-step execution", cmd_si},
   { "info", "check the information of registers or watch points", cmd_info},
   { "x", "visit the corresponding contents in memory", cmd_x },
+  { "p", "match the expr by regex", cmd_p}
 };
 
 #define NR_CMD ARRLEN(cmd_table)
