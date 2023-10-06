@@ -167,14 +167,21 @@ int check_paren(int l,int r){
 //如果要降低时间复杂度的话，可以将check_paren()和op()合并，或者用stack来实现计算
 int op(int l,int r){
 	int ptr=l,main_op=-1,cnt=0;//cnt用于检测当前运算符是否在括号内
+	int main_op_rank=0;
 	while(ptr<=r){
 		int type=tokens[ptr].type;
 		if(type==L_PAREN) cnt++;
 		else if(type==R_PAREN) cnt--;
-		else if(type!=NUM && !cnt) 
-			main_op=MAX(main_op,ptr);//选择较后的op
+		else if(type!=NUM && !cnt){
+			int ptr_rank=0;
+			if(type=='*'||type=='/') ptr_rank=1; 
+			if(ptr_rank==main_op_rank) main_op=MAX(main_op,ptr);//同等级：选择较后的op
+			else if(ptr_rank>main_op_rank) main_op=ptr;//一般选择等级高的
+			main_op_rank=ptr_rank;
+		}
 		ptr++;
 	}
+	Assert(main_op!=-1,"illegal expr:cannot find operator\n");
 	return main_op;
 }
 
@@ -182,9 +189,8 @@ int op(int l,int r){
 int eval(int l,int r){
 	printf("l=%d,r=%d\n",l,r);
 	if(l>r){
-		//Assert(0,"illegal expr!\n");
+		Assert(0,"illegal expr!\n");
 		//printf("l=%d,r=%d\n",l,r);
-		assert(0);
 		return 0;//bad expr
 	}else if(l==r){
 		//in this case,it must be a number(the smallest expr),and return its value.
