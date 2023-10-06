@@ -143,23 +143,23 @@ word_t expr(char *e, bool *success) {//由于函数的return有其他用途，�
 
 //一般来说可以直接用stack实现整个eval函数，不过确实懒得写一个栈了，所以直接找一个指针模拟过程就行
 //return：
-//0=不被括号包围，但不一定非法
 //1=被括号包围
-//-1=评价为纯纯的错误，建议remake（
+//0=不被括号包围、两端括号不匹配
+//-1=括号缺失【报错】
 int check_paren(int l,int r){
 	if(!(tokens[l].type==L_PAREN) || !(tokens[r].type==R_PAREN)){
 		return 0;
 	}
 
 	int stk_ptr=l,cnt=0;
-	while(stk_ptr<=r){
+	while(stk_ptr<r){//注意这里是<r
 		if(tokens[stk_ptr].type==L_PAREN) cnt++;
 		else if(tokens[stk_ptr].type==R_PAREN) cnt--;
 
-		if(cnt<0) return -1;
+		if(cnt<1) return 0;
 		stk_ptr++;
 	}
-	if(!cnt) return 1;
+	if(cnt) return 1;//cnt--后cnt=0时
 	else return -1;
 }
 
