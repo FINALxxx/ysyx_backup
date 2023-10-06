@@ -128,7 +128,7 @@ word_t expr(char *e, bool *success) {//由于函数的return有其他用途，�
   }
 
   /* TODO: Insert codes to evaluate the expression. */
-  TODO();
+  //TODO();
 
   return 0;
 }
