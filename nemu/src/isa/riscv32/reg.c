@@ -15,6 +15,7 @@
 
 #include <isa.h>
 #include "local-include/reg.h"
+#include <stdio.h>
 
 const char *regs[] = {
   "$0", "ra", "sp", "gp", "tp", "t0", "t1", "t2",
@@ -23,7 +24,12 @@ const char *regs[] = {
   "s8", "s9", "s10", "s11", "t3", "t4", "t5", "t6"
 };
 
+//头文件引用了extern CPU_state cpu
 void isa_reg_display() {
+	uint32_t reg_len = sizeof(regs)/sizeof(regs[0]);
+	for(int i=0;i<reg_len;i++){
+		printf("%s\t%08x\t%u\n",regs[i],cpu.gpr[i],cpu.gpr[i]);
+	}
 }
 
 word_t isa_reg_str2val(const char *s, bool *success) {
