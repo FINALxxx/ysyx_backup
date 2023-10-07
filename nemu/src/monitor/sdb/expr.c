@@ -218,7 +218,7 @@ int eval(int l,int r){
 		}else if(tokens[l].type==HEX_NUM){
 			int val=0;
 			sscanf(tokens[l].str,"%x",&val);
-			printf("log:%x\n",val);
+			//printf("log:%x\n",val);
 			return val;
 		}else if(tokens[l].type==REG_NAME){
 			int val=0;
