@@ -147,7 +147,7 @@ word_t expr(char *e, bool *success) {//由于函数的return有其他用途，�
 		}
 	}
 
-	int l=0,r=nr_token-1;
+	int l=0,r=strlen(e)-1;
 	return eval(l,r);
 }
 
