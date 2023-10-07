@@ -27,7 +27,7 @@
 static int eval(int l,int r);
 
 enum {
-  TK_NOTYPE = 256, TK_EQ,NUM,L_PAREN,R_PAREN
+  TK_NOTYPE = 256, TK_EQ,NUM,L_PAREN,R_PAREN,NOT_EQ,LGC_AND,PTR,REG_NAME,HEX_NUM
   /* TODO: Add more token types */
 
 };
@@ -37,7 +37,7 @@ static struct rule {
   int token_type;
 } rules[] = {
 
-  /* TODO: Add more rules.
+  /* TODO: Add more rules. 
    * Pay attention to the precedence level of different rules.
    */
 
@@ -46,10 +46,15 @@ static struct rule {
   {"\\-", '-'},			// minus
   {"\\*", '*'},			// times
   {"\\/", '/'},			// devide
-  {"\\b[0-9]+\\b", NUM},// number
+  {"\\b[0-9]+\\b", NUM},// DEC number
   {"\\(", L_PAREN},		// left parenthese，parenthese=括弧，你甚至能学到英语hhh
   {"\\)", R_PAREN},		// right parenthese
   {"==", TK_EQ},        // equal
+  {"!=", NOT_EQ},		// not equal
+  {"&&", LGC_AND},		// logical and
+  {"*", PTR},			// pointer
+  {"\\$[a-zA-Z]+", REG_NAME},		// register name
+  {"0x[0-9]+", HEX_NUM},		// HEX number
 };
 
 #define NR_REGEX ARRLEN(rules)
@@ -66,7 +71,7 @@ void init_regex() {
 
   for (i = 0; i < NR_REGEX;  i ++) {
     ret = regcomp(&re[i], rules[i].regex, REG_EXTENDED);
-    if (ret != 0) { 
+    if (ret != 0) {  
       regerror(ret, &re[i], error_msg, 128);
       panic("regex compilation failed: %s\n%s", error_msg, rules[i].regex);
     }
@@ -130,14 +135,20 @@ static bool make_token(char *e) {
 
 
 word_t expr(char *e, bool *success) {//由于函数的return有其他用途，所以success用指针方式修改
-  if (!make_token(e)) { 
-    *success = false;
-    return 0;
-  }
+	if (!make_token(e) ) { 
+		*success = false;
+		return 0;
+	}
 
-  /* TODO: Insert codes to evaluate the expression. */
-  int l=0,r=nr_token-1;
-  return eval(l,r);
+	/* TODO: Insert codes to evaluate the expression. */
+	for(int i =0;i<nr_token;i++){//找到所有的*
+		if(tokens[i].type=='*' && (i==0||tokens[i-1].type==R_PAREN||tokens[i-1].type==NUM)){//同理，也可以区分负数和减法
+			tokens[i].type=PTR;
+		}
+	}
+
+	int l=0,r=nr_token-1;
+	return eval(l,r);
 }
 
 
@@ -174,9 +185,14 @@ int op(int l,int r){
 		else if(type==R_PAREN) cnt--;
 		else if(type!=NUM && !cnt){
 			int ptr_rank=0;
+			
+			//优先级表
 			if(type=='*'||type=='/') ptr_rank=1; 
+			if(type==PTR) ptr_rank=-1;
+			if(type==REG_NAME) ptr_rank=-2;
+
 			if(ptr_rank==main_op_rank) main_op=MAX(main_op,ptr);//同等级：选择较后的op
-			else if(ptr_rank<main_op_rank) main_op=ptr;//一般选择等级低的
+			else if(ptr_rank<main_op_rank) main_op=ptr;//选择等级低的
 			main_op_rank=ptr_rank;
 		}
 		ptr++;
@@ -188,34 +204,47 @@ int op(int l,int r){
 
 int eval(int l,int r){
 	//printf("l=%d,r=%d\n",l,r);
-	if(l>r){
-		Assert(0,"illegal expr!\n");
+	if(l>r){ 
+		Assert(0,"illegal expr!\n");//bad expr
 		//printf("l=%d,r=%d\n",l,r);
-		return 0;//bad expr
+		return 0;
 	}else if(l==r){
-		//in this case,it must be a number(the smallest expr),and return its value.
-		if(tokens[l].type==NUM ){
+		//in this case,it must be a number or register(the smallest expr),and return its value.
+		if(tokens[l].type== NUM ||tokens[l].type==HEX_NUM){
 			int val=0;
 			sscanf(tokens[l].str,"%d",&val);
 			return val;
+		}else if(tokens[l].type==REG_NAME){
+			int val=0;
+			bool success=false;
+			val=isa_reg_str2val(tokens[l].str+1,&success);//下一个token一定是寄存器名
+			Assert(success,"illegal expr:cannot find the register!\n");
+			return val;
 		}
-		else return 0;//if not a number,then return bad expr
+		
+		Assert(0,"illegal expr:cannot find the number or register!\n");//if not a number,then return bad expr
 	}else if(check_paren(l,r)==1){
 		//printf("l=%d,r=%d\n",l,r);
 		return eval(l+1,r-1);//目的是去掉括号，递归查看内部表达式
 	}else if(check_paren(l,r)==-1){
-		Assert(0,"illegal expr:parentheses cannot be matched\n");
+		Assert(0,"illegal expr:parentheses cannot be matched!\n");
 		return 0;
 	}else{
-		int operator=op(l,r);
-		int val1=eval(l,operator-1);
-		int val2=eval(operator+1,r);
+		int operator=op(l,r);//返回op的下标
+		int val1=0,val2=0;
+		if(tokens[operator].type!=PTR){
+			val1=eval(l,operator-1);
+			val2=eval(operator+1,r);
+		}else{
+			val1=eval(operator+1,r);			
+		}
 		//printf("l=%d,op=%s,r=%d\n",l,tokens[operator].str,r);
 		switch (tokens[operator].type) { 
 			case '+': return val1 + val2;
 			case '-': return val1 - val2;
 			case '*': return val1 * val2;
-			case '/': Assert(val2!=0,"illegal expr:division by 0!"); return val1 / val2; 
+			case '/': Assert(val2!=0,"illegal expr:division by 0!\n"); return val1 / val2; 
+			case PTR: return val1;
 			default: assert(0);
 		}	
 	}
