@@ -210,10 +210,15 @@ int eval(int l,int r){
 		return 0;
 	}else if(l==r){
 		//in this case,it must be a number or register(the smallest expr),and return its value.
-		if(tokens[l].type== NUM ||tokens[l].type==HEX_NUM){
+		if(tokens[l].type== NUM){
 			int val=0;
 			sscanf(tokens[l].str,"%d",&val);
 			printf("log:%d",val);
+			return val;
+		}else if(tokens[l].type==HEX_NUM){
+			int val=0;
+			sscanf(tokens[l].str,"%x",&val);
+			printf("log:%x",val);
 			return val;
 		}else if(tokens[l].type==REG_NAME){
 			int val=0;
