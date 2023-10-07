@@ -54,7 +54,7 @@ static struct rule {
   {"&&", LGC_AND},		// logical and
   {"\\*", PTR},			// pointer
   {"\\$[a-zA-Z0-9]+", REG_NAME},		// register name
-  {"0x[0-9]+", HEX_NUM},		// HEX number
+  {"0x[0-9A-F]+", HEX_NUM},		// HEX number
 };
 
 #define NR_REGEX ARRLEN(rules)
