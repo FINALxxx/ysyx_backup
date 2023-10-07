@@ -52,7 +52,7 @@ static struct rule {
   {"==", TK_EQ},        // equal
   {"!=", NOT_EQ},		// not equal
   {"&&", LGC_AND},		// logical and
-  {"*", PTR},			// pointer
+  {"\\*", PTR},			// pointer
   {"\\$[a-zA-Z]+", REG_NAME},		// register name
   {"0x[0-9]+", HEX_NUM},		// HEX number
 };
