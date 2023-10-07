@@ -213,6 +213,7 @@ int eval(int l,int r){
 		if(tokens[l].type== NUM ||tokens[l].type==HEX_NUM){
 			int val=0;
 			sscanf(tokens[l].str,"%d",&val);
+			printf("log:%d",val);
 			return val;
 		}else if(tokens[l].type==REG_NAME){
 			int val=0;
