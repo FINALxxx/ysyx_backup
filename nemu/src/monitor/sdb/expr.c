@@ -183,7 +183,7 @@ int op(int l,int r){
 		int type=tokens[ptr].type;
 		if(type==L_PAREN) cnt++;
 		else if(type==R_PAREN) cnt--;
-		else if(type!=NUM && !cnt){
+		else if(type!=NUM && type!=HEX_NUM  && !cnt){
 			int ptr_rank=0;
 			
 			//优先级表
