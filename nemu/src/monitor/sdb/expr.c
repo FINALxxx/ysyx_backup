@@ -241,6 +241,7 @@ int eval(int l,int r){
 		if(tokens[operator].type!=PTR){
 			val1=eval(l,operator-1);
 			val2=eval(operator+1,r);
+			printf("%d,%d",val1,val2);
 		}else{
 			val1=eval(operator+1,r);			
 		}
