@@ -203,7 +203,7 @@ int op(int l,int r){
 
 
 int eval(int l,int r){
-	printf("l=%d,r=%d\n",l,r);
+	//printf("l=%d,r=%d\n",l,r);
 	if(l>r){ 
 		Assert(0,"illegal expr!\n");//bad expr
 		//printf("l=%d,r=%d\n",l,r);
