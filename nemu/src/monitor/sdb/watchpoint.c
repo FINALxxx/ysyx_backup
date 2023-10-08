@@ -71,7 +71,7 @@ void free_wp(int NO){
 }
 
 WP* check_wp(uint32_t* new_result){//返回产生变化的变量
-	//printf("LOG\n");
+	printf("LOG1\n");
 	for(WP* it=head;it!=NULL||it->next!=NULL;it=it->next){
 		printf("LOG\n");
 		bool success=true;
@@ -81,7 +81,8 @@ WP* check_wp(uint32_t* new_result){//返回产生变化的变量
 			return it;//只返回第一个变化的结点，后续可以再改
 		}
 	}
-	printf("LOG\n");
+
+	printf("LOG2\n");
 	return NULL;
 }
 
