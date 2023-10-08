@@ -79,7 +79,7 @@ static int cmd_info(char* args){
 	}else{
 		if(!strcmp(arg,"r")) isa_reg_display();
 		else if(!strcmp(arg,"w")){
-			//TODO:添加info w
+			print_w();
 		}
 		else printf("Unknown argument '%s'\n",arg);
 	}
