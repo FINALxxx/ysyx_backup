@@ -8,7 +8,7 @@ typedef struct watchpoint {
 } WP;
 
 
-WP* check(uint32_t* new_result);
+WP* check_wp(uint32_t* new_result);
 void new_wp(char* expr);
 void init_wp_pool();
 void free_wp(int NO);
