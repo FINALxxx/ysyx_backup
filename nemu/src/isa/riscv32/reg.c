@@ -30,7 +30,7 @@ const char *regs[] = {
 void isa_reg_display() {
 	uint32_t reg_len = sizeof(regs)/sizeof(regs[0]);
 	for(int i=0;i<reg_len;i ++){
-		printf("%s\t%08x\t%d\n",reg_name(i),cpu.gpr[i],vaddr_read(cpu.gpr[i],4));
+		printf("%s\t%08x\t%d\n",reg_name(i),cpu.gpr[i],cpu.gpr[i]);
 	}
 }
 
