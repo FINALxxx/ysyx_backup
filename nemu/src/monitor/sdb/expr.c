@@ -21,6 +21,7 @@
  * Type 'man regex' for more information about POSIX regex functions.
  */
 #include <regex.h>
+#include <sdb/expr.h>
 
 #define MAX(a,b) (a)>(b) ? (a) : (b)
 

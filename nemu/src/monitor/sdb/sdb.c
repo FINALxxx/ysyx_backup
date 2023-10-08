@@ -17,10 +17,12 @@
 #include <cpu/cpu.h>
 #include <readline/readline.h>
 #include <readline/history.h>
-#include "sdb.h"
+#include <sdb/sdb.h>
 #include <stdio.h>
 #include <debug.h>
 #include <memory/vaddr.h>
+#include <sdb/watchpoint.h>
+#include <sdb/expr.h>
 
 static int is_batch_mode = false;
 
@@ -76,7 +78,9 @@ static int cmd_info(char* args){
 		printf("Without any argument...");
 	}else{
 		if(!strcmp(arg,"r")) isa_reg_display();
-		else if(!strcmp(arg,"w")) printf("TODO\n"); //TODO:添加一个info w
+		else if(!strcmp(arg,"w")){
+			//TODO:添加info w
+		}
 		else printf("Unknown argument '%s'\n",arg);
 	}
 
@@ -86,15 +90,15 @@ static int cmd_info(char* args){
 static int cmd_x(char* args){
 	char* visit_len_s=strtok(NULL," ");
 	if(visit_len_s==NULL) printf("Without any argument...");
-	else{ 
+	else{  
 		char* visit_addr_s=strtok(NULL," ");
 		if(visit_addr_s==NULL) printf("Incomplete argument...");
-		else{
+		else{ 
 			vaddr_t visit_addr;
 			int visit_len=0;
 			sscanf(visit_addr_s,"%x",&visit_addr);
 			sscanf(visit_len_s,"%d",&visit_len);
-			for(int i=0;i<visit_len;i++){
+			for(int i=0 ;i<visit_len;i++){
 				//printf("log:%x\n",visit_addr);
 				printf("%#x:\t%08x\n",visit_addr,vaddr_read(visit_addr,4));//read后打印(参看read_host)，另外，这里的word_t是uint32_t的
 				visit_addr+=4;
@@ -107,9 +111,9 @@ static int cmd_x(char* args){
 static int cmd_p(char* args){
 	char* expr_s=strtok(NULL,"");
 	if(expr_s==NULL) printf("Without any argument...");
-	else{
+	else{ 
 		bool success=true;
-		int result=expr(expr_s,&success);
+		uint32_t result=expr(expr_s,&success);
 		//if(success) printf("匹配通过\n");
 		//else printf("匹配不通过\n");
 		printf("the result=%d\n",result);
@@ -117,6 +121,29 @@ static int cmd_p(char* args){
 
 	return 0;
 }
+
+static int cmd_w(char* args){
+	char* expr_s=strtok(NULL,"");
+	if(expr_s==NULL) printf("Without any argument...");
+	else new_wp(expr_s);
+
+	return 0;
+}
+
+
+static int cmd_d(char* args){
+	char* no_s=strtok(NULL,"");
+	if(no_s==NULL) printf("Without any argument...");
+	else{
+		int no=-1;
+		sscanf(no_s,"%d",&no);
+		free_wp(no);
+	}
+
+	return 0;
+}
+
+
 
 static struct { 
   const char *name;
@@ -130,7 +157,9 @@ static struct {
   { "si", "single-step execution", cmd_si},
   { "info", "check the information of registers or watch points", cmd_info},
   { "x", "visit the corresponding contents in memory", cmd_x },
-  { "p", "match the expr by regex", cmd_p}
+  { "p", "match the expr by regex", cmd_p},
+  { "w", "add a new watchpoint by using EXPR", cmd_w},
+  { "d", "delete a working watchpoint by using NO", cmd_d},
 };
 
 #define NR_CMD ARRLEN(cmd_table)

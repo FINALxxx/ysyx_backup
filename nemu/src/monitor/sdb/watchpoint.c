@@ -12,20 +12,14 @@
 *
 * See the Mulan PSL v2 for more details.
 ***************************************************************************************/
-
-#include "sdb.h"
+#include <sdb/sdb.h>
+#include <sdb/watchpoint.h>
+#include <sdb/expr.h>
 
 #define NR_WP 32
 
-typedef struct watchpoint {
-  int NO;
-  struct watchpoint *next;
 
-  /* TODO: Add more members if necessary */
-
-} WP;
-
-static WP wp_pool[NR_WP] = {};
+static WP wp_pool[NR_WP] = {};//用static修饰可能是为了防止其他文件操作该变量
 static WP *head = NULL, *free_ = NULL;
 
 void init_wp_pool() {
@@ -35,9 +29,55 @@ void init_wp_pool() {
     wp_pool[i].next = (i == NR_WP - 1 ? NULL : &wp_pool[i + 1]);
   }
 
-  head = NULL;
-  free_ = wp_pool;
+  head = NULL;//指向已使用的wp
+  free_ = wp_pool;//指向未使用的wp
 }
 
 /* TODO: Implement the functionality of watchpoint */
 
+void new_wp(char* expr_s){//从wp_pool删掉空闲结点并返回
+	if(free_==NULL) Assert(0,"Watchpoint new exception:Exceeded the avaliable capacity.\n");
+	WP* node=free_;
+	free_=free_->next;	
+	node->expr=expr_s;
+	node->next=head;
+	head=node;
+
+	bool success=true;
+	uint32_t val=expr(expr_s,&success);
+	if(success) node->val=val;
+	else Assert(0,"illegal expr!\n");
+	
+}
+
+void free_wp(int NO){
+	if(head==NULL) Assert(0,"Watchpoint free exception:No watchpoint is working.\n");
+
+	if(NO<0) Assert(0,"Watchpoint free exception:Cannot find corresponding watchpoint.\n");
+
+	WP* last=NULL;
+	for(WP* it=head;it->next!=NULL;it=it->next){
+		if(it->NO==NO){
+			if(last==NULL) head=it->next;//说明要free第一个结点
+			else last->next=it->next;
+
+			it->next=free_;
+			free_=it;
+		}
+		last=it;
+	}
+
+	
+}
+
+WP* check(uint32_t* new_result){//返回产生变化的变量
+	for(WP* it=head;it->next!=NULL;it=it->next){
+		bool success=true;
+		uint32_t result=expr(it->expr,&success);
+		if(result!=it->val) {
+			*new_result=result;
+			return it;//只返回第一个变化的结点，后续可以再改
+		}
+	}
+	return NULL;
+}
