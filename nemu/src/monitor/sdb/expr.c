@@ -245,6 +245,7 @@ int eval(int l,int r){
 			val2=eval(operator+1,r);
 			//printf("%d,%d",val1,val2);
 		}else{
+			printf("LOG\n");
 			val1=eval(operator+1,r);			
 		}
 		//printf("l=%d,op=%s,r=%d\n",l,tokens[operator].str,r);
