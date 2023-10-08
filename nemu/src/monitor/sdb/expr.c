@@ -204,7 +204,7 @@ int op(int l,int r){
 
 
 int eval(int l,int r){
-	//printf("l=%d,r=%d\n",l,r);
+	printf("l=%d,r=%d\n",l,r);
 	if(l>r){ 
 		Assert(0,"illegal expr!\n");//bad expr
 		//printf("l=%d,r=%d\n",l,r);
@@ -224,7 +224,7 @@ int eval(int l,int r){
 		}else if(tokens[l].type==REG_NAME){
 			int val=0;
 			bool success=false;
-			val=isa_reg_str2val(tokens[l+1].str,&success);//下一个token一定是寄存器名
+			val=isa_reg_str2val(tokens[l].str+1,&success);//下一个token一定是寄存器名
 			Assert(success,"illegal expr:cannot find the register!\n");
 			return val;
 		}
