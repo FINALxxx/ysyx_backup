@@ -81,6 +81,7 @@ WP* check_wp(uint32_t* new_result){//返回产生变化的变量
 			return it;//只返回第一个变化的结点，后续可以再改
 		}
 	}
+	printf("LOG\n");
 	return NULL;
 }
 
