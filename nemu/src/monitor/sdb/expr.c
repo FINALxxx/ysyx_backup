@@ -22,6 +22,7 @@
  */
 #include <regex.h>
 #include <sdb/expr.h>
+#include <memory/vaddr.h>
 
 #define MAX(a,b) (a)>(b) ? (a) : (b)
 
@@ -203,7 +204,7 @@ int op(int l,int r){
 
 
 int eval(int l,int r){
-	printf("l=%d,r=%d\n",l,r);
+	//printf("l=%d,r=%d\n",l,r);
 	if(l>r){ 
 		Assert(0,"illegal expr!\n");//bad expr
 		//printf("l=%d,r=%d\n",l,r);
@@ -223,23 +224,21 @@ int eval(int l,int r){
 		}else if(tokens[l].type==REG_NAME){
 			int val=0;
 			bool success=false;
-			val=isa_reg_str2val(tokens[l].str+1,&success);//下一个token一定是寄存器名
+			val=isa_reg_str2val(tokens[l].str+1,&success);
 			Assert(success,"illegal expr:cannot find the register!\n");
 			return val;
 		}
 		
 		Assert(0,"illegal expr:cannot find the number or register!\n");//if not a number,then return bad expr
 	}else if(check_paren(l,r)==1){
-		//printf("l=%d,r=%d\n",l,r);
 		return eval(l+1,r-1);//目的是去掉括号，递归查看内部表达式
 	}else if(check_paren(l,r)==-1){
 		Assert(0,"illegal expr:parentheses cannot be matched!\n");
 		return 0;
 	}else{
 		int operator=op(l,r);//返回op的下标
-		//printf("log:%d,%d\n",l,r);
 		int val1=0,val2=0;
-		printf("LOG:%d\n",operator);
+		//printf("LOG:%d\n",operator);
 		if(tokens[operator].type!=PTR){
 			val1=eval(l,operator-1);
 			val2=eval(operator+1,r);
@@ -254,7 +253,7 @@ int eval(int l,int r){
 			case '-': return val1 - val2;
 			case '*': return val1 * val2;
 			case '/': Assert(val2!=0,"illegal expr:division by 0!\n"); return val1 / val2; 
-			case PTR: return val1;
+			case PTR: return vaddr_read(val1,4);
 			default: assert(0);
 		}	
 	}
