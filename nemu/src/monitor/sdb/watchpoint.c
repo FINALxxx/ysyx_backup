@@ -20,10 +20,9 @@
 
 
 static WP wp_pool[NR_WP] = {};//用static修饰可能是为了防止其他文件操作该变量
-WP *head = NULL, *free_ = NULL;//记得改回static
+static WP *head = NULL, *free_ = NULL;//记得改回static
 
 void init_wp_pool() {
-	printf("test\n");
   int i;
   for (i = 0; i < NR_WP; i ++) {
     wp_pool[i].NO = i;
@@ -37,60 +36,26 @@ void init_wp_pool() {
 /* TODO: Implement the functionality of watchpoint */
 
 void new_wp(char* expr_s){//从wp_pool删掉空闲结点并返回
-	if(free_==NULL) Assert(0,"Watchpoint new exception:Exceeded the avaliable capacity.\n");
 	WP* node=free_;
 	free_=free_->next;
-	node->expr=expr_s;
+	node->expr_s=expr_s;
+	bool success=false;
+	node->val=expr(expr_s,&success);
+	Assert(success,"QUIT\n");
+
 	node->next=head;
 	head=node;
-
-	bool success=true;
-	uint32_t val=expr(expr_s,&success);
-	if(success) node->val=val;
-	else Assert(0,"illegal expr!\n");
-	printf("LOG:%s\n",head->expr);	
+	printf("test:%s\n",head->expr_s);
 }
 
-/*
-void free_wp(int NO){
-	if(head==NULL) Assert(0,"Watchpoint free exception:No watchpoint is working.\n");
-
-	if(NO<0) Assert(0,"Watchpoint free exception:Cannot find corresponding watchpoint.\n");
-
-	WP* last=NULL;
-	for(WP* it=head;it->next!=NULL;it=it->next){
-		if(it->NO==NO){
-			if(last==NULL) head=it->next;//说明要free第一个结点
-			else last->next=it->next;
-
-			it->next=free_;
-			free_=it;
-		}
-		last=it;
-	}
-
-	
-}*/
 
 WP* check_wp(uint32_t* new_result){//返回产生变化的变量
-	printf("%s\n",head->expr); 
-	for(WP* it=head;it!=NULL;it=it->next){
-		//printf("LOG\n");
-		bool success=true;
-		//printf("LOG:%s\n",head->expr);
-		uint32_t result=expr(it->expr,&success);
-		if(result!=it->val) {
-			*new_result=result;
-			return it;//只返回第一个变化的结点，后续可以再改
-		}
-	}
-	
 	return NULL;
 }
 
 void print_w(){
 	for(WP* it=head;it!=NULL;it=it->next){
-		printf("watchpoint[%d]:%s\tnow=%u\n",it->NO,it->expr,it->val);
+		printf("watchpoint[%d]:%s\tnow=%u\n",it->NO,it->expr_s,it->val);
 	}
 
 }

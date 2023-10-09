@@ -2,7 +2,7 @@ typedef struct watchpoint {
 	int NO;
 	struct watchpoint *next;
 	/* TODO: Add more members if necessary */
-	char* expr;//表达式
+	char* expr_s;//表达式
 	uint32_t val;//值
 
 } WP;
