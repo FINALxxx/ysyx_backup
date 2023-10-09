@@ -110,11 +110,11 @@ static int cmd_x(char* args){
 }
 
 static int cmd_p(char* args){
-	char* expr_s=strtok(NULL,"");
-	if(expr_s==NULL) printf("Without any argument...\n");
+	char* expr_=strtok(NULL,"");
+	if(expr_==NULL) printf("Without any argument...\n");
 	else{ 
 		bool success=true;
-		uint32_t result=expr(expr_s,&success);
+		uint32_t result=expr(expr_,&success);
 		//if(success) printf("匹配通过\n");
 		//else printf("匹配不通过\n");
 		printf("the result=%d\n",result);
