@@ -36,6 +36,7 @@ void init_wp_pool() {
 /* TODO: Implement the functionality of watchpoint */
 
 void new_wp(char* expr_s){//从wp_pool删掉空闲结点并返回
+	printf("%s\n",expr_s);
 	WP* node=free_;
 	free_=free_->next;
 	
