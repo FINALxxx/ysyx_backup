@@ -47,7 +47,7 @@ void new_wp(char* expr_s){//从wp_pool删掉空闲结点并返回
 	uint32_t val=expr(expr_s,&success);
 	if(success) node->val=val;
 	else Assert(0,"illegal expr!\n");
-	printf("LOG:%p\n",head);	
+	printf("LOG:%s\n",head->expr);	
 }
 
 void free_wp(int NO){
