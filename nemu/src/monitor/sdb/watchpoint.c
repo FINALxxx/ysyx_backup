@@ -36,16 +36,9 @@ void init_wp_pool() {
 /* TODO: Implement the functionality of watchpoint */
 
 void new_wp(char* expr_s){//从wp_pool删掉空闲结点并返回
-	WP* node=free_;
-	free_=free_->next;
-	node->expr_s=expr_s;
-	bool success=false;
-	node->val=expr(expr_s,&success);
-	Assert(success,"QUIT\n");
-
-	node->next=head;
+	WP* node = free_;
 	head=node;
-	printf("test:%p\n",head->expr_s);
+	head->expr_s="test";
 }
 
 
