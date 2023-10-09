@@ -51,6 +51,27 @@ void new_wp(char* expr_s){//从wp_pool删掉空闲结点并返回
 }
 
 
+void free_wp(int NO){
+	if(head==NULL) Assert(0,"Watchpoint free exception:No watchpoint is working.\n");
+
+	if(NO<0) Assert(0,"Watchpoint free exception:Cannot find corresponding watchpoint.\n");
+
+	WP* last=NULL;
+	for(WP* it=head;it->next!=NULL;it=it->next){
+		if(it->NO==NO){
+			if(last==NULL) head=it->next;//说明要free第一个结点
+			else last->next=it->next;
+
+			it->next=free_;
+			free_=it;
+		}
+		last=it;
+	}
+
+	
+}
+
+
 WP* check_wp(uint32_t* new_result){//返回产生变化的变量
 	for(WP* it=head;it!=NULL;it=it->next){
 		//printf("LOG\n");
