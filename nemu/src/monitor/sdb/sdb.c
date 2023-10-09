@@ -130,8 +130,6 @@ static int cmd_w(char* args){
 	char* expr_s=strtok(NULL,"");
 	if(expr_s==NULL) printf("Without any argument...");
 	else new_wp(expr_s);
-	extern WP*  head;
-	printf("LOG0:%s\n",head->expr);
 	return 0;
 }
 
@@ -201,6 +199,8 @@ void sdb_mainloop() {
     cmd_c(NULL);
     return;
   }
+		extern WP*  head;
+			printf("LOG0:%s\n",head->expr);
 
   for (char *str; (str = rl_gets()) != NULL; ) {
     char *str_end = str + strlen(str);
