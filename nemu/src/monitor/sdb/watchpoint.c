@@ -71,6 +71,7 @@ void free_wp(int NO){
 }
 
 WP* check_wp(uint32_t* new_result){//返回产生变化的变量
+	printf("%p",head);
 	if(head!=NULL){ 
 		for(WP* it=head;it->next!=NULL;it=it->next){
 			printf("LOG\n");
