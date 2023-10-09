@@ -52,9 +52,9 @@ void new_wp(char* expr_s){//从wp_pool删掉空闲结点并返回
 
 
 void free_wp(int NO){
-	//Assert(head==NULL,"Watchpoint free exception:No watchpoint is working.\n");
+	Assert(head!=NULL,"Watchpoint free exception:No watchpoint is working.\n");
 
-	Assert(NO<0,"Watchpoint free exception:Cannot find corresponding watchpoint.\n");
+	Assert(NO>=0,"Watchpoint free exception:Cannot find corresponding watchpoint.\n");
 
 	WP* last=NULL;
 	for(WP* it=head;it->next!=NULL;it=it->next){
