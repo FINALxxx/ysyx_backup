@@ -110,7 +110,6 @@ static int cmd_x(char* args){
 }
 
 static int cmd_p(char* args){
-	printf("LOG:%s\n",args);
 	char* expr_=strtok(NULL,"");
 	if(expr_==NULL) printf("Without any argument...\n");
 	else{ 
@@ -125,6 +124,7 @@ static int cmd_p(char* args){
 }
 
 static int cmd_w(char* args){
+	printf("LOG:%s\n",args);
 	char* expr_s=strtok(NULL,"");
 	
 	//printf("LOG:In cmd_w:%p\n",expr_s);
