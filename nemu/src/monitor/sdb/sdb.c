@@ -75,7 +75,7 @@ static int cmd_si(char* args){
 
 static int cmd_info(char* args){
 	extern WP* head;
-	printf("LOG:In cmd_info:%s",head->expr_s);
+	printf("LOG:In cmd_info:%s\n",head->expr_s);
 	char *arg=strtok(NULL," ");
 	if(arg==NULL){     
 		printf("Without any argument...\n");
