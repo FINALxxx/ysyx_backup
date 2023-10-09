@@ -38,7 +38,8 @@ void init_wp_pool() {
 void new_wp(char* expr_s){//从wp_pool删掉空闲结点并返回
 	if(free_==NULL) Assert(0,"Watchpoint new exception:Exceeded the avaliable capacity.\n");
 	WP* node=free_;
-	free_=free_->next;	
+	free_=free_->next;
+	printf("%s",expr_s);	
 	node->expr=expr_s;
 	node->next=head;
 	head=node;
