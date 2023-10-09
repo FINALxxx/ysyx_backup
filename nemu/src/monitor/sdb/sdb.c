@@ -128,6 +128,8 @@ static int cmd_w(char* args){
 
 	if(expr_s==NULL) printf("Without any argument...\n");
 	else new_wp(expr_s);
+
+	printf("LOG:In cmd_w:%s\n",expr_s);
 	return 0;
 }
 
