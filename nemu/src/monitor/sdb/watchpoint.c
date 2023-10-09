@@ -71,11 +71,12 @@ void free_wp(int NO){
 }
 
 WP* check_wp(uint32_t* new_result){//返回产生变化的变量
-	printf("%p",head->next);
+	//printf("%p",head->next);
 	if(head!=NULL){ 
 		for(WP* it=head;it!=NULL;it=it->next){
-			printf("LOG\n");
+			//printf("LOG\n");
 			bool success=true;
+			printf("%s\n",it->expr);
 			uint32_t result=expr(it->expr,&success);
 			if(result!=it->val) {
 				*new_result=result;
