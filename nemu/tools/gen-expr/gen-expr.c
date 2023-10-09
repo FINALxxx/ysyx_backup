@@ -31,8 +31,43 @@ static char *code_format =
 "  return 0; "
 "}";
 
-static void gen_rand_expr() {
-  buf[0] = '\0';
+static int cnt=0;
+static int choose(unsigned int n){
+	return rand()%n;//限制返回值在0~n-1
+}
+
+static void gen_rand_op(){
+	int n=choose(4);
+	switch(n){
+		case 0:sprintf(buf+cnt,"%c",'+');break;
+		case 1:sprintf(buf+cnt,"%c",'-');break;
+		case 2:sprintf(buf+cnt,"%c",'*');break;
+		default:sprintf(buf+cnt,"%c",'/');break;
+	}
+	cnt++;
+}
+
+static void gen(char c){
+	sprintf(buf+cnt,"%c",c);
+	cnt++;
+}
+
+static void gen_num(){
+	int n=choose(10000);
+	//if(!n && buf[cnt-1]=='/') n=1;//避免除0
+	sprintf(buf+cnt,"%d",n);
+	while(buf[cnt]) cnt++;
+}
+
+static void  gen_rand_expr() {
+	int n=choose(3);
+	if(cnt>10) n=0;//限制一下长度
+
+	switch (n) { 
+    	case 0: gen_num(); break;
+    	case 1: gen('(');gen_rand_expr();gen(')'); break;
+    	default: gen_rand_expr(); gen_rand_op(); gen_rand_expr(); break;
+  	}
 }
 
 int main(int argc, char *argv[]) {
@@ -40,11 +75,12 @@ int main(int argc, char *argv[]) {
   srand(seed);
   int loop = 1;
   if (argc > 1) {
-    sscanf(argv[1], "%d", &loop);
+    sscanf(argv[1], "%d", &loop);//命令行输入一个循环次数
   }
   int i;
   for (i = 0; i < loop; i ++) {
     gen_rand_expr();
+	buf[cnt+10]='\0';//改在这里加\0
 
     sprintf(code_buf, code_format, buf);
 
@@ -56,7 +92,7 @@ int main(int argc, char *argv[]) {
     int ret = system("gcc /tmp/.code.c -o /tmp/.expr");
     if (ret != 0) continue;
 
-    fp = popen("/tmp/.expr", "r");
+    fp = popen("/tmp/.expr", "r");//popen和pclose：创建子进程，与子进程的SHELL建立IO管道
     assert(fp != NULL);
 
     int result;

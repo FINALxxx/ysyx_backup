@@ -17,15 +17,18 @@
 #include <cpu/cpu.h>
 #include <readline/readline.h>
 #include <readline/history.h>
-#include "sdb.h"
+#include <sdb/sdb.h>
 #include <stdio.h>
 #include <debug.h>
 #include <memory/vaddr.h>
+#include <sdb/watchpoint.h>
+#include <sdb/expr.h>
 
 static int is_batch_mode = false;
 
 void init_regex();
 void init_wp_pool();
+word_t expr(char* e,bool *success);
 
 /* We use the `readline' library to provide more flexibility to read from stdin. */
 static char* rl_gets() {//获取一行输入，如果指针有指向，且指向的字符串存在，则返回这行输入
@@ -58,24 +61,29 @@ static int cmd_q(char *args)  {
 static int cmd_help(char *args);
 
 static int cmd_si(char* args){
+
 	char *arg=strtok(NULL," ");	
-	if(arg==NULL){     
+	if(arg==NULL){      
 		cpu_exec(1);//single-step
 	}else{
 		uint64_t n=1;
-		Assert(sscanf(arg,"%lu",&n),"嗨害嗨");
+		Assert(sscanf(arg,"%lu",&n),"嗨害嗨\n");
 		cpu_exec(n);
 	}
 	return 0;
 }
 
 static int cmd_info(char* args){
+	//extern WP* head;
+	//printf("LOG:In cmd_info START:%s\n",head->expr_s);
 	char *arg=strtok(NULL," ");
 	if(arg==NULL){     
-		printf("Without any argument...");
+		printf("Without any argument...\n");
 	}else{
 		if(!strcmp(arg,"r")) isa_reg_display();
-		else if(!strcmp(arg,"w")) printf("TODO\n"); //TODO:添加一个info w
+		else if(!strcmp(arg,"w")){
+			print_w();
+		}
 		else printf("Unknown argument '%s'\n",arg);
 	}
 
@@ -84,16 +92,16 @@ static int cmd_info(char* args){
 
 static int cmd_x(char* args){
 	char* visit_len_s=strtok(NULL," ");
-	if(visit_len_s==NULL) printf("Without any argument...");
-	else{
+	if(visit_len_s==NULL) printf("Without any argument...\n");
+	else{  
 		char* visit_addr_s=strtok(NULL," ");
-		if(visit_addr_s==NULL) printf("Incomplete argument...");
-		else{
+		if(visit_addr_s==NULL) printf("Incomplete argument...\n");
+		else{ 
 			vaddr_t visit_addr;
 			int visit_len=0;
 			sscanf(visit_addr_s,"%x",&visit_addr);
 			sscanf(visit_len_s,"%d",&visit_len);
-			for(int i=0;i<visit_len;i++){
+			for(int i=0 ;i<visit_len;i++){
 				//printf("log:%x\n",visit_addr);
 				printf("%#x:\t%08x\n",visit_addr,vaddr_read(visit_addr,4));//read后打印(参看read_host)，另外，这里的word_t是uint32_t的
 				visit_addr+=4;
@@ -102,6 +110,47 @@ static int cmd_x(char* args){
 	}
 	return 0;
 }
+
+static int cmd_p(char* args){
+	char* expr_=strtok(NULL,"");
+	if(expr_==NULL) printf("Without any argument...\n");
+	else{ 
+		bool success=true;
+		uint32_t result=expr(expr_,&success);
+		//if(success) printf("匹配通过\n");
+		//else printf("匹配不通过\n");
+		printf("the result=%d\n",result);
+	}
+
+	return 0;
+}
+
+static int cmd_w(char* args){
+	char* expr_s=strtok(NULL,"");	
+	//printf("LOG:In cmd_w:%p\n",expr_s);
+	if(expr_s==NULL) printf("Without any argument...\n");
+	else new_wp(expr_s);
+	
+
+	//printf("LOG:In cmd_w END:%s\n",args);
+	return 0;
+}
+
+
+static int cmd_d(char* args){
+	char* no_s=strtok(NULL,"");
+	if(no_s==NULL) printf("Without any argument...");
+	else{
+		int no=-1;
+		sscanf(no_s,"%d",&no);
+		//printf("%d\n",no);
+		free_wp(no);
+	}
+
+	return 0;
+}
+
+
 
 static struct { 
   const char *name;
@@ -115,6 +164,9 @@ static struct {
   { "si", "single-step execution", cmd_si},
   { "info", "check the information of registers or watch points", cmd_info},
   { "x", "visit the corresponding contents in memory", cmd_x },
+  { "p", "match the expr by regex", cmd_p},
+  { "w", "add a new watchpoint by using EXPR", cmd_w},
+  { "d", "delete a working watchpoint by using NO", cmd_d},
 };
 
 #define NR_CMD ARRLEN(cmd_table)
@@ -151,7 +203,7 @@ void sdb_mainloop() {
     cmd_c(NULL);
     return;
   }
-
+		
   for (char *str; (str = rl_gets()) != NULL; ) {
     char *str_end = str + strlen(str);
 
@@ -175,7 +227,7 @@ void sdb_mainloop() {
     int i;
     for (i = 0; i < NR_CMD; i ++) {
       if (strcmp(cmd, cmd_table[i].name) == 0) {//比较cmd与cmd_table中的预置命令
-        if (cmd_table[i].handler(args) < 0) { return; }//若比较成功，且有相应指向的函数指针（const），则return
+        if (cmd_table[i].handler(args) < 0) { return; }//若比较成功，且返回-1，则return
         break;
       }
     }

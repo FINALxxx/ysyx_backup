@@ -18,6 +18,7 @@
 
 #include <common.h>
 
-word_t expr(char *e, bool *success);
+void sdb_mainloop();
+void init_sdb();
 
 #endif
