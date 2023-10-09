@@ -150,6 +150,8 @@ word_t expr(char *e, bool *success) {//由于函数的return有其他用途，�
 	}
 
 	int l=0,r=nr_token-1;
+	printf("%d\n",eval(l,r));
+	*success=true;
 	return eval(l,r);
 }
 
