@@ -59,6 +59,7 @@ void free_wp(int NO){
 	WP* last=NULL;
 	for(WP* it=head;it->next!=NULL;it=it->next){
 		if(it->NO==NO){
+			printf("test");
 			if(last==NULL) head=it->next;//说明要free第一个结点
 			else last->next=it->next;
 
