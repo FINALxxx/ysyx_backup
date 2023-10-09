@@ -45,7 +45,7 @@ void new_wp(char* expr_s){//从wp_pool删掉空闲结点并返回
 
 	node->next=head;
 	head=node;
-	printf("test:%s\n",head->expr_s);
+	printf("test:%p\n",head->expr_s);
 }
 
 
