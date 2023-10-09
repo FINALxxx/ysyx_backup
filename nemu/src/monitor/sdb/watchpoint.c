@@ -47,5 +47,5 @@ WP* check_wp(uint32_t* new_result){//返回产生变化的变量
 }
 
 void print_w(){
-	printf("%p\n",head->expr_s);
+	printf("%s\n",head->expr_s);
 }
