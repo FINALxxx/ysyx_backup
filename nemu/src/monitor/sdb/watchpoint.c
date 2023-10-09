@@ -45,6 +45,7 @@ void new_wp(char* expr_s){//从wp_pool删掉空闲结点并返回
 
 	bool success=true;
 	uint32_t val=expr(expr_s,&success);
+	printf("%d",success);
 	if(success) node->val=val;
 	else Assert(0,"illegal expr!\n");
 	printf("LOG:%s\n",head->expr);	
@@ -75,7 +76,7 @@ WP* check_wp(uint32_t* new_result){//返回产生变化的变量
 	for(WP* it=head;it!=NULL;it=it->next){
 		//printf("LOG\n");
 		bool success=true;
-		printf("LOG:%s\n",head->expr);
+		//printf("LOG:%s\n",head->expr);
 		uint32_t result=expr(it->expr,&success);
 		if(result!=it->val) {
 			*new_result=result;
