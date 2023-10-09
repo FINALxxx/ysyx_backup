@@ -124,10 +124,16 @@ static int cmd_p(char* args){
 }
 
 static int cmd_w(char* args){
-	char* exprw_s=strtok(NULL,"");
-	printf("%s\n",exprw_s);
-	if(exprw_s==NULL) printf("Without any argument...\n");
-	else new_wp(exprw_s);
+	char* expr_s=strtok(NULL,"");
+	char exprw[100];
+	int i=0;
+	for(;expr_s[i]!='\0';i++){
+		exprw[i]=expr_s[i];
+	}
+	expr_s[i+1]='\0';
+
+	if(expr_s==NULL) printf("Without any argument...\n");
+	else new_wp(exprw);
 	return 0;
 }
 

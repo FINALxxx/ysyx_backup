@@ -42,7 +42,7 @@ void new_wp(char* exprw_s){//从wp_pool删掉空闲结点并返回
 	free_=free_->next;
 	
 	head=node;
-	head->exprw_s=exprw_s;
+	strcpy(head->exprw_s,exprw_s);
 }
 
 
