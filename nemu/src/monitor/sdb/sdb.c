@@ -69,6 +69,8 @@ static int cmd_si(char* args){
 		Assert(sscanf(arg,"%lu",&n),"嗨害嗨");
 		cpu_exec(n);
 	}
+	extern WP* head;
+	printf("LOG1:%s\n",head->expr);
 	return 0;
 }
 
