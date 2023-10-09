@@ -49,6 +49,7 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
 	nemu_state.state=NEMU_STOP;
 	printf("Watchpoint change:In No.%d,%d==>%d\n",wp->NO,wp->val,new_result);
 	wp->val=new_result;
+	//sdb_mainloop(); //不用重新调用mainloop
   }
 }
 
