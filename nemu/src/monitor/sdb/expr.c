@@ -207,7 +207,6 @@ int eval(int l,int r){
 	//printf("l=%d,r=%d\n",l,r);
 	if(l>r){ 
 		Assert(0,"illegal expr!\n");//bad expr
-		//printf("l=%d,r=%d\n",l,r);
 		return 0;
 	}else if(l==r){
 		//in this case,it must be a number or register(the smallest expr),and return its value.
@@ -224,7 +223,7 @@ int eval(int l,int r){
 		}else if(tokens[l].type==REG_NAME){
 			int val=0;
 			bool success=false;
-			val=isa_reg_str2val(tokens[l].str+1,&success);
+			val=isa_reg_str2val(tokens[l].str+1,&success);//返回地址
 			Assert(success,"illegal expr:cannot find the register!\n");
 			return val;
 		}
@@ -238,22 +237,18 @@ int eval(int l,int r){
 	}else{
 		int operator=op(l,r);//返回op的下标
 		int val1=0,val2=0;
-		//printf("LOG:%d\n",operator);
 		if(tokens[operator].type!=PTR){
 			val1=eval(l,operator-1);
 			val2=eval(operator+1,r);
-			//printf("%d,%d",val1,val2);
 		}else{
-			//printf("LOG\n");
-			val1=eval(operator+1,r);			
+			val1=eval(operator+1,r);
 		}
-		//printf("l=%d,op=%s,r=%d\n",l,tokens[operator].str,r);
 		switch (tokens[operator].type) { 
 			case '+': return val1 + val2;
 			case '-': return val1 - val2;
 			case '*': return val1 * val2;
 			case '/': Assert(val2!=0,"illegal expr:division by 0!\n"); return val1 / val2; 
-			case PTR: return vaddr_read(val1,4);
+			case PTR:return vaddr_read(val1,4); 
 			default: assert(0);
 		}	
 	}
