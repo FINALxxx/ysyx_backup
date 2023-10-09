@@ -76,7 +76,7 @@ WP* check_wp(uint32_t* new_result){//返回产生变化的变量
 		for(WP* it=head;it!=NULL;it=it->next){
 			//printf("LOG\n");
 			bool success=true;
-			printf("LOG:%s\n",it->expr);
+			printf("LOG:%s\n",head->expr);
 			uint32_t result=expr(it->expr,&success);
 			if(result!=it->val) {
 				*new_result=result;
