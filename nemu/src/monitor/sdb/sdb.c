@@ -124,10 +124,10 @@ static int cmd_p(char* args){
 }
 
 static int cmd_w(char* args){
-	char* expr_s=strtok(NULL,"");
-	printf("%s\n",expr_s);
-	if(expr_s==NULL) printf("Without any argument...\n");
-	else new_wp(expr_s);
+	char* exprw_s=strtok(NULL,"");
+	printf("%s\n",exprw_s);
+	if(exprw_s==NULL) printf("Without any argument...\n");
+	else new_wp(exprw_s);
 	return 0;
 }
 
@@ -156,7 +156,7 @@ static struct {
   { "q", "Exit NEMU", cmd_q },
   /* TODO: Add more commands */
   { "si", "single-step execution", cmd_si},
-  { "info2", "check the information of registers or watch points", cmd_info},
+  { "info", "check the information of registers or watch points", cmd_info},
   { "x", "visit the corresponding contents in memory", cmd_x },
   { "p", "match the expr by regex", cmd_p},
   { "w", "add a new watchpoint by using EXPR", cmd_w},
