@@ -23,6 +23,7 @@ static WP wp_pool[NR_WP] = {};//用static修饰可能是为了防止其他文件
 WP *head = NULL, *free_ = NULL;//记得改回static
 
 void init_wp_pool() {
+	printf("test\n");
   int i;
   for (i = 0; i < NR_WP; i ++) {
     wp_pool[i].NO = i;
