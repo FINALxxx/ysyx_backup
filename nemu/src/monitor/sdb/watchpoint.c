@@ -21,7 +21,7 @@
 
 
 static WP wp_pool[NR_WP] = {};//用static修饰可能是为了防止其他文件操作该变量
-WP *head = NULL, *free_ = NULL;//记得改回static
+static WP *head = NULL, *free_ = NULL;//记得改回static
 
 void init_wp_pool() {
   int i;
@@ -40,21 +40,36 @@ void new_wp(char* expr_s){//从wp_pool删掉空闲结点并返回
 	WP* node=free_;
 	free_=free_->next;
 	
-	sprintf(node->expr_s,"%s",expr_s);
+	sprintf(node->expr_s,"%s",expr_s);//DEBUG:不要直接赋值，会赋值成地址，expr_s是一个局部变量！！
 	bool success=false;
-	node->val=expr(node->expr_s,&success);
+	uint32_t val=expr(node->expr_s,&success);
+	if(success) node->val=val;
+	else Assert(0,"illegal expr!\n");
 	node->next=head;
 	head=node;
-	printf("LOG:In new_wp:%s,%d,%p\n",head->expr_s,head->val,head->expr_s);	
+	//printf("LOG:In new_wp:%s,%d,%p\n",head->expr_s,head->val,head->expr_s);	
 }
 
 
 WP* check_wp(uint32_t* new_result){//返回产生变化的变量
-	assert(0);
+	for(WP* it=head;it!=NULL;it=it->next){
+		//printf("LOG\n");
+		bool success=false;
+		//printf("LOG:%s\n",head->expr);
+		uint32_t result=expr(it->expr_s,&success);
+		if(!success) Assert(0,"illegal expr!\n");
+		else if(result!=it->val) {
+			*new_result=result;
+			return it;//只返回第一个变化的结点，后续可以再改
+		}
+	}	
+	//printf("LOG:In print_w:%p\n",head->expr_s);
 	return NULL;
 }
 
 void print_w(){
-	printf("LOG:In print_w:%s,%d,%p\n",head->expr_s,head->val,head->expr_s);
-
+	//printf("LOG:In print_w:%s,%d,%p\n",head->expr_s,head->val,head->expr_s);
+	for(WP* it=head;it!=NULL;it=it->next){
+		printf("watchpoint[%d]:%s\tnow=%u\n",it->NO,it->expr_s,it->val);
+	}
 }
