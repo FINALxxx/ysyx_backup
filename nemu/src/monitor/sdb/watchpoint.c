@@ -73,7 +73,7 @@ void free_wp(int NO){
 WP* check_wp(uint32_t* new_result){//返回产生变化的变量
 	printf("%p",head->next);
 	if(head!=NULL){ 
-		for(WP* it=head;it->next!=NULL;it=it->next){
+		for(WP* it=head;it!=NULL;it=it->next){
 			printf("LOG\n");
 			bool success=true;
 			uint32_t result=expr(it->expr,&success);
@@ -88,7 +88,7 @@ WP* check_wp(uint32_t* new_result){//返回产生变化的变量
 }
 
 void print_w(){
-	for(WP* it=head;it->next!=NULL;it=it->next){
+	for(WP* it=head;it!=NULL;it=it->next){
 		printf("watchpoint[%d]:%s\tnow=%u\n",it->NO,it->expr,it->val);
 	}
 
