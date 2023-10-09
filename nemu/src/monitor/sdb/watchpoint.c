@@ -50,6 +50,7 @@ void new_wp(char* expr_s){//从wp_pool删掉空闲结点并返回
 
 
 WP* check_wp(uint32_t* new_result){//返回产生变化的变量
+	assert(0);
 	return NULL;
 }
 
