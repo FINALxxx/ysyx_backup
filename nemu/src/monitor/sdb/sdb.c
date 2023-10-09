@@ -61,6 +61,10 @@ static int cmd_q(char *args)  {
 static int cmd_help(char *args);
 
 static int cmd_si(char* args){
+	extern WP* head;
+	printf("LOG1:%s\n",head->expr);
+
+
 	char *arg=strtok(NULL," ");	
 	if(arg==NULL){      
 		cpu_exec(1);//single-step
@@ -69,8 +73,6 @@ static int cmd_si(char* args){
 		Assert(sscanf(arg,"%lu",&n),"嗨害嗨");
 		cpu_exec(n);
 	}
-	extern WP* head;
-	printf("LOG1:%s\n",head->expr);
 	return 0;
 }
 
