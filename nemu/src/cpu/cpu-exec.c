@@ -44,6 +44,7 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
   uint32_t new_result=0;
   //printf("LOG\n");
   WP* wp=check_wp(&new_result);
+  printf("%p\n",wp);
   if(wp!=NULL){
 	wp->val=new_result;
 	nemu_state.state=NEMU_STOP;
