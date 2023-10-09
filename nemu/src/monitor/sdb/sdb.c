@@ -75,7 +75,7 @@ static int cmd_si(char* args){
 
 static int cmd_info(char* args){
 	extern WP* head;
-	printf("LOG:In cmd_info:%s\n",head->expr_s);
+	printf("LOG:In cmd_info START:%s\n",head->expr_s);
 	char *arg=strtok(NULL," ");
 	if(arg==NULL){     
 		printf("Without any argument...\n");
@@ -126,12 +126,13 @@ static int cmd_p(char* args){
 }
 
 static int cmd_w(char* args){
-	printf("LOG:%s\n",args);
 	char* expr_s=strtok(NULL,"");	
 	//printf("LOG:In cmd_w:%p\n",expr_s);
 	if(expr_s==NULL) printf("Without any argument...\n");
 	else new_wp(expr_s);
+	
 
+	printf("LOG:In cmd_w END:%s\n",args);
 	return 0;
 }
 
