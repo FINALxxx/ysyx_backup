@@ -135,7 +135,7 @@ static int cmd_w(char* args){
 	return 0;
 }
 
-
+/*
 static int cmd_d(char* args){
 	char* no_s=strtok(NULL,"");
 	if(no_s==NULL) printf("Without any argument...");
@@ -147,7 +147,7 @@ static int cmd_d(char* args){
 
 	return 0;
 }
-
+*/
 
 
 static struct { 
@@ -164,7 +164,7 @@ static struct {
   { "x", "visit the corresponding contents in memory", cmd_x },
   { "p", "match the expr by regex", cmd_p},
   { "w", "add a new watchpoint by using EXPR", cmd_w},
-  { "d", "delete a working watchpoint by using NO", cmd_d},
+  //{ "d", "delete a working watchpoint by using NO", cmd_d},
 };
 
 #define NR_CMD ARRLEN(cmd_table)
