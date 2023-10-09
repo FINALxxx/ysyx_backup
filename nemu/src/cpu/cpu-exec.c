@@ -43,7 +43,8 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
 
   uint32_t new_result=0;
   //printf("LOG\n");
-  WP* wp=check_wp(&new_result);
+  check_wp(&new_result);
+  /*
   printf("%p\n",wp);
   if(wp!=NULL){
 	wp->val=new_result;
@@ -51,6 +52,7 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
 	printf("Watchpoint No.%d:%u==>%u",wp->NO,wp->val,new_result);
 	sdb_mainloop();
   }
+  */
 }
 
 static void exec_once(Decode *s, vaddr_t pc) {
