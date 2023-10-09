@@ -37,10 +37,13 @@ void isa_reg_display() {
 word_t isa_reg_str2val(const char *s, bool *success) {
 	uint32_t reg_len=sizeof(regs)/sizeof(regs[0]);
 	for(int i=0;i<reg_len;i++){
-		if(!strcmp(regs[i],s)){ 
-			*success=true;
-			return cpu.gpr[i];
+		if(!strcmp(reg_name(i),s)){ 
+			if(cpu.gpr[i]>=0x80000000){
+				*success=true;
+				return vaddr_read(cpu.gpr[i],4);
+			}
 		}
 	}
+	*success=false;
 	return 0;
 }
