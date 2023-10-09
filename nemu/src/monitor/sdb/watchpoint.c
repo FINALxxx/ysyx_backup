@@ -52,14 +52,14 @@ void new_wp(char* expr_s){//从wp_pool删掉空闲结点并返回
 
 
 void free_wp(int NO){
-	if(head==NULL) Assert(0,"Watchpoint free exception:No watchpoint is working.\n");
+	Assert(head==NULL,"Watchpoint free exception:No watchpoint is working.\n");
 
-	if(NO<0) Assert(0,"Watchpoint free exception:Cannot find corresponding watchpoint.\n");
+	Assert(NO<0,"Watchpoint free exception:Cannot find corresponding watchpoint.\n");
 
 	WP* last=NULL;
 	for(WP* it=head;it->next!=NULL;it=it->next){
 		if(it->NO==NO){
-			printf("test");
+			printf("test\n");
 			if(last==NULL) head=it->next;//说明要free第一个结点
 			else last->next=it->next;
 
