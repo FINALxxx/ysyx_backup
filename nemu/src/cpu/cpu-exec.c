@@ -49,7 +49,7 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
   if(wp!=NULL){
 	wp->val=new_result;
 	nemu_state.state=NEMU_STOP;
-	printf("Watchpoint No.%d:%u==>%u",wp->NO,wp->val,new_result);
+	printf("Watchpoint change:In No.%d,%u==>%u\n",wp->NO,wp->val,new_result);
 	sdb_mainloop();
   }
 }
