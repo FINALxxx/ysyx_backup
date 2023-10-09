@@ -57,7 +57,7 @@ void free_wp(int NO){
 	Assert(NO>=0,"Watchpoint free exception:Cannot find corresponding watchpoint.\n");
 
 	WP* last=NULL;
-	for(WP* it=head;it->next!=NULL;it=it->next){
+	for(WP* it=head;it!=NULL;it=it->next){
 		if(it->NO==NO){
 			printf("test\n");
 			if(last==NULL) head=it->next;//说明要free第一个结点

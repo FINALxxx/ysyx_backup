@@ -143,7 +143,7 @@ static int cmd_d(char* args){
 	else{
 		int no=-1;
 		sscanf(no_s,"%d",&no);
-		printf("%d\n",no);
+		//printf("%d\n",no);
 		free_wp(no);
 	}
 
