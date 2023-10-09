@@ -127,7 +127,7 @@ static int cmd_w(char* args){
 	char* expr_s=strtok(NULL,"");
 
 	if(expr_s==NULL) printf("Without any argument...\n");
-	else new_wp("test");
+	else new_wp(expr_s);
 	return 0;
 }
 
