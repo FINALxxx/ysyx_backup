@@ -70,7 +70,7 @@ static int cmd_si(char* args){
 		cpu_exec(1);//single-step
 	}else{
 		uint64_t n=1;
-		Assert(sscanf(arg,"%lu",&n),"嗨害嗨");
+		Assert(sscanf(arg,"%lu",&n),"嗨害嗨\n");
 		cpu_exec(n);
 	}
 	return 0;
@@ -79,7 +79,7 @@ static int cmd_si(char* args){
 static int cmd_info(char* args){
 	char *arg=strtok(NULL," ");
 	if(arg==NULL){     
-		printf("Without any argument...");
+		printf("Without any argument...\n");
 	}else{
 		if(!strcmp(arg,"r")) isa_reg_display();
 		else if(!strcmp(arg,"w")){
@@ -93,10 +93,10 @@ static int cmd_info(char* args){
 
 static int cmd_x(char* args){
 	char* visit_len_s=strtok(NULL," ");
-	if(visit_len_s==NULL) printf("Without any argument...");
+	if(visit_len_s==NULL) printf("Without any argument...\n");
 	else{  
 		char* visit_addr_s=strtok(NULL," ");
-		if(visit_addr_s==NULL) printf("Incomplete argument...");
+		if(visit_addr_s==NULL) printf("Incomplete argument...\n");
 		else{ 
 			vaddr_t visit_addr;
 			int visit_len=0;
@@ -114,7 +114,7 @@ static int cmd_x(char* args){
 
 static int cmd_p(char* args){
 	char* expr_s=strtok(NULL,"");
-	if(expr_s==NULL) printf("Without any argument...");
+	if(expr_s==NULL) printf("Without any argument...\n");
 	else{ 
 		bool success=true;
 		uint32_t result=expr(expr_s,&success);
@@ -128,7 +128,7 @@ static int cmd_p(char* args){
 
 static int cmd_w(char* args){
 	char* expr_s=strtok(NULL,"");
-	if(expr_s==NULL) printf("Without any argument...");
+	if(expr_s==NULL) printf("Without any argument...\n");
 	else new_wp(expr_s);
 	return 0;
 }
