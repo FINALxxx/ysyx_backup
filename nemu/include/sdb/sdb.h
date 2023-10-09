@@ -19,5 +19,6 @@
 #include <common.h>
 
 void sdb_mainloop();
+void init_sdb();
 
 #endif
