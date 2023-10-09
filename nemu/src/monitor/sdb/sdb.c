@@ -156,7 +156,7 @@ static struct {
   { "q", "Exit NEMU", cmd_q },
   /* TODO: Add more commands */
   { "si", "single-step execution", cmd_si},
-  { "info", "check the information of registers or watch points", cmd_info},
+  { "info2", "check the information of registers or watch points", cmd_info},
   { "x", "visit the corresponding contents in memory", cmd_x },
   { "p", "match the expr by regex", cmd_p},
   { "w", "add a new watchpoint by using EXPR", cmd_w},
