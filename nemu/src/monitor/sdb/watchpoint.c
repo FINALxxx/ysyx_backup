@@ -50,6 +50,7 @@ void new_wp(char* expr_s){//从wp_pool删掉空闲结点并返回
 	printf("LOG:%s\n",head->expr);	
 }
 
+/*
 void free_wp(int NO){
 	if(head==NULL) Assert(0,"Watchpoint free exception:No watchpoint is working.\n");
 
@@ -68,7 +69,7 @@ void free_wp(int NO){
 	}
 
 	
-}
+}*/
 
 WP* check_wp(uint32_t* new_result){//返回产生变化的变量
 	printf("%s\n",head->expr); 
