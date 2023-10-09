@@ -20,7 +20,7 @@
 
 
 static WP wp_pool[NR_WP] = {};//用static修饰可能是为了防止其他文件操作该变量
-static WP *head = NULL, *free_ = NULL;
+WP *head = NULL, *free_ = NULL;//记得改回static
 
 void init_wp_pool() {
   int i;
@@ -45,7 +45,6 @@ void new_wp(char* expr_s){//从wp_pool删掉空闲结点并返回
 
 	bool success=true;
 	uint32_t val=expr(expr_s,&success);
-	printf("%d",success);
 	if(success) node->val=val;
 	else Assert(0,"illegal expr!\n");
 	printf("LOG:%s\n",head->expr);	

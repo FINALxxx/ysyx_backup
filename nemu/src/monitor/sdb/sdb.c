@@ -126,7 +126,8 @@ static int cmd_w(char* args){
 	char* expr_s=strtok(NULL,"");
 	if(expr_s==NULL) printf("Without any argument...");
 	else new_wp(expr_s);
-
+	extern WP*  head;
+	printf("LOG0:%s\n",head->expr);
 	return 0;
 }
 
