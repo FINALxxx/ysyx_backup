@@ -223,6 +223,7 @@ int eval(int l,int r){
 		}else if(tokens[l].type==REG_NAME){
 			int val=0;
 			bool success=false;
+			//printf("LOG:%s\n",tokens[l].str+1);
 			val=isa_reg_str2val(tokens[l].str+1,&success);//返回地址
 			Assert(success,"illegal expr:cannot find the register!\n");
 			return val;
