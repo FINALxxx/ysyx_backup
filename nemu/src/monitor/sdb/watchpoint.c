@@ -42,7 +42,7 @@ void new_wp(char* expr_s){//从wp_pool删掉空闲结点并返回
 	
 	head=node;
 	head->expr_s=expr_s;
-	printf("LOG:In new_wp:%s\n",head->expr_s);	
+	printf("LOG:In new_wp:%p\n",head->expr_s);	
 }
 
 
@@ -51,5 +51,6 @@ WP* check_wp(uint32_t* new_result){//返回产生变化的变量
 }
 
 void print_w(){
-	printf("LOG:In print_w:%s\n",head->expr_s);
+	printf("LOG:In print_w:%p\n",head->expr_s);
+
 }
