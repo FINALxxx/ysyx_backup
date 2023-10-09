@@ -47,7 +47,7 @@ void new_wp(char* expr_s){//从wp_pool删掉空闲结点并返回
 	uint32_t val=expr(expr_s,&success);
 	if(success) node->val=val;
 	else Assert(0,"illegal expr!\n");
-	printf("LOG:%s,%u\n",head->expr,head->val);	
+	printf("LOG:%p\n",head);	
 }
 
 void free_wp(int NO){
@@ -71,20 +71,18 @@ void free_wp(int NO){
 }
 
 WP* check_wp(uint32_t* new_result){//返回产生变化的变量
-	//printf("%p",head->next);
-	if(head!=NULL){ 
-		for(WP* it=head;it!=NULL;it=it->next){
-			//printf("LOG\n");
-			bool success=true;
-			printf("LOG:%s\n",head->expr);
-			uint32_t result=expr(it->expr,&success);
-			if(result!=it->val) {
-				*new_result=result;
-				return it;//只返回第一个变化的结点，后续可以再改
-			}
+	//printf("%p",head->next); 
+	for(WP* it=head;it!=NULL;it=it->next){
+		//printf("LOG\n");
+		bool success=true;
+		printf("LOG:%s\n",head->expr);
+		uint32_t result=expr(it->expr,&success);
+		if(result!=it->val) {
+			*new_result=result;
+			return it;//只返回第一个变化的结点，后续可以再改
 		}
 	}
-
+	
 	return NULL;
 }
 
