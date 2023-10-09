@@ -40,7 +40,7 @@ void new_wp(char* expr_s){//从wp_pool删掉空闲结点并返回
 	WP* node=free_;
 	free_=free_->next;
 	
-	node->expr_s=expr_s;
+	sscanf(expr_s,"%s",node->expr_s);
 	bool success=false;
 	node->val=expr(expr_s,&success);
 	node->next=head;
