@@ -42,14 +42,13 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
   IFDEF(CONFIG_DIFFTEST, difftest_step(_this->pc, dnpc));
 
   uint32_t new_result=0;
-  //printf("LOG\n");
   WP* wp=check_wp(&new_result);
   
-  printf("%p\n",wp);
+  //printf("%p\n",wp);
   if(wp!=NULL){
-	wp->val=new_result;
 	nemu_state.state=NEMU_STOP;
-	printf("Watchpoint change:In No.%d,%u==>%u\n",wp->NO,wp->val,new_result);
+	printf("Watchpoint change:In No.%d,%d==>%d\n",wp->NO,wp->val,new_result);
+	wp->val=new_result;
 	sdb_mainloop();
   }
 }
