@@ -36,13 +36,12 @@ void init_wp_pool() {
 
 /* TODO: Implement the functionality of watchpoint */
 
-void new_wp(const char* exprw_s){//从wp_pool删掉空闲结点并返回
-	printf("%s\n",exprw_s);
+void new_wp(char* expr_s){//从wp_pool删掉空闲结点并返回
 	WP* node=free_;
 	free_=free_->next;
 	
 	head=node;
-	head->exprw_s="twst";	
+	head->expr_s=expr_s;	
 }
 
 
@@ -51,5 +50,5 @@ WP* check_wp(uint32_t* new_result){//返回产生变化的变量
 }
 
 void print_w(){
-	printf("%s\n",head->exprw_s);
+	printf("%s\n",head->expr_s);
 }

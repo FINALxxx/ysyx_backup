@@ -124,10 +124,10 @@ static int cmd_p(char* args){
 }
 
 static int cmd_w(char* args){
-	const char* expr_s=strtok(NULL,"");
+	char* expr_s=strtok(NULL,"");
 
 	if(expr_s==NULL) printf("Without any argument...\n");
-	else new_wp(expr_s);
+	else new_wp("test");
 	return 0;
 }
 
@@ -221,7 +221,7 @@ void sdb_mainloop() {
     int i;
     for (i = 0; i < NR_CMD; i ++) {
       if (strcmp(cmd, cmd_table[i].name) == 0) {//比较cmd与cmd_table中的预置命令
-        if (cmd_table[i].handler(args) < 0) { return; }//若比较成功，且有相应指向的函数指针（const），则return
+        if (cmd_table[i].handler(args) < 0) { return; }//若比较成功，且返回-1，则return
         break;
       }
     }
