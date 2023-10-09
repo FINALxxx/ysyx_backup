@@ -199,9 +199,7 @@ void sdb_mainloop() {
     cmd_c(NULL);
     return;
   }
-		extern WP*  head;
-			printf("LOG0:%s\n",head->expr);
-
+		
   for (char *str; (str = rl_gets()) != NULL; ) {
     char *str_end = str + strlen(str);
 
