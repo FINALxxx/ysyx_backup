@@ -40,9 +40,9 @@ void new_wp(char* expr_s){//从wp_pool删掉空闲结点并返回
 	WP* node=free_;
 	free_=free_->next;
 	
-	sscanf(expr_s,"%s",node->expr_s);
+	sprintf(node->expr_s,"%s",expr_s);
 	bool success=false;
-	node->val=expr(expr_s,&success);
+	node->val=expr(node->expr_s,&success);
 	node->next=head;
 	head=node;
 	printf("LOG:In new_wp:%s,%d,%p\n",head->expr_s,head->val,head->expr_s);	
