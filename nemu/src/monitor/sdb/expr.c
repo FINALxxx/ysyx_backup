@@ -187,15 +187,17 @@ int op(int l,int r){
 		if(type==L_PAREN) cnt++;
 		else if(type==R_PAREN) cnt--;
 		else if(type!=NUM && type!=HEX_NUM  && !cnt){
-			int ptr_rank=0;
+			int ptr_rank=2;
 			
 			//优先级表
-			if(type=='*'||type=='/') ptr_rank=1; 
+			if(type=='*'||type=='/') ptr_rank=1;
+			if(type=='+') ptr_rank=0;//可以拓展减法 
 			if(type==PTR) ptr_rank=-1;
 
 			if(ptr_rank==main_op_rank) main_op=MAX(main_op,ptr);//同等级：选择较后的op
 			else if(ptr_rank<main_op_rank) main_op=ptr;//选择等级低的
 			main_op_rank=ptr_rank;
+			printf("test:%d\n",main_op);
 		}
 		ptr++;
 	}
@@ -205,7 +207,7 @@ int op(int l,int r){
 
 
 int eval(int l,int r){
-	//printf("l=%d,r=%d\n",l,r);
+	printf("l=%d,r=%d\n",l,r);
 	if(l>r){ 
 		Assert(0,"illegal expr!\n");//bad expr
 		return 0;
@@ -238,6 +240,7 @@ int eval(int l,int r){
 		return 0;
 	}else{
 		int operator=op(l,r);//返回op的下标
+		printf("LOG:%d\n",operator);
 		int val1=0,val2=0;
 		if(tokens[operator].type!=PTR){
 			val1=eval(l,operator-1);
