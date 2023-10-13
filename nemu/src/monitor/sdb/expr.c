@@ -187,11 +187,11 @@ int op(int l,int r){
 		if(type==L_PAREN) cnt++;
 		else if(type==R_PAREN) cnt--;
 		else if(type!=NUM && type!=HEX_NUM  && !cnt){
-			int ptr_rank=0;
+			int ptr_rank=2;
 			
 			//优先级表
 			if(type=='*'||type=='/') ptr_rank=1;
-			if(type=='+') ptr_rank=0; 
+			if(type=='+') ptr_rank=0;//可以拓展减法 
 			if(type==PTR) ptr_rank=-1;
 
 			if(ptr_rank==main_op_rank) main_op=MAX(main_op,ptr);//同等级：选择较后的op
