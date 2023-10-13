@@ -197,7 +197,7 @@ int op(int l,int r){
 			if(ptr_rank==main_op_rank) main_op=MAX(main_op,ptr);//同等级：选择较后的op
 			else if(ptr_rank<main_op_rank) main_op=ptr;//选择等级低的
 			main_op_rank=ptr_rank;
-			printf("test:%d\n",main_op);
+			//printf("test:%d\n",main_op);
 		}
 		ptr++;
 	}
@@ -207,9 +207,9 @@ int op(int l,int r){
 
 
 int eval(int l,int r){
-	printf("l=%d,r=%d\n",l,r);
+	//printf("l=%d,r=%d\n",l,r);
 	if(l>r){ 
-		Assert(0,"illegal expr!\n");//bad expr
+		//Assert(0,"illegal expr!\n");//bad expr
 		return 0;
 	}else if(l==r){
 		//in this case,it must be a number or register(the smallest expr),and return its value.
