@@ -209,7 +209,7 @@ int op(int l,int r){
 int eval(int l,int r){
 	//printf("l=%d,r=%d\n",l,r);
 	if(l>r){ 
-		//Assert(0,"illegal expr!\n");//bad expr
+		Assert(0,"illegal expr!\n");//bad expr
 		return 0;
 	}else if(l==r){
 		//in this case,it must be a number or register(the smallest expr),and return its value.
@@ -240,7 +240,7 @@ int eval(int l,int r){
 		return 0;
 	}else{
 		int operator=op(l,r);//返回op的下标
-		printf("LOG:%d\n",operator);
+		printf("LOG:%d\n",tokens[operator].type);
 		int val1=0,val2=0;
 		if(tokens[operator].type!=PTR){
 			val1=eval(l,operator-1);
