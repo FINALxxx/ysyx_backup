@@ -197,7 +197,7 @@ int op(int l,int r){
 			if(ptr_rank==main_op_rank) main_op=MAX(main_op,ptr);//同等级：选择较后的op
 			else if(ptr_rank<main_op_rank) main_op=ptr;//选择等级低的
 			main_op_rank=ptr_rank;
-			//printf("test:%d\n",main_op);
+			printf("test:%d\n",main_op);
 		}
 		ptr++;
 	}
@@ -240,7 +240,7 @@ int eval(int l,int r){
 		return 0;
 	}else{
 		int operator=op(l,r);//返回op的下标
-		printf("LOG:%d\n",tokens[operator].type);
+		//printf("LOG:%d\n",operator);
 		int val1=0,val2=0;
 		if(tokens[operator].type!=PTR){
 			val1=eval(l,operator-1);
