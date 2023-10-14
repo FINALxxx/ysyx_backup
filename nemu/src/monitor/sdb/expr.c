@@ -155,7 +155,7 @@ word_t expr(char *e, bool *success) {//由于函数的return有其他用途，�
 }
 
 
-//一般来说可以直接用stack实现整个eval函数，不过确实懒得写一个栈了，所以直接找一个指针模拟过程就行
+//一般来说可以直接用stack实现整个eval函数，不过这里可以直接找一个指针模拟过程就行
 //return：
 //1=被括号包围
 //0=不被括号包围、两端括号不匹配
@@ -240,13 +240,13 @@ int eval(int l,int r){
 		return 0;
 	}else{
 		int operator=op(l,r);//返回op的下标
-		printf("LOG:%d\n",(tokens[operator].type==PTR));
+		//printf("LOG:%d\n",(tokens[operator].type==PTR));
 		int val1=0,val2=0;
 		if(tokens[operator].type!=PTR){
 			val1=eval(l,operator-1);
 			val2=eval(operator+1,r);
 		}else{
-			printf("IN\n");
+			//printf("IN\n");
 			val1=eval(operator+1,r);
 		}
 		switch (tokens[operator].type) { 
