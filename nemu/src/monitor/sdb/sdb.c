@@ -23,6 +23,7 @@
 #include <memory/vaddr.h>
 #include <sdb/watchpoint.h>
 #include <sdb/expr.h>
+#include <utils.h>
 
 static int is_batch_mode = false;
 
@@ -55,7 +56,8 @@ static int cmd_c(char *args) {
 
 
 static int cmd_q(char *args)  {
-  return -1;//-1表示模拟器退出，正常函数退出return 0就行
+  nemu_state.state=NEMU_QUIT;
+  return -1;
 }
 
 static int cmd_help(char *args);
