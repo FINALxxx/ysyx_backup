@@ -197,7 +197,7 @@ int op(int l,int r){
 			if(ptr_rank==main_op_rank) main_op=MAX(main_op,ptr);//同等级：选择较后的op
 			else if(ptr_rank<main_op_rank) main_op=ptr;//选择等级低的
 			main_op_rank=ptr_rank;
-			printf("test:%d\n",main_op);
+			printf("test:%d\n",main_op_rank);
 		}
 		ptr++;
 	}
