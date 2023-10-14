@@ -201,7 +201,7 @@ int op(int l,int r){
 				main_op=ptr;//选择等级低的
 				main_op_rank=ptr_rank;
 			}
-			printf("test:%d\n",main_op_rank);
+			//printf("test:%d\n",main_op_rank);
 		}
 		ptr++;
 	}
@@ -211,7 +211,7 @@ int op(int l,int r){
 
 
 int eval(int l,int r){
-	printf("l=%d,r=%d\n",l,r);
+	//printf("l=%d,r=%d\n",l,r);
 	if(l>r){ 
 		Assert(0,"illegal expr!\n");//bad expr
 		return 0;
