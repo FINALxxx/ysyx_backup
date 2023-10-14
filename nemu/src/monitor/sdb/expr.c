@@ -54,7 +54,7 @@ static struct rule {
   {"==", TK_EQ},        // equal
   {"!=", NOT_EQ},		// not equal
   {"&&", LGC_AND},		// logical and
-  {"\\*", PTR},			// pointer
+  //{"\\*", PTR},			// pointer
   {"\\$[a-zA-Z0-9]+", REG_NAME},		// register name
   {"0x[0-9A-Fa-f]+", HEX_NUM},		// HEX number
 };
@@ -144,8 +144,9 @@ word_t expr(char *e, bool *success) {//由于函数的return有其他用途，�
 
 	/* TODO: Insert codes to evaluate the expression. */
 	for(int i =0;i<nr_token;i++){//找到所有的*
-		if(tokens[i].type=='*' && (i==0||tokens[i-1].type==R_PAREN||tokens[i-1].type==NUM)){//同理，也可以区分负数和减法
+		if(tokens[i].type=='*' && (i==0||(tokens[i-1].type!=R_PAREN&&tokens[i-1].type!=NUM))){//同理，也可以区分负数和减法
 			tokens[i].type=PTR;
+			printf("IN");
 		}
 	}
 
@@ -155,7 +156,7 @@ word_t expr(char *e, bool *success) {//由于函数的return有其他用途，�
 }
 
 
-//一般来说可以直接用stack实现整个eval函数，不过确实懒得写一个栈了，所以直接找一个指针模拟过程就行
+//一般来说可以直接用stack实现整个eval函数，不过这里可以直接找一个指针模拟过程就行
 //return：
 //1=被括号包围
 //0=不被括号包围、两端括号不匹配
@@ -190,24 +191,28 @@ int op(int l,int r){
 			int ptr_rank=2;
 			
 			//优先级表
-			if(type=='*'||type=='/') ptr_rank=1;
-			if(type=='+') ptr_rank=0;//可以拓展减法 
-			if(type==PTR) ptr_rank=-1;
+			if(type=='*'||type=='/') ptr_rank=0;
+			if(type=='+') ptr_rank=-1;//可以拓展减法 
+			if(type==PTR) ptr_rank=1;
 
-			if(ptr_rank==main_op_rank) main_op=MAX(main_op,ptr);//同等级：选择较后的op
-			else if(ptr_rank<main_op_rank) main_op=ptr;//选择等级低的
-			main_op_rank=ptr_rank;
-			printf("test:%d\n",main_op);
+			if(ptr_rank==main_op_rank){ 
+				main_op=MAX(main_op,ptr);//同等级：选择较后的op
+				main_op_rank=ptr_rank;
+			}else if(ptr_rank<main_op_rank){ 
+				main_op=ptr;//选择等级低的
+				main_op_rank=ptr_rank;
+			}
 		}
 		ptr++;
 	}
+	//printf("test:%d\n",main_op);
 	Assert(main_op!=-1,"illegal expr:cannot find operator\n");
 	return main_op;
 }
 
 
 int eval(int l,int r){
-	printf("l=%d,r=%d\n",l,r);
+	//printf("l=%d,r=%d\n",l,r);
 	if(l>r){ 
 		Assert(0,"illegal expr!\n");//bad expr
 		return 0;
@@ -240,12 +245,13 @@ int eval(int l,int r){
 		return 0;
 	}else{
 		int operator=op(l,r);//返回op的下标
-		printf("LOG:%d\n",operator);
+		//printf("LOG:%d\n",(tokens[operator].type==PTR));
 		int val1=0,val2=0;
 		if(tokens[operator].type!=PTR){
 			val1=eval(l,operator-1);
 			val2=eval(operator+1,r);
 		}else{
+			//printf("IN\n");
 			val1=eval(operator+1,r);
 		}
 		switch (tokens[operator].type) { 
