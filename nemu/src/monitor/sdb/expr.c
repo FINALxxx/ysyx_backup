@@ -145,6 +145,7 @@ word_t expr(char *e, bool *success) {//由于函数的return有其他用途，�
 	/* TODO: Insert codes to evaluate the expression. */
 	for(int i =0;i<nr_token;i++){//找到所有的*
 		if(tokens[i].type=='*' && (i==0||tokens[i-1].type!=R_PAREN||tokens[i-1].type!=NUM)){//同理，也可以区分负数和减法
+			printf("test");
 			tokens[i].type=PTR;
 		}
 	}
