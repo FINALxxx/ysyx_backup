@@ -91,6 +91,6 @@ WP* check_wp(uint32_t* new_result){//返回产生变化的变量
 void print_w(){
 	//printf("LOG:In print_w:%s,%d,%p\n",head->expr_s,head->val,head->expr_s);
 	for(WP* it=head;it!=NULL;it=it->next){
-		printf("watchpoint[%d]:%s\tnow=%u\n",it->NO,it->expr_s,it->val);
+		printf("watchpoint[%d]:%s\tnow=%d\n",it->NO,it->expr_s,it->val);
 	}
 }
