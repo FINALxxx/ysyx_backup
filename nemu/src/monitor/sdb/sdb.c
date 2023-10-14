@@ -55,6 +55,7 @@ static int cmd_c(char *args) {
 
 
 static int cmd_q(char *args)  {
+  nemu_state.state=NEMU_QUIT;
   return -1;//-1表示模拟器退出，正常函数退出return 0就行
 }
 
