@@ -202,10 +202,10 @@ int op(int l,int r){
 				main_op=ptr;//选择等级低的
 				main_op_rank=ptr_rank;
 			}
-			printf("test:%d\n",main_op_rank);
 		}
 		ptr++;
 	}
+	printf("test:%d\n",main_op_rank);
 	Assert(main_op!=-1,"illegal expr:cannot find operator\n");
 	return main_op;
 }
