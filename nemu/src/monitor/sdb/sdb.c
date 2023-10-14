@@ -97,16 +97,11 @@ static int cmd_x(char* args){
 		char* visit_addr_s=strtok(NULL," ");
 		if(visit_addr_s==NULL) printf("Incomplete argument...\n");
 		else{ 
-			vaddr_t visit_addr=0;
+			vaddr_t visit_addr;
 			int visit_len=0;
-			
-			//sscanf(visit_addr_s,"%x",&visit_addr);
-			bool success=false;
-			visit_addr=expr(visit_addr_s,&success);
-			Assert(success,"illegal expr!\n"); 
-
+			sscanf(visit_addr_s,"%x",&visit_addr);
 			sscanf(visit_len_s,"%d",&visit_len);
-			for(int i=0;i<visit_len;i++){
+			for(int i=0 ;i<visit_len;i++){
 				//printf("log:%x\n",visit_addr);
 				printf("%#x:\t%08x\n",visit_addr,vaddr_read(visit_addr,4));//read后打印(参看read_host)，另外，这里的word_t是uint32_t的
 				visit_addr+=4;
@@ -145,7 +140,7 @@ static int cmd_w(char* args){
 static int cmd_d(char* args){
 	char* no_s=strtok(NULL,"");
 	if(no_s==NULL) printf("Without any argument...");
-	else{ 
+	else{
 		int no=-1;
 		sscanf(no_s,"%d",&no);
 		//printf("%d\n",no);
