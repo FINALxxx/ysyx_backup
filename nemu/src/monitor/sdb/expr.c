@@ -205,14 +205,14 @@ int op(int l,int r){
 		}
 		ptr++;
 	}
-	printf("test:%d\n",main_op);
+	//printf("test:%d\n",main_op);
 	Assert(main_op!=-1,"illegal expr:cannot find operator\n");
 	return main_op;
 }
 
 
 int eval(int l,int r){
-	printf("l=%d,r=%d\n",l,r);
+	//printf("l=%d,r=%d\n",l,r);
 	if(l>r){ 
 		Assert(0,"illegal expr!\n");//bad expr
 		return 0;
