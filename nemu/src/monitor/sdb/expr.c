@@ -246,6 +246,7 @@ int eval(int l,int r){
 			val1=eval(l,operator-1);
 			val2=eval(operator+1,r);
 		}else{
+			printf("IN\n");
 			val1=eval(operator+1,r);
 		}
 		switch (tokens[operator].type) { 
