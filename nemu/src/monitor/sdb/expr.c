@@ -240,7 +240,7 @@ int eval(int l,int r){
 		return 0;
 	}else{
 		int operator=op(l,r);//返回op的下标
-		//printf("LOG:%d\n",operator);
+		printf("LOG:%d,%d\n",l,r);
 		int val1=0,val2=0;
 		if(tokens[operator].type!=PTR){
 			val1=eval(l,operator-1);
