@@ -205,7 +205,7 @@ int op(int l,int r){
 		}
 		ptr++;
 	}
-	printf("test:%d\n",main_op_rank);
+	printf("test:%d\n",main_op);
 	Assert(main_op!=-1,"illegal expr:cannot find operator\n");
 	return main_op;
 }
