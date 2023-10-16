@@ -40,9 +40,9 @@ static void decode_operand(Decode *s, int *rd, word_t *src1, word_t *src2, word_
   uint32_t i = s->isa.inst.val;
   //riscv概念的体现：rs1、rs2和rd如果有，那么它们在指令中的位置都是固定的
   int rs1 = BITS(i, 19, 15);
+  printf("test\n");
   int rs2 = BITS(i, 24, 20);
   *rd     = BITS(i, 11, 7);
-  printf("LOG:%x\n",*rd);
   switch (type) {
     case TYPE_I: src1R();          immI(); break;
     case TYPE_U:                   immU(); break;
@@ -61,7 +61,6 @@ static int decode_exec(Decode *s) {
   decode_operand(s, &rd, &src1, &src2, &imm, concat(TYPE_, type)); \
   __VA_ARGS__ ; \
 }
-  printf("RD=%x\n",s->pc);
   INSTPAT_START();
   INSTPAT("??????? ????? ????? ??? ????? 00101 11", auipc  , U, R(rd) = s->pc + imm);
   INSTPAT("??????? ????? ????? 100 ????? 00000 11", lbu    , I, R(rd) = Mr(src1 + imm, 1));
