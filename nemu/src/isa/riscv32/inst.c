@@ -43,7 +43,7 @@ static void decode_operand(Decode *s, int *rd, word_t *src1, word_t *src2, word_
   int rs2 = BITS(i, 24, 20);
   *rd     = BITS(i, 11, 7);
   switch (type) {
-    case TYPE_I: src1R();printf("test\n");          immI(); break;
+    case TYPE_I: src1R();          immI(); printf("test\n");break;
     case TYPE_U:                   immU(); break;
     case TYPE_S: src1R(); src2R(); immS(); break;
 	case TYPE_J:				   immJ(); break;
