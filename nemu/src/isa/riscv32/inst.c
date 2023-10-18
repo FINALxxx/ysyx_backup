@@ -24,7 +24,8 @@
 
 enum {
   TYPE_I, TYPE_U, TYPE_S,
-  TYPE_N, TYPE_J, TYPE_R, // none
+  TYPE_N, TYPE_J, TYPE_R, 
+  TYPE_B,// none
 };
 
 //SEXT宏的作用：
@@ -36,7 +37,7 @@ enum {
 //		(3)运算：机器的运算都是补码运算，是无符号数运算
 //		(4)范围：无符号数的存储范围>有符号数的存储范围
 
-
+//B和J格式的分支和跳转地址必须向左移动 1 位以将地址乘以 2，从而给予分支和跳转指令更大的跳转范围
 #define src1R() do { *src1 = R(rs1); } while (0)
 #define src2R() do { *src2 = R(rs2); } while (0)
 #define immI() do { *imm = SEXT(BITS(i, 31, 20), 12); } while(0)
@@ -46,7 +47,12 @@ enum {
 						(BITS(i, 31, 31) << 19)| \
 						 BITS(i, 30, 21)	   | \
 						(BITS(i, 20, 20) << 10)| \
-						(BITS(i, 19, 12) << 11)	 ) << 1, 21); } while(0)
+						(BITS(i, 19, 12) << 11)) << 1, 21); } while(0)
+#define immB() do { *imm = SEXT(( \
+						(BITS(i, 31, 31) << 12) | \
+						(BITS(i, 10, 5)  << 5)  | \
+						(BITS(i, 4, 1)   << 1)  | \
+						 BITS(i, 11, 11)) << 1, 13); } while(0)
 
 
 static void decode_operand(Decode *s, int *rd, word_t *src1, word_t *src2, word_t *imm, int type) {
@@ -61,6 +67,7 @@ static void decode_operand(Decode *s, int *rd, word_t *src1, word_t *src2, word_
     case TYPE_S: src1R(); src2R(); immS(); break;
 	case TYPE_J:				   immJ(); break;
 	case TYPE_R: src1R(); src2R();		   break;
+	case TYPE_B: src1R(); src2R(); immB(); break;
   }
 }
 
@@ -88,8 +95,8 @@ static int decode_exec(Decode *s) {
   INSTPAT("0000000 ????? ????? 011 ????? 01100 11", sltu   , R, R(rd) = (uint32_t)((src1 < src2) ? 1 : 0));
   INSTPAT("0000000 ????? ????? 100 ????? 01100 11", xor    , R, R(rd) = src1 ^ src2);
   INSTPAT("0000000 ????? ????? 110 ????? 01100 11", or     , R, R(rd) = src1 | src2);
-  INSTPAT("??????? ????? ????? 011 ????? 00100 11", sltiu  , I, R(rd) = (uint32_t)((src1 < imm) ? 1 : 0 ));
-  //INSTPAT
+  INSTPAT("??????? ????? ????? 011 ????? 00100 11", sltiu  , I, R(rd) = (uint32_t)((src1 < imm) ? 1 : 0));
+  INSTPAT("??????? ????? ????? 000 ????? 11000 11", beq    , B, if(src1 == src2) s->dnpc = s->pc + imm);
 
 
 
