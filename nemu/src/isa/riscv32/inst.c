@@ -84,7 +84,7 @@ static int decode_exec(Decode *s) {
 }
   INSTPAT_START();
   printf("a0=%x\ns4=%d\na5=%d\n\npc=%x\n",R(10),R(20),R(15),s->pc);
-  //if(s->pc==0x800000c8) nemu_state.state = NEMU_STOP;  
+  if(s->pc==0x800000c8) nemu_state.state = NEMU_STOP;  
   //高位求值的实现参考:https://cloud.tencent.com/developer/ask/sof/140338
   //但是32bit架构也能使用int64，单独求高位会比较复杂，直接用int64求值再移位即可
 
@@ -93,7 +93,7 @@ static int decode_exec(Decode *s) {
   INSTPAT("0000000 ????? ????? 000 ????? 01100 11", add    , R, R(rd) = src1 + src2);
   INSTPAT("0100000 ????? ????? 000 ????? 01100 11", sub    , R, R(rd) = src1 - src2);//igore arithmetic overflow
   INSTPAT("0000001 ????? ????? 000 ????? 01100 11", mul    , R, R(rd) = src1 * src2);//得到乘积的低32bits
-  INSTPAT("0000001 ????? ????? 001 ????? 01100 11", mulh   , R, R(rd) = (uint64_t)((int64_t)src1 * (int64_t)src2) >> 32;printf("LOG:src1=%x,src2=%x,rd=%x\n",src1,src2,R(rd));nemu_state.state=NEMU_STOP);//可以得到有符号数乘积的高32bits
+  INSTPAT("0000001 ????? ????? 001 ????? 01100 11", mulh   , R, R(rd) = (uint64_t)((int64_t)src1 * (int64_t)src2) >> 32/*;printf("LOG:src1=%x,src2=%x,rd=%x\n",src1,src2,R(rd));nemu_state.state=NEMU_STOP*/);//可以得到有符号数乘积的高32bits
   INSTPAT("0000001 ????? ????? 100 ????? 01100 11", div    , R, R(rd) = src1 / src2);
   INSTPAT("0000001 ????? ????? 110 ????? 01100 11", rem    , R, R(rd) = src1 % src2);
   INSTPAT("??????? ????? ????? 000 ????? 00100 11", addi   , I, R(rd) = src1 + imm);
