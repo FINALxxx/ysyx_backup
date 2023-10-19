@@ -17,6 +17,7 @@
 #include <cpu/cpu.h>
 #include <cpu/ifetch.h>
 #include <cpu/decode.h>
+#include <sdb/sdb.h>
 
 #define R(i) gpr(i)
 #define Mr vaddr_read
@@ -82,7 +83,8 @@ static int decode_exec(Decode *s) {
   __VA_ARGS__ ; \
 }
   INSTPAT_START();
-  printf("a0=%x\ns4=%d\na5=%d\n\npc=%x\n",R(10),R(20),R(15),s->pc); 
+  printf("a0=%x\ns4=%d\na5=%d\n\npc=%x\n",R(10),R(20),R(15),s->pc);
+  if(s->pc==0x80000090) nemu_state.state = NEMU_STOP;  
   //高位求值的实现参考:https://cloud.tencent.com/developer/ask/sof/140338
   //但是32bit架构也能使用int64，单独求高位会比较复杂，直接用int64求值再移位即可
 
