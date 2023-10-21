@@ -83,8 +83,8 @@ static int decode_exec(Decode *s) {
   __VA_ARGS__ ; \
 }
   INSTPAT_START();
-  printf("a0=%x\na5=%x\n\npc=%x\n",R(10),R(15),s->pc);
-  if(s->pc==0x800000a8) nemu_state.state=NEMU_STOP;
+  //printf("a0=%x\na5=%x\n\npc=%x\n",R(10),R(15),s->pc);
+  //if(s->pc==0x800000a8) nemu_state.state=NEMU_STOP;
   //高位求值的实现参考:https://cloud.tencent.com/developer/ask/sof/140338
   //但是32bit架构也能使用int64，单独求高位会比较复杂，直接用int64求值再移位即可
 
@@ -93,7 +93,7 @@ static int decode_exec(Decode *s) {
   INSTPAT("0000000 ????? ????? 000 ????? 01100 11", add    , R, R(rd) = src1 + src2);
   INSTPAT("0100000 ????? ????? 000 ????? 01100 11", sub    , R, R(rd) = src1 - src2);//igore arithmetic overflow
   INSTPAT("0000001 ????? ????? 000 ????? 01100 11", mul    , R, R(rd) = src1 * src2);//得到乘积的低32bits
-  INSTPAT("0000001 ????? ????? 001 ????? 01100 11", mulh   , R, printf("%x===",(uint32_t)(BITS(src1,32,16)*BITS(src2,32,16) + BITS(src1,32,16)*BITS(src2,15,0) + BITS(src1,15,0)*BITS(src2,32,16)) >> 16));//可以得到有符号数乘积的高32bits
+  INSTPAT("0000001 ????? ????? 001 ????? 01100 11", mulh   , R, printf("%llx===",(uint32_t)BITS(src1,32,16)*BITS(src2,32,16)));//可以得到有符号数乘积的高32bits
   INSTPAT("0000001 ????? ????? 100 ????? 01100 11", div    , R, R(rd) = src1 / src2);
   INSTPAT("0000001 ????? ????? 110 ????? 01100 11", rem    , R, R(rd) = src1 % src2);
   INSTPAT("??????? ????? ????? 000 ????? 00100 11", addi   , I, R(rd) = src1 + imm);
