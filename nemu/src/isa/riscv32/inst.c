@@ -55,7 +55,6 @@ enum {
 						(BITS(i, 11, 8))		| \
 						(BITS(i, 7, 7)   << 10)) << 1, 13); } while(0)
 
-//默认数据类型：int，在32bit或64bit机中为int32_t，是有符号数
 static void decode_operand(Decode *s, int *rd, word_t *src1, word_t *src2, word_t *imm, int type) {
   uint32_t i = s->isa.inst.val;
   //riscv概念的体现：rs1、rs2和rd如果有，那么它们在指令中的位置都是固定的
@@ -74,7 +73,7 @@ static void decode_operand(Decode *s, int *rd, word_t *src1, word_t *src2, word_
 
 static int decode_exec(Decode *s) {
   int rd = 0;
-  word_t src1 = 0, src2 = 0, imm = 0;//默认是无符号的
+  word_t src1 = 0, src2 = 0, imm = 0;//默认是无符号的，记住符号拓展时先变数据类型！！
   s->dnpc = s->snpc;
 
 #define INSTPAT_INST(s) ((s)->isa.inst.val)
