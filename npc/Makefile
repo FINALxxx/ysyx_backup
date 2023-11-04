@@ -13,5 +13,5 @@ sim:
 	verilator -Wall --cc --exe --build ${CSRC} ${VSRC} --trace
 	make -C obj_dir -f ${TGS}.mk ${TGS}
 	./obj_dir/${TGS}
-	gtkwave ./${WAVEFILE}
+	#gtkwave ./${WAVEFILE}
 include ../Makefile
