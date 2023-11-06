@@ -35,7 +35,7 @@ void sim_update(){
 
 enum STATUS {DEAD,ALIVE};
 STATUS cpu_status=ALIVE;
-extern "C" void halt(int32_t is_dead){
+extern "C" void halt(int is_dead){
 	if(is_dead) cpu_status=DEAD;	
 }
 
