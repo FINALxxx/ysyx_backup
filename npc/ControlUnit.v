@@ -44,7 +44,7 @@ module ControlUnit(
                                     J?`immJ:`immI;
 
 
-    assign en_Wreg = I_JALR | J | I_LOAD | R | U_AUIPC | U_LUI;
+    assign en_Wreg = I | I_JALR | J | I_LOAD | R | U_AUIPC | U_LUI;
 
     assign branch = B | J | I_JALR;
 
