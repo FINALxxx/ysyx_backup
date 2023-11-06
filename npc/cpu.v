@@ -91,8 +91,8 @@ ALU alu1(
 
 always @(*) begin
     $display("pc=%x",pc);
-    $display("op-asrc=%b",op_ALU_Asrc);
-    $display("op-bsrc=%b",op_ALU_Bsrc);
+    $display("rs1=%b",rs1);
+    $display("rs2=%b",rs2);
     $display("sel=%b",op_ALU_sel);
     $display("op-imm=%b",op_IMM);
     $display("a=%b",a);

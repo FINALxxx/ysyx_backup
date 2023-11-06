@@ -125,10 +125,6 @@ VL_ATTR_COLD void Vcpu___024root___stl_sequent__TOP__0(Vcpu___024root* vlSelf) {
     Vcpu__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vcpu___024root___stl_sequent__TOP__0\n"); );
     // Body
-    VL_WRITEF("reset=%b\nresult=%10#\ntmp_pc=%x\nnpc=%x\n\n\n",
-              1,vlSelf->rst,32,((IData)(4U) + vlSelf->cpu__DOT__pc1__DOT__tmp_pc),
-              32,vlSelf->cpu__DOT__pc1__DOT__tmp_pc,
-              32,vlSelf->cpu__DOT__pc1__DOT__tmp_pc);
     vlSelf->cpu__DOT__pc1__DOT__result = ((IData)(4U) 
                                           + vlSelf->cpu__DOT__pc1__DOT__tmp_pc);
     vlSelf->cpu__DOT__cu1__DOT__mux1__DOT__i0__DOT__pair_list[2U] 
@@ -210,10 +206,6 @@ VL_ATTR_COLD void Vcpu___024root___stl_sequent__TOP__0(Vcpu___024root* vlSelf) {
         vlSelf->cpu__DOT__cu1__DOT__mux1__DOT__i0__DOT__pair_list[7U] = 0U;
         vlSelf->cpu__DOT__cu1__DOT__mux1__DOT__i0__DOT__data_list[7U] = 0U;
     }
-    vlSelf->cpu__DOT__cu1__DOT____VdfgTmp_hd4cadad9__0 
-        = ((0x17U == (0x7fU & vlSelf->cmd)) | (0x37U 
-                                               == (0x7fU 
-                                                   & vlSelf->cmd)));
     vlSelf->cpu__DOT__dimm1__DOT__mux1__DOT__i0__DOT__data_list[0U] 
         = (((- (IData)((vlSelf->cmd >> 0x1fU))) << 0xcU) 
            | ((0x800U & (vlSelf->cmd << 4U)) | ((0x7e0U 
@@ -246,6 +238,10 @@ VL_ATTR_COLD void Vcpu___024root___stl_sequent__TOP__0(Vcpu___024root* vlSelf) {
                                            << 0xcU) 
                                           | (vlSelf->cmd 
                                              >> 0x14U));
+    vlSelf->cpu__DOT__cu1__DOT____VdfgTmp_hd4cadad9__0 
+        = ((0x17U == (0x7fU & vlSelf->cmd)) | (0x37U 
+                                               == (0x7fU 
+                                                   & vlSelf->cmd)));
     vlSelf->cpu__DOT__cu1__DOT____VdfgTmp_ha0272f88__0 
         = ((0x6fU == (0x7fU & vlSelf->cmd)) | (0x67U 
                                                == (0x7fU 
@@ -335,6 +331,8 @@ VL_ATTR_COLD void Vcpu___024root___stl_sequent__TOP__0(Vcpu___024root* vlSelf) {
     vlSelf->cpu__DOT__cu1__DOT__RI_sel = ((IData)(vlSelf->cpu__DOT__cu1__DOT__mux1__DOT__i0__DOT__hit)
                                            ? (IData)(vlSelf->cpu__DOT__cu1__DOT__mux1__DOT__i0__DOT__lut_out)
                                            : 0U);
+    vlSelf->cpu__DOT__dimm1__DOT__mux1__DOT__i0__DOT__pair_list[4U] 
+        = (QData)((IData)(vlSelf->cpu__DOT__dimm1__DOT__immI));
     vlSelf->cpu__DOT__op_IMM = (((0x13U == (0x7fU & vlSelf->cmd)) 
                                  | ((0x67U == (0x7fU 
                                                & vlSelf->cmd)) 
@@ -359,8 +357,6 @@ VL_ATTR_COLD void Vcpu___024root___stl_sequent__TOP__0(Vcpu___024root* vlSelf) {
                                                       & vlSelf->cmd))
                                                      ? 4U
                                                      : 0U)))));
-    vlSelf->cpu__DOT__dimm1__DOT__mux1__DOT__i0__DOT__pair_list[4U] 
-        = (QData)((IData)(vlSelf->cpu__DOT__dimm1__DOT__immI));
     vlSelf->cpu__DOT__op_ALU_Asrc = ((0x17U == (0x7fU 
                                                 & vlSelf->cmd)) 
                                      | (IData)(vlSelf->cpu__DOT__cu1__DOT____VdfgTmp_ha0272f88__0));
@@ -529,6 +525,12 @@ VL_ATTR_COLD void Vcpu___024root___stl_sequent__TOP__0(Vcpu___024root* vlSelf) {
     vlSelf->cpu__DOT__src_rd = ((IData)(vlSelf->cpu__DOT__alu1__DOT__mux1__DOT__i0__DOT__hit)
                                  ? vlSelf->cpu__DOT__alu1__DOT__mux1__DOT__i0__DOT__lut_out
                                  : 0U);
+    VL_WRITEF("pc=%x\nop-asrc=%b\nop-bsrc=%b\nsel=%b\nop-imm=%b\na=%b\nb=%b\nsrc_rd=%b\n\n\n",
+              32,vlSelf->cpu__DOT__pc1__DOT__tmp_pc,
+              1,(IData)(vlSelf->cpu__DOT__op_ALU_Asrc),
+              2,vlSelf->cpu__DOT__op_ALU_Bsrc,4,(IData)(vlSelf->cpu__DOT__op_ALU_sel),
+              3,vlSelf->cpu__DOT__op_IMM,32,vlSelf->cpu__DOT__a,
+              32,vlSelf->cpu__DOT__b,32,vlSelf->cpu__DOT__src_rd);
 }
 
 VL_ATTR_COLD void Vcpu___024root___eval_stl(Vcpu___024root* vlSelf) {
