@@ -1,6 +1,5 @@
 `include "TYPES.v"
 
-import "DPI-C" function void halt();
 
 module ControlUnit(
     input [6:0] opcode,
@@ -16,6 +15,8 @@ module ControlUnit(
     output  [3:0] op_ALU_sel
     //output op_MEM
 );
+	import "DPI-C" function void halt(bool is_dead);
+
 
     wire I,R,J,S,B;
     wire [3:0] RI_sel,B_sel;
@@ -74,6 +75,10 @@ module ControlUnit(
 
     assign op_ALU_sel = B?B_sel:RI_sel;
 
-	((opcode=='b0)&(funct3=='b0)&(funct7=='b0))?halt():;
+	reg is_dead;
+	always @(*) begin
+		is_dead <= (opcode=='b0)&(funct3=='b0)&(funct7=='b0);
+		halt(is_dead); 
+	end
 
 endmodule
