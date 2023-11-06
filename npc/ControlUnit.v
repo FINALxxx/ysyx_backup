@@ -1,6 +1,6 @@
 `include "TYPES.v"
 
-import "DPI-C" function void halt(int32_t is_dead);
+import "DPI-C" function void halt(input int32_t is_dead);
 
 module ControlUnit(
     input [6:0] opcode,
