@@ -6,21 +6,21 @@
 #include "verilated_dpi.h"
 
 #include "Vcpu__Syms.h"
-#include "Vcpu___024root.h"
+#include "Vcpu___024unit.h"
 
-void Vcpu___024root___ctor_var_reset(Vcpu___024root* vlSelf);
+void Vcpu___024unit___ctor_var_reset(Vcpu___024unit* vlSelf);
 
-Vcpu___024root::Vcpu___024root(Vcpu__Syms* symsp, const char* v__name)
+Vcpu___024unit::Vcpu___024unit(Vcpu__Syms* symsp, const char* v__name)
     : VerilatedModule{v__name}
     , vlSymsp{symsp}
  {
     // Reset structure values
-    Vcpu___024root___ctor_var_reset(this);
+    Vcpu___024unit___ctor_var_reset(this);
 }
 
-void Vcpu___024root::__Vconfigure(bool first) {
+void Vcpu___024unit::__Vconfigure(bool first) {
     if (false && first) {}  // Prevent unused
 }
 
-Vcpu___024root::~Vcpu___024root() {
+Vcpu___024unit::~Vcpu___024unit() {
 }

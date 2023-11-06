@@ -8,9 +8,13 @@
 #include "verilated.h"
 
 class Vcpu__Syms;
+class Vcpu___024unit;
+
 
 class Vcpu___024root final : public VerilatedModule {
   public:
+    // CELLS
+    Vcpu___024unit* __PVT____024unit;
 
     // DESIGN SPECIFIC STATE
     VL_IN8(clk,0,0);
@@ -20,6 +24,7 @@ class Vcpu___024root final : public VerilatedModule {
     CData/*1:0*/ cpu__DOT__op_ALU_Bsrc;
     CData/*3:0*/ cpu__DOT__op_ALU_sel;
     CData/*3:0*/ cpu__DOT__cu1__DOT__RI_sel;
+    CData/*0:0*/ cpu__DOT__cu1__DOT__is_dead;
     CData/*0:0*/ cpu__DOT__cu1__DOT____VdfgTmp_hf442cbef__0;
     CData/*0:0*/ cpu__DOT__cu1__DOT____VdfgTmp_hd4cadad9__0;
     CData/*0:0*/ cpu__DOT__cu1__DOT____VdfgTmp_ha0272f88__0;
