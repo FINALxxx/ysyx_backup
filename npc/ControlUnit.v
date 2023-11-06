@@ -1,5 +1,7 @@
 `include "TYPES.v"
 
+import "DPI-C" function void halt();
+
 module ControlUnit(
     input [6:0] opcode,
     input [2:0] funct3,
@@ -72,6 +74,6 @@ module ControlUnit(
 
     assign op_ALU_sel = B?B_sel:RI_sel;
 
-
+	((opcode=='b0)&(funct3=='b0)&(funct7=='b0))?halt():;
 
 endmodule

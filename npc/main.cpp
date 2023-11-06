@@ -33,17 +33,22 @@ void sim_update(){
 	sim_time++;
 }
 
+enum STATUS {DEAD,ALIVE};
+STATUS cpu_status=ALIVE;
+extern "C" void halt(){
+	cpu_status=DEAD;	
+}
 
-//int64_t command = 0b00000001000000000000000010010011;
 int main(int argc, char** argv) {
 	sim_init();
 	cpu->clk^=1;
 	cpu->cmd=0b00000000000100000000000010010011;
 	cpu->eval(); 
-	while (sim_time < MAX_SIM_TIME) {
+	while ( sim_time < MAX_SIM_TIME && cpu_status==ALIVE) {
 		cpu->clk^=1;
 		cpu->rst=0;	
 		cpu->cmd=0b00000000000100001000000010010011;
+		if(sim_time==10) cpu->cmd=0b00000000000000000000000000000000;
 		cpu->eval();
 		sim_update();
     }

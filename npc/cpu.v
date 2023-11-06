@@ -88,7 +88,7 @@ ALU alu1(
     .is_zero()
 );
 
-
+//测试用，实现后请删除
 always @(*) begin
     $display("pc=%x",pc);
     $display("rs1=%b",rs1);
