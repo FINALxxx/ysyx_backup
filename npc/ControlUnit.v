@@ -1,5 +1,6 @@
 `include "TYPES.v"
 
+import "DPI-C" function void halt(int32_t is_dead);
 
 module ControlUnit(
     input [6:0] opcode,
@@ -15,8 +16,7 @@ module ControlUnit(
     output  [3:0] op_ALU_sel
     //output op_MEM
 );
-	import "DPI-C" function void halt(int32_t is_dead);
-
+	
 
     wire I,R,J,S,B;
     wire [3:0] RI_sel,B_sel;
