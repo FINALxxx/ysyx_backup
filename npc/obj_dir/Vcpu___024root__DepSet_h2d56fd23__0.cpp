@@ -11,7 +11,7 @@ VL_INLINE_OPT void Vcpu___024root___ico_sequent__TOP__0(Vcpu___024root* vlSelf) 
     Vcpu__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vcpu___024root___ico_sequent__TOP__0\n"); );
     // Body
-    VL_WRITEF("result=%b\nresult=%10#\ntmp_pc=%x\nnpc=%x\n\n\n",
+    VL_WRITEF("reset=%b\nresult=%10#\ntmp_pc=%x\nnpc=%x\n\n\n",
               1,vlSelf->rst,32,((IData)(4U) + vlSelf->cpu__DOT__pc1__DOT__tmp_pc),
               32,vlSelf->cpu__DOT__pc1__DOT__tmp_pc,
               32,vlSelf->cpu__DOT__pc1__DOT__tmp_pc);
@@ -482,7 +482,7 @@ VL_INLINE_OPT void Vcpu___024root___nba_sequent__TOP__0(Vcpu___024root* vlSelf) 
         vlSelf->cpu__DOT__src2 = vlSelf->cpu__DOT__rf1__DOT__rf
             [(0x1fU & (vlSelf->cmd >> 0x14U))];
     }
-    VL_WRITEF("result=%b\nresult=%10#\ntmp_pc=%x\nnpc=%x\n\n\n",
+    VL_WRITEF("reset=%b\nresult=%10#\ntmp_pc=%x\nnpc=%x\n\n\n",
               1,vlSelf->rst,32,((IData)(4U) + vlSelf->cpu__DOT__pc1__DOT__tmp_pc),
               32,vlSelf->cpu__DOT__pc1__DOT__tmp_pc,
               32,vlSelf->cpu__DOT__pc1__DOT__tmp_pc);
