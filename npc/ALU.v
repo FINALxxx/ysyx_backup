@@ -1,3 +1,4 @@
+/* verilator lint_off UNUSEDSIGNAL */
 `include "TYPES.v"
 module ALU(
     input [3:0] sel,
@@ -45,18 +46,4 @@ module ALU(
 endmodule
 
 
-module adder(
-    input mode,//0为加法，1为减法
-    input [31:0] a,
-    input [31:0] b,
-    output [31:0] result,
-    output ADDER_overflow,//有符号计算时使用
-    output ADDER_carry,//无符号计算时使用
-    output is_zero
-);
-    wire [31:0] add_cin;
-    assign add_cin = (b^{32{mode}})+mode;
-    assign {ADDER_carry,result} = a+add_cin;
-    assign ADDER_overflow = (x[31]==add_cin[31])&&(x[31]!=result[31]);//同号运算才有溢出
-    assign is_zero = ~(|result);
-endmodule
+

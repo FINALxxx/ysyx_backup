@@ -15,7 +15,7 @@ module ControlUnit(
     //output op_MEM
 );
 
-    wire I,U,R,J,S,B;
+    wire I,R,J,S,B;
     wire [3:0] RI_sel,B_sel;
     wire I_LOAD,I_JALR,U_AUIPC,U_LUI;
 

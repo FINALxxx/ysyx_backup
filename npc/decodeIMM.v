@@ -1,11 +1,12 @@
+/* verilator lint_off UNUSEDSIGNAL */
 `include "TYPES.v"
 //负责解码立即数
 module decodeIMM(
     input [31:0] cmd,
-    input op_IMM,
+    input [2:0] op_IMM,
     output reg [31:0] imm
 );
-    wire [31:0] immI,immU,immR,immJ,immS,immB;
+    wire [31:0] immI,immU,immJ,immS,immB;
 
 
     assign immI = {{20{cmd[31]}},cmd[31:20]};
