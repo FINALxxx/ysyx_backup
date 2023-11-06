@@ -53,7 +53,7 @@ decodeIMM dimm1(
     .imm(imm)
 );
 
-RegisterFile rf1(
+RegisterFile #(32,32,5) rf1(
     .clk(clk),
     .raddr_a(rs1),
     .raddr_b(rs2),

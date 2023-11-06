@@ -1,15 +1,15 @@
-module RegisterFile (
+module RegisterFile #(DATA_WIDTH=32,REG_NUM=32,REG_NUM_BIT=5)  (
   //ADDR_WIDTH个寄存器，每个寄存器保存DATA_WIDTH个bits
   input clk,
-  input [4:0] raddr_a,//读rs1
-  input [4:0] raddr_b,//读rs2
-  input [31:0] wdata,//写rd
-  input [4:0] waddr,//写rd
+  input [REG_NUM_BIT-1:0] raddr_a,//读rs1
+  input [REG_NUM_BIT-1:0] raddr_b,//读rs2
+  input [DATA_WIDTH-1:0] wdata,//写rd
+  input [REG_NUM_BIT-1:0] waddr,//写rd
   input wen,//写使能
-  output [31:0] rdata_a,//读rs1
-  output [31:0] rdata_b//读rs2
+  output [DATA_WIDTH-1:0] rdata_a,//读rs1
+  output [DATA_WIDTH-1:0] rdata_b//读rs2
 );
-  reg [31:0] rf [31:0];
+  reg [DATA_WIDTH-1:0] rf [REG_NUM-1:0];
   always @(posedge clk) begin
     if (wen) rf[waddr] <= wdata;
   end
