@@ -474,7 +474,7 @@ VL_ATTR_COLD void Vcpu___024root__trace_full_sub_0(Vcpu___024root* vlSelf, Veril
                                         >> 0xfU))),5);
     bufp->fullCData(oldp+144,((0x1fU & (vlSelf->cmd 
                                         >> 0x14U))),5);
-    bufp->fullBit(oldp+145,(((0x67U == (0x7fU & vlSelf->cmd)) 
+    bufp->fullBit(oldp+145,(((IData)(vlSelf->cpu__DOT__cu1__DOT____VdfgTmp_hf442cbef__0) 
                              | ((0x6fU == (0x7fU & vlSelf->cmd)) 
                                 | ((3U == (0x7fU & vlSelf->cmd)) 
                                    | ((0x33U == (0x7fU 

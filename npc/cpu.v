@@ -91,7 +91,7 @@ ALU alu1(
 
 always @(*) begin
     $display("pc=%x",pc);
-    /*$display("rs1=%b",rs1);
+    $display("rs1=%b",rs1);
     $display("rs2=%b",rs2);
 	$display("rd=%b",rd);
     $display("sel=%b",op_ALU_sel);
@@ -99,7 +99,7 @@ always @(*) begin
     $display("a=%b",a);
     $display("b=%b",b);
     $display("src_rd=%b",src_rd);
-	$display("\n");*/
+	$display("\n");
 end
 
 
