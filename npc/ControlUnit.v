@@ -15,7 +15,7 @@ module ControlUnit(
     output  [3:0] op_ALU_sel
     //output op_MEM
 );
-	import "DPI-C" function void halt(bool is_dead);
+	import "DPI-C" function void halt(char is_dead);
 
 
     wire I,R,J,S,B;
