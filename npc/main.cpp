@@ -38,12 +38,12 @@ void sim_update(){
 int main(int argc, char** argv) {
 	sim_init();
 	cpu->clk^=1;
-	cpu->eval();
-    
+	cpu->cmd=0b000000000001_00000_000_00001_0010011;
+	cpu->eval(); 
 	while (sim_time < MAX_SIM_TIME) {
 		cpu->clk^=1;
-		cpu->rst=0;
-		cpu->cmd=0b00000000000100000000000010010011;
+		cpu->rst=0;	
+		cpu->cmd=0b000000000001_00001_000_00001_0010011;
 		cpu->eval();
 		sim_update();
     }

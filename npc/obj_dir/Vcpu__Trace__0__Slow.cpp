@@ -261,6 +261,9 @@ VL_ATTR_COLD void Vcpu___024root__trace_init_sub__TOP__0(Vcpu___024root* vlSelf,
     tracep->declBit(c+195,"wen", false,-1);
     tracep->popNamePrefix(2);
     tracep->pushNamePrefix("rf1 ");
+    tracep->declBus(c+176,"DATA_WIDTH", false,-1, 31,0);
+    tracep->declBus(c+176,"REG_NUM", false,-1, 31,0);
+    tracep->declBus(c+185,"REG_NUM_BIT", false,-1, 31,0);
     tracep->declBit(c+140,"clk", false,-1);
     tracep->declBus(c+143,"raddr_a", false,-1, 4,0);
     tracep->declBus(c+144,"raddr_b", false,-1, 4,0);
