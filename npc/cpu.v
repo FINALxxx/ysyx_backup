@@ -93,6 +93,7 @@ always @(*) begin
     $display("pc=%x",pc);
     $display("rs1=%b",rs1);
     $display("rs2=%b",rs2);
+	$display("rd=%b",rd);
     $display("sel=%b",op_ALU_sel);
     $display("op-imm=%b",op_IMM);
     $display("a=%b",a);
