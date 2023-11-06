@@ -88,7 +88,7 @@ ALU alu1(
     .is_zero()
 );
 
-
+/*
 always @(*) begin
     $display("pc=%x",pc);
     $display("op-asrc=%b",op_ALU_Asrc);
@@ -100,6 +100,6 @@ always @(*) begin
     $display("src_rd=%b",src_rd);
 	$display("\n");
 end
-
+*/
 
 endmodule
