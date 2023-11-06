@@ -338,8 +338,6 @@ void Vcpu___024root__trace_chg_sub_0(Vcpu___024root* vlSelf, VerilatedVcd::Buffe
     __Vtemp_hdace3dd2__0[5U] = (vlSelf->cpu__DOT__dimm1__DOT__immI 
                                 >> 0x14U);
     bufp->chgWData(oldp+165,(__Vtemp_hdace3dd2__0),175);
-    bufp->chgBit(oldp+171,(((IData)(vlSelf->rst) | 
-                            (0U != ((IData)(4U) + vlSelf->cpu__DOT__pc1__DOT__tmp_pc)))));
 }
 
 void Vcpu___024root__trace_cleanup(void* voidSelf, VerilatedVcd* /*unused*/) {
