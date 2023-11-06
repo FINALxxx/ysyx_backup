@@ -92,12 +92,13 @@ ALU alu1(
 always @(*) begin
     $display("pc=%x",pc);
     $display("op-asrc=%b",op_ALU_Asrc);
-    $display("op-bsrc=%b\n",op_ALU_Bsrc);
-    $display("sel=%b\n",op_ALU_sel);
-    $display("op-imm=%b\n",op_IMM);
-    $display("a=%b\n",a);
-    $display("b=%b\n",b);
-    $display("src_rd=%b\n",src_rd);
+    $display("op-bsrc=%b",op_ALU_Bsrc);
+    $display("sel=%b",op_ALU_sel);
+    $display("op-imm=%b",op_IMM);
+    $display("a=%b",a);
+    $display("b=%b",b);
+    $display("src_rd=%b",src_rd);
+	$display("\n");
 end
 
 

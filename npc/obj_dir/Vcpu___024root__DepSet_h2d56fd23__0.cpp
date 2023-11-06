@@ -408,7 +408,7 @@ VL_INLINE_OPT void Vcpu___024root___ico_sequent__TOP__0(Vcpu___024root* vlSelf) 
     vlSelf->cpu__DOT__src_rd = ((IData)(vlSelf->cpu__DOT__alu1__DOT__mux1__DOT__i0__DOT__hit)
                                  ? vlSelf->cpu__DOT__alu1__DOT__mux1__DOT__i0__DOT__lut_out
                                  : 0U);
-    VL_WRITEF("pc=%b\n\nop-asrc=%b\n\nop-bsrc=%b\n\nsel=%b\n\nop-imm=%b\n\na=%b\n\nb=%b\n\nsrc_rd=%b\n\n",
+    VL_WRITEF("pc=%x\nop-asrc=%b\nop-bsrc=%b\n\nsel=%b\n\nop-imm=%b\n\na=%b\n\nb=%b\n\nsrc_rd=%b\n\n",
               32,vlSelf->cpu__DOT__pc1__DOT__tmp_pc,
               1,(IData)(vlSelf->cpu__DOT__op_ALU_Asrc),
               2,vlSelf->cpu__DOT__op_ALU_Bsrc,4,(IData)(vlSelf->cpu__DOT__op_ALU_sel),
@@ -574,7 +574,7 @@ VL_INLINE_OPT void Vcpu___024root___nba_sequent__TOP__1(Vcpu___024root* vlSelf) 
     vlSelf->cpu__DOT__src_rd = ((IData)(vlSelf->cpu__DOT__alu1__DOT__mux1__DOT__i0__DOT__hit)
                                  ? vlSelf->cpu__DOT__alu1__DOT__mux1__DOT__i0__DOT__lut_out
                                  : 0U);
-    VL_WRITEF("pc=%b\n\nop-asrc=%b\n\nop-bsrc=%b\n\nsel=%b\n\nop-imm=%b\n\na=%b\n\nb=%b\n\nsrc_rd=%b\n\n",
+    VL_WRITEF("pc=%x\nop-asrc=%b\nop-bsrc=%b\n\nsel=%b\n\nop-imm=%b\n\na=%b\n\nb=%b\n\nsrc_rd=%b\n\n",
               32,vlSelf->cpu__DOT__pc1__DOT__tmp_pc,
               1,(IData)(vlSelf->cpu__DOT__op_ALU_Asrc),
               2,vlSelf->cpu__DOT__op_ALU_Bsrc,4,(IData)(vlSelf->cpu__DOT__op_ALU_sel),
