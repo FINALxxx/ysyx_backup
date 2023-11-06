@@ -16,4 +16,15 @@ module RegisterFile #(DATA_WIDTH=32,REG_NUM=32,REG_NUM_BIT=5)  (
 
   assign rdata_a = (raddr_a=='b0) ? 'b0 : rf[raddr_a];
   assign rdata_b = (raddr_b=='b0) ? 'b0 : rf[raddr_b];
+
+  always @(*) begin
+		$display("raddr_a=%b",raddr_a);
+		$display("raddr_b=%b",raddr_b);
+		$display("wdata=%b",wdata);
+		$display("waddr=%b",waddr);
+		$display("wen=%b",wen);
+		$display("rdata_a=%b",rdata_a);
+		$display("rdata_b=%b",rdata_b);
+		$display("\n");
+  end
 endmodule

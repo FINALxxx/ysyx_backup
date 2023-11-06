@@ -405,7 +405,7 @@ VL_INLINE_OPT void Vcpu___024root___ico_sequent__TOP__0(Vcpu___024root* vlSelf) 
     vlSelf->cpu__DOT__src_rd = ((IData)(vlSelf->cpu__DOT__alu1__DOT__mux1__DOT__i0__DOT__hit)
                                  ? vlSelf->cpu__DOT__alu1__DOT__mux1__DOT__i0__DOT__lut_out
                                  : 0U);
-    VL_WRITEF("pc=%x\nrs1=%b\nrs2=%b\nsel=%b\nop-imm=%b\na=%b\nb=%b\nsrc_rd=%b\n\n\n",
+    VL_WRITEF("pc=%x\nrs1=%b\nrs2=%b\nrd=00001\nsel=%b\nop-imm=%b\na=%b\nb=%b\nsrc_rd=%b\n\n\n",
               32,vlSelf->cpu__DOT__pc1__DOT__tmp_pc,
               5,(0x1fU & (vlSelf->cmd >> 0xfU)),5,(0x1fU 
                                                    & (vlSelf->cmd 
@@ -570,7 +570,7 @@ VL_INLINE_OPT void Vcpu___024root___nba_sequent__TOP__1(Vcpu___024root* vlSelf) 
     vlSelf->cpu__DOT__src_rd = ((IData)(vlSelf->cpu__DOT__alu1__DOT__mux1__DOT__i0__DOT__hit)
                                  ? vlSelf->cpu__DOT__alu1__DOT__mux1__DOT__i0__DOT__lut_out
                                  : 0U);
-    VL_WRITEF("pc=%x\nrs1=%b\nrs2=%b\nsel=%b\nop-imm=%b\na=%b\nb=%b\nsrc_rd=%b\n\n\n",
+    VL_WRITEF("pc=%x\nrs1=%b\nrs2=%b\nrd=00001\nsel=%b\nop-imm=%b\na=%b\nb=%b\nsrc_rd=%b\n\n\n",
               32,vlSelf->cpu__DOT__pc1__DOT__tmp_pc,
               5,(0x1fU & (vlSelf->cmd >> 0xfU)),5,(0x1fU 
                                                    & (vlSelf->cmd 
