@@ -25,7 +25,7 @@ VL_ATTR_COLD void Vcpu___024root___eval_triggers__stl(Vcpu___024root* vlSelf) {
 #endif
 }
 
-void Vcpu___024unit____Vdpiimwrap_halt_TOP____024unit(IData/*31:0*/ is_dead);
+void Vcpu___024unit____Vdpiimwrap_halt_TOP____024unit(CData/*0:0*/ is_dead);
 
 VL_ATTR_COLD void Vcpu___024root___stl_sequent__TOP__0(Vcpu___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused

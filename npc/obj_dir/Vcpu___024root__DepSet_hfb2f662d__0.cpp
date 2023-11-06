@@ -25,7 +25,7 @@ void Vcpu___024root___eval_triggers__ico(Vcpu___024root* vlSelf) {
 #endif
 }
 
-void Vcpu___024unit____Vdpiimwrap_halt_TOP____024unit(IData/*31:0*/ is_dead);
+void Vcpu___024unit____Vdpiimwrap_halt_TOP____024unit(CData/*0:0*/ is_dead);
 
 VL_INLINE_OPT void Vcpu___024root___ico_sequent__TOP__0(Vcpu___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused

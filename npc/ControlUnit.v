@@ -77,7 +77,7 @@ module ControlUnit(
 
 	reg is_dead;
 	always @(*) begin
-		is_dead <= (opcode=='b0)&(funct3=='b0)&(funct7=='b0);
+		is_dead = (opcode=='b0)&(funct3=='b0)&(funct7=='b0);
 		halt(is_dead); 
 	end
 
