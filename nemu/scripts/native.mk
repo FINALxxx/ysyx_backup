@@ -25,7 +25,7 @@ $(BINARY):: compile_git
 # Some convenient rules
 
 #override ARGS ?= --log=$(BUILD_DIR)/nemu-log.txt
-override ARGS ?= -b
+override ARGS ?= -b #pa2.2：直接使用批处理模式启动
 override ARGS += $(ARGS_DIFF)
 
 # Command to execute NEMU
