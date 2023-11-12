@@ -205,7 +205,7 @@ void sdb_set_batch_mode() {
 }
 
 void sdb_mainloop() {
-  if (is_batch_mode) {
+  if (is_batch_mode) {//pa2.2：决定是否启动批处理模式
     cmd_c(NULL);
     return;
   }
