@@ -9,7 +9,10 @@ size_t strlen(const char *s) {
 }
 
 char *strcpy(char *dst, const char *src) {
-  panic("Not implemented");
+	//可以加个断言
+	char* dst_head_ptr = dst;
+    while((*dst++ = *src ++) != '\0');
+    return dst_head_ptr;
 }
 
 char *strncpy(char *dst, const char *src, size_t n) {
@@ -17,7 +20,10 @@ char *strncpy(char *dst, const char *src, size_t n) {
 }
 
 char *strcat(char *dst, const char *src) {
-  panic("Not implemented");
+  char* dst_head_ptr = dst;
+  while(*dst++ != '\0');
+  while((*dst++ = *src++) != '\0'); 
+  return dst_head_ptr;
 }
 
 int strcmp(const char *s1, const char *s2) {
@@ -31,7 +37,9 @@ int strncmp(const char *s1, const char *s2, size_t n) {
 }
 
 void *memset(void *s, int c, size_t n) {
-  panic("Not implemented");
+  char* s_ptr=s;//转个类型，使得以char为单位写入内存
+  while(n-- > 0) *s_ptr++=c;
+  return s; 
 }
 
 void *memmove(void *dst, const void *src, size_t n) {
@@ -43,7 +51,10 @@ void *memcpy(void *out, const void *in, size_t n) {
 }
 
 int memcmp(const void *s1, const void *s2, size_t n) {
-  panic("Not implemented");
+	const char* s1_ptr=(char*)s1;
+	const char* s2_ptr=(char*)s2;
+	while(*s1_ptr++ == *s2_ptr++ && --n);
+	return *s1_ptr - *s2_ptr;
 }
 
 #endif
