@@ -54,7 +54,9 @@ void *memcpy(void *out, const void *in, size_t n) {
 int memcmp(const void *s1, const void *s2, size_t n) {
 	const char* s1_ptr=(char*)s1;
 	const char* s2_ptr=(char*)s2;
-	while(*s1_ptr++ == *s2_ptr++ && --n);
+	while(*s1_ptr == *s2_ptr && --n){
+		s1_ptr++,s2_ptr++;
+	}
 	return *s1_ptr - *s2_ptr;
 }
 
