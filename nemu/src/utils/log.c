@@ -20,6 +20,8 @@ FILE *log_fp = NULL;
 int cnt=0;
 void init_log(const char *log_file) {
   cnt++;
+  printf("%d\n",cnt);
+
   log_fp = stdout;
   if (log_file != NULL) {
     FILE *fp = fopen(log_file, "w");
@@ -27,7 +29,6 @@ void init_log(const char *log_file) {
     log_fp = fp;
   }
   Log("Log is written to %s", log_file ? log_file : "stdout");
-  printf("%d\n",cnt);
 }
 
 bool log_enable() {
