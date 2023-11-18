@@ -17,20 +17,13 @@
 
 extern uint64_t g_nr_guest_inst;
 FILE *log_fp = NULL;
-int cnt=0;
 void init_log(const char *log_file) {
-  cnt++;
-  printf("%d\n",cnt);
-
   log_fp = stdout;
   if (log_file != NULL) {
-printf("%d\n",cnt);
-
     FILE *fp = fopen(log_file, "w");
     Assert(fp, "Can not open '%s'", log_file);
     log_fp = fp;
   }
-  printf("%d\n",cnt);
   Log("Log is written to %s", log_file ? log_file : "stdout");
 }
 
