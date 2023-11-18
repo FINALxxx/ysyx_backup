@@ -1,5 +1,11 @@
 #include<sdb/debug_trace.h>
 
+traceNode buf[MAX_BUF_SIZE];
+uint32_t buf_lastest_pc=0;//buf最新的pc（不一定是当前指令的pc）
+uint32_t cur=0;
+bool is_full=false;//如果未满，就从0开始读取；如果满，就从cur+1开始读取。两者都一直读到cur为止
+
+
 void insert_buffer(){
 	buf[cur].pc = buf_lastest_pc;
 	uint32_t inst = inst_fetch(&buf_lastest_pc,4);
