@@ -46,7 +46,7 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
   if (g_print_step) { IFDEF(CONFIG_ITRACE, puts(_this->logbuf)); }
   IFDEF(CONFIG_DIFFTEST, difftest_step(_this->pc, dnpc));
   //iringbuf指令缓冲区
-  
+  insert_buffer();//pa2.2:新增trace
 
   //断点调试
   uint32_t new_result=0;
@@ -65,7 +65,6 @@ static void exec_once(Decode *s, vaddr_t pc) {
   isa_exec_once(s);
   cpu.pc = s->dnpc;
 #ifdef CONFIG_ITRACE
-  insert_buffer();//pa2.2:新增trace
 
   char *p = s->logbuf;
   p += snprintf(p, sizeof(s->logbuf), FMT_WORD ":", s->pc);
@@ -113,6 +112,7 @@ static void statistic() {
 }
 
 void assert_fail_msg() {
+  disp_buffer(nemu_state.halt_pc);//pa2.2:缓冲区输出
   isa_reg_display();
   statistic();
 }
@@ -135,11 +135,10 @@ void cpu_exec(uint64_t n) {//如果赋值为-1，会下溢到uint64_t的max值�
   uint64_t timer_end = get_time();
   g_timer += timer_end - timer_start;
 
-  switch (nemu_state.state) {
+  switch (nemu_state.state){
     case NEMU_RUNNING: nemu_state.state = NEMU_STOP; break;
 
     case NEMU_END: case NEMU_ABORT:
-	  disp_buffer(nemu_state.halt_pc);//pa2.2:缓冲区输出
       Log("nemu: %s at pc = " FMT_WORD,
           (nemu_state.state == NEMU_ABORT ? ANSI_FMT("ABORT", ANSI_FG_RED) :
            (nemu_state.halt_ret == 0 ? ANSI_FMT("HIT GOOD TRAP", ANSI_FG_GREEN) :
