@@ -82,7 +82,7 @@ static int decode_exec(Decode *s) {
   __VA_ARGS__ ; \
 }
   INSTPAT_START();
-  //printf("pc=%x\n",s->pc);
+  printf("pc=%x\n",s->pc);
   if(s->pc==0x8000100) nemu_state.state=NEMU_STOP;
   //高位求值的实现参考:https://cloud.tencent.com/developer/ask/sof/140338
   //但是32bit架构也能使用int64，单独求高位会比较复杂，直接用int64求值再移位即可
