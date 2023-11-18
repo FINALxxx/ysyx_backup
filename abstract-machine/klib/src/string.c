@@ -28,9 +28,9 @@ char *strcat(char *dst, const char *src) {
 
 int strcmp(const char *s1, const char *s2) {
 	//*s1==*s2最先短路的概率大，放在前面可以加快短路速度
-	while(*s1==*s2 && *s1!='\0' && *s2!='\0') s1++,s2++;
-	return *s1 - *s2;
-	//return 1;
+	//while(*s1==*s2 && *s1!='\0' && *s2!='\0') s1++,s2++;
+	//return *s1 - *s2;
+	return 1;
 }
 
 int strncmp(const char *s1, const char *s2, size_t n) {

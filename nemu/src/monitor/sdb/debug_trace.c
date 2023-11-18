@@ -18,9 +18,9 @@ void insert_buffer(){
 void init_buffer(uint32_t pc){
 	buf_lastest_pc=pc;
 	is_full=false,cur=0;
-	while(!is_full){
-		insert_buffer();
-	}
+	//while(!is_full){
+	//	insert_buffer();
+	//}
 }
 
 void disp_buffer(uint32_t pc){
