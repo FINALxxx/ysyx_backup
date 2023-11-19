@@ -5,7 +5,7 @@
 typedef struct{
 	uint32_t pc;
 	uint32_t inst;
-	char* log;
+	char log[MAX_INST_LEN];
 } traceNode;
 
 
