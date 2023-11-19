@@ -1,4 +1,3 @@
-#define MAX_MEM_BUF_SIZE 50 //可以控制内存踪迹区间
 #include <stdio.h> 
 #include <stdint.h>
 #include <stdbool.h>

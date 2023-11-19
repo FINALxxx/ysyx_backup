@@ -1,7 +1,11 @@
 #include <sdb/mem_trace.h>
 
 #ifdef CONFIG_MTRACE
-memTraceNode membuf[MAX_MEM_BUF_SIZE];
+#ifdef CONFIG_MTRACE_SIZE
+memTraceNode membuf[CONFIG_MTRACE_SIZE];
+#else
+memTraceNode membuf[50];
+#endif
 uint32_t mem_cur=0;
 bool mem_is_full=false;//如果未满，就从0开始读取；如果满，就从cur+1开始读取。两者都一直读到cur-1为止
 
