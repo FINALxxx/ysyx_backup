@@ -10,6 +10,7 @@ void insert_buffer(uint32_t pc,char* log){
 	buf[cur].pc = _pc;
 	buf[cur].inst = inst_fetch(&_pc,4);
 	buf[cur].log = log;
+	printf("%s\n",log);
 	cur = (cur+1)%MAX_BUF_SIZE;
 	is_full = is_full || (cur==MAX_BUF_SIZE-1);
 }
