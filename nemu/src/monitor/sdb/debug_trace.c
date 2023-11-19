@@ -9,7 +9,7 @@ void insert_buffer(uint32_t pc,char* log){
 	uint32_t _pc=pc;
 	buf[cur].pc = _pc;
 	buf[cur].inst = inst_fetch(&_pc,4);
-	strncpy(buf[cur].log, log, MAX_INST_LEN);	
+	strncpy(buf[cur].log, log, strlen(log));	
 	//printf("%d:%s\n",cur,buf[cur].log);
 	cur = (cur+1)%MAX_BUF_SIZE;
 	is_full = is_full || (cur==MAX_BUF_SIZE-1);
