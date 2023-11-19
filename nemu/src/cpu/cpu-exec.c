@@ -19,7 +19,7 @@
 #include <locale.h>
 #include <sdb/watchpoint.h>
 #include <sdb/sdb.h>
-#include <sdb/debug_trace.h>
+#include <sdb/inst_trace.h>
 
 /* The assembly code of instructions executed is only output to the screen
  * when the number of instructions executed is less than this value.

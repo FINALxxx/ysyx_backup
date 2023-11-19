@@ -1,4 +1,4 @@
-#include<sdb/debug_trace.h>
+#include<sdb/inst_trace.h>
 
 traceNode buf[MAX_BUF_SIZE];
 uint32_t cur=0;
