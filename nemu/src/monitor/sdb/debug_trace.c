@@ -10,7 +10,7 @@ void insert_buffer(uint32_t pc,char* log){
 	buf[cur].pc = _pc;
 	buf[cur].inst = inst_fetch(&_pc,4);
 	buf[cur].log = log;
-	printf("%d:%s\n",cur,buf[cur].log);
+	//printf("%d:%s\n",cur,buf[cur].log);
 	cur = (cur+1)%MAX_BUF_SIZE;
 	is_full = is_full || (cur==MAX_BUF_SIZE-1);
 }
@@ -26,8 +26,7 @@ void init_buffer(){
 void disp_buffer(){
 	uint32_t disp_ptr = is_full ? (cur+1)%MAX_BUF_SIZE : 0 ;//从0或者从cur+1开始
 	while(disp_ptr != cur-1){
-		uint32_t disp_pc = buf[disp_ptr].pc;
-		printf("   %#10x:\t%s\t:%#010x\n",disp_pc,buf[disp_ptr].log,buf[disp_ptr].inst);
+		printf("   %#10x:\t%s\t:%#010x\n",buf[disp_ptr].pc, buf[disp_ptr].log, buf[disp_ptr].inst);
 		disp_ptr = (disp_ptr+1)%MAX_BUF_SIZE;
 	}
 	printf("-->%#10x:\t%s\t:%#010x\n",buf[cur-1].pc,buf[cur-1].log,buf[cur-1].inst);
