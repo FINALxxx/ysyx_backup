@@ -87,13 +87,13 @@ static void exec_once(Decode *s, vaddr_t pc) {
 #else
   p[0] = '\0'; // the upstream llvm does not support loongarch32r
 #endif
-  insert_buffer(pc);//pa2.2:新增trace
 #endif
 }
 
 static void execute(uint64_t n) {//如果传入很大的值n，for循环将执行n次
   Decode s;
   for (;n > 0; n --) { 
+	insert_buffer(cpu.pc);//pa2.2:新增trace
     exec_once(&s, cpu.pc);
     g_nr_guest_inst ++; //记录客户指令的计数器
     trace_and_difftest(&s, cpu.pc);
