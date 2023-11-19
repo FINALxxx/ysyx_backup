@@ -8,7 +8,7 @@ typedef struct{
 } traceNode;
 
 
-void insert_buffer();
-void init_buffer(uint32_t pc);
-void disp_buffer(uint32_t pc);
+void insert_buffer(uint32_t pc);
+void init_buffer();
+void disp_buffer();
 
