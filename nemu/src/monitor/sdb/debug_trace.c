@@ -29,5 +29,5 @@ void disp_buffer(){
 		printf("   %#10x:\t%-50s\t:%#010x\n",buf[disp_ptr].pc, buf[disp_ptr].log, buf[disp_ptr].inst);
 		disp_ptr = (disp_ptr+1)%MAX_BUF_SIZE;
 	}
-	printf("-->%#10x:\t%-50s:%#010x\n",buf[cur-1].pc,buf[cur-1].log,buf[cur-1].inst);
+	printf("-->%#10x:\t%-50s\t:%#010x\n",buf[cur-1].pc,buf[cur-1].log,buf[cur-1].inst);
 }
