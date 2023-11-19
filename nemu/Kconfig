@@ -164,7 +164,7 @@ config MTRACE_COND
 
 config MTRACE_SIZE
   depends on MTRACE
-  string "decide MTRACE buffer storage space"
+  int "decide MTRACE buffer storage space"
   default 50
 
 config DIFFTEST
