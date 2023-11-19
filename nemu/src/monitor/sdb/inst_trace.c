@@ -31,5 +31,5 @@ void disp_buffer(){
 		disp_ptr = (disp_ptr+1)%MAX_BUF_SIZE;
 	}
 	printf("-->%#10x:\t%-40s\t:%#010x\n",buf[cur-1].pc,buf[cur-1].log,buf[cur-1].inst);
-	printf("[ITRACE TERMINATE]");
+	printf("[ITRACE TERMINATE]\n");
 }
