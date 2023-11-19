@@ -1,5 +1,6 @@
 #include <sdb/mem_trace.h>
 
+#ifdef CONFIG_MTRACE
 memTraceNode membuf[MAX_MEM_BUF_SIZE];
 uint32_t mem_cur=0;
 bool mem_is_full=false;//如果未满，就从0开始读取；如果满，就从cur+1开始读取。两者都一直读到cur-1为止
@@ -29,3 +30,4 @@ void disp_mem_buffer(){
 	char status = membuf[mem_cur-1].status ? 'w' : 'r' ;
 	printf("M%c\t%#010x\t%-8d\t(Byte)\t%#010x\n",status,membuf[mem_cur-1].addr,membuf[mem_cur-1].op_size,membuf[mem_cur-1].data);	
 }
+#endif

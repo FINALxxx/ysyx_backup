@@ -162,6 +162,10 @@ config MTRACE_COND
   string "Only trace instructions when the condition is true"
   default "true"
 
+config MTRACE_SIZE
+  depends on MTRACE
+  string "decide MTRACE buffer storage space"
+  default 50
 
 config DIFFTEST
   depends on TARGET_NATIVE_ELF

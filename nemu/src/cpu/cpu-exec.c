@@ -122,7 +122,9 @@ void assert_fail_msg() {
 /* Simulate how the CPU works. */
 void cpu_exec(uint64_t n) {//如果赋值为-1，会下溢到uint64_t的max值，使得g_print_step为假，execute传入一个很大的值
   init_buffer();//pa2.2:缓冲区初始化
+#ifdef CONFIG_MTRACE
   init_mem_buffer();
+#endif
   g_print_step = (n < MAX_INST_TO_PRINT);
   switch (nemu_state.state) {
     case NEMU_END: case NEMU_ABORT:
@@ -142,9 +144,11 @@ void cpu_exec(uint64_t n) {//如果赋值为-1，会下溢到uint64_t的max值�
     case NEMU_RUNNING: nemu_state.state = NEMU_STOP; break;
 
     case NEMU_END: case NEMU_ABORT:
+#ifdef CONFIG_MTRACE_COND
 	  disp_mem_buffer();
+#endif
       disp_buffer();//pa2.2:缓冲区输出
-      Log("nemu: %s at pc = " FMT_WORD,
+	  Log("nemu: %s at pc = " FMT_WORD,
           (nemu_state.state == NEMU_ABORT ? ANSI_FMT("ABORT", ANSI_FG_RED) :
            (nemu_state.halt_ret == 0 ? ANSI_FMT("HIT GOOD TRAP", ANSI_FG_GREEN) :
             ANSI_FMT("HIT BAD TRAP", ANSI_FG_RED))),
