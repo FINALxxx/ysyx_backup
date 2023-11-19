@@ -23,9 +23,9 @@ void disp_mem_buffer(){
 	uint32_t disp_ptr = mem_is_full ? (mem_cur+1)%MAX_MEM_BUF_SIZE : 0 ;//从0或者从cur+1开始
 	while(disp_ptr != mem_cur-1){
 		char status = membuf[disp_ptr].status ? 'r' : 'w' ;
-		printf("M%c\t%#010x\t%d\t(Byte)\t%#010x\n",status,membuf[disp_ptr].addr,membuf[disp_ptr].op_size,membuf[disp_ptr].data);	
+		printf("M%c\t%#010x\t%-8d\t(Byte)\t%#010x\n",status,membuf[disp_ptr].addr,membuf[disp_ptr].op_size,membuf[disp_ptr].data);	
 		disp_ptr = (disp_ptr+1)%MAX_MEM_BUF_SIZE;
 	}
 	char status = membuf[mem_cur-1].status ? 'w' : 'r' ;
-	printf("M%c\t%#010x\t%d\t(Byte)%#010x\n",status,membuf[mem_cur-1].addr,membuf[mem_cur-1].op_size,membuf[mem_cur-1].data);	
+	printf("M%c\t%#010x\t%-8d\t(Byte)%#010x\n",status,membuf[mem_cur-1].addr,membuf[mem_cur-1].op_size,membuf[mem_cur-1].data);	
 }
