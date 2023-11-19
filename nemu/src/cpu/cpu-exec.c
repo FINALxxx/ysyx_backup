@@ -42,7 +42,7 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
   if (ITRACE_COND) { log_write("%s\n", _this->logbuf); }
   
   //iringbuf指令缓冲区
-  insert_buffer(_this->pc,_this->logbuf);//pa2.2:新增trace
+  //insert_buffer(_this->pc,_this->logbuf);//pa2.2:新增trace
 #endif
 
   //打印每一步的指令
@@ -86,6 +86,7 @@ static void exec_once(Decode *s, vaddr_t pc) {
   void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
   disassemble(p, s->logbuf + sizeof(s->logbuf) - p,
       MUXDEF(CONFIG_ISA_x86, s->snpc, s->pc), (uint8_t *)&s->isa.inst.val, ilen);
+  insert_buffer(pc,p);//pa2.2:新增trace
 #else
   p[0] = '\0'; // the upstream llvm does not support loongarch32r
 #endif
