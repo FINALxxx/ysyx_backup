@@ -27,5 +27,5 @@ void disp_mem_buffer(){
 		disp_ptr = (disp_ptr+1)%MAX_MEM_BUF_SIZE;
 	}
 	char status = membuf[mem_cur-1].status ? 'w' : 'r' ;
-	printf("M%c\t%#010x\t%-8d\t(Byte)%#010x\n",status,membuf[mem_cur-1].addr,membuf[mem_cur-1].op_size,membuf[mem_cur-1].data);	
+	printf("M%c\t%#010x\t%-8d\t(Byte)\t%#010x\n",status,membuf[mem_cur-1].addr,membuf[mem_cur-1].op_size,membuf[mem_cur-1].data);	
 }
