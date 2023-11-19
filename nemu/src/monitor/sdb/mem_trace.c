@@ -26,6 +26,7 @@ void init_mem_buffer(){
 }
 
 void disp_mem_buffer(){
+	printf("[MTRACE RUNNING]\n");
 	uint32_t disp_ptr = mem_is_full ? (mem_cur+1)%CONFIG_MTRACE_SIZE : 0 ;//从0或者从cur+1开始
 	while(disp_ptr != mem_cur-1){
 		char status = membuf[disp_ptr].status ? 'r' : 'w' ;
@@ -33,6 +34,7 @@ void disp_mem_buffer(){
 		disp_ptr = (disp_ptr+1)%CONFIG_MTRACE_SIZE;
 	}
 	char status = membuf[mem_cur-1].status ? 'w' : 'r' ;
-	printf("M%c\t%#010x\t%-8d\t(Byte)\t%#010x\n",status,membuf[mem_cur-1].addr,membuf[mem_cur-1].op_size,membuf[mem_cur-1].data);	
+	printf("M%c\t%#010x\t%-8d\t(Byte)\t%#010x\n",status,membuf[mem_cur-1].addr,membuf[mem_cur-1].op_size,membuf[mem_cur-1].data);
+	printf("[MRACE TERMINATE]\n");
 }
 #endif
