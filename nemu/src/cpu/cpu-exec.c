@@ -40,13 +40,14 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
 	//itrace
 #ifdef CONFIG_ITRACE_COND
   if (ITRACE_COND) { log_write("%s\n", _this->logbuf); }
-  insert_buffer(_this->pc);//pa2.2:新增trace
+  
+  //iringbuf指令缓冲区
+  insert_buffer(_this->pc,_this->logbuf);//pa2.2:新增trace
 #endif
 
   //打印每一步的指令
   if (g_print_step) { IFDEF(CONFIG_ITRACE, puts(_this->logbuf)); }
   IFDEF(CONFIG_DIFFTEST, difftest_step(_this->pc, dnpc));
-  //iringbuf指令缓冲区
 
   //断点调试
   uint32_t new_result=0;

@@ -5,10 +5,11 @@
 typedef struct{
 	uint32_t pc;
 	uint32_t inst;
+	char* log;
 } traceNode;
 
 
-void insert_buffer(uint32_t pc);
+void insert_buffer(uint32_t pc,char* log);
 void init_buffer();
 void disp_buffer();
 
