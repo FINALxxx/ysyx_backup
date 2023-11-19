@@ -46,7 +46,6 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
   if (g_print_step) { IFDEF(CONFIG_ITRACE, puts(_this->logbuf)); }
   IFDEF(CONFIG_DIFFTEST, difftest_step(_this->pc, dnpc));
   //iringbuf指令缓冲区
-  insert_buffer(_this->pc);//pa2.2:新增trace
 
   //断点调试
   uint32_t new_result=0;
@@ -88,6 +87,7 @@ static void exec_once(Decode *s, vaddr_t pc) {
 #else
   p[0] = '\0'; // the upstream llvm does not support loongarch32r
 #endif
+  insert_buffer(pc);//pa2.2:新增trace
 #endif
 }
 

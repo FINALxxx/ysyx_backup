@@ -25,8 +25,8 @@ void disp_buffer(){
 	uint32_t disp_ptr = is_full ? (cur+1)%MAX_BUF_SIZE : 0 ;//从0或者从cur+1开始
 	while(disp_ptr != cur-1){
 		uint32_t disp_pc = buf[disp_ptr].pc;
-		printf("   %x:\t%#010x\n",disp_pc,buf[disp_ptr].inst);
+		printf("   %#10x:\t%#010x\n",disp_pc,buf[disp_ptr].inst);
 		disp_ptr = (disp_ptr+1)%MAX_BUF_SIZE;
 	}
-	printf("-->%x:\t%#010x\n",buf[cur].pc,buf[cur].inst);
+	printf("-->%#10x:\t%#010x\n",buf[cur].pc,buf[cur].inst);
 }
