@@ -54,6 +54,7 @@ void read_section(Elf32_Ehdr* elf_header,FILE* fp){
 
 	fseek(fp,SHT_pos,SEEK_SET);
 	for(int i=0;i<SH_num;i++){//遍历整个SHT，找到SH项
+		fseek(fp,SHT_pos + i*SH_size,SEEK_SET);
 		Assert(fread(SH_search,sizeof(Elf32_Shdr),1,fp),"ERROR\n");
 		if(SH_search->sh_type==SHT_STRTAB && i != SH_shstrtab_index){//这里不排除动态STRTAB，之后再说
 			//找到strtab的SH项
