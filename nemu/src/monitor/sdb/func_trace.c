@@ -40,7 +40,7 @@ void read_section(Elf32_Ehdr* elf_header,FILE* fp){
 	
 	//获取strsym的SH项
 	Elf32_Sym* symtab=NULL;
-	Elf32_Shdr* SH_search=NULL;
+	Elf32_Shdr* SH_search=(Elf32_Shdr*)malloc(sizeof(Elf32_Shdr));
 	uint32_t num_symtab_item=0;
 	fseek(fp,SHT_pos,SEEK_SET);
 	for(int i=0;i<SH_num;i++){//遍历整个SHT，找到SH项
