@@ -93,7 +93,7 @@ void get_symtab_name(FILE* fp,Elf32_Sym* symtab,Elf32_Shdr* SH_strtab,uint32_t n
 		func_index++;
 	}
 	rewind(fp);
-	func[func_index]->func_name[0] = '\0';
+	//func[func_index]->func_name[0] = '\0';
 }
 
 
