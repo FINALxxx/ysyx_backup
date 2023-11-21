@@ -47,7 +47,7 @@ void read_section(Elf32_Ehdr* elf_header,FILE* fp){
 		Assert(fread(SH_search,1,sizeof(Elf32_Shdr),fp),"ERROR\n");
 		if(SH_search->sh_type == SHT_SYMTAB){
 			//找到strsym的SH项
-			num_symtab_item = get_symtab(fp,SH_search,symtab);
+			num_symtab_item = get_symtab(fp,SH_search,&symtab);
 		}
 	}
 	rewind(fp);
@@ -64,15 +64,14 @@ void read_section(Elf32_Ehdr* elf_header,FILE* fp){
 	rewind(fp);
 }
 
-uint32_t get_symtab(FILE* fp,Elf32_Shdr* SH_symtab,Elf32_Sym* symtab){//这里的symtab是回调
+uint32_t get_symtab(FILE* fp,Elf32_Shdr* SH_symtab,Elf32_Sym** symtab){//DEBUG：注意，我在这里多加了一个*
 	rewind(fp);
 	Elf32_Off offset = SH_symtab->sh_offset;
 	uint32_t size_total = SH_symtab->sh_size;
-	printf("DEBUG=%d\n",size_total);
 	uint32_t size_per_item = SH_symtab->sh_entsize;
 	uint32_t num_item = size_total / size_per_item;
 	fseek(fp,offset,SEEK_SET);
-	symtab = (Elf32_Sym*) malloc(size_total);
+	*symtab = (Elf32_Sym*) malloc(size_total);
 	Assert(fread(symtab,size_per_item,num_item,fp),"ERROR\n");
 	return size_total / size_per_item;//symtab表内的item个数
 }
