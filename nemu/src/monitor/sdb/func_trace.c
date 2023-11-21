@@ -6,7 +6,6 @@ Elf32_Ehdr* read_elf_header(FILE* fp){
 	char magic[EI_NIDENT];//检测MAGIC，判断是否是elf文件
 	rewind(fp);
 	Assert(fread(magic,1,EI_NIDENT,fp),"ERROR\n");
-	printf("DEBUG=%s\n",magic);
 	if(magic[0]!=0x7f && magic[1]!=0x45 && magic[2]!=0x4c && magic[3]!=0x46) Assert(0,"ERROR:ELF file cannot be read!\n");
 	rewind(fp);
 	Elf32_Ehdr* elf_header=(Elf32_Ehdr*)malloc(sizeof(Elf32_Ehdr));
@@ -103,5 +102,6 @@ void parse_elf(const char* elf_file){
 	fseek(fp,0,SEEK_END);
 	//long long file_size = ftell(fp);
 	rewind(fp);
-	read_elf_header(fp);
+	Elf32_Ehdr* elf_header = read_elf_header(fp);
+	read_section(elf_header,fp);
 }
