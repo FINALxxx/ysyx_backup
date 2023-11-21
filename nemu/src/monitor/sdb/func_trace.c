@@ -44,7 +44,7 @@ void read_section(Elf32_Ehdr* elf_header,FILE* fp){
 	uint32_t num_symtab_item=0;
 	fseek(fp,SHT_pos,SEEK_SET);
 	for(int i=0;i<SH_num;i++){//遍历整个SHT，找到SH项
-		Assert(fread(SH_search,sizeof(Elf32_Shdr),1,fp),"ERROR\n");
+		Assert(fread(SH_search,1,sizeof(Elf32_Shdr),fp),"ERROR\n");
 		if(SH_search->sh_type == SHT_SYMTAB){
 			//找到strsym的SH项
 			num_symtab_item = get_symtab(fp,SH_search,symtab);
