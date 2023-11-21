@@ -103,7 +103,7 @@ void parse_elf(const char* elf_file){
 	long long file_size = ftell(fp);
 	printf("%lld\n",file_size);
 	rewind(fp);
-	char elf_data[file_size+10];
+	char* elf_data=NULL;
 	memset(elf_data,0,sizeof(char));
 	Assert(fread(elf_data,file_size,1,fp),"ERROR\n");
 	printf("%s\n",elf_data);
