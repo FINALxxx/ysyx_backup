@@ -69,9 +69,10 @@ uint32_t get_symtab(FILE* fp,Elf32_Shdr* SH_symtab,Elf32_Sym* symtab){//这里�
 	Elf32_Off offset = SH_symtab->sh_offset;
 	uint32_t size_total = SH_symtab->sh_size;
 	uint32_t size_per_item = SH_symtab->sh_entsize;
+	uint32_t num_item = size_total / size_per_item;
 	fseek(fp,offset,SEEK_SET);
 	symtab = (Elf32_Sym*) malloc(size_total);
-	Assert(fread(symtab,size_total,1,fp),"ERROR\n");
+	Assert(fread(symtab,size_per_item,num_item,fp),"ERROR\n");
 	return size_total / size_per_item;//symtab表内的item个数
 }
 
