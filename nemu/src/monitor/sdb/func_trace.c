@@ -1,6 +1,6 @@
 #include<sdb/func_trace.h>
 
-FuncInfo* func[1024];
+FuncInfo* func[2048];
 
 Elf32_Ehdr* read_elf_header(FILE* fp){
 	char magic[EI_NIDENT];//检测MAGIC，判断是否是elf文件
