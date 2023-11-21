@@ -100,10 +100,9 @@ void parse_elf(const char* elf_file){
 	if (elf_file == NULL || strlen(elf_file) == 0) return;
 	FILE *fp = fopen(elf_file, "rb");
 	fseek(fp,0,SEEK_END);
-	long long file_size = ftell(fp);
-	printf("%lld\n",file_size);
+	//long long file_size = ftell(fp);
 	rewind(fp);
-	char* elf_data=(char*)malloc(file_size*sizeof(char*));
-	Assert(fread(elf_data,sizeof(char),file_size,fp),"ERROR\n");
+	char elf_data[1024];
+	Assert(fread(elf_data,sizeof(char),sizeof(elf_data),fp),"ERROR\n");
 	printf("%s\n",elf_data);
 }
