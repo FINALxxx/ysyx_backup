@@ -101,6 +101,7 @@ void parse_elf(const char* elf_file){
 	FILE *fp = fopen(elf_file, "rb");
 	fseek(fp,0,SEEK_END);
 	long long file_size = ftell(fp);
+	printf("%lld\n",file_size);
 	rewind(fp);
 	char elf_data[file_size+10];
 	memset(elf_data,0,sizeof(char));
