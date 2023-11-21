@@ -68,6 +68,7 @@ uint32_t get_symtab(FILE* fp,Elf32_Shdr* SH_symtab,Elf32_Sym* symtab){//这里�
 	rewind(fp);
 	Elf32_Off offset = SH_symtab->sh_offset;
 	uint32_t size_total = SH_symtab->sh_size;
+	printf("DEBUG=%d\n",size_total);
 	uint32_t size_per_item = SH_symtab->sh_entsize;
 	uint32_t num_item = size_total / size_per_item;
 	fseek(fp,offset,SEEK_SET);
@@ -83,7 +84,7 @@ void get_symtab_name(FILE* fp,Elf32_Sym* symtab,Elf32_Shdr* SH_strtab,uint32_t n
 	fseek(fp,offset,SEEK_SET);
 	uint32_t func_index=0;
 	for(int i=0;i<num_symtab_item;i++){
-		printf("DEBUG=%d\n",symtab[i].st_info);
+		//printf("DEBUG=%d\n",symtab[i].st_info);
 		if(ELF32_ST_TYPE(symtab[i].st_info)!=STT_FUNC) continue;
 
 		func[func_index]->start = symtab[i].st_value;
