@@ -75,5 +75,5 @@ int32_t find_func(uint32_t pc){//注意，返回值是有符号的
 void call(uint32_t pc_src,uint32_t pc_dst){
 	int32_t rst = find_func(pc_dst);
 	if(rst>=0) printf("%#010x:\tcall [%s@%#010x]\n",pc_src,fs[rst].func_name,fs[rst].start);
-	printf("%#010x:\tcall [???@%#010x]\n",pc_src,fs[rst].start);//找不到函数
+	else printf("%#010x:\tcall [???@%#010x]\n",pc_src,fs[rst].start);//找不到函数
 }
