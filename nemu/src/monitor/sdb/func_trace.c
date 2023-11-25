@@ -4,6 +4,7 @@
 #define MAXS 32 //最多MAXS层嵌套
 
 func fs[MAXN];
+uint32_t ptr=0;
 
 void ftrace_init(FILE* fp){
 	rewind(fp);
@@ -46,9 +47,10 @@ void ftrace_init(FILE* fp){
 		if(ELF32_ST_TYPE(symtab[i].st_info) == STT_FUNC){
 			uint32_t name_pos = symtab[i].st_name + STR_pos;
 			fseek(fp,name_pos,SEEK_SET);
-			char func_name[32];
-			Assert(fread(func_name,sizeof(char),32,fp),"fread Fail()\n");
-			printf("%s\n",func_name);
+			//char func_name[32];
+			Assert(fread(fs[ptr].func_name,sizeof(char),32,fp),"fread Fail()\n");
+			fs[ptr].start = symtab[i].st_value;
+			fs[ptr++].end = symtab[i].st_value + symtab[i].st_size;
 		}
 	}
 
@@ -57,4 +59,21 @@ void ftrace_init(FILE* fp){
 void parse_elf(const char* fileName){
 	FILE* fp = fopen(fileName,"r");
 	ftrace_init(fp);
+}
+
+void fs_init(){
+	ptr=0;
+}
+
+int32_t find_func(uint32_t pc){//注意，返回值是有符号的
+	for(int i=0;i<ptr;i++){
+		if(fs[i].start <= pc && pc <= fs[i].end) return i;//返回func_idx
+	}
+	return -1;
+}
+
+void call(uint32_t pc_src,uint32_t pc_dst){
+	int32_t rst = find_func(pc_dst);
+	if(rst>=0) printf("%u:\tcall [%s@%u]\n",pc_src,fs[rst].func_name,fs[rst].start);
+	printf("%u:\tcall [???@%u]\n",pc_src,fs[rst].start);//找不到函数
 }
