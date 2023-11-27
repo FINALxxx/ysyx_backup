@@ -147,7 +147,7 @@ void cpu_exec(uint64_t n) {//如果赋值为-1，会下溢到uint64_t的max值�
 
     case NEMU_END: case NEMU_ABORT:
 
-	  if(nemu_state.halt_pc == 0){
+	  if(nemu_state.halt_pc == 0){//HIT GOOD TRAP时，不输出
 		#ifdef CONFIG_MTRACE_COND
 	      disp_mem_buffer();
 		#endif
