@@ -1,82 +1,116 @@
 #include<sdb/func_trace.h>
-#include<elf.h>
-#define MAXN 100 //最多MAXN个函数
-#define MAXS 32 //最多MAXS层嵌套
 
-func fs[MAXN];
-uint32_t ptr=0;
+FuncInfo* func[1024];
 
-void ftrace_init(FILE* fp){
+Elf32_Ehdr* read_elf_header(FILE* fp){
+	char magic[EI_NIDENT];//检测MAGIC，判断是否是elf文件
 	rewind(fp);
-	Elf32_Ehdr* elf_header = (Elf32_Ehdr*)malloc(sizeof(Elf32_Ehdr));
-	Assert(fread(elf_header,sizeof(Elf32_Ehdr),1,fp),"fread() Fail\n");
-	uint32_t shstrtab_index = elf_header->e_shstrndx;
-	Elf32_Off SH_pos = elf_header->e_shoff;
-	//uint32_t SH_item_size = elf_header->e_shentsize;
-	uint32_t SH_item_num = elf_header->e_shnum;
+	Assert(fread(magic,1,EI_NIDENT,fp),"ERROR\n");
+	if(magic[0]!=0x7f && magic[1]!=0x45 && magic[2]!=0x4c && magic[3]!=0x46) Assert(0,"ERROR:ELF file cannot be read!\n");
+	rewind(fp);
+	Elf32_Ehdr* elf_header=(Elf32_Ehdr*)malloc(sizeof(Elf32_Ehdr));
+	Assert(fread(elf_header,sizeof(Elf32_Ehdr),1,fp),"ERROR\n");
+	rewind(fp);
+	return elf_header;
+}
+
+//section header table(SHT) = 多个section header(SH)的整体
+//每个SH的大小都是一致的，均为e_shentsize
+
+//起始位置：e_shoff
+//结束位置：e_shoff + e_shnum * e_shentsize
+//SH内是不记名的，它的sh_name属性是.shstrtab表(SHT字符串表)中的偏置
+
+
+//程序的函数、变量等的信息存在.symtab表中，但它们也是不记名的，他们的name属性是.strtab(字符串表)中的偏置
+
+void read_section(Elf32_Ehdr* elf_header,FILE* fp){
+	Elf32_Off SHT_pos = elf_header->e_shoff;
+	uint32_t SH_num = elf_header->e_shnum;
+	uint32_t SH_size = elf_header->e_shentsize;
+
+	//SH项shstrtab,在SHT中的索引,因此我们能快速找到.shstrtab
+	uint32_t SH_shstrtab_index = elf_header->e_shstrndx;	
 	
-	rewind(fp);
-	fseek(fp,SH_pos,SEEK_SET);
-	Elf32_Shdr* SH_symtab = (Elf32_Shdr*)malloc(sizeof(Elf32_Shdr));	
-	for(int i=0;i<SH_item_num;i++){	
-		Assert(fread(SH_symtab,sizeof(Elf32_Shdr),1,fp),"fread() Fail\n");
-		if(SH_symtab->sh_type==SHT_SYMTAB) break;
-	}
-	Elf32_Off SYM_pos = SH_symtab->sh_offset;
-	uint32_t SYM_item_size = SH_symtab->sh_entsize;
-	uint32_t SYM_item_size_total = SH_symtab->sh_size;
-	uint32_t SYM_item_num = SYM_item_size_total / SYM_item_size;
-	fseek(fp,SYM_pos,SEEK_SET);
-	Elf32_Sym* symtab = (Elf32_Sym*)malloc(SYM_item_size_total);
-	Assert(fread(symtab,SYM_item_size_total,1,fp),"fread() Fail\n");
-
-
-
-	rewind(fp);
-	fseek(fp,SH_pos,SEEK_SET);
-	Elf32_Shdr* SH_strtab = (Elf32_Shdr*)malloc(sizeof(Elf32_Shdr));	
-	for (int i=0;i<SH_item_num;i++){	
-		Assert(fread(SH_strtab,sizeof(Elf32_Shdr),1,fp),"fread() Fail\n");
-		if(SH_strtab->sh_type==SHT_STRTAB && i!=shstrtab_index) break;
-	}
-	Elf32_Off STR_pos = SH_strtab->sh_offset;
-
-	rewind(fp);
-	for(int i=0;i<SYM_item_num;i++){
-		//printf("%u\n",ELF32_ST_TYPE(symtab[i].st_info));
-		if(ELF32_ST_TYPE(symtab[i].st_info) == STT_FUNC){
-			uint32_t name_pos = symtab[i].st_name + STR_pos;
-			fseek(fp,name_pos,SEEK_SET);
-			//char func_name[32];
-			Assert(fread(fs[ptr].func_name,sizeof(char),32,fp),"fread Fail()\n");
-			fs[ptr].start = symtab[i].st_value;
-			fs[ptr++].end = symtab[i].st_value + symtab[i].st_size;
+	//获取.shstrtab的SH项
+	Elf32_Shdr* SH_shstrtab=(Elf32_Shdr*)malloc(sizeof(Elf32_Shdr));
+;
+	fseek(fp,SHT_pos + SH_shstrtab_index*SH_size,SEEK_SET);//定位.shstrtab的SH项
+	Assert(fread(SH_shstrtab,sizeof(Elf32_Shdr),1,fp),"ERROR\n");
+	
+	//获取strsym的SH项
+	Elf32_Sym* symtab=(Elf32_Sym*)malloc(sizeof(Elf32_Sym));
+	Elf32_Shdr* SH_search=(Elf32_Shdr*)malloc(sizeof(Elf32_Shdr));
+	uint32_t num_symtab_item=0;
+	fseek(fp,SHT_pos,SEEK_SET);
+	for(int i=0;i<SH_num;i++){//遍历整个SHT，找到SH项
+		Assert(fread(SH_search,1,sizeof(Elf32_Shdr),fp),"ERROR\n");
+		if(SH_search->sh_type == SHT_SYMTAB){
+			//找到strsym的SH项
+			num_symtab_item = get_symtab(fp,SH_search,&symtab);
 		}
 	}
+	rewind(fp);
 
-}
-
-void parse_elf(const char* fileName){
-	FILE* fp = fopen(fileName,"r");
-	ftrace_init(fp);
-}
-
-void fs_init(){
-	ptr=0;
-}
-
-int32_t find_func(uint32_t pc){//注意，返回值是有符号的
-	for(int i=0;i<ptr;i++){
-		if(fs[i].start <= pc && pc <= fs[i].end) return i;//返回func_idx
+	fseek(fp,SHT_pos,SEEK_SET);
+	for(int i=0;i<SH_num;i++){//遍历整个SHT，找到SH项
+		fseek(fp,SHT_pos + i*SH_size,SEEK_SET);
+		Assert(fread(SH_search,1,sizeof(Elf32_Shdr),fp),"ERROR\n");
+		if(SH_search->sh_type==SHT_STRTAB && i != SH_shstrtab_index){//这里不排除动态STRTAB，之后再说
+			//找到strtab的SH项
+			get_symtab_name(fp,symtab,SH_search,num_symtab_item);
+		}
 	}
-	return -1;
+	rewind(fp);
 }
 
-void call(uint32_t pc_src,uint32_t pc_dst,bool is_ret){//is_ret为1表示
-	int32_t rst = find_func(pc_dst);
-	char* flag=NULL;
-	if(is_ret) flag="\tret";
-	else flag="call";
-	if(rst>=0) printf("%#010x:\t%s [%s@%#010x]\n",pc_src,flag,fs[rst].func_name,fs[rst].start);
-	else printf("%#010x:\t%s [???@%#010x]\n",pc_src,flag,fs[rst].start);//找不到函数
+uint32_t get_symtab(FILE* fp,Elf32_Shdr* SH_symtab,Elf32_Sym** symtab){//DEBUG：注意，我在这里多加了一个*
+	rewind(fp);
+	Elf32_Off offset = SH_symtab->sh_offset;
+	uint32_t size_total = SH_symtab->sh_size;
+	uint32_t size_per_item = SH_symtab->sh_entsize;
+	uint32_t num_item = size_total / size_per_item;
+	fseek(fp,offset,SEEK_SET);
+	*symtab = (Elf32_Sym*) malloc(size_total);
+	Assert(fread(symtab,size_per_item,num_item,fp),"ERROR\n");
+	return size_total / size_per_item;//symtab表内的item个数
+}
+
+void get_symtab_name(FILE* fp,Elf32_Sym* symtab,Elf32_Shdr* SH_strtab,uint32_t num_symtab_item){//strtab不用单独保存，遍历symtab后，获取name偏置，直接访问对应地址即可获取名字
+	rewind(fp);
+	
+	Elf32_Off offset = SH_strtab->sh_offset;
+	fseek(fp,offset,SEEK_SET);
+	uint32_t func_index=0;
+	for(int i=0;i<num_symtab_item;i++){
+		//printf("DEBUG=%d\n",symtab[i].st_info);
+		if(ELF32_ST_TYPE(symtab[i].st_info)!=STT_FUNC) continue;
+
+		func[func_index]->start = symtab[i].st_value;
+		func[func_index]->size = symtab[i].st_size;
+		uint32_t name_offset = symtab[i].st_name;//到strtab中找
+		fseek(fp,offset+name_offset,SEEK_SET);
+		Assert(fscanf(fp, "%31s", func[func_index]->func_name)!=EOF,"ERROR\n");
+		printf("offset = 0x%x, file offset = 0x%x\n", symtab[i].st_name, offset + symtab[i].st_name);
+		func_index++;
+	}
+	rewind(fp);
+	func[func_index]->func_name[0] = '\0';
+}
+
+
+void parse_elf(const char* elf_file){
+	if (elf_file == NULL || strlen(elf_file) == 0) return;
+	FILE *fp = fopen(elf_file, "rb");
+	fseek(fp,0,SEEK_END);
+	//long long file_size = ftell(fp);
+	rewind(fp);
+	Elf32_Ehdr* elf_header = read_elf_header(fp);
+	read_section(elf_header,fp);
+}
+
+void disp_func_trace(){
+	for(int i=0;i<1024;i++){
+		//if(elf_func[i].func_name[0] == '\0') break;
+	}
 }
