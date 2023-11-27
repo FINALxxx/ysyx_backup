@@ -77,7 +77,7 @@ int32_t find_func(uint32_t pc){//注意，返回值是有符号的
 }
 
 void call(uint32_t pc_src,uint32_t pc_dst,bool is_ret){//is_ret为1表示
-	if(READFAIL) return;
+	return;
 	int32_t rst = find_func(pc_dst);
 	char* flag=NULL;
 	if(is_ret) flag="\tret";
