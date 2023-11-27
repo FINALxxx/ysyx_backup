@@ -84,9 +84,7 @@ void call(uint32_t pc_src,uint32_t pc_dst,bool is_ret){//is_ret为1表示
 	char* flag=NULL;
 	if(is_ret) flag="\tret";
 	else flag="call";
-	if(nemu_state.halt_pc==0){
 		if(rst>=0) printf("%#010x:\t%s [%s@%#010x]\n",pc_src,flag,fs[rst].func_name,fs[rst].start);
 		else printf("%#010x:\t%s [???@%#010x]\n",pc_src,flag,fs[rst].start);//找不到函数
-	}
 }
 #endif
