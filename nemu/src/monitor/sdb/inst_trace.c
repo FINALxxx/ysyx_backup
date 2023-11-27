@@ -1,5 +1,8 @@
 #include<sdb/inst_trace.h>
+#include <generated/autoconf.h>
 
+
+#ifdef CONFIG_ITRACE
 traceNode buf[MAX_BUF_SIZE];
 uint32_t cur=0;
 bool is_full=false;//如果未满，就从0开始读取；如果满，就从cur+1开始读取。两者都一直读到cur-1为止
@@ -34,3 +37,4 @@ void disp_buffer(){
 	printf("-->%#10x:\t%-40s\t:%#010x\n",buf[cur-1].pc,buf[cur-1].log,buf[cur-1].inst);
 	printf("[ITRACE TERMINATE]\n");
 }
+#endif
