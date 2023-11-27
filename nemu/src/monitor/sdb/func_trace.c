@@ -6,7 +6,7 @@
 func fs[MAXN];
 uint32_t ptr=0;
 
-//bool READFAIL=0;//读取失败时，不要输出，目前使用assert代替
+bool READFAIL=1;//默认读取失败，不要输出，除非真的读取到elf文件
 
 void ftrace_init(FILE* fp){
 	rewind(fp);
@@ -61,6 +61,7 @@ void ftrace_init(FILE* fp){
 void parse_elf(const char* fileName){
 	FILE* fp = fopen(fileName,"r");
 	Assert(fp!=NULL,"ERROR:NO ELF FILE!");
+	READFAIL = 0;
 	ftrace_init(fp);
 }
 
@@ -76,6 +77,7 @@ int32_t find_func(uint32_t pc){//注意，返回值是有符号的
 }
 
 void call(uint32_t pc_src,uint32_t pc_dst,bool is_ret){//is_ret为1表示
+	if(READFAIL) return;
 	int32_t rst = find_func(pc_dst);
 	char* flag=NULL;
 	if(is_ret) flag="\tret";
