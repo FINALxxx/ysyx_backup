@@ -26,7 +26,6 @@ void init_mem_buffer(){
 }
 
 void disp_mem_buffer(){
-	return;
 	printf("\n[MTRACE RUNNING]\n");
 	uint32_t disp_ptr = mem_is_full ? (mem_cur+1)%CONFIG_MTRACE_SIZE : 0 ;//从0或者从cur+1开始
 	while(disp_ptr != mem_cur-1){
