@@ -1,10 +1,15 @@
 #include<sdb/func_trace.h>
 #include<elf.h>
+#include <generated/autoconf.h>
+
 #define MAXN 100 //最多MAXN个函数
 #define MAXS 32 //最多MAXS层嵌套
 
+#ifdef CONFIG_FTRACE
 func fs[MAXN];
 uint32_t ptr=0;
+
+//bool READFAIL=1;//默认读取失败，不要输出，除非真的读取到elf文件
 
 void ftrace_init(FILE* fp){
 	rewind(fp);
@@ -58,6 +63,8 @@ void ftrace_init(FILE* fp){
 
 void parse_elf(const char* fileName){
 	FILE* fp = fopen(fileName,"r");
+	Assert(fp!=NULL,"ERROR:NO ELF FILE!");
+	//READFAIL = 0;
 	ftrace_init(fp);
 }
 
@@ -77,6 +84,7 @@ void call(uint32_t pc_src,uint32_t pc_dst,bool is_ret){//is_ret为1表示
 	char* flag=NULL;
 	if(is_ret) flag="\tret";
 	else flag="call";
-	if(rst>=0) printf("%#010x:\t%s [%s@%#010x]\n",pc_src,flag,fs[rst].func_name,fs[rst].start);
-	else printf("%#010x:\t%s [???@%#010x]\n",pc_src,flag,fs[rst].start);//找不到函数
+		if(rst>=0) printf("%#010x:\t%s [%s@%#010x]\n",pc_src,flag,fs[rst].func_name,fs[rst].start);
+		else printf("%#010x:\t%s [???@%#010x]\n",pc_src,flag,fs[rst].start);//找不到函数
 }
+#endif
