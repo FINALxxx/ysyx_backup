@@ -6,6 +6,8 @@
 func fs[MAXN];
 uint32_t ptr=0;
 
+//bool READFAIL=0;//读取失败时，不要输出，目前使用assert代替
+
 void ftrace_init(FILE* fp){
 	rewind(fp);
 	Elf32_Ehdr* elf_header = (Elf32_Ehdr*)malloc(sizeof(Elf32_Ehdr));
@@ -58,6 +60,7 @@ void ftrace_init(FILE* fp){
 
 void parse_elf(const char* fileName){
 	FILE* fp = fopen(fileName,"r");
+	Assert(fp!=NULL,"ERROR:NO ELF FILE!");
 	ftrace_init(fp);
 }
 
