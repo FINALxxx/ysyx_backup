@@ -3,7 +3,7 @@ VFILE=.v
 WAVEFILE=wave.vcd
 CSRC=$(wildcard csrc/*${CFILE})
 VSRC=vsrc/cpu.v
-TGS=V$(patsubst %.v,%,${VSRC})
+TGS=V$(patsubst %.v,%,$(notdir ${VSRC}))
 
 all:
 	@echo ${TGS} 
