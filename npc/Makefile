@@ -1,14 +1,15 @@
-VPATH += vsrc
-VPATH += csrc
-
 CFILE=.cpp
 VFILE=.v
 WAVEFILE=wave.vcd
-CSRC=$(wildcard *${CFILE})
-VSRC=cpu.v
+CSRC=$(wildcard csrc/*${CFILE})
+VSRC=vsrc/cpu.v
 TGS=V$(patsubst %.v,%,${VSRC})
 
 all:
+	@echo ${TGS} 
+	@echo ${CSRC}
+	@echo ${VSRC}
+
 	
 sim:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
