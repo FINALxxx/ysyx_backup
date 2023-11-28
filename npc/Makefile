@@ -1,3 +1,6 @@
+VPATH += vsrc
+VPATH += csrc
+
 CFILE=.cpp
 VFILE=.v
 WAVEFILE=wave.vcd
