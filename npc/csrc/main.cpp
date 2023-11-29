@@ -23,10 +23,6 @@ long read_init(FILE* fp,const char* fileName){
 	rewind(fp);
 	return size;//文件总字节数
 }
-/*
-void read_cmd(FILE* fp,uint32_t* cmd,long fsize,long cmd_num){
-}
-*/
 
 
 void sim_init(int argc,char** argv){
