@@ -9,13 +9,14 @@ VSRC=$(wildcard *${VFILE})
 
 all:
 	@echo ${TGS} 
-	@echo ${CSRC}
+	@echo ${CTOP}
+	@echo ${VTOP}
 	@echo ${VSRC}
 
 	
 sim:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
-	verilator --Mdir ../obj_dir -Wall --cc --exe --build ${VSRC} --trace 
+	verilator --Mdir ../obj_dir -Wall --cc --exe --build ${CTOP} ${VSRC} --trace 
 	make -C ../obj_dir -f ${TGS}.mk ${TGS} 
 	../obj_dir/${TGS}
 	#gtkwave ./${WAVEFILE}
