@@ -37,9 +37,7 @@ void sim_init(int argc,char** argv){
 	cpu = new Vcpu(env);
 	cpu->rst=1;
 	fsize = read_init(fp,argv[1]);
-	cmd_num = (fsize/4) + (fsize%4);
-	cout<<cmd_num<<endl;
-	cmd = (uint32_t*)malloc(64);
+	cmd = (uint32_t*)malloc(fsize);
 	cout<<sizeof(cmd);
 	cout<<"(LOG)BIN FILE SIZE:"<<fsize<<endl;//读入bin文件
 
