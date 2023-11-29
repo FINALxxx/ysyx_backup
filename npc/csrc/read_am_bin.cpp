@@ -1,6 +1,6 @@
 #include "read_am_bin.h"
 
-static long read_init(FILE* fp,const char* fileName){
+long read_init(FILE* fp,const char* fileName){
 	fp = fopen(filename,"rb+");
 	assert(fp!=NULL);
 	fseek(fp,0,SEEK_END);
