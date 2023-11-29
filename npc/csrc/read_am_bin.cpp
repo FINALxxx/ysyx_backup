@@ -18,13 +18,10 @@ uint32_t read_4_byte(FILE* fp){
 	return *data;	
 }
 
-uint32_t* read_total(FILE* fp,long fsize){	
+void read_total(FILE* fp,uint32_t* data){	
 	rewind(fp);
-	long cmd_num = fsize/4;
-	uint32_t data[cmd_num+1];//如果有size%4==1，说明后面有一个1B的00
 	for(int i=0; i<=cmd_num;i++){
 		data[i] = read_4_byte(fp);
 	}
 	rewind(fp);
-	return data;
 }
