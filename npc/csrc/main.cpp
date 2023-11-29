@@ -12,18 +12,17 @@ vluint64_t sim_time=0;
 VerilatedContext* env = NULL;
 Vcpu* cpu = NULL;
 FILE* fp =NULL;
-long fsize=0;
+long fsize=0,cmd_cur=0,cmd_num;
 
 uint32_t* cmd=NULL;
-long read_bin(FILE* fp,const char* fileName){
+void read_bin(FILE* fp,const char* fileName){
 	fp = fopen(fileName,"rb");
 	assert(fp!=NULL);
 	fseek(fp,0,SEEK_END);
-	long fsize = ftell(fp);
+	fsize = ftell(fp);
 	rewind(fp);
 	cmd = (uint32_t*)malloc(fsize);	
 	assert(fread(cmd,sizeof(char),fsize,fp));
-	return fsize;//文件总字节数
 }
 
 
@@ -32,7 +31,7 @@ void sim_init(int argc,char** argv){
 	env = new VerilatedContext;
 	cpu = new Vcpu(env);
 	cpu->rst=1;
-	fsize = read_bin(fp,argv[1]);
+	read_bin(fp,argv[1]);
 	cout<<"(LOG)BIN FILE SIZE:"<<fsize<<endl;//读入bin文件
 
 	//env->traceEverOn(true);
@@ -64,8 +63,8 @@ int main(int argc, char** argv) {
 	while ( sim_time < MAX_SIM_TIME && cpu_status==ALIVE ) {
 		cpu->clk^=1;
 		cpu->rst=0;
-
 		//cpu->cmd=0b00000000000100001000000010010011;
+		cpu->cmd=cmd[cmd_cur++];
 		cout<<cpu->cmd<<endl;
 		//if(sim_time==10) cpu->cmd=0b00000000000000000000000000000000;
 		cpu->eval();
