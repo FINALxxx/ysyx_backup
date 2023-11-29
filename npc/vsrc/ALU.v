@@ -1,5 +1,5 @@
 /* verilator lint_off UNUSEDSIGNAL */
-`include "include/TYPES.v"
+`include "TYPES.v"
 module ALU(
     input [3:0] sel,
     //input A_L,//0算术/1符号移位

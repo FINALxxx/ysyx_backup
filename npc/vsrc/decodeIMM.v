@@ -1,5 +1,5 @@
 /* verilator lint_off UNUSEDSIGNAL */
-`include "include/TYPES.v"
+`include "TYPES.v"
 //负责解码立即数
 module decodeIMM(
     input [31:0] cmd,
