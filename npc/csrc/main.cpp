@@ -12,7 +12,7 @@ vluint64_t sim_time=0;
 VerilatedContext* env = NULL;
 Vcpu* cpu = NULL;
 FILE* fp =NULL;
-long size=0;
+long fsize=0;
 
 void sim_init(int argc,char** argv){
 	//for(int i=0;i<argc;i++) cout<<"LOG:"<<argv[i]<<endl;
@@ -20,7 +20,7 @@ void sim_init(int argc,char** argv){
 	cpu = new Vcpu(env);
 	cpu->rst=1;
 	size = read_init(fp,argv[1]);
-	cout<<"(LOG)BIN FILE SIZE:"<<size<<endl;//读入bin文件
+	cout<<"(LOG)BIN FILE SIZE:"<<fsize<<endl;//读入bin文件
 
 	//env->traceEverOn(true);
 	//VerilatedVcdC* m_trace = new VerilatedVcdC; 
@@ -50,7 +50,7 @@ uint32_t* cmd=NULL;
 long cmd_cur=0;
 int main(int argc, char** argv) {
 	sim_init(argc,argv);
-	cmd = read_total(fp,size);
+	cmd = read_total(fp,fsize);
 
 	while ( sim_time < MAX_SIM_TIME && cpu_status==ALIVE) {
 		cpu->clk^=1;
