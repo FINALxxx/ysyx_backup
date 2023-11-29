@@ -23,7 +23,7 @@ sim:
 	-y ${INCLUDE} \
 	-top-module ${VTOP} \
 	${CTOP}
-	-F TEST
+	-F image/*.bin
 	
 	make -C obj_dir -f ${TGS}.mk ${TGS} 
 	obj_dir/${TGS}
