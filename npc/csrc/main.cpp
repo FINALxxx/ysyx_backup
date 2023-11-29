@@ -65,8 +65,8 @@ int main(int argc, char** argv) {
 		cpu->clk^=1;
 		cpu->rst=0;
 		//cpu->cmd=0b00000000000100001000000010010011;
-		cpu->cmd=cmd[cmd_cur++];
 		cout<<"CUR="<<cmd_cur<<endl;
+		cpu->cmd=cmd[cmd_cur++];
 		//if(sim_time==10) cpu->cmd=0b00000000000000000000000000000000;
 		cpu->eval();
 		sim_update();
