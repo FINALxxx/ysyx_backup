@@ -5,24 +5,25 @@ CTOP=csrc/main.cpp
 VTOP=cpu
 TGS=V$(patsubst %.v,%,${VTOP})
 VSRC=$(wildcard vsrc/*${VFILE})
-INCLUDE=include/*.v
+INCLUDE=vsrc ${VSRC}
 
 all:
 	@echo ${TGS} 
 	@echo ${CTOP}
 	@echo ${VTOP}
 	@echo ${VSRC}
+	@echo ${INCLUDE}
 
 	
 sim:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
-	verilator --Mdir obj_dir -Wall --cc --exe --build --trace \
-	-I${INCLUDE}
+	verilator  -Wall --cc --exe --build --trace \
+	-y ${INCLUDE} \
 	-top-module ${VTOP} \
-	${CTOP} ${VSRC}
+	${CTOP}
 	
-	make -C ../obj_dir -f ${TGS}.mk ${TGS} 
-	../obj_dir/${TGS}
+	make -C obj_dir -f ${TGS}.mk ${TGS} 
+	obj_dir/${TGS}
 	#gtkwave ./${WAVEFILE}
 
 include ../Makefile
