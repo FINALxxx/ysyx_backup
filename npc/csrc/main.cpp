@@ -70,7 +70,7 @@ int main(int argc, char** argv) {
 	sim_init(argc,argv);
 	//read_total(fp,cmd,fsize/4,fsize%4);
 	assert(fread(cmd,fsize,1,fp));
-	cout<<"TEST"<<;	
+	cout<<"TEST"<<endl;	
 	while ( sim_time < MAX_SIM_TIME && cpu_status==ALIVE ) {
 		cpu->clk^=1;
 		cpu->rst=0;	
