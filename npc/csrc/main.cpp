@@ -40,6 +40,7 @@ void sim_init(int argc,char** argv){
 	cmd_num = (fsize/4) + (fsize%4);
 	cout<<cmd_num<<endl;
 	cmd = (uint32_t*)malloc(cmd_num);
+	cout<<sizeof(cmd);
 	cout<<"(LOG)BIN FILE SIZE:"<<fsize<<endl;//读入bin文件
 
 	//env->traceEverOn(true);
