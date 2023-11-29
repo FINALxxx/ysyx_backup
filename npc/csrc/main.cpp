@@ -2,10 +2,11 @@
 #include <verilated_vcd_c.h>
 #include "Vcpu.h"
 #include <bits/stdc++.h>
-#include "read_am_bin.h"
+//#include "read_am_bin.h"
 #define MAX_SIM_TIME 20
 
 using namespace std;
+
 
 vluint64_t sim_time=0;
 
@@ -14,7 +15,21 @@ Vcpu* cpu = NULL;
 FILE* fp =NULL;
 long fsize=0;
 uint32_t* cmd=NULL;
-long cmd_num=0,cmd_cur=0;
+long cmd_num=0;
+
+long read_init(FILE* fp,const char* fileName){
+	fp = fopen(fileName,"rb+");
+	assert(fp!=NULL);
+	fseek(fp,0,SEEK_END);
+	long size = ftell(fp);
+	rewind(fp);
+	return size;//文件总字节数
+}
+/*
+void read_cmd(FILE* fp,uint32_t* cmd,long fsize,long cmd_num){
+}
+*/
+
 
 void sim_init(int argc,char** argv){
 	//for(int i=0;i<argc;i++) cout<<"LOG:"<<argv[i]<<endl;
@@ -22,7 +37,7 @@ void sim_init(int argc,char** argv){
 	cpu = new Vcpu(env);
 	cpu->rst=1;
 	fsize = read_init(fp,argv[1]);
-	cmd_num = fsize/4+1;
+	cmd_num = (fsize/4) + (fsize%4);
 	cmd = (uint32_t*)malloc(cmd_num);
 	cout<<"(LOG)BIN FILE SIZE:"<<fsize<<endl;//读入bin文件
 
@@ -52,9 +67,9 @@ extern "C" void halt(svBit is_dead){
 
 int main(int argc, char** argv) {
 	sim_init(argc,argv);
-	read_total(fp,cmd,cmd_num);
-
-	while ( sim_time < MAX_SIM_TIME && cpu_status==ALIVE && cmd_cur==cmd_num-1) {
+	//read_total(fp,cmd,fsize/4,fsize%4);
+	fread(cmd,fsize,cmd_num,fp);	
+	while ( sim_time < MAX_SIM_TIME && cpu_status==ALIVE ) {
 		cpu->clk^=1;
 		cpu->rst=0;	
 		//cpu->cmd=0b00000000000100001000000010010011;
