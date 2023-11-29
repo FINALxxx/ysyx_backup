@@ -14,8 +14,6 @@ VerilatedContext* env = NULL;
 Vcpu* cpu = NULL;
 FILE* fp =NULL;
 long fsize=0;
-uint32_t* cmd=NULL;
-long cmd_num=0,cmd_cur=0;
 
 long read_init(FILE* fp,const char* fileName){
 	fp = fopen(fileName,"rb+");
@@ -37,8 +35,6 @@ void sim_init(int argc,char** argv){
 	cpu = new Vcpu(env);
 	cpu->rst=1;
 	fsize = read_init(fp,argv[1]);
-	cmd = (uint32_t*)malloc(fsize);
-	cout<<sizeof(cmd);
 	cout<<"(LOG)BIN FILE SIZE:"<<fsize<<endl;//读入bin文件
 
 	//env->traceEverOn(true);
@@ -67,7 +63,9 @@ extern "C" void halt(svBit is_dead){
 
 int main(int argc, char** argv) {
 	sim_init(argc,argv);
-	//read_total(fp,cmd,fsize/4,fsize%4);	
+	//read_total(fp,cmd,fsize/4,fsize%4);
+	uint32_t cmd[fsize];
+	memset(cmd,0,sizeof(uint32_t));
 	assert(fread(cmd,sizeof(char),fsize,fp));
 	
 	while ( sim_time < MAX_SIM_TIME && cpu_status==ALIVE ) {
