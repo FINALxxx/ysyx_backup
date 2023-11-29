@@ -14,7 +14,11 @@ Vcpu* cpu = NULL;
 FILE* fp =NULL;
 long fsize=0,cmd_cur=0,cmd_num;
 
-uint32_t* cmd=NULL;
+union endian{
+	char ch_cmd[4];
+	uint32_t* uint_cmd;
+} uni_cmd;
+
 void read_bin(FILE* fp,const char* fileName){
 	fp = fopen(fileName,"rb");
 	assert(fp!=NULL);
@@ -26,6 +30,11 @@ void read_bin(FILE* fp,const char* fileName){
 	assert(fread(cmd,sizeof(char),fsize,fp));
 }
 
+uint32_t change_order(uint32_t cmd){
+	uni_cmd.uint_cmd = cmd;
+	swap(uni_cmd.ch_cmd[0],uni_cmd.ch_cmd[3]);
+	swap(uni_cmd.ch_cmd[1],uni_cmd.ch_cmd[2]);
+}
 
 void sim_init(int argc,char** argv){
 	//for(int i=0;i<argc;i++) cout<<"LOG:"<<argv[i]<<endl;
