@@ -1,7 +1,7 @@
 #include "read_am_bin.h"
 
 long read_init(FILE* fp,const char* fileName){
-	fp = fopen(filename,"rb+");
+	fp = fopen(fileName,"rb+");
 	assert(fp!=NULL);
 	fseek(fp,0,SEEK_END);
 	long size = ftell(fp);
@@ -20,8 +20,8 @@ char read_one_byte(FILE* fp){
 
 char* read_total(FILE* fp,long size){	
 	rewind(fp);
-	char* data[size];
-	for(int i=0;i<size;i++){
+	char data[size];
+	for(int i=0; i<size;i++){
 		data[i] = read_one_byte(fp);
 	}
 	rewind(fp);
