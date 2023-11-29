@@ -8,7 +8,7 @@ VTOP=cpu
 CTOP=csrc/main.cpp
 INCLUDE=vsrc ${VSRC} image
 TGS=V$(patsubst %.v,%,${VTOP})
-BINSRC=$(wildcard image/*.bin)
+BINSRC=$(notdir $(wildcard image/*.bin))
 
 
 all:
