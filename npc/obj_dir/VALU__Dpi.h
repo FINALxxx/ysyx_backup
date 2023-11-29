@@ -16,7 +16,7 @@ extern "C" {
 
 
     // DPI IMPORTS
-    // DPI import at ControlUnit.v:3:30
+    // DPI import at vsrc/ControlUnit.v:3:30
     extern void halt(svBit is_dead);
 
 #ifdef __cplusplus
