@@ -13,7 +13,7 @@ VerilatedContext* env = NULL;
 Vcpu* cpu = NULL;
 FILE* fp =NULL;
 
-void sim_init(){
+void sim_init(int argc,char** argv){
 	//for(int i=0;i<argc;i++) cout<<"LOG:"<<argv[i]<<endl;
 	env = new VerilatedContext;
 	cpu = new Vcpu(env);
@@ -46,7 +46,7 @@ extern "C" void halt(svBit is_dead){
 
 int main(int argc, char** argv) {
 
-	sim_init();
+	sim_init(argc,argv);
 	while ( sim_time < MAX_SIM_TIME && cpu_status==ALIVE) {
 		cpu->clk^=1;
 		cpu->rst=0;	
