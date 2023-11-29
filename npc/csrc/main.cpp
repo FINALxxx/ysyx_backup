@@ -2,7 +2,7 @@
 #include <verilated_vcd_c.h>
 #include "Vcpu.h"
 #include <bits/stdc++.h>
-#include "csrc/read_am_bin.h"
+#include "read_am_bin.h"
 #define MAX_SIM_TIME 20
 
 using namespace std;
