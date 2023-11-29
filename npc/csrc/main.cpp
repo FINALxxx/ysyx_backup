@@ -15,7 +15,7 @@ Vcpu* cpu = NULL;
 FILE* fp =NULL;
 long fsize=0;
 uint32_t* cmd=NULL;
-long cmd_num=0;
+long cmd_num=0,cmd_cur=0;
 
 long read_init(FILE* fp,const char* fileName){
 	fp = fopen(fileName,"rb+");
