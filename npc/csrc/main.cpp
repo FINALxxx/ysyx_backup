@@ -14,15 +14,15 @@ Vcpu* cpu = NULL;
 FILE* fp =NULL;
 long fsize=0;
 
-uint32_t cmd[100];
-long read_init(FILE* fp,const char* fileName){
+uint32_t cmd=NULL;
+long read_bin(FILE* fp,const char* fileName){
 	fp = fopen(fileName,"rb");
 	assert(fp!=NULL);
 	fseek(fp,0,SEEK_END);
 	long size = ftell(fp);
 	rewind(fp);
-	cout<<fread(cmd,sizeof(char),size,fp);
-
+	cmd = (uint32_t)malloc(fsize);	
+	assert(fread(cmd,sizeof(char),fsize,fp));
 	return size;//文件总字节数
 }
 
