@@ -6,7 +6,7 @@ VSRC=$(wildcard vsrc/*${VFILE})
 VTOP=cpu
 
 CTOP=csrc/main.cpp
-INCLUDE=vsrc ${VSRC}
+INCLUDE=vsrc ${VSRC} image
 TGS=V$(patsubst %.v,%,${VTOP})
 
 all:
@@ -23,10 +23,10 @@ sim:
 	-y ${INCLUDE} \
 	-top-module ${VTOP} \
 	${CTOP} \
-	-F image/*.bin
+	-F *.bin
 	
-	make -C obj_dir -f ${TGS}.mk ${TGS} 
-	obj_dir/${TGS}
+	#make -C obj_dir -f ${TGS}.mk ${TGS} 
+	#obj_dir/${TGS}
 	#gtkwave ./${WAVEFILE}
 
 include ../Makefile
