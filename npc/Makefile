@@ -23,6 +23,7 @@ sim:
 	-y ${INCLUDE} \
 	-top-module ${VTOP} \
 	${CTOP}
+	-F TEST
 	
 	make -C obj_dir -f ${TGS}.mk ${TGS} 
 	obj_dir/${TGS}
