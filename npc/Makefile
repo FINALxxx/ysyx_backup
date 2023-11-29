@@ -1,11 +1,13 @@
 CFILE=.cpp
 VFILE=.v
 WAVEFILE=wave.vcd
-CTOP=csrc/main.cpp
-VTOP=cpu
-TGS=V$(patsubst %.v,%,${VTOP})
+
 VSRC=$(wildcard vsrc/*${VFILE})
+VTOP=cpu
+
+CTOP=csrc/main.cpp
 INCLUDE=vsrc ${VSRC}
+TGS=V$(patsubst %.v,%,${VTOP})
 
 all:
 	@echo ${TGS} 
