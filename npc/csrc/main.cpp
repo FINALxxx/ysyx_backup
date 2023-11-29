@@ -16,7 +16,7 @@ long fsize=0,cmd_cur=0,cmd_num;
 
 union endian{
 	char ch_cmd[4];
-	uint32_t* uint_cmd;
+	uint32_t uint_cmd;
 } uni_cmd;
 uint32_t* cmd=NULL;
 void read_bin(FILE* fp,const char* fileName){
