@@ -1,4 +1,4 @@
-`include "TYPES.v"
+`include "include/TYPES.v"
 
 import "DPI-C" function void halt(input bit is_dead);
 
