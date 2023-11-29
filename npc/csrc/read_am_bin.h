@@ -4,6 +4,6 @@
 
 long read_init(FILE* fp,char const* fileName);
 
-char read_one_byte(FILE* fp);
+uint32_t read_4_byte(FILE* fp);
 
-char* read_total(FILE* fp,long size);	
+uint32_t* read_total(FILE* fp,long size);	
