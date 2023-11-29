@@ -14,7 +14,7 @@ Vcpu* cpu = NULL;
 FILE* fp =NULL;
 long fsize=0;
 
-uint32_t cmd=NULL;
+uint32_t* cmd=NULL;
 long read_bin(FILE* fp,const char* fileName){
 	fp = fopen(fileName,"rb");
 	assert(fp!=NULL);
