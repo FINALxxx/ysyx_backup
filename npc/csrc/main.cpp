@@ -32,7 +32,7 @@ void sim_init(int argc,char** argv){
 	env = new VerilatedContext;
 	cpu = new Vcpu(env);
 	cpu->rst=1;
-	fsize = read_init(fp,argv[1]);
+	fsize = read_bin(fp,argv[1]);
 	cout<<"(LOG)BIN FILE SIZE:"<<fsize<<endl;//读入bin文件
 
 	//env->traceEverOn(true);
