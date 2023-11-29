@@ -62,7 +62,7 @@ int main(int argc, char** argv) {
 	//read_total(fp,cmd,fsize/4,fsize%4);
 	uint32_t cmd[fsize];
 	memset(cmd,0,sizeof(uint32_t));
-	assert(fread(cmd,sizeof(char),fsize,fp));
+	assert(fread(cmd,sizeof(char),49,fp));
 	
 	while ( sim_time < MAX_SIM_TIME && cpu_status==ALIVE ) {
 		cpu->clk^=1;
