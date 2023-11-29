@@ -21,7 +21,7 @@ long read_bin(FILE* fp,const char* fileName){
 	fseek(fp,0,SEEK_END);
 	long fsize = ftell(fp);
 	rewind(fp);
-	cmd = (uint32_t)malloc(fsize);	
+	cmd = (uint32_t*)malloc(fsize);	
 	assert(fread(cmd,sizeof(char),fsize,fp));
 	return fsize;//文件总字节数
 }
