@@ -14,7 +14,7 @@ Vcpu* cpu = NULL;
 FILE* fp =NULL;
 long fsize=0;
 uint32_t* cmd=NULL;
-long cmd_cur=0;
+long cmd_num=0,cmd_cur=0;
 
 void sim_init(int argc,char** argv){
 	//for(int i=0;i<argc;i++) cout<<"LOG:"<<argv[i]<<endl;
@@ -22,7 +22,8 @@ void sim_init(int argc,char** argv){
 	cpu = new Vcpu(env);
 	cpu->rst=1;
 	fsize = read_init(fp,argv[1]);
-	cmd = (uint32_t*)malloc(fsize/4+1);
+	cmd_num = fsize/4+1;
+	cmd = (uint32_t*)malloc(cmd_num);
 	cout<<"(LOG)BIN FILE SIZE:"<<fsize<<endl;//读入bin文件
 
 	//env->traceEverOn(true);
@@ -51,7 +52,7 @@ extern "C" void halt(svBit is_dead){
 
 int main(int argc, char** argv) {
 	sim_init(argc,argv);
-	read_total(fp,cmd);
+	read_total(fp,cmd,cmd_num);
 
 	while ( sim_time < MAX_SIM_TIME && cpu_status==ALIVE) {
 		cpu->clk^=1;

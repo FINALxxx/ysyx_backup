@@ -18,7 +18,7 @@ uint32_t read_4_byte(FILE* fp){
 	return *data;	
 }
 
-void read_total(FILE* fp,uint32_t* data){	
+void read_total(FILE* fp,uint32_t* data,long cmd_num){	
 	rewind(fp);
 	for(int i=0; i<=cmd_num;i++){
 		data[i] = read_4_byte(fp);
