@@ -16,7 +16,7 @@ FILE* fp =NULL;
 long fsize=0;
 
 long read_init(FILE* fp,const char* fileName){
-	fp = fopen(fileName,"rb+");
+	fp = fopen(fileName,"rb");
 	assert(fp!=NULL);
 	fseek(fp,0,SEEK_END);
 	long size = ftell(fp);
