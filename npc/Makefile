@@ -22,7 +22,7 @@ sim:
 	verilator  -Wall --cc --exe --build --trace \
 	-y ${INCLUDE} \
 	-top-module ${VTOP} \
-	${CTOP}
+	${CTOP} \
 	-F image/*.bin
 	
 	make -C obj_dir -f ${TGS}.mk ${TGS} 
