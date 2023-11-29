@@ -18,7 +18,7 @@ uint32_t read_4_byte(FILE* fp){
 	return *data;	
 }
 
-uint32_t read_total(FILE* fp,long fsize){	
+uint32_t* read_total(FILE* fp,long fsize){	
 	rewind(fp);
 	long cmd_num = fsize/4;
 	uint32_t data[cmd_num+1];//如果有size%4==1，说明后面有一个1B的00
