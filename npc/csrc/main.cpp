@@ -75,9 +75,9 @@ int main(int argc, char** argv) {
 		cpu->clk^=1;
 		cpu->rst=0;
 		//cpu->cmd=0b00000000000100001000000010010011;
-		cout<<"CUR="<<cmd_cur<<endl;
+		cout<<"【CUR="<<cmd_cur<<"】"<<endl;
 		cpu->cmd=change_order(cmd[cmd_cur++]);
-		printf("CMD=%x\n",cpu->cmd);
+		printf("【CMD=%x\n】",cpu->cmd);
 		//if(sim_time==10) cpu->cmd=0b00000000000000000000000000000000;
 		cpu->eval();
 		sim_update();
