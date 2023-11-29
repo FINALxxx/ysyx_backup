@@ -19,7 +19,7 @@ sim:
 	verilator --Mdir obj_dir -Wall --cc --exe --build --trace \
 	-I ${INCLUDE}
 	-top-module ${VTOP} \
-	${CTOP} ${VSRC} ./TYPE.v
+	${CTOP} ${VSRC} TYPE.v
 	
 	make -C ../obj_dir -f ${TGS}.mk ${TGS} 
 	../obj_dir/${TGS}
