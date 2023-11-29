@@ -2,7 +2,7 @@ CFILE=.cpp
 VFILE=.v
 WAVEFILE=wave.vcd
 CTOP=../csrc/main.cpp
-VTOP=cpu.v
+VTOP=cpu
 TGS=V$(patsubst %.v,%,${VTOP})
 VSRC=$(wildcard include/*${VFILE})
 
