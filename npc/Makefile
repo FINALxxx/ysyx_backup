@@ -1,7 +1,7 @@
 CFILE=.cpp
 VFILE=.v
 WAVEFILE=wave.vcd
-CSRC=$(wildcard csrc/*${CFILE})
+CTOP=csrc/main.cpp
 VTOP=vsrc/cpu.v
 TGS=V$(patsubst %.v,%,$(notdir ${VTOP}))
 VSRC=$(wildcard vsrc/*${VFILE})
@@ -15,7 +15,7 @@ all:
 	
 sim:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
-	verilator -Wall --cc --exe --build ${CSRC} --top-module ${VTOP} --trace -I ${VSRC} 
+	verilator -Wall --cc --exe --build ${CTOP} --top-module ${VTOP} --trace -I ${VSRC} 
 	make -C obj_dir -f ${TGS}.mk ${TGS}
 	./obj_dir/${TGS}
 	#gtkwave ./${WAVEFILE}
