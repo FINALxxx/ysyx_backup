@@ -22,7 +22,7 @@ void sim_init(int argc,char** argv){
 	cpu = new Vcpu(env);
 	cpu->rst=1;
 	fsize = read_init(fp,argv[1]);
-	cmd = (uint32_t*)malloc(sizeof(uint32_t),fsize/4+1);
+	cmd = (uint32_t*)malloc(fsize/4+1);
 	cout<<"(LOG)BIN FILE SIZE:"<<fsize<<endl;//读入bin文件
 
 	//env->traceEverOn(true);
