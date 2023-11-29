@@ -17,7 +17,7 @@ sim:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
 	verilator --Mdir obj_dir -Wall --cc --exe --build --trace \
 	-top-module ${VTOP} \
-	${CTOP} ${VSRC} 
+	${CTOP} ${VSRC} TYPE.v
 	
 	make -C ../obj_dir -f ${TGS}.mk ${TGS} 
 	../obj_dir/${TGS}
