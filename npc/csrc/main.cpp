@@ -68,9 +68,8 @@ extern "C" void halt(svBit is_dead){
 
 int main(int argc, char** argv) {
 	sim_init(argc,argv);
-	//read_total(fp,cmd,fsize/4,fsize%4);
-cout<<"TEST"<<endl;	
-	assert(fread(cmd,fsize,1,fp));
+	//read_total(fp,cmd,fsize/4,fsize%4);	
+	assert(fread(cmd,sizeof(char),fsize,fp));
 	
 	while ( sim_time < MAX_SIM_TIME && cpu_status==ALIVE ) {
 		cpu->clk^=1;
