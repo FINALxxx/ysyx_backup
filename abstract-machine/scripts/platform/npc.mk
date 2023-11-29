@@ -16,16 +16,15 @@ CFLAGS += -DMAINARGS=\"$(mainargs)\"
 .PHONY: $(AM_HOME)/am/src/riscv/npc/trm.c run/
 
 
-NPC_IMAGE = ${NPC_HOME}/image #将文件放到npc中，方便读取
+#NPC_IMAGE = ${NPC_HOME}/image #将文件放到npc中，方便读取
 
 image: $(IMAGE).elf
 	$(OBJDUMP) -d $(IMAGE).elf > $(IMAGE).txt
 	echo + OBJCOPY "->" $(IMAGE_REL).bin
 	@$(OBJCOPY) -S --set-section-flags .bss=alloc,contents -O binary $(IMAGE).elf $(IMAGE).bin
-	#$(OBJCOPY) -S --set-section-flags .bss=alloc,contents -O binary ${IMAGE}.elf ${NPC_IMAGE}.bin
 
 #include ${NPC_HOME}/Makefile
-run:image
-	@echo cp ${IMAGE}.bin ${NPC_IMAGE}
-	make -C ${NPC_HOME} -f Makefile sim
+run:
+	#@echo cp ${IMAGE}.bin ${NPC_IMAGE}
+	make -C ${NPC_HOME} -f Makefile BINSRC=${IMAGE}.bin sim
 

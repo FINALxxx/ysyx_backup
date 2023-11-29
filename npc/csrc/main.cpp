@@ -17,7 +17,6 @@ void sim_init(){
 	env = new VerilatedContext;
 	cpu = new Vcpu(env);
 	cpu->rst=1;
-	//read_init(fp,"image/*.bin");
 
 	//env->traceEverOn(true);
 	//VerilatedVcdC* m_trace = new VerilatedVcdC; 

@@ -5,9 +5,9 @@ WAVEFILE=wave.vcd
 VSRC=$(wildcard vsrc/*${VFILE})
 VTOP=cpu
 
-BINSRC=$(wildcard image/*.bin)
+BINSRC ?=
 CTOP=csrc/main.cpp
-INCLUDE=vsrc ${VSRC} ${BINSRC}
+INCLUDE=vsrc ${VSRC}
 TGS=V$(patsubst %.v,%,${VTOP})
 
 
@@ -17,6 +17,7 @@ all:
 	@echo ${VTOP}
 	@echo ${VSRC}
 	@echo ${INCLUDE}
+	@echo ${BINSRC}
 
 	
 sim:
@@ -24,11 +25,10 @@ sim:
 	verilator  -Wall --cc --exe --build --trace \
 	-y ${INCLUDE} \
 	-top-module ${VTOP} \
-	${CTOP} \
-	-F ${BINSRC}
+	${CTOP}
 	
-	#make -C obj_dir -f ${TGS}.mk ${TGS} 
-	#obj_dir/${TGS}
+	make -C obj_dir -f ${TGS}.mk ${TGS} 
+	obj_dir/${TGS} ${BINSRC}
 	#gtkwave ./${WAVEFILE}
 
 include ../Makefile
