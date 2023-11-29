@@ -44,7 +44,7 @@ extern "C" void halt(svBit is_dead){
 }
 
 int main(int argc, char** argv) {
-	for(int i=0;i<argc;i++) cout<<argv[i]<<endl;
+	for(int i=0;i<argc;i++) cout<<"LOG:"<<argv[i]<<endl;
 
 	sim_init();
 	while ( sim_time < MAX_SIM_TIME && cpu_status==ALIVE) {
