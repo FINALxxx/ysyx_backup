@@ -5,7 +5,7 @@ CTOP=csrc/main.cpp
 VTOP=cpu
 TGS=V$(patsubst %.v,%,${VTOP})
 VSRC=$(wildcard vsrc/*${VFILE})
-INCLUDE=include
+INCLUDE=include/*.v
 
 all:
 	@echo ${TGS} 
@@ -17,9 +17,9 @@ all:
 sim:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
 	verilator --Mdir obj_dir -Wall --cc --exe --build --trace \
-	-I ${INCLUDE}
+	-I${INCLUDE}
 	-top-module ${VTOP} \
-	${CTOP} ${VSRC} TYPE.v
+	${CTOP} ${VSRC}
 	
 	make -C ../obj_dir -f ${TGS}.mk ${TGS} 
 	../obj_dir/${TGS}
