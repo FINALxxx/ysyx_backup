@@ -8,6 +8,8 @@ VTOP=cpu
 CTOP=csrc/main.cpp
 INCLUDE=vsrc ${VSRC} image
 TGS=V$(patsubst %.v,%,${VTOP})
+BINSRC=$(wildcard image/*.bin)
+
 
 all:
 	@echo ${TGS} 
@@ -23,7 +25,7 @@ sim:
 	-y ${INCLUDE} \
 	-top-module ${VTOP} \
 	${CTOP} \
-	-F *.bin
+	-F ${BINSRC}
 	
 	#make -C obj_dir -f ${TGS}.mk ${TGS} 
 	#obj_dir/${TGS}
