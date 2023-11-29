@@ -8,21 +8,22 @@ long read_init(FILE* fp,const char* fileName){
 	rewind(fp);
 	return size;//文件总字节数
 }
-char read_one_byte(FILE* fp){	
+uint32_t read_4_byte(FILE* fp){	
 	rewind(fp);
-	char* data;
-	if(fread(data,sizeof(char),1,fp)) 
+	uint32_t* data;
+	if(fread(data,sizeof(uint32_t),1,fp)) 
 		return 0;//若无数据（末尾），则返回0，表示ebreak
 	
 	//warn:此处没有将fp重置到文件起点，需手动rewind
 	return *data;	
 }
 
-char* read_total(FILE* fp,long size){	
+uint32_t read_total(FILE* fp,long size){	
 	rewind(fp);
-	char data[size];
-	for(int i=0; i<size;i++){
-		data[i] = read_one_byte(fp);
+	long cmd_num = size/4;
+	uint32_t data[cmd_num+1];//如果有size%4==1，说明后面有一个1B的00
+	for(int i=0; i<=cmd_num;i++){
+		data[i] = read_4_byte(fp);
 	}
 	rewind(fp);
 	return data;
