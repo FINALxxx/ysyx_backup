@@ -15,7 +15,10 @@ all:
 	
 sim:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
-	verilator --Mdir obj_dir -Wall --cc --exe --build ${VTOP} ${CTOP} ${VSRC} --trace 
+	verilator --Mdir obj_dir -Wall --cc --exe --build --trace\
+	-top-module ${VTOP} \
+	${CTOP} ${VSRC} 
+	
 	make -C ../obj_dir -f ${TGS}.mk ${TGS} 
 	../obj_dir/${TGS}
 	#gtkwave ./${WAVEFILE}
