@@ -1,10 +1,10 @@
 CFILE=.cpp
 VFILE=.v
 WAVEFILE=wave.vcd
-CTOP=csrc/main.cpp
-VTOP=vsrc/cpu.v
-TGS=V$(patsubst %.v,%,$(notdir ${VTOP}))
-VSRC=$(wildcard vsrc/*${VFILE})
+CTOP=../csrc/main.cpp
+VTOP=cpu.v
+TGS=V$(patsubst %.v,%,${VTOP})
+VSRC=$(wildcard *${VFILE})
 
 
 all:
@@ -15,9 +15,9 @@ all:
 	
 sim:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
-	verilator -Wall --cc --exe --build ${CTOP} --top-module ${VTOP} --trace -I${VSRC} 
+	verilator -Wall --cc --exe --build ${CTOP} --top-module ${VSRC} --trace 
 	make -C obj_dir -f ${TGS}.mk ${TGS}
 	./obj_dir/${TGS}
 	#gtkwave ./${WAVEFILE}
 
-include ../Makefile
+include ../../Makefile
