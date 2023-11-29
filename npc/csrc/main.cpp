@@ -62,7 +62,7 @@ int main(int argc, char** argv) {
 	sim_init(argc,argv);
 	//read_total(fp,cmd,fsize/4,fsize%4);
 	rewind(fp);
-	assert(fread(cmd,sizeof(char),1,fp));
+	assert(fread(cmd,sizeof(uint32_t),1,fp));
 	
 	while ( sim_time < MAX_SIM_TIME && cpu_status==ALIVE ) {
 		cpu->clk^=1;
