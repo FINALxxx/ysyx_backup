@@ -61,7 +61,8 @@ uint32_t cmd[50];
 int main(int argc, char** argv) {
 	sim_init(argc,argv);
 	//read_total(fp,cmd,fsize/4,fsize%4);
-	assert(fread(cmd,sizeof(char),49,fp));
+	rewind(fp);
+	assert(fread(cmd,sizeof(char),10,fp));
 	
 	while ( sim_time < MAX_SIM_TIME && cpu_status==ALIVE ) {
 		cpu->clk^=1;
