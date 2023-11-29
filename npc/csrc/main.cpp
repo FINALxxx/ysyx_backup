@@ -54,7 +54,7 @@ int main(int argc, char** argv) {
 	sim_init(argc,argv);
 	read_total(fp,cmd,cmd_num);
 
-	while ( sim_time < MAX_SIM_TIME && cpu_status==ALIVE) {
+	while ( sim_time < MAX_SIM_TIME && cpu_status==ALIVE && cmd_cur==cmd_num-1) {
 		cpu->clk^=1;
 		cpu->rst=0;	
 		//cpu->cmd=0b00000000000100001000000010010011;
