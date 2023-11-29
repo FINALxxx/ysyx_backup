@@ -2,7 +2,7 @@
 #include <assert.h>
 #include <stdint.h>
 
-long read_init(FILE* fp,const char* fileName);
+long read_init(FILE* fp,char const* fileName);
 
 char read_one_byte(FILE* fp);
 
