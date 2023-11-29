@@ -1,6 +1,6 @@
 #include <verilated.h>
 #include <verilated_vcd_c.h>
-#include "../obj_dir/Vcpu.h"
+#include "obj_dir/Vcpu.h"
 #include <bits/stdc++.h>
 #define MAX_SIM_TIME 20
 
