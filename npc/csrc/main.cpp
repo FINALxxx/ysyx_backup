@@ -2,7 +2,6 @@
 #include <verilated_vcd_c.h>
 #include "Vcpu.h"
 #include <bits/stdc++.h>
-//#include "read_am_bin.h"
 #define MAX_SIM_TIME 20
 
 using namespace std;
@@ -15,12 +14,15 @@ Vcpu* cpu = NULL;
 FILE* fp =NULL;
 long fsize=0;
 
+uint32_t cmd[100];
 long read_init(FILE* fp,const char* fileName){
 	fp = fopen(fileName,"rb");
 	assert(fp!=NULL);
 	fseek(fp,0,SEEK_END);
 	long size = ftell(fp);
 	rewind(fp);
+	cout<<fread(cmd,sizeof(char),size,fp);
+
 	return size;//文件总字节数
 }
 
@@ -60,15 +62,11 @@ extern "C" void halt(svBit is_dead){
 uint32_t cmd[50];
 int main(int argc, char** argv) {
 	sim_init(argc,argv);
-	//read_total(fp,cmd,fsize/4,fsize%4);
-	rewind(fp);
-	cout<<fread(cmd,sizeof(uint32_t),1,fp)<<endl;
-	
 	while ( sim_time < MAX_SIM_TIME && cpu_status==ALIVE ) {
 		cpu->clk^=1;
-		cpu->rst=0;	
+		cpu->rst=0;
+
 		//cpu->cmd=0b00000000000100001000000010010011;
-	//	cpu->cmd = cmd[cmd_cur++];
 		cout<<cpu->cmd<<endl;
 		//if(sim_time==10) cpu->cmd=0b00000000000000000000000000000000;
 		cpu->eval();
