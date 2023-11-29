@@ -23,7 +23,7 @@ long read_bin(FILE* fp,const char* fileName){
 	rewind(fp);
 	cmd = (uint32_t)malloc(fsize);	
 	assert(fread(cmd,sizeof(char),fsize,fp));
-	return size;//文件总字节数
+	return fsize;//文件总字节数
 }
 
 
