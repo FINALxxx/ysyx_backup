@@ -59,7 +59,6 @@ extern "C" void halt(svBit is_dead){
 	if(is_dead) cpu_status=DEAD;	
 }
 
-uint32_t cmd[50];
 int main(int argc, char** argv) {
 	sim_init(argc,argv);
 	while ( sim_time < MAX_SIM_TIME && cpu_status==ALIVE ) {
