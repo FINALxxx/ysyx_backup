@@ -1,6 +1,4 @@
-#include <stdio.h>
-#include <assert.h>
-#include <stdint.h>
+#include "read_am_bin.h"
 
 static long read_init(FILE* fp,const char* fileName){
 	fp = fopen(filename,"rb+");

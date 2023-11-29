@@ -2,6 +2,7 @@
 #include <verilated_vcd_c.h>
 #include "Vcpu.h"
 #include <bits/stdc++.h>
+//#include "read_am_bin.h"
 #define MAX_SIM_TIME 20
 
 using namespace std;
@@ -10,11 +11,14 @@ vluint64_t sim_time=0;
 
 VerilatedContext* env = NULL;
 Vcpu* cpu = NULL;
+FILE* fp =NULL;
 
 void sim_init(){
 	env = new VerilatedContext;
 	cpu = new Vcpu(env);
 	cpu->rst=1;
+	//read_init(fp,"image/*.bin");
+
 	//env->traceEverOn(true);
 	//VerilatedVcdC* m_trace = new VerilatedVcdC; 
 	//cpu->trace(m_trace,5);
@@ -40,6 +44,8 @@ extern "C" void halt(svBit is_dead){
 }
 
 int main(int argc, char** argv) {
+	for(int i=0;i<argc;i++) cout<<argv[i]<<endl;
+
 	sim_init();
 	while ( sim_time < MAX_SIM_TIME && cpu_status==ALIVE) {
 		cpu->clk^=1;
