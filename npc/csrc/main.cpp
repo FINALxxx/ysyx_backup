@@ -18,7 +18,7 @@ union endian{
 	char ch_cmd[4];
 	uint32_t* uint_cmd;
 } uni_cmd;
-
+uint32_t cmd=NULL;
 void read_bin(FILE* fp,const char* fileName){
 	fp = fopen(fileName,"rb");
 	assert(fp!=NULL);
