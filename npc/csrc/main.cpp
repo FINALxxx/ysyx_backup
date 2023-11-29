@@ -30,7 +30,7 @@ void read_bin(FILE* fp,const char* fileName){
 	assert(fread(cmd,sizeof(char),fsize,fp));
 }
 
-uint32_t change_order(uint32_t cmd){
+uint32_t change_order(uint32_t cmd){//如果运行在大端序cpu上
 	uni_cmd.uint_cmd = cmd;
 	swap(uni_cmd.ch_cmd[0],uni_cmd.ch_cmd[3]);
 	swap(uni_cmd.ch_cmd[1],uni_cmd.ch_cmd[2]);
@@ -76,7 +76,7 @@ int main(int argc, char** argv) {
 		cpu->rst=0;
 		//cpu->cmd=0b00000000000100001000000010010011;
 		cout<<"【CUR="<<cmd_cur<<"】"<<endl;
-		cpu->cmd=change_order(cmd[cmd_cur++]);
+		cpu->cmd=cmd[cmd_cur++];
 		printf("【CMD=%x】\n",cpu->cmd);
 		//if(sim_time==10) cpu->cmd=0b00000000000000000000000000000000;
 		cpu->eval();
