@@ -5,10 +5,10 @@ WAVEFILE=wave.vcd
 VSRC=$(wildcard vsrc/*${VFILE})
 VTOP=cpu
 
+BINSRC=$(wildcard image/*.bin)
 CTOP=csrc/main.cpp
-INCLUDE=vsrc ${VSRC} image
+INCLUDE=vsrc ${VSRC} ${BINSRC}
 TGS=V$(patsubst %.v,%,${VTOP})
-BINSRC=$(notdir $(wildcard image/*.bin))
 
 
 all:
