@@ -6,7 +6,7 @@ VSRC = $(wildcard vsrc/*${VFILE})
 VTOP = cpu
 
 BINSRC ?=
-CTOP = $(wildcard csrc/*${CFILE}) $(wildcard csrc/include/*.h)
+CSRC = $(wildcard csrc/*${CFILE})
 INCLUDE = vsrc ${VSRC} 
 TGS = V$(patsubst %.v,%,${VTOP})
 
@@ -14,7 +14,7 @@ TGS = V$(patsubst %.v,%,${VTOP})
 
 all:
 	@echo ${TGS} 
-	@echo ${CTOP}
+	@echo ${CSRC}
 	@echo ${VTOP}
 	@echo ${VSRC}
 	@echo ${INCLUDE}
@@ -27,7 +27,7 @@ sim:
 	-y ${INCLUDE} \
 	-top-module ${VTOP} \
 	-CFLAGS "-I./csrc/include" \
-	${CTOP}
+	${CSRC}
 	
 	make -C obj_dir -f ${TGS}.mk ${TGS} 
 	obj_dir/${TGS} ${BINSRC}
