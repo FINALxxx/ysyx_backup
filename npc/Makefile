@@ -7,7 +7,7 @@ VTOP = cpu
 
 BINSRC ?=
 CTOP = $(wildcard csrc/*${CFILE})
-INCLUDE = vsrc ${VSRC}
+INCLUDE = vsrc ${VSRC} vsrc/include
 TGS = V$(patsubst %.v,%,${VTOP})
 
 #CFLAGS = -I csrc/include
