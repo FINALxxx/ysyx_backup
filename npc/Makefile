@@ -11,7 +11,7 @@ INCLUDE = vsrc ${VSRC}
 TGS = V$(patsubst %.v,%,${VTOP})
 
 
-CFLAGS = -Icsrc/include
+CFLAGS = -I${NPC_HOME}/csrc/include
 
 all:
 	@echo ${TGS} 
