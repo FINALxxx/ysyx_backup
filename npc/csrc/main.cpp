@@ -6,6 +6,10 @@
 
 using namespace std;
 
+FILE* fp =NULL;
+long cmd_cur=0,cmd_num=0;
+uint32_t* cmd=NULL;
+
 
 vluint64_t sim_time=0;
 
@@ -17,9 +21,7 @@ void sim_init(int argc,char** argv){
 	env = new VerilatedContext;
 	cpu = new Vcpu(env);
 	cpu->rst=1;
-	read_bin(cmd,fp,argv[1]);
-	cout<<"(LOG)BIN FILE SIZE:"<<fsize<<endl;//读入bin文件
-
+	cmd_num = read_bin(cmd,fp,argv[1]);
 	//env->traceEverOn(true);
 	//VerilatedVcdC* m_trace = new VerilatedVcdC; 
 	//cpu->trace(m_trace,5);

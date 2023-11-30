@@ -1,18 +1,16 @@
 #include "read_bin.h"
 
-FILE* fp =NULL;
-long fsize=0,cmd_cur=0,cmd_num=0;
-uint32_t* cmd=NULL;
 
-void read_bin(uint32_t* cmd,FILE* fp,const char* fileName){
+long read_bin(uint32_t* cmd,FILE* fp,const char* fileName){
 	fp = fopen(fileName,"rb");
 	assert(fp!=NULL);
 	fseek(fp,0,SEEK_END);
-	fsize = ftell(fp);
-	cmd_num = (fsize/4) + (fsize%4);
+	long fsize = ftell(fp);
 	rewind(fp);
 	cmd = (uint32_t*)malloc(fsize);	
 	assert(fread(cmd,sizeof(char),fsize,fp));
+
+	return (fsize/4) + (fsize%4);
 }
 
 
