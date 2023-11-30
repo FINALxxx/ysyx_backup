@@ -1,3 +1,6 @@
+#include <assert.h>
+#include <stdint.h>
+
 union endian{
 	char ch_cmd[4];
 	uint32_t uint_cmd;
