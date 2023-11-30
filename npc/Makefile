@@ -10,7 +10,8 @@ CSRC = $(wildcard csrc/*${CFILE})
 INCLUDE = vsrc ${VSRC} 
 TGS = V$(patsubst %.v,%,${VTOP})
 
-#CFLAGS = -I csrc/include
+
+CFLAGS = -Icsrc/include
 
 all:
 	@echo ${TGS} 
@@ -23,7 +24,7 @@ all:
 	
 sim:
 	@$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
-	@echo verilator  -Wall --cc -CFLAGS "-I./*" \
+	@echo verilator  -Wall --cc -CFLAGS \
 	--exe --build --trace \
 	-y ${INCLUDE} \
 	-top-module ${VTOP} \
