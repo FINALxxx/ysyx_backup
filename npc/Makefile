@@ -6,7 +6,7 @@ VSRC = $(wildcard vsrc/*${VFILE})
 VTOP = cpu
 
 BINSRC ?=
-CTOP = $(wildcard csrc/*${CFILE}) $(wildcard csrc/*.h)
+CTOP = $(wildcard csrc/*${CFILE}) $(wildcard csrc/include/*.h)
 INCLUDE = vsrc ${VSRC} 
 TGS = V$(patsubst %.v,%,${VTOP})
 
