@@ -24,9 +24,9 @@ all:
 sim:
 	@$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
 	verilator  -Wall --cc --exe --build --trace \
-	-CFLAGS "-I./csrc/include" \
 	-y ${INCLUDE} \
 	-top-module ${VTOP} \
+	-CFLAGS "-I./csrc/include" \
 	${CTOP}
 	
 	make -C obj_dir -f ${TGS}.mk ${TGS} 
