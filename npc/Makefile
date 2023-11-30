@@ -1,15 +1,16 @@
-CFILE=.cpp
-VFILE=.v
-WAVEFILE=wave.vcd
+CFILE = .cpp
+VFILE = .v
+WAVEFILE = wave.vcd
 
-VSRC=$(wildcard vsrc/*${VFILE})
-VTOP=cpu
+VSRC = $(wildcard vsrc/*${VFILE})
+VTOP = cpu
 
 BINSRC ?=
-CTOP=$(wildcard csrc/*${CFILE})
-INCLUDE=vsrc ${VSRC}
-TGS=V$(patsubst %.v,%,${VTOP})
+CTOP = $(wildcard csrc/*${CFILE})
+INCLUDE = vsrc ${VSRC}
+TGS = V$(patsubst %.v,%,${VTOP})
 
+CFLAGS = -I csrc/include
 
 all:
 	@echo ${TGS} 
@@ -23,6 +24,7 @@ all:
 sim:
 	@$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
 	verilator  -Wall --cc --exe --build --trace \
+	-CFLAGS "${CFLAGS}"
 	-y ${INCLUDE} \
 	-top-module ${VTOP} \
 	${CTOP}
