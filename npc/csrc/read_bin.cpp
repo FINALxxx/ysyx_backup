@@ -15,8 +15,8 @@ void read_bin(uint32_t* cmd,FILE* fp,const char* fileName){
 endian uni_cmd;
 uint32_t change_order(uint32_t cmd){//如果运行在大端序cpu上
 	uni_cmd.uint_cmd = cmd;
-	swap(uni_cmd.ch_cmd[0],uni_cmd.ch_cmd[3]);
-	swap(uni_cmd.ch_cmd[1],uni_cmd.ch_cmd[2]);
+	std::swap(uni_cmd.ch_cmd[0],uni_cmd.ch_cmd[3]);
+	std::swap(uni_cmd.ch_cmd[1],uni_cmd.ch_cmd[2]);
 	return uni_cmd.uint_cmd;
 }
 
