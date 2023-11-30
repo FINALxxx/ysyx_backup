@@ -11,9 +11,6 @@ vluint64_t sim_time=0;
 
 VerilatedContext* env = NULL;
 Vcpu* cpu = NULL;
-FILE* fp =NULL;
-long fsize=0,cmd_cur=0,cmd_num;
-uint32_t* cmd=NULL;
 
 void sim_init(int argc,char** argv){
 	//for(int i=0;i<argc;i++) cout<<"LOG:"<<argv[i]<<endl;
