@@ -11,7 +11,7 @@ INCLUDE = vsrc ${VSRC}
 TGS = V$(patsubst %.v,%,${VTOP})
 
 
-CFLAGS = -I ${NPC_HOME}/csrc/include
+#CFLAGS = -I ${NPC_HOME}/csrc/include
 
 all:
 	@echo ${TGS} 
@@ -24,7 +24,7 @@ all:
 	
 sim:
 	@$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
-	@echo verilator  -Wall --cc -CFLAGS ${CFLAGS}/read_bin.h \
+	@echo verilator  -Wall --cc \
 	--exe --build --trace \
 	-y ${INCLUDE} \
 	-top-module ${VTOP} \
