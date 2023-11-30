@@ -1,7 +1,7 @@
 #include "read_bin.h"
 
 FILE* fp =NULL;
-long fsize=0,cmd_cur=0,cmd_num;
+long fsize=0,cmd_cur=0,cmd_num=0;
 uint32_t* cmd=NULL;
 
 void read_bin(uint32_t* cmd,FILE* fp,const char* fileName){
