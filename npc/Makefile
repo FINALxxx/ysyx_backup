@@ -11,7 +11,7 @@ INCLUDE = vsrc ${VSRC}
 TGS = V$(patsubst %.v,%,${VTOP})
 
 
-CFLAGS = -I${NPC_HOME}/csrc/include
+CFLAGS = -I ${NPC_HOME}/csrc/include
 
 all:
 	@echo ${TGS} 
@@ -28,7 +28,7 @@ sim:
 	--exe --build --trace \
 	-y ${INCLUDE} \
 	-top-module ${VTOP} \
-	${CSRC} csrc/include/read_bin.h
+	${CSRC} 
 	
 	make -C obj_dir -f ${TGS}.mk ${TGS} 
 	obj_dir/${TGS} ${BINSRC}
