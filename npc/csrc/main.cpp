@@ -2,6 +2,7 @@
 #include <verilated_vcd_c.h>
 #include "Vcpu.h"
 #include <bits/stdc++.h>
+#include "read_bin.h"
 #define MAX_SIM_TIME 20
 
 using namespace std;
@@ -13,36 +14,14 @@ VerilatedContext* env = NULL;
 Vcpu* cpu = NULL;
 FILE* fp =NULL;
 long fsize=0,cmd_cur=0,cmd_num;
-
-union endian{
-	char ch_cmd[4];
-	uint32_t uint_cmd;
-} uni_cmd;
 uint32_t* cmd=NULL;
-void read_bin(FILE* fp,const char* fileName){
-	fp = fopen(fileName,"rb");
-	assert(fp!=NULL);
-	fseek(fp,0,SEEK_END);
-	fsize = ftell(fp);
-	cmd_num = (fsize/4) + (fsize%4);
-	rewind(fp);
-	cmd = (uint32_t*)malloc(fsize);	
-	assert(fread(cmd,sizeof(char),fsize,fp));
-}
-
-uint32_t change_order(uint32_t cmd){//如果运行在大端序cpu上
-	uni_cmd.uint_cmd = cmd;
-	swap(uni_cmd.ch_cmd[0],uni_cmd.ch_cmd[3]);
-	swap(uni_cmd.ch_cmd[1],uni_cmd.ch_cmd[2]);
-	return uni_cmd.uint_cmd;
-}
 
 void sim_init(int argc,char** argv){
 	//for(int i=0;i<argc;i++) cout<<"LOG:"<<argv[i]<<endl;
 	env = new VerilatedContext;
 	cpu = new Vcpu(env);
 	cpu->rst=1;
-	read_bin(fp,argv[1]);
+	read_bin(cmd,fp,argv[1]);
 	cout<<"(LOG)BIN FILE SIZE:"<<fsize<<endl;//读入bin文件
 
 	//env->traceEverOn(true);
