@@ -26,7 +26,7 @@ sim:
 	@$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
 	@echo verilator  -Wall --cc -CFLAGS ${CFLAGS} \
 	--exe --build --trace \
-	-y ${INCLUDE} \
+	-y ${INCLUDE} csrc/include/read_bin.h\
 	-top-module ${VTOP} \
 	${CSRC}
 	
