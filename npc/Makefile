@@ -23,7 +23,7 @@ all:
 	
 sim:
 	@$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
-	verilator  -Wall --cc -CFLAGS "-I./include" \
+	verilator  -Wall --cc -CFLAGS "-Icsrc/include/read_bin.h" \
 	--exe --build --trace \
 	-y ${INCLUDE} \
 	-top-module ${VTOP} \
