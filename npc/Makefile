@@ -26,7 +26,7 @@ sim:
 	verilator  -Wall --cc --exe --build --trace \
 	-y ${INCLUDE} \
 	-top-module ${VTOP} \
-	-CFLAGS "-I./csrc/include" \
+	-CFLAGS "-I./include" \
 	${CSRC}
 	
 	make -C obj_dir -f ${TGS}.mk ${TGS} 
