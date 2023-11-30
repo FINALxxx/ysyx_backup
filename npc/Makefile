@@ -23,7 +23,7 @@ all:
 	
 sim:
 	@$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
-	@echo verilator  -Wall --cc -CFLAGS -Icsrc/include/dhak \
+	@echo verilator  -Wall --cc -CFLAGS "-g" \
 	--exe --build --trace \
 	-y ${INCLUDE} \
 	-top-module ${VTOP} \
