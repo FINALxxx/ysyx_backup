@@ -124,11 +124,7 @@ module cpu(
         $display("rd=%b",rd);
         $display("op-imm=%b\n\n",op_IMM);
 
-        $display("ALUsel=%b",op_ALU_sel);
-        $display("a1=%b",a1);
-        $display("b1=%b",b1);
-        $display("src_rd=%b",src_rd);
-
+        		
         $display("PCAsrc=%b",op_PC_Asrc);
         $display("PCBsrc=%b",op_PC_Bsrc);
         $display("a0=%b",a0);
