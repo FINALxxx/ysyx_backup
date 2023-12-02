@@ -35,7 +35,7 @@ void sim_init(int argc,char** argv){
 	env = new VerilatedContext;
 	cpu = new Vcpu(env);
 	cpu->rst=1;
-	cmd_num = read_bin(cmd,fp,argv[1]);
+	cmd_num = read_bin(fp,argv[1]);
 	cout<<cmd_num<<endl;
 	//env->traceEverOn(true);
 	//VerilatedVcdC* m_trace = new VerilatedVcdC; 
