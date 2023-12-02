@@ -51,7 +51,7 @@ int main(int argc, char** argv) {
 	while ( sim_time < MAX_SIM_TIME && cpu_status==ALIVE && cmd_cur<=cmd_num ) {
 		cpu->clk^=1;
 		cpu->rst=0;
-		cpu->cmd=0b00000000000000000000000001110011;
+		//cpu->cmd=0b00000000000000000000000001110011;
 		cout<<"【CUR="<<cmd_cur<<"】"<<endl;
 		//cpu->cmd=cmd[cmd_cur++];
 		printf("【CMD=%x】\n",cpu->cmd);
