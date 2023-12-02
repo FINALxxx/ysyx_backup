@@ -29,7 +29,7 @@ module PC(
     );
 
     assign npc = tmp_pc;
-
+/*
 	always @(*) begin
 		$display("reset=%b",reset);
 		$display("result=%d",result);
@@ -37,5 +37,5 @@ module PC(
 		$display("npc=%x",npc);
 		$display("\n");
 	end
-
+*/
 endmodule
