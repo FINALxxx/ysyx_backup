@@ -1,7 +1,7 @@
 #include <verilated.h>
 #include <verilated_vcd_c.h>
 #include "Vcpu.h"
-#include "read_bin.h"
+//#include "read_bin.h"
 #define MAX_SIM_TIME 20
 
 using namespace std;
@@ -15,6 +15,20 @@ vluint64_t sim_time=0;
 
 VerilatedContext* env = NULL;
 Vcpu* cpu = NULL;
+
+
+long read_bin(FILE* fp,const char* fileName){
+	fp = fopen(fileName,"rb");
+	assert(fp!=NULL);
+	fseek(fp,0,SEEK_END);
+	long fsize = ftell(fp);
+	rewind(fp);
+	cmd = (uint32_t*)malloc(fsize);	
+	assert(fread(cmd,sizeof(char),fsize,fp));
+
+	return (fsize/4) + (fsize%4);
+}
+
 
 void sim_init(int argc,char** argv){
 	//for(int i=0;i<argc;i++) cout<<"LOG:"<<argv[i]<<endl;
