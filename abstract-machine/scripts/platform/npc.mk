@@ -24,7 +24,7 @@ image: $(IMAGE).elf
 	@$(OBJCOPY) -S --set-section-flags .bss=alloc,contents -O binary $(IMAGE).elf $(IMAGE).bin
 
 #include ${NPC_HOME}/Makefile
-run:
+run: image
 	#@echo cp ${IMAGE}.bin ${NPC_IMAGE}
 	make -C ${NPC_HOME} -f Makefile BINSRC=${IMAGE}.bin sim
 
