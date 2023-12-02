@@ -19,9 +19,10 @@ module PC(
         .is_zero()
     );
 
+    assign reset = (|pc) | rst;
     Reg #(32,32'h80000000) pc2snpc (
         .clk(clk),
-        .rst(rst),
+        .rst(reset),
         .din(result),
         .dout(tmp_pc),
         .wen(1'b1)
