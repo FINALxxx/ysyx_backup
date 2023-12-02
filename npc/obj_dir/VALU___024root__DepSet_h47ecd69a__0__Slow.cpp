@@ -1,42 +1,42 @@
 // Verilated -*- C++ -*-
 // DESCRIPTION: Verilator output: Design implementation internals
-// See Vcpu.h for the primary calling header
+// See VALU.h for the primary calling header
 
 #include "verilated.h"
 #include "verilated_dpi.h"
 
-#include "Vcpu__Syms.h"
-#include "Vcpu___024root.h"
+#include "VALU__Syms.h"
+#include "VALU___024root.h"
 
 #ifdef VL_DEBUG
-VL_ATTR_COLD void Vcpu___024root___dump_triggers__ico(Vcpu___024root* vlSelf);
+VL_ATTR_COLD void VALU___024root___dump_triggers__stl(VALU___024root* vlSelf);
 #endif  // VL_DEBUG
 
-void Vcpu___024root___eval_triggers__ico(Vcpu___024root* vlSelf) {
+VL_ATTR_COLD void VALU___024root___eval_triggers__stl(VALU___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
-    Vcpu__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    VL_DEBUG_IF(VL_DBG_MSGF("+    Vcpu___024root___eval_triggers__ico\n"); );
+    VALU__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
+    VL_DEBUG_IF(VL_DBG_MSGF("+    VALU___024root___eval_triggers__stl\n"); );
     // Body
-    vlSelf->__VicoTriggered.at(0U) = (0U == vlSelf->__VicoIterCount);
+    vlSelf->__VstlTriggered.at(0U) = (0U == vlSelf->__VstlIterCount);
 #ifdef VL_DEBUG
     if (VL_UNLIKELY(vlSymsp->_vm_contextp__->debug())) {
-        Vcpu___024root___dump_triggers__ico(vlSelf);
+        VALU___024root___dump_triggers__stl(vlSelf);
     }
 #endif
 }
 
-void Vcpu___024unit____Vdpiimwrap_halt_TOP____024unit(CData/*0:0*/ is_dead);
+void VALU___024unit____Vdpiimwrap_halt_TOP____024unit(CData/*0:0*/ is_dead);
 
-VL_INLINE_OPT void Vcpu___024root___ico_sequent__TOP__0(Vcpu___024root* vlSelf) {
+VL_ATTR_COLD void VALU___024root___stl_sequent__TOP__0(VALU___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
-    Vcpu__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    VL_DEBUG_IF(VL_DBG_MSGF("+    Vcpu___024root___ico_sequent__TOP__0\n"); );
+    VALU__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
+    VL_DEBUG_IF(VL_DBG_MSGF("+    VALU___024root___stl_sequent__TOP__0\n"); );
     // Body
     vlSelf->cpu__DOT__cu1__DOT__is_dead = (IData)((0x73U 
                                                    == 
                                                    (0x4000707fU 
                                                     & vlSelf->cmd)));
-    Vcpu___024unit____Vdpiimwrap_halt_TOP____024unit(vlSelf->cpu__DOT__cu1__DOT__is_dead);
+    VALU___024unit____Vdpiimwrap_halt_TOP____024unit(vlSelf->cpu__DOT__cu1__DOT__is_dead);
     if ((0x67U == (0x7fU & vlSelf->cmd))) {
         vlSelf->cpu__DOT__cu1__DOT__mux1__DOT__i0__DOT__pair_list[7U] = 2U;
         vlSelf->cpu__DOT__cu1__DOT__mux1__DOT__i0__DOT__data_list[7U] = 2U;
@@ -53,6 +53,10 @@ VL_INLINE_OPT void Vcpu___024root___ico_sequent__TOP__0(Vcpu___024root* vlSelf) 
     vlSelf->cpu__DOT__cu1__DOT__mux2__DOT__i0__DOT__pair_list[7U] 
         = (0x40U | ((0x40000000U & vlSelf->cmd) ? 8U
                      : 0U));
+    vlSelf->cpu__DOT__mux2__DOT__i0__DOT__pair_list[1U] 
+        = (QData)((IData)(vlSelf->cpu__DOT__pc1__DOT__tmp_pc));
+    vlSelf->cpu__DOT__mux3__DOT__i0__DOT__pair_list[0U] 
+        = (0x100000000ULL | (QData)((IData)(vlSelf->cpu__DOT__pc1__DOT__tmp_pc)));
     vlSelf->cpu__DOT__pc1__DOT__reset = (1U & ((~ (IData)(
                                                           (0U 
                                                            != vlSelf->cpu__DOT__pc1__DOT__tmp_pc))) 
@@ -98,6 +102,19 @@ VL_INLINE_OPT void Vcpu___024root___ico_sequent__TOP__0(Vcpu___024root* vlSelf) 
     vlSelf->cpu__DOT__dimm1__DOT__mux1__DOT__i0__DOT__pair_list[3U] 
         = (0x100000000ULL | (QData)((IData)((0xfffff000U 
                                              & vlSelf->cmd))));
+    vlSelf->cpu__DOT__mux2__DOT__i0__DOT__data_list[1U] 
+        = vlSelf->cpu__DOT__pc1__DOT__tmp_pc;
+    if ((0x40000000U & vlSelf->cmd)) {
+        vlSelf->cpu__DOT__cu1__DOT__mux3__DOT__i0__DOT__data_list[0U] = 0xdU;
+        vlSelf->cpu__DOT__cu1__DOT__mux2__DOT__i0__DOT__data_list[2U] = 0xdU;
+        vlSelf->cpu__DOT__cu1__DOT__mux2__DOT__i0__DOT__data_list[7U] = 8U;
+    } else {
+        vlSelf->cpu__DOT__cu1__DOT__mux3__DOT__i0__DOT__data_list[0U] = 5U;
+        vlSelf->cpu__DOT__cu1__DOT__mux2__DOT__i0__DOT__data_list[2U] = 5U;
+        vlSelf->cpu__DOT__cu1__DOT__mux2__DOT__i0__DOT__data_list[7U] = 0U;
+    }
+    vlSelf->cpu__DOT__mux3__DOT__i0__DOT__data_list[0U] 
+        = vlSelf->cpu__DOT__pc1__DOT__tmp_pc;
     if ((0U == (0x1fU & (vlSelf->cmd >> 0xfU)))) {
         vlSelf->cpu__DOT__src1 = 0U;
         vlSelf->cpu__DOT__mux2__DOT__i0__DOT__data_list[0U] = 0U;
@@ -113,15 +130,6 @@ VL_INLINE_OPT void Vcpu___024root___ico_sequent__TOP__0(Vcpu___024root* vlSelf) 
             = vlSelf->cpu__DOT__rf1__DOT__rf[(0x1fU 
                                               & (vlSelf->cmd 
                                                  >> 0xfU))];
-    }
-    if ((0x40000000U & vlSelf->cmd)) {
-        vlSelf->cpu__DOT__cu1__DOT__mux3__DOT__i0__DOT__data_list[0U] = 0xdU;
-        vlSelf->cpu__DOT__cu1__DOT__mux2__DOT__i0__DOT__data_list[2U] = 0xdU;
-        vlSelf->cpu__DOT__cu1__DOT__mux2__DOT__i0__DOT__data_list[7U] = 8U;
-    } else {
-        vlSelf->cpu__DOT__cu1__DOT__mux3__DOT__i0__DOT__data_list[0U] = 5U;
-        vlSelf->cpu__DOT__cu1__DOT__mux2__DOT__i0__DOT__data_list[2U] = 5U;
-        vlSelf->cpu__DOT__cu1__DOT__mux2__DOT__i0__DOT__data_list[7U] = 0U;
     }
     if ((0U == (0x1fU & (vlSelf->cmd >> 0x14U)))) {
         vlSelf->cpu__DOT__mux4__DOT__i0__DOT__data_list[2U] = 0U;
@@ -876,23 +884,4 @@ VL_INLINE_OPT void Vcpu___024root___ico_sequent__TOP__0(Vcpu___024root* vlSelf) 
     vlSelf->cpu__DOT__a0 = vlSelf->cpu__DOT__mux1__DOT__i0__DOT__lut_out;
     vlSelf->cpu__DOT__pc1__DOT__result = (vlSelf->cpu__DOT__a0 
                                           + vlSelf->cpu__DOT__b0);
-}
-
-#ifdef VL_DEBUG
-VL_ATTR_COLD void Vcpu___024root___dump_triggers__act(Vcpu___024root* vlSelf);
-#endif  // VL_DEBUG
-
-void Vcpu___024root___eval_triggers__act(Vcpu___024root* vlSelf) {
-    if (false && vlSelf) {}  // Prevent unused
-    Vcpu__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    VL_DEBUG_IF(VL_DBG_MSGF("+    Vcpu___024root___eval_triggers__act\n"); );
-    // Body
-    vlSelf->__VactTriggered.at(0U) = ((IData)(vlSelf->clk) 
-                                      & (~ (IData)(vlSelf->__Vtrigrprev__TOP__clk)));
-    vlSelf->__Vtrigrprev__TOP__clk = vlSelf->clk;
-#ifdef VL_DEBUG
-    if (VL_UNLIKELY(vlSymsp->_vm_contextp__->debug())) {
-        Vcpu___024root___dump_triggers__act(vlSelf);
-    }
-#endif
 }

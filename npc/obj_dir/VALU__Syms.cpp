@@ -1,17 +1,17 @@
 // Verilated -*- C++ -*-
 // DESCRIPTION: Verilator output: Symbol table implementation internals
 
-#include "Vcpu__Syms.h"
-#include "Vcpu.h"
-#include "Vcpu___024root.h"
-#include "Vcpu___024unit.h"
+#include "VALU__Syms.h"
+#include "VALU.h"
+#include "VALU___024root.h"
+#include "VALU___024unit.h"
 
 // FUNCTIONS
-Vcpu__Syms::~Vcpu__Syms()
+VALU__Syms::~VALU__Syms()
 {
 }
 
-Vcpu__Syms::Vcpu__Syms(VerilatedContext* contextp, const char* namep, Vcpu* modelp)
+VALU__Syms::VALU__Syms(VerilatedContext* contextp, const char* namep, VALU* modelp)
     : VerilatedSyms{contextp}
     // Setup internal state of the Syms class
     , __Vm_modelp{modelp}

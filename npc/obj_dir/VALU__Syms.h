@@ -4,38 +4,38 @@
 // Internal details; most calling programs do not need this header,
 // unless using verilator public meta comments.
 
-#ifndef VERILATED_VCPU__SYMS_H_
-#define VERILATED_VCPU__SYMS_H_  // guard
+#ifndef VERILATED_VALU__SYMS_H_
+#define VERILATED_VALU__SYMS_H_  // guard
 
 #include "verilated.h"
 
 // INCLUDE MODEL CLASS
 
-#include "Vcpu.h"
+#include "VALU.h"
 
 // INCLUDE MODULE CLASSES
-#include "Vcpu___024root.h"
-#include "Vcpu___024unit.h"
+#include "VALU___024root.h"
+#include "VALU___024unit.h"
 
 // DPI TYPES for DPI Export callbacks (Internal use)
 
 // SYMS CLASS (contains all model state)
-class Vcpu__Syms final : public VerilatedSyms {
+class VALU__Syms final : public VerilatedSyms {
   public:
     // INTERNAL STATE
-    Vcpu* const __Vm_modelp;
+    VALU* const __Vm_modelp;
     bool __Vm_activity = false;  ///< Used by trace routines to determine change occurred
     uint32_t __Vm_baseCode = 0;  ///< Used by trace routines when tracing multiple models
     VlDeleter __Vm_deleter;
     bool __Vm_didInit = false;
 
     // MODULE INSTANCE STATE
-    Vcpu___024root                 TOP;
-    Vcpu___024unit                 TOP____024unit;
+    VALU___024root                 TOP;
+    VALU___024unit                 TOP____024unit;
 
     // CONSTRUCTORS
-    Vcpu__Syms(VerilatedContext* contextp, const char* namep, Vcpu* modelp);
-    ~Vcpu__Syms();
+    VALU__Syms(VerilatedContext* contextp, const char* namep, VALU* modelp);
+    ~VALU__Syms();
 
     // METHODS
     const char* name() { return TOP.name(); }

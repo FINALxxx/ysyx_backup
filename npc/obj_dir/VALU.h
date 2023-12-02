@@ -5,23 +5,23 @@
 // The class here is then constructed to instantiate the design.
 // See the Verilator manual for examples.
 
-#ifndef VERILATED_VCPU_H_
-#define VERILATED_VCPU_H_  // guard
+#ifndef VERILATED_VALU_H_
+#define VERILATED_VALU_H_  // guard
 
 #include "verilated.h"
 #include "svdpi.h"
 
-class Vcpu__Syms;
-class Vcpu___024root;
+class VALU__Syms;
+class VALU___024root;
 class VerilatedVcdC;
-class Vcpu___024unit;
+class VALU___024unit;
 
 
 // This class is the main interface to the Verilated model
-class Vcpu VL_NOT_FINAL : public VerilatedModel {
+class VALU VL_NOT_FINAL : public VerilatedModel {
   private:
     // Symbol table holding complete model state (owned by this class)
-    Vcpu__Syms* const vlSymsp;
+    VALU__Syms* const vlSymsp;
 
   public:
 
@@ -35,23 +35,23 @@ class Vcpu VL_NOT_FINAL : public VerilatedModel {
     // CELLS
     // Public to allow access to /* verilator public */ items.
     // Otherwise the application code can consider these internals.
-    Vcpu___024unit* const __PVT____024unit;
+    VALU___024unit* const __PVT____024unit;
 
     // Root instance pointer to allow access to model internals,
     // including inlined /* verilator public_flat_* */ items.
-    Vcpu___024root* const rootp;
+    VALU___024root* const rootp;
 
     // CONSTRUCTORS
     /// Construct the model; called by application code
     /// If contextp is null, then the model will use the default global context
     /// If name is "", then makes a wrapper with a
     /// single model invisible with respect to DPI scope names.
-    explicit Vcpu(VerilatedContext* contextp, const char* name = "TOP");
-    explicit Vcpu(const char* name = "TOP");
+    explicit VALU(VerilatedContext* contextp, const char* name = "TOP");
+    explicit VALU(const char* name = "TOP");
     /// Destroy the model; called (often implicitly) by application code
-    virtual ~Vcpu();
+    virtual ~VALU();
   private:
-    VL_UNCOPYABLE(Vcpu);  ///< Copying not allowed
+    VL_UNCOPYABLE(VALU);  ///< Copying not allowed
 
   public:
     // API METHODS

@@ -1,20 +1,20 @@
 // Verilated -*- C++ -*-
 // DESCRIPTION: Verilator output: Design internal header
-// See Vcpu.h for the primary calling header
+// See VALU.h for the primary calling header
 
-#ifndef VERILATED_VCPU___024ROOT_H_
-#define VERILATED_VCPU___024ROOT_H_  // guard
+#ifndef VERILATED_VALU___024ROOT_H_
+#define VERILATED_VALU___024ROOT_H_  // guard
 
 #include "verilated.h"
 
-class Vcpu__Syms;
-class Vcpu___024unit;
+class VALU__Syms;
+class VALU___024unit;
 
 
-class Vcpu___024root final : public VerilatedModule {
+class VALU___024root final : public VerilatedModule {
   public:
     // CELLS
-    Vcpu___024unit* __PVT____024unit;
+    VALU___024unit* __PVT____024unit;
 
     // DESIGN SPECIFIC STATE
     // Anonymous structures to workaround compiler member-count bugs
@@ -120,12 +120,12 @@ class Vcpu___024root final : public VerilatedModule {
     VlTriggerVec<1> __VnbaTriggered;
 
     // INTERNAL VARIABLES
-    Vcpu__Syms* const vlSymsp;
+    VALU__Syms* const vlSymsp;
 
     // CONSTRUCTORS
-    Vcpu___024root(Vcpu__Syms* symsp, const char* v__name);
-    ~Vcpu___024root();
-    VL_UNCOPYABLE(Vcpu___024root);
+    VALU___024root(VALU__Syms* symsp, const char* v__name);
+    ~VALU___024root();
+    VL_UNCOPYABLE(VALU___024root);
 
     // INTERNAL METHODS
     void __Vconfigure(bool first);
