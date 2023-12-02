@@ -117,7 +117,7 @@ module cpu(
     );
 
     //测试用，实现后一定要删除
-    always @(pc) begin
+    always @(posedge pc) begin
         $display("pc=%x",pc);
         $display("rs1=%b",rs1);
         $display("rs2=%b",rs2);
