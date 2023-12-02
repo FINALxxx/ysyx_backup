@@ -3,7 +3,6 @@
 #include "Vcpu.h"
 #include <stdint.h>
 #include <bits/stdc++.h>
-//#include "read_bin.h"
 #define MAX_SIM_TIME 20
 
 using namespace std;
@@ -20,6 +19,7 @@ Vcpu* cpu = NULL;
 
 
 long read_bin(FILE* fp,const char* fileName){
+	cout<<fileName<<endl;
 	fp = fopen(fileName,"rb");
 	assert(fp!=NULL);
 	fseek(fp,0,SEEK_END);
