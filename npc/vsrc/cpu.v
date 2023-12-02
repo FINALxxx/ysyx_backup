@@ -115,7 +115,7 @@ module cpu(
         .LESS(LESS),
         .IS_ZERO(IS_ZERO)
     );
-
+/*
     //测试用，实现后一定要删除
     always @(pc) begin
         $display("pc=%x",pc);
@@ -135,6 +135,6 @@ module cpu(
         $display("b0=%b",b0);
         $display("\n");
     end
-
+*/
 
 endmodule
