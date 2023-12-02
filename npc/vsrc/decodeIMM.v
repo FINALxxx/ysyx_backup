@@ -10,9 +10,9 @@ module decodeIMM(
 
 
     assign immI = {{20{cmd[31]}},cmd[31:20]};
-    assign immU = {cmd[31:12],{12{1'b0}}};
-    assign immJ = {{12{cmd[31]}},cmd[19:12],cmd[20],cmd[30:21],1'b0};
-    assign immB = {{20{cmd[31]}},cmd[7],cmd[30:25],cmd[11:8],1'b0};
+    assign immU = {cmd[31:12],{12{1'b0}}};//实现左移12bits
+    assign immJ = {{12{cmd[31]}},cmd[19:12],cmd[20],cmd[30:21],1'b0};//实现左移1bits
+    assign immB = {{20{cmd[31]}},cmd[7],cmd[30:25],cmd[11:8],1'b0};//实现左移1bits
     assign immS = {{20{cmd[31]}},cmd[31:25],cmd[11:7]};
 
 
