@@ -24,7 +24,7 @@ all:
 	
 sim:
 	@$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
-	@echo verilator  -Wall --cc \
+	@echo verilator -Wall --cc --Mdir . \
 	--exe --build --trace \
 	-y ${INCLUDE} \
 	-top-module ${VTOP} \
