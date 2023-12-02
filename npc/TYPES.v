@@ -1,17 +1,18 @@
-`define ADD 4'b00_00
-`define SUB 4'b00_01
+//[[SUB/ADD,U/S,A/L],ALUctr[2:0]]
+`define ADD 4'b0_000
+`define SUB 4'b1_000
 
-`define AND 4'b01_00
-`define OR  4'b01_01
-`define XOR 4'b01_10
-`define NOT 4'b01_11
+`define AND 4'b0_111
+`define OR  4'b0_110
+`define XOR 4'b0_100
+`define ORGB 4'b0_011 //origin，直接输出B
 
-`define SLT 4'b10_00
-`define SLTU 4'b10_01
+`define SLT 4'b0_010
+`define SLTU 4'b1_010
 
-`define SLL 4'b11_00
-`define SRL 4'b11_01
-`define SRA 4'b11_10
+`define SLL 4'b0_001
+`define SRL 4'b0_101
+`define SRA 4'b1_101
 
 
 
