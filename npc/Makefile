@@ -26,6 +26,7 @@ sim:
 	@$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
 	@echo verilator -Wall --cc --Mdir ${NPC_HOME}/obj_dir \
 	--exe --build --trace \
+	-y ${INCLUDE} $(NPC_HOME)\
 	-top-module ${VTOP} \
 	${CSRC} 
 	
