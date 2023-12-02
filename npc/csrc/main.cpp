@@ -38,7 +38,6 @@ void sim_init(int argc,char** argv){
 	cpu = new Vcpu(env);
 	cpu->rst=1;
 	cmd_num = read_bin(fp,argv[1]);
-	cout<<cmd_num<<endl;
 	//env->traceEverOn(true);
 	//VerilatedVcdC* m_trace = new VerilatedVcdC; 
 	//cpu->trace(m_trace,5);
@@ -71,7 +70,6 @@ int main(int argc, char** argv) {
 		//cpu->cmd=0b00000000000000000000000001110011;
 		cout<<"【CUR="<<cmd_cur<<"】"<<endl;
 		cpu->cmd=cmd[cmd_cur++];
-		cout<<"LOG"<<endl;
 		printf("【CMD=%x】\n",cpu->cmd);
 		//if(sim_time==10) cpu->cmd=0b00000000000000000000000000000000;
 		cpu->eval();
