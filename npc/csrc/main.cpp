@@ -53,7 +53,7 @@ int main(int argc, char** argv) {
 		cpu->rst=0;
 		//cpu->cmd=0b00000000000000000000000001110011;
 		cout<<"【CUR="<<cmd_cur<<"】"<<endl;
-		//cpu->cmd=cmd[cmd_cur++];
+		cpu->cmd=cmd[cmd_cur++];
 		printf("【CMD=%x】\n",cpu->cmd);
 		//if(sim_time==10) cpu->cmd=0b00000000000000000000000000000000;
 		cpu->eval();
