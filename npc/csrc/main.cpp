@@ -37,7 +37,7 @@ void sim_init(int argc,char** argv){
 	env = new VerilatedContext;
 	cpu = new Vcpu(env);
 	cpu->rst=1;
-	//cmd_num = read_bin(fp,argv[1]);
+	cmd_num = read_bin(fp,argv[1]);
 	//env->traceEverOn(true);
 	//VerilatedVcdC* m_trace = new VerilatedVcdC; 
 	//cpu->trace(m_trace,5);
@@ -64,13 +64,13 @@ extern "C" void halt(svBit is_dead){
 
 int main(int argc, char** argv) {
 	sim_init(argc,argv);
-	while ( sim_time < MAX_SIM_TIME && cpu_status==ALIVE /*&& cmd_cur<=cmd_num*/ ) {
+	while ( sim_time < MAX_SIM_TIME && cpu_status==ALIVE && cmd_cur<=cmd_num ) {
 		cpu->clk^=1;
 		cpu->rst=0;
 		//cpu->cmd=0b00000000000000000000000001110011;
-		//cout<<"【CUR="<<cmd_cur<<"】"<<endl;
-		//cpu->cmd=cmd[cmd_cur++];
-		//printf("【CMD=%#010x】\n",cpu->cmd);
+		cout<<"【CUR="<<cmd_cur<<"】"<<endl;
+		cpu->cmd=cmd[cmd_cur++];
+		printf("【CMD=%#010x】\n",cpu->cmd);
 		//if(sim_time==10) cpu->cmd=0b00000000000000000000000000000000;
 		cpu->eval();
 		sim_update();
