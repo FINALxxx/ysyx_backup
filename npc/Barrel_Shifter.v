@@ -1,4 +1,4 @@
-module Barrel-shifter(
+module Barrel_Shifter(
 	input L_R,
 	input A_L,
 	input [31:0] in,

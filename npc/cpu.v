@@ -2,28 +2,32 @@
 module cpu(
     input clk,
     input rst,
-    input [31:0] cmd
+    input [31:0] cmd,
+	output [31:0] pc//暂时引到这里
 );
 
     //rs1、rs2、rd是寄存器序号，src1、src2、src_rd、imm是数据
     wire [4:0] rs1,rs2,rd;
-    wire [31:0] pc,src1,src2,imm,src_rd;
+    wire [31:0] src1,src2,imm,src_rd;
     wire [2:0] op_IMM;
     assign rs1 = cmd[19:15];
     assign rs2 = cmd[24:20];
-    assign rd = 5'b00001;
+    assign rd = cmd[11:7];//debug：测试完忘记把数据改回去了，导致的bug
 
     wire op_ALU_Asrc;
     wire [1:0] op_ALU_Bsrc;
     wire [3:0]op_ALU_sel;
+	
+	//wire branch_signal;
     wire op_PC_Asrc;
     wire op_PC_Bsrc;
-
-    wire en_Wreg;
+    
+	wire en_Wreg;
     wire LESS,IS_ZERO;
 
     /* status setter */
     ControlUnit cu1(
+		.clk(clk),
         .opcode(cmd[6:0]),
         .funct3(cmd[14:12]),
         .funct7(cmd[30]),
@@ -31,8 +35,8 @@ module cpu(
         .IS_ZERO(IS_ZERO),
         .op_IMM(op_IMM),
         .en_Wreg(en_Wreg),
+		//.branch_signal(branch_signal),
         .store(),
-        .branch(),
         .load(),
         .op_ALU_Asrc(op_ALU_Asrc),
         .op_ALU_Bsrc(op_ALU_Bsrc),
@@ -67,11 +71,11 @@ module cpu(
     /* data mux */
     //PC_src_mux
     wire [31:0] a0,b0;
-    MuxKey #(2, 1, 32) mux1(a0,op_ALU_Asrc,{
+    MuxKey #(2, 1, 32) mux1(a0,op_PC_Asrc,{
             1'b0,   32'd4,
             1'b1,   imm
     });
-    MuxKey #(2, 1, 32) mux2(b0,op_ALU_Bsrc,{
+    MuxKey #(2, 1, 32) mux2(b0,op_PC_Bsrc,{
             1'b0,   pc,
             1'b1,   src1
     });
@@ -100,7 +104,8 @@ module cpu(
         .rst(rst),
         .a(a0),
         .b(b0),
-        .npc(pc)
+        .npc(pc),
+		.wen(1'b1)
     );
 
     ALU alu1(
@@ -115,26 +120,28 @@ module cpu(
         .LESS(LESS),
         .IS_ZERO(IS_ZERO)
     );
-/*
-    //测试用，实现后一定要删除
-    always @(pc) begin
-        $display("pc=%x",pc);
+   //测试用，实现后一定要删除
+    /*always @(posedge clk) begin
+        //$display("clk=%b",clk);
+		//$display("pc=%x",pc);
+		$display("=========================================\n");
         $display("rs1=%b",rs1);
         $display("rs2=%b",rs2);
         $display("rd=%b",rd);
-        $display("op-imm=%b\n\n",op_IMM);
-
+        $display("op-imm=%b",op_IMM);
+		$display("imm=%b\n\n",imm);
         $display("ALUsel=%b",op_ALU_sel);
+		$display("ALUAsrc=%b",op_ALU_Asrc);
+		$display("ALUBsrc=%b",op_ALU_Bsrc);
         $display("a1=%b",a1);
         $display("b1=%b",b1);
         $display("src_rd=%b",src_rd);
-		
         $display("PCAsrc=%b",op_PC_Asrc);
         $display("PCBsrc=%b",op_PC_Bsrc);
         $display("a0=%b",a0);
         $display("b0=%b",b0);
-        $display("\n");
-    end
-*/
+        
+    end*/
+	
 
 endmodule

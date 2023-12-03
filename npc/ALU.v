@@ -19,9 +19,10 @@ module ALU(
     //ADD
     wire [31:0] ADDER_result;
     adder add1(
-		.Add_Sub(Add_Sub),
+		.mode(Add_Sub),
 		.a(a),
 		.b(b),
+		.S_U(S_U),
 		.result(ADDER_result),
 		.LESS(LESS),
 		.IS_ZERO(IS_ZERO)
@@ -29,12 +30,12 @@ module ALU(
 
 	//SHIFT
 	wire [31:0] SHIFT_result;
-	Barrel-shifter shift1(
+	Barrel_Shifter shift1(
 		.L_R(L_R),
 		.A_L(A_L),
 		.in(a),
 		.soffset(b),
-		.out(SHIFT_result),
+		.out(SHIFT_result)
 	);
 
 	//logic operation
@@ -54,7 +55,7 @@ module ALU(
 		3'b100,   XOR_result,
 		3'b101,   SHIFT_result,
 		3'b110,   OR_result,
-		3'b111,   AND_result,
+		3'b111,   AND_result
     });
     /* end */
 

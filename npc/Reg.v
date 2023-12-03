@@ -6,6 +6,7 @@ module Reg #(WIDTH = 1, RESET_VAL = 0) (
   input wen
 );
   always @(posedge clk) begin
+    //$display("\nRESET_VAL=%x",RESET_VAL);
     if (rst) dout <= RESET_VAL;
     else if (wen) dout <= din;
   end

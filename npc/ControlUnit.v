@@ -3,6 +3,7 @@
 import "DPI-C" function void halt(input bit is_dead);
 
 module ControlUnit(
+	input clk,//同步halt()
     input [6:0] opcode,
     input [2:0] funct3,
     input funct7,
@@ -10,6 +11,7 @@ module ControlUnit(
     input LESS,
     output [2:0] op_IMM,
     output en_Wreg,
+	//output branch_signal,
     output store,
     output load,
     output op_ALU_Asrc,//0表示选择src1，1表示选择PC
@@ -61,9 +63,16 @@ module ControlUnit(
 
     assign en_Wreg = I | I_JALR | J | I_LOAD | R | U_AUIPC | U_LUI;
 
+	wire [2:0] branch_tmp;
+	MuxKeyWithDefault #(3, 5, 3) mux1(branch,opcode[6:2],3'b000,{//默认为not-branch
+            5'b11001,	  3'b010,
+            5'b11011,	  3'b001,
+			5'b11000,	  branch_tmp
+    });
 
-    MuxKeyWithDefault #(8, 3, 3) mux1(branch,funct3,3'b001,{//默认为jal类型branch
-            3'b000,	  (opcode==7'b11001_11?3'b010:3'b100),
+
+
+    MuxKeyWithDefault #(7, 3, 3) mux2(branch_tmp,funct3,3'b101,{//默认为jal-branch
             3'b001,	  3'b101,
             3'b010,	  3'b110,
             3'b001,	  3'b111,
@@ -73,8 +82,8 @@ module ControlUnit(
             3'b110,   3'b111
     });
 
+	//assign branch_signal = 1'b1;
     assign load = I_LOAD;
-
     assign store = S;
 
 /* END 操作分类 */
@@ -98,8 +107,8 @@ module ControlUnit(
 
 /* START 运算分类 */
 
-    MuxKeyWithDefault #(8, 3, 4) mux1(R_sel,funct3,`AND,{
-            3'b100,	  (funct?`SUB:`ADD),
+    MuxKeyWithDefault #(8, 3, 4) mux3(R_sel,funct3,`AND,{
+            3'b100,	  (funct7?`SUB:`ADD),
             3'b001,	  `SLL,
             3'b010,	  `SLT,
             3'b001,	  `SLTU,
@@ -109,7 +118,7 @@ module ControlUnit(
             3'b111,	  `AND
     });
 
-    MuxKeyWithDefault #(8, 3, 4) mux1(I_sel,funct3,`AND,{
+    MuxKeyWithDefault #(8, 3, 4) mux4(I_sel,funct3,`AND,{
             3'b000,   `ADD,
             3'b010,   `SLT,
             3'b011,	  `SLTU,
@@ -130,9 +139,9 @@ module ControlUnit(
 
 
 /* START PC操作数分类 */
-    //assign op_PC_Asrc = (~branch[2] & branch[1]) | (~Z & ~branch[1] & branch[0]) | (L & branch[1] & ~branch[0]) | (~branch[2] & branch[0]) | (Z & branch[2] & ~branch[1] & ~branch[0]) | (~L & branch[1] & branch[0]);
+    assign op_PC_Asrc = (~branch[2] & branch[1]) | (~IS_ZERO & ~branch[1] & branch[0]) | (LESS & branch[1] & ~branch[0]) | (~branch[2] & branch[0]) | (IS_ZERO & branch[2] & ~branch[1] & ~branch[0]) | (~LESS & branch[1] & branch[0]);
 
-    assign op_PC_Asrc = (~branch[2]) | (~IS_ZERO & ~branch[1] & branch[0]) | (LESS & branch[1] & ~branch[0]) | (IS_ZERO & ~branch[1] & ~branch[0]) | (~LESS & branch[1] & branch[0]);
+    //assign op_PC_Asrc = (~branch[2]) | (~IS_ZERO & ~branch[1] & branch[0]) | (LESS & branch[1] & ~branch[0]) | (IS_ZERO & ~branch[1] & ~branch[0]) | (~LESS & branch[1] & branch[0]);
 
     assign op_PC_Bsrc = ~branch[2] & branch[1] & ~branch[0];
 
@@ -142,8 +151,9 @@ module ControlUnit(
 
 
     reg is_dead;
-    always @(*) begin
-        is_dead = (opcode=='b1110011)&(funct3=='b0)&(funct7=='b0);
+    always @(posedge clk) begin
+		//$display("BRANCH=%b\n",branch);
+        is_dead <= (opcode==7'b1110011)&(funct3=='b0)&(funct7=='b0);
         halt(is_dead);
     end
 

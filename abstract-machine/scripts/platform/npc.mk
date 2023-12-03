@@ -19,3 +19,8 @@ image: $(IMAGE).elf
 	@$(OBJDUMP) -d $(IMAGE).elf > $(IMAGE).txt
 	@echo + OBJCOPY "->" $(IMAGE_REL).bin
 	@$(OBJCOPY) -S --set-section-flags .bss=alloc,contents -O binary $(IMAGE).elf $(IMAGE).bin
+
+run: image
+	#@echo cp ${IMAGE}.bin ${NPC_IMAGE}
+	make -C ${NPC_HOME} -f Makefile BINSRC=${IMAGE}.bin sim
+

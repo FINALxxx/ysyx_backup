@@ -16,8 +16,8 @@ module adder(
 	assign {carry,result} = a+add_cin;
     assign overflow = (a[31]==add_cin[31])&&(a[31]!=result[31]);//同号运算才有溢出
 
-    assign LESS_s = overflow ^ result;
-    assign LESS_u = Sub_Add ^ carry;
+    assign LESS_s = overflow ^ result[31];
+    assign LESS_u = mode ^ carry;
     assign LESS = S_U?LESS_u:LESS_s;
 
 

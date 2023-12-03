@@ -1,11 +1,13 @@
+/* verilator lint_off PINCONNECTEMPTY */
 module PC(
     input clk,
     input rst,
-    input a,
-    input b,
+    input [31:0] a,
+    input [31:0] b,
+	input wen,
     output [31:0] npc
 );
-	wire reset;
+	//wire reset;
     wire [31:0] tmp_pc,result;
 
 
@@ -16,26 +18,26 @@ module PC(
         .S_U(1),
         .result(result),
         .LESS(),
-        .is_zero()
+        .IS_ZERO()
     );
 
-    assign reset = ~(|pc) | rst;
+    //assign reset = ~(|npc) | rst;
     Reg #(32,32'h80000000) pc2snpc (
         .clk(clk),
-        .rst(reset),
+        .rst(rst),
         .din(result),
         .dout(tmp_pc),
-        .wen(1'b1)
+        .wen(wen)
     );
 
     assign npc = tmp_pc;
-/*
-	always @(*) begin
-		$display("reset=%b",reset);
-		$display("result=%d",result);
-		$display("tmp_pc=%x",tmp_pc);
-		$display("npc=%x",npc);
-		$display("\n");
+	always @(posedge clk) begin
+		/*$display("==FROM PC==\n");
+		$display("rst=%b",rst);
+		$display("wen=%b",wen);
+		$display("result=%x",result);
+		$display("tmp_pc=%b",tmp_pc);
+		$display("npc=%b",npc);
+		$display("\n");*/
 	end
-*/
 endmodule
