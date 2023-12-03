@@ -2,7 +2,7 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include "../macro.h"
-#include "debug.h"
+#include <assert.h>
 
 //Warn: strtok切割字符串后，源字符串会被切割
 
