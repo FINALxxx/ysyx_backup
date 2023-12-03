@@ -63,7 +63,7 @@ void sim_init(int argc,char** argv){
 
 
 void sim_stop(){
-	if(cpu_status==DEAD) cout<<"EXIT: HIT \033[0m\033[1;32mGOOD\033[0m TRAP"<<endl;
+	if(cpu_status==DEAD) cout<<"EXIT: \033[0m\033[1;32mHIT GOOD TRAP\033[0m at pc ="<<(cmd_cur+0x80000000)<<endl;
 	else cout<<"HIT BAD TRAP"<<endl;
 	//m_trace->close();
 	cpu->final();
