@@ -44,7 +44,7 @@ void sim_init(int argc,char** argv){
 	cpu->clk^=1;
 	cpu->rst=0;
 	cpu->eval();
-	printf("[INIT_PC=%#010x]\n",cpu->pc);
+	printf("[INIT_PC=%#010x]\n\n",cpu->pc);
 	/* END 1clk */	
 
 	/* 波形调试
