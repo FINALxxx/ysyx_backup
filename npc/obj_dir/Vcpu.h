@@ -8,7 +8,7 @@
 #ifndef VERILATED_VCPU_H_
 #define VERILATED_VCPU_H_  // guard
 
-#include "include/macro_sys.h"
+#include "macro_sys.h"
 #include "verilated.h"
 #include "svdpi.h"
 

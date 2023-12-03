@@ -5,7 +5,7 @@
 #ifndef VERILATED_VCPU___024ROOT_H_
 #define VERILATED_VCPU___024ROOT_H_  // guard
 
-#include "include/macro_sys.h"
+#include "macro_sys.h"
 #include "verilated.h"
 
 class Vcpu__Syms;
