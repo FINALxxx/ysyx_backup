@@ -12,7 +12,7 @@ module cpu(
     wire [2:0] op_IMM;
     assign rs1 = cmd[19:15];
     assign rs2 = cmd[24:20];
-    assign rd = 5'b00001;
+    assign rd = cmd[11:7];//debug：测试完忘记把数据改回去了，导致的bug
 
     wire op_ALU_Asrc;
     wire [1:0] op_ALU_Bsrc;
@@ -121,24 +121,27 @@ module cpu(
         .IS_ZERO(IS_ZERO)
     );
    //测试用，实现后一定要删除
-    always @(posedge clk) begin
+    /*always @(posedge clk) begin
         //$display("clk=%b",clk);
 		//$display("pc=%x",pc);
-        /*$display("rs1=%b",rs1);
+		$display("=========================================\n");
+        $display("rs1=%b",rs1);
         $display("rs2=%b",rs2);
         $display("rd=%b",rd);
         $display("op-imm=%b",op_IMM);
 		$display("imm=%b\n\n",imm);
         $display("ALUsel=%b",op_ALU_sel);
+		$display("ALUAsrc=%b",op_ALU_Asrc);
+		$display("ALUBsrc=%b",op_ALU_Bsrc);
         $display("a1=%b",a1);
         $display("b1=%b",b1);
         $display("src_rd=%b",src_rd);
         $display("PCAsrc=%b",op_PC_Asrc);
         $display("PCBsrc=%b",op_PC_Bsrc);
         $display("a0=%b",a0);
-        $display("b0=%b",b0);*/
-        $display("=========================================\n");
-    end
+        $display("b0=%b",b0);
+        
+    end*/
 	
 
 endmodule

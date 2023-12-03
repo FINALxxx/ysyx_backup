@@ -17,15 +17,16 @@ module RegisterFile #(DATA_WIDTH=32,REG_NUM=32,REG_NUM_BIT=5)  (
   assign rdata_a = (raddr_a=='b0) ? 'b0 : rf[raddr_a];
   assign rdata_b = (raddr_b=='b0) ? 'b0 : rf[raddr_b];
   
-  always @(posedge clk) begin
-		/*$display("wdata=%b",wdata);
+  /*always @(posedge clk) begin
+		$display("==FROM RF==\n");
+		$display("wdata=%b",wdata);
 		$display("waddr=%b",waddr);
 		$display("wen=%b",wen);
 		$display("clk=%b",clk);
 		$display("wen=%b",wen);
 		$display("wdata=%b",wdata);
 		$display("waddr=%b",waddr);
-		$display("rdata=%b",rf[5'b00001]);
-		$display("\n");*/
-  end
+		$display("x1=%b\n",rf[5'b00001]);
+		$display("\n");
+  end*/
 endmodule

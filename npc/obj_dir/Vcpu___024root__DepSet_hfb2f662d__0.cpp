@@ -51,12 +51,13 @@ VL_INLINE_OPT void Vcpu___024root___nba_sequent__TOP__0(Vcpu___024root* vlSelf) 
     Vcpu__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vcpu___024root___nba_sequent__TOP__0\n"); );
     // Init
+    CData/*4:0*/ __Vdlyvdim0__cpu__DOT__rf1__DOT__rf__v0;
+    __Vdlyvdim0__cpu__DOT__rf1__DOT__rf__v0 = 0;
     IData/*31:0*/ __Vdlyvval__cpu__DOT__rf1__DOT__rf__v0;
     __Vdlyvval__cpu__DOT__rf1__DOT__rf__v0 = 0;
     CData/*0:0*/ __Vdlyvset__cpu__DOT__rf1__DOT__rf__v0;
     __Vdlyvset__cpu__DOT__rf1__DOT__rf__v0 = 0;
     // Body
-    VL_WRITEF("=========================================\n\n");
     Vcpu___024unit____Vdpiimwrap_halt_TOP____024unit(vlSelf->cpu__DOT__cu1__DOT__is_dead);
     __Vdlyvset__cpu__DOT__rf1__DOT__rf__v0 = 0U;
     if (((IData)(vlSelf->cpu__DOT__cu1__DOT____VdfgTmp_hf442cbef__0) 
@@ -71,6 +72,9 @@ VL_INLINE_OPT void Vcpu___024root___nba_sequent__TOP__0(Vcpu___024root* vlSelf) 
                                                    | (IData)(vlSelf->cpu__DOT__cu1__DOT____VdfgTmp_hd4cadad9__0)))))) {
         __Vdlyvval__cpu__DOT__rf1__DOT__rf__v0 = vlSelf->cpu__DOT__src_rd;
         __Vdlyvset__cpu__DOT__rf1__DOT__rf__v0 = 1U;
+        __Vdlyvdim0__cpu__DOT__rf1__DOT__rf__v0 = (0x1fU 
+                                                   & (vlSelf->cmd 
+                                                      >> 7U));
     }
     vlSelf->cpu__DOT__pc1__DOT__tmp_pc = ((IData)(vlSelf->rst)
                                            ? 0x80000000U
@@ -80,7 +84,8 @@ VL_INLINE_OPT void Vcpu___024root___nba_sequent__TOP__0(Vcpu___024root* vlSelf) 
                                                    (0x4000707fU 
                                                     & vlSelf->cmd)));
     if (__Vdlyvset__cpu__DOT__rf1__DOT__rf__v0) {
-        vlSelf->cpu__DOT__rf1__DOT__rf[1U] = __Vdlyvval__cpu__DOT__rf1__DOT__rf__v0;
+        vlSelf->cpu__DOT__rf1__DOT__rf[__Vdlyvdim0__cpu__DOT__rf1__DOT__rf__v0] 
+            = __Vdlyvval__cpu__DOT__rf1__DOT__rf__v0;
     }
     if ((0U == (0x1fU & (vlSelf->cmd >> 0xfU)))) {
         vlSelf->cpu__DOT__src1 = 0U;

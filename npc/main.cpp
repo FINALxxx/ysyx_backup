@@ -3,7 +3,7 @@
 #include "Vcpu.h"
 #include <stdint.h>
 #include <bits/stdc++.h>
-#define MAX_SIM_TIME 20
+#define MAX_SIM_TIME 100
 
 using namespace std;
 
@@ -17,9 +17,13 @@ vluint64_t sim_time=0;
 VerilatedContext* env = NULL;
 Vcpu* cpu = NULL;
 
+//cpu运行参量
+enum STATUS {DEAD,ALIVE};
+STATUS cpu_status=ALIVE;
+
 
 long read_bin(FILE* fp,const char* fileName){
-	cout<<fileName<<endl;
+	cout<<"\n\n\033[0m\033[1;32mHEADING:\033[0m"<<fileName<<"\n\n";
 	fp = fopen(fileName,"rb");
 	assert(fp!=NULL);
 	fseek(fp,0,SEEK_END);
@@ -59,6 +63,8 @@ void sim_init(int argc,char** argv){
 
 
 void sim_stop(){
+	if(cpu_status==DEAD) printf("\nNPC EXIT: \033[0m\033[1;32mHIT GOOD TRAP\033[0m at pc = %#010x\n\n",cpu->pc);
+	else printf("\nNPC EXIT: \033[0m\033[1;31mHIT BAD TRAP\033[0m at pc = %#010x\n\n",cpu->pc);
 	//m_trace->close();
 	cpu->final();
 	delete cpu;
@@ -69,10 +75,11 @@ void sim_update(){
 	sim_time++;
 }
 
-enum STATUS {DEAD,ALIVE};
-STATUS cpu_status=ALIVE;
 extern "C" void halt(svBit is_dead){
-	if(is_dead) cpu_status=DEAD;	
+	if(is_dead){ 
+		cpu_status=DEAD;
+		return;
+	}
 }
 
 int main(int argc, char** argv) {
@@ -86,9 +93,9 @@ int main(int argc, char** argv) {
 
 		//cout<<"PC="<<cpu->pc<<endl;
 		cmd_cur = (cpu->pc-0x80000000)/4;//虚拟地址转实际地址
-		printf("【CUR=%d】\n",cmd_cur);
+		printf("[CUR=%d]\n",cmd_cur);
 		cpu->cmd=cmd[cmd_cur];
-		printf("【CMD=%#010x】\n",cpu->cmd);
+		printf("[CMD=%#010x]\n",cpu->cmd);
 		sim_update();
 
 		

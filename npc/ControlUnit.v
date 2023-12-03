@@ -153,7 +153,7 @@ module ControlUnit(
     reg is_dead;
     always @(posedge clk) begin
 		//$display("BRANCH=%b\n",branch);
-        is_dead <= (opcode=='b1110011)&(funct3=='b0)&(funct7=='b0);
+        is_dead <= (opcode==7'b1110011)&(funct3=='b0)&(funct7=='b0);
         halt(is_dead);
     end
 

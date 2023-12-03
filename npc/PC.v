@@ -31,13 +31,13 @@ module PC(
     );
 
     assign npc = tmp_pc;
-	/*always @(posedge clk) begin
-		$display("==FROM PC==\n");
+	always @(posedge clk) begin
+		/*$display("==FROM PC==\n");
 		$display("rst=%b",rst);
 		$display("wen=%b",wen);
 		$display("result=%x",result);
 		$display("tmp_pc=%b",tmp_pc);
 		$display("npc=%b",npc);
-		$display("\n");
-	end*/
+		$display("\n");*/
+	end
 endmodule

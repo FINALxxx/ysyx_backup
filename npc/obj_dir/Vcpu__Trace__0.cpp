@@ -435,27 +435,29 @@ void Vcpu___024root__trace_chg_sub_0(Vcpu___024root* vlSelf, VerilatedVcd::Buffe
                                        >> 0xfU))),5);
     bufp->chgCData(oldp+309,((0x1fU & (vlSelf->cmd 
                                        >> 0x14U))),5);
-    bufp->chgBit(oldp+310,(((IData)(vlSelf->cpu__DOT__cu1__DOT____VdfgTmp_hf442cbef__0) 
+    bufp->chgCData(oldp+310,((0x1fU & (vlSelf->cmd 
+                                       >> 7U))),5);
+    bufp->chgBit(oldp+311,(((IData)(vlSelf->cpu__DOT__cu1__DOT____VdfgTmp_hf442cbef__0) 
                             | ((0x6fU == (0x7fU & vlSelf->cmd)) 
                                | ((3U == (0x7fU & vlSelf->cmd)) 
                                   | ((0x33U == (0x7fU 
                                                 & vlSelf->cmd)) 
                                      | (IData)(vlSelf->cpu__DOT__cu1__DOT____VdfgTmp_hd4cadad9__0)))))));
-    bufp->chgCData(oldp+311,((0x7fU & vlSelf->cmd)),7);
-    bufp->chgCData(oldp+312,((7U & (vlSelf->cmd >> 0xcU))),3);
-    bufp->chgBit(oldp+313,((1U & (vlSelf->cmd >> 0x1eU))));
-    bufp->chgBit(oldp+314,((0x23U == (0x7fU & vlSelf->cmd))));
-    bufp->chgBit(oldp+315,((3U == (0x7fU & vlSelf->cmd))));
-    bufp->chgBit(oldp+316,((0x13U == (0x7fU & vlSelf->cmd))));
-    bufp->chgBit(oldp+317,((0x33U == (0x7fU & vlSelf->cmd))));
-    bufp->chgBit(oldp+318,((0x6fU == (0x7fU & vlSelf->cmd))));
-    bufp->chgBit(oldp+319,((0x63U == (0x7fU & vlSelf->cmd))));
-    bufp->chgBit(oldp+320,((0x67U == (0x7fU & vlSelf->cmd))));
-    bufp->chgBit(oldp+321,((0x17U == (0x7fU & vlSelf->cmd))));
-    bufp->chgBit(oldp+322,((0x37U == (0x7fU & vlSelf->cmd))));
-    bufp->chgCData(oldp+323,((0x1fU & (vlSelf->cmd 
+    bufp->chgCData(oldp+312,((0x7fU & vlSelf->cmd)),7);
+    bufp->chgCData(oldp+313,((7U & (vlSelf->cmd >> 0xcU))),3);
+    bufp->chgBit(oldp+314,((1U & (vlSelf->cmd >> 0x1eU))));
+    bufp->chgBit(oldp+315,((0x23U == (0x7fU & vlSelf->cmd))));
+    bufp->chgBit(oldp+316,((3U == (0x7fU & vlSelf->cmd))));
+    bufp->chgBit(oldp+317,((0x13U == (0x7fU & vlSelf->cmd))));
+    bufp->chgBit(oldp+318,((0x33U == (0x7fU & vlSelf->cmd))));
+    bufp->chgBit(oldp+319,((0x6fU == (0x7fU & vlSelf->cmd))));
+    bufp->chgBit(oldp+320,((0x63U == (0x7fU & vlSelf->cmd))));
+    bufp->chgBit(oldp+321,((0x67U == (0x7fU & vlSelf->cmd))));
+    bufp->chgBit(oldp+322,((0x17U == (0x7fU & vlSelf->cmd))));
+    bufp->chgBit(oldp+323,((0x37U == (0x7fU & vlSelf->cmd))));
+    bufp->chgCData(oldp+324,((0x1fU & (vlSelf->cmd 
                                        >> 2U))),5);
-    bufp->chgQData(oldp+324,((0x804511a8940000ULL | 
+    bufp->chgQData(oldp+325,((0x804511a8940000ULL | 
                               (((QData)((IData)(((0x40000000U 
                                                   & vlSelf->cmd)
                                                   ? 8U
@@ -467,13 +469,13 @@ void Vcpu___024root__trace_chg_sub_0(Vcpu___024root* vlSelf, VerilatedVcd::Buffe
                                                                   ? 0xdU
                                                                   : 5U) 
                                                                 << 0xeU))))))),56);
-    bufp->chgQData(oldp+326,((0x89d44cddc8d0ULL | (QData)((IData)(
+    bufp->chgQData(oldp+327,((0x89d44cddc8d0ULL | (QData)((IData)(
                                                                   ((0x40000000U 
                                                                     & vlSelf->cmd)
                                                                     ? 0xdU
                                                                     : 5U))))),56);
-    bufp->chgIData(oldp+328,((0xfffff000U & vlSelf->cmd)),32);
-    bufp->chgIData(oldp+329,((((- (IData)((vlSelf->cmd 
+    bufp->chgIData(oldp+329,((0xfffff000U & vlSelf->cmd)),32);
+    bufp->chgIData(oldp+330,((((- (IData)((vlSelf->cmd 
                                            >> 0x1fU))) 
                                << 0x14U) | ((0xff000U 
                                              & vlSelf->cmd) 
@@ -483,7 +485,7 @@ void Vcpu___024root__trace_chg_sub_0(Vcpu___024root* vlSelf, VerilatedVcd::Buffe
                                                | (0x7feU 
                                                   & (vlSelf->cmd 
                                                      >> 0x14U)))))),32);
-    bufp->chgIData(oldp+330,((((- (IData)((vlSelf->cmd 
+    bufp->chgIData(oldp+331,((((- (IData)((vlSelf->cmd 
                                            >> 0x1fU))) 
                                << 0xcU) | ((0xfe0U 
                                             & (vlSelf->cmd 
@@ -491,7 +493,7 @@ void Vcpu___024root__trace_chg_sub_0(Vcpu___024root* vlSelf, VerilatedVcd::Buffe
                                            | (0x1fU 
                                               & (vlSelf->cmd 
                                                  >> 7U))))),32);
-    bufp->chgIData(oldp+331,((((- (IData)((vlSelf->cmd 
+    bufp->chgIData(oldp+332,((((- (IData)((vlSelf->cmd 
                                            >> 0x1fU))) 
                                << 0xcU) | ((0x800U 
                                             & (vlSelf->cmd 
@@ -575,7 +577,7 @@ void Vcpu___024root__trace_chg_sub_0(Vcpu___024root* vlSelf, VerilatedVcd::Buffe
                                              >> 0x17U)));
     __Vtemp_hdace3dd2__0[5U] = (vlSelf->cpu__DOT__dimm1__DOT__immI 
                                 >> 0x14U);
-    bufp->chgWData(oldp+332,(__Vtemp_hdace3dd2__0),175);
+    bufp->chgWData(oldp+333,(__Vtemp_hdace3dd2__0),175);
 }
 
 void Vcpu___024root__trace_cleanup(void* voidSelf, VerilatedVcd* /*unused*/) {
