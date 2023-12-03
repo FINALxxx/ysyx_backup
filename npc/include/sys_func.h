@@ -34,8 +34,22 @@ void sim_init(int argc,char** argv){
 } 
 
 void sim_stop(){
-	if(cpu_status==DEAD) printf("\nNPC EXIT: \033[0m\033[1;32mHIT GOOD TRAP\033[0m at pc = %#010x\n\n",cpu->pc);
-	else printf("\nNPC EXIT: \033[0m\033[1;31mHIT BAD TRAP\033[0m at pc = %#010x\n\n",cpu->pc);
+	switch(cpu_status){
+		
+		case DEAD: 
+			printf("\nNPC EXIT: \033[0m\033[1;32mHIT GOOD TRAP\033[0m at pc = %#010x\n\n",cpu->pc);
+		break;
+
+		case ALIVE:
+			printf("\nNPC EXIT: \033[0m\033[1;31mHIT BAD TRAP\033[0m at pc = %#010x\n\n",cpu->pc);
+		break;
+
+		default ://ABORT or unexpected situation
+			printf("\nNPC EXIT: \033[0m\033[1;31mABORT\033[0m at pc = %#010x\n\n",cpu->pc);
+		break;
+		
+	}
+
 	//m_trace->close();
 	cpu->final();
 	delete cpu;
@@ -47,8 +61,11 @@ void sim_update(){
 }
 
 extern "C" void halt(svBit is_dead){
-	if(is_dead){ 
+	if(is_dead && cmd_cur > cmd_num){ 
 		cpu_status=DEAD;
+		return;
+	}else{
+		cpu_status=ABORT;
 		return;
 	}
 }

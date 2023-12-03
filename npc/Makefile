@@ -1,3 +1,5 @@
+.PHONY:all sim clean
+
 CFILE = .cpp
 HFILE = .h
 VFILE = .v
@@ -21,5 +23,8 @@ sim:
 	make -C obj_dir -f ${TGS}.mk ${TGS}
 	./obj_dir/${TGS} ${BINSRC}
 	#gtkwave ./${WAVEFILE}
+
+clean:
+	rm obj_dir -rf
 
 include ../Makefile

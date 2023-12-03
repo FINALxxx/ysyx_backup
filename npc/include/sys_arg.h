@@ -11,7 +11,7 @@ Vcpu* cpu = NULL;
 
 
 //cpu运行参量
-enum STATUS {DEAD,ALIVE};
+enum STATUS {DEAD,ALIVE,ABORT};//待添加
 STATUS cpu_status=ALIVE;
 
 #endif
