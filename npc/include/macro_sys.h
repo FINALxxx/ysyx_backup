@@ -40,18 +40,19 @@ void sim_init(int argc,char** argv){
 	cpu->eval();
 	/* END 0.5clk */	
 	
-	/* START 1clk */	
+	/* START 0.5clk */	
 	cpu->clk^=1;
 	cpu->rst=0;
 	cpu->eval();
 	printf("[INIT_PC=%#010x]\n\n",cpu->pc);
-	/* END 1clk */	
+	/* END 0.5clk */	
 
 	/* 波形调试
 	env->traceEverOn(true);
 	VerilatedVcdC* m_trace = new VerilatedVcdC; 
 	cpu->trace(m_trace,5);
-	m_trace->open("wave.vcd");*/
+	m_trace->open("wave.vcd");
+	*/
 } 
 
 void sim_stop(){
@@ -74,6 +75,21 @@ extern "C" void halt(svBit is_dead){
 	}
 }
 
+void exec_once(){
 
+	/* START 1clk in total */
+	cpu->eval(); 
+	cpu->clk^=1;//0.5clk
+	cpu->eval();
+	cpu->clk^=1;//0.5clk
+	/* END */
+
+
+	//cout<<"PC="<<cpu->pc<<endl;
+	cmd_cur = (cpu->pc-0x80000000)/4;//虚拟地址转实际地址
+	printf("[CUR=%d]\n",cmd_cur);
+	cpu->cmd=cmd[cmd_cur];
+	printf("[CMD=%#010x]\n",cpu->cmd);
+}
 
 #endif
