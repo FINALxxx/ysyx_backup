@@ -8,7 +8,7 @@
 
 extern cpu_status;
 
-static char* getstr(){
+static char* getarg(){
 	static char* input_line = NULL;
 	if(input_line){//pointer initialize
 		free(input_line);
@@ -116,7 +116,7 @@ void sdb_mainloop(){
 		return;
 	}
 
-	for (char *str; (str = rl_gets()) != NULL; ) {
+	for (char *str; (str = getarg()) != NULL; ) {
 		char *str_end = str + strlen(str);
 
 		/* extract the first token as the command */
