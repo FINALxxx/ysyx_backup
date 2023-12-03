@@ -6,7 +6,7 @@
 
 //Warn: strtok切割字符串后，源字符串会被切割
 
-extern cpu_status;
+extern STATUS cpu_status;
 bool is_batch_mode=false;
 
 
