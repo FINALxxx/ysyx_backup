@@ -6,7 +6,7 @@
 #include "Vcpu.h"
 #include <stdint.h>
 #include <bits/stdc++.h>
-#include "include/read_bin.h"
+#include "read_bin.h"
 
 
 //cpu运行参量
