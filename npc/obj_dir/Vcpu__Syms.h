@@ -7,7 +7,6 @@
 #ifndef VERILATED_VCPU__SYMS_H_
 #define VERILATED_VCPU__SYMS_H_  // guard
 
-#include "macro_sys.h"
 #include "verilated.h"
 
 // INCLUDE MODEL CLASS
