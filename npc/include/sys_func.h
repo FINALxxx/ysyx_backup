@@ -1,27 +1,5 @@
-#ifndef __MACRO_SYS_H__
-#define __MACRO_SYS_H__
-
-#include <verilated.h>
-#include <verilated_vcd_c.h>
-#include "Vcpu.h"
-#include <stdint.h>
-#include <bits/stdc++.h>
-#include "read_bin.h"
-
-
-vluint64_t sim_time=0;
-FILE* fp =NULL;
-uint32_t cmd_cur=0,cmd_num=0;
-uint32_t* cmd=NULL;
-
-VerilatedContext* env = NULL;
-Vcpu* cpu = NULL;
-
-
-//cpu运行参量
-enum STATUS {DEAD,ALIVE};
-STATUS cpu_status=ALIVE;
-
+#ifndef __SYS_FUNC_H__
+#define __SYS_FUNC_H__
 
 void sim_init(int argc,char** argv){
 	env = new VerilatedContext;
