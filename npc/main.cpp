@@ -1,6 +1,5 @@
 #include "include/macro_sys.h"
 
-#include "include/read_bin.h"
 #define MAX_SIM_TIME 100
 
 using namespace std;
@@ -13,9 +12,6 @@ uint32_t* cmd=NULL;
 VerilatedContext* env = NULL;
 Vcpu* cpu = NULL;
 
-//cpu运行参量
-enum STATUS {DEAD,ALIVE};
-STATUS cpu_status=ALIVE;
 
 int main(int argc, char** argv) {
 	sim_init(argc,argv);
