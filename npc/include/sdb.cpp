@@ -106,10 +106,16 @@ void sdb_mainloop(){
 		if (args >= str_end) {//如果没有参数
 			args = NULL;
 		}
-		if (i == NR_CMD) { 
-			printf("Unknown command '%s'\n", cmd); 
-		}//找不到命令
+		
+		int i;
+		for (i = 0; i < NR_CMD; i ++) {
+			if (strcmp(cmd, cmd_table[i].name) == 0) {//比较cmd与cmd_table中的预置命令
+				if (cmd_table[i].handler(args) < 0) return;//若比较成功，且返回-1，则return
+				break;
+			}
+		}
 
+		if (i == NR_CMD) printf("Unknown command '%s'\n", cmd);//找不到命令
 	}
 }
 
