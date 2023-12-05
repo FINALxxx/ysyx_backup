@@ -1,5 +1,4 @@
-#ifndef __SYS_FUNC_H__
-#define __SYS_FUNC_H__
+#include "sys_npc.h"
 
 void sim_init(int argc,char** argv){
 	env = new VerilatedContext;
@@ -70,15 +69,17 @@ extern "C" void halt(svBit is_dead){
 	}
 }
 
-void exec_once(){
-
+void clk_update(){
 	/* START 1clk in total */
 	cpu->eval(); 
 	cpu->clk^=1;//0.5clk
 	cpu->eval();
 	cpu->clk^=1;//0.5clk
 	/* END */
+}
 
+void exec_once(){
+	clk_update();	
 
 	//cout<<"PC="<<cpu->pc<<endl;
 	cmd_cur = (cpu->pc-0x80000000)/4;//虚拟地址转实际地址
@@ -87,4 +88,12 @@ void exec_once(){
 	printf("[CMD=%#010x]\n",cpu->cmd);
 }
 
-#endif
+
+
+void exec(uint32_t n){
+	for(;n>0;--n){
+		exec_once();
+		//trace_and_difftest();
+		if(cpu_status!=ALIVE) break;
+	}
+}

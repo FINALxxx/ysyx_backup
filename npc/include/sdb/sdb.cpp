@@ -1,14 +1,6 @@
-#include <bits/stdc++.h>
-#include <readline/readline.h>
-#include <readline/history.h>
-#include "../macro.h"
-#include <assert.h>
+#include"sdb.h"
 
 //Warn: strtok切割字符串后，源字符串会被切割
-
-extern STATUS cpu_status;
-bool is_batch_mode=false;
-
 
 static char* getarg(){
 	static char* input_line = NULL;
@@ -28,25 +20,25 @@ static char* getarg(){
 }
 
 static int cmd_c(char *args) {
-  //cpu_exec(n)
-  return 0;
+	cpu_exec(-1),将-1换成limit.h中的最大值
+	return 0;
 }
 
 
 static int cmd_q(char *args)  {
-  cpu_status=DEAD;
-  return -1;
+	cpu_status=DEAD;
+	return -1;
 }
 
 
 static int cmd_si(char* args){
 	char *arg=strtok(NULL," ");	
 	if(arg==NULL){      
-		//cpu_exec(n);//single-step
+		exec(1);//single-step
 	}else{
 		uint64_t n=1;
 		assert(sscanf(arg,"%lu",&n));
-		//cpu_exec(n);
+		exec(n);
 	}
 	return 0;
 }
@@ -60,24 +52,6 @@ static int cmd_p(char* args){}
 static int cmd_w(char* args){}
 
 static int cmd_d(char* args){}
-
-static struct { 
-  const char *name;
-  const char *description;
-  int (*handler) (char *);
-} cmd_table [] = {
-  { "help", "Display information about all supported commands", cmd_help },
-  { "c", "Continue the execution of the program", cmd_c },
-  { "q", "Exit NEMU", cmd_q },
-  { "si", "single-step execution", cmd_si},
-  { "info", "check the information of registers or watch points", cmd_info},
-  { "x", "visit the corresponding contents in memory", cmd_x },
-  { "p", "match the expr by regex", cmd_p},
-  { "w", "add a new watchpoint by using EXPR", cmd_w},
-  { "d", "delete a working watchpoint by using NO", cmd_d},
-};
-
-#define NR_CMD ARRLEN(cmd_table)
 
 static int cmd_help(char *args){
 	char *arg = strtok(NULL, " ");//mainloop中已经使用过一次strtok了，这里直接传NULL就能继续切割参数
@@ -109,7 +83,7 @@ void init_sdb(){}
 
 
 void sdb_set_batch_mode() {
-  is_batch_mode = true;
+	is_batch_mode = true;
 }
 
 void sdb_mainloop(){

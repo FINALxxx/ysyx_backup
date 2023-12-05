@@ -1,6 +1,4 @@
-#include "include/sys_header.h"
-#include "include/sys_arg.h"
-#include "include/sys_func.h"
+#include "include/sys/sys_npc.h"
 
 #define MAX_SIM_TIME 100
 
