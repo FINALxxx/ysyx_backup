@@ -69,7 +69,7 @@ extern "C" void halt(svBit is_dead){
 	}
 }
 
-void clk_update(){
+static void clk_update(){
 	/* START 1clk in total */
 	cpu->eval(); 
 	cpu->clk^=1;//0.5clk

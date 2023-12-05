@@ -23,7 +23,9 @@ STATUS cpu_status=ALIVE;
 void sim_init(int argc,char** argv);
 void sim_stop();
 void sim_update();
+void exec(uint32_t n);
 void exec_once();
+static void clk_update();
 
 //void cpu_status_setter(STATUS new_status)
 //STATUS cpu_status_getter()
