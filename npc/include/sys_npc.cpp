@@ -76,7 +76,7 @@ void sim_update(){
 extern "C" void halt(svBit is_dead){
 	if(!is_dead) return;
 	
-	if(cmd_cur >= cmd_num){ 
+	if(cmd_cur <= cmd_num){ 
 		cpu_status=DEAD;
 		return;
 	}else{
