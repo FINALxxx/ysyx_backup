@@ -11,8 +11,6 @@ STATUS cpu_status=ALIVE;
 
 
 void sim_init(int argc,char** argv){
-	
-
 	env = new VerilatedContext;
 	cpu = new Vcpu(env);
 
@@ -22,7 +20,6 @@ void sim_init(int argc,char** argv){
 	cmd = read_bin(&cmd_num,fp,argv[1]);
 	cpu->eval();
 	/* END 0clk */	
-	std::cout<<cpu_status<<std::endl;
 
 	/* START 0.5clk */	
 	cpu->clk^=1;
@@ -73,15 +70,10 @@ void sim_update(){
 	sim_time++;
 }
 
-extern "C" void halt(svBit is_dead){
-	if(!is_dead) return;
-	if(cmd_cur == cmd_num){ 
-		cpu_status=DEAD;
-		return;
-	}else{
-		cpu_status=ABORT;
-		return;
-	}
+extern "C" void halt(svBit is_dead){//之后详细区分DEAD、ABORT
+	if(is_dead) cpu_status = DEAD;
+	
+	return;
 }
 
 static void clk_update(){
