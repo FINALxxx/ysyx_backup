@@ -10,7 +10,6 @@ Vcpu* cpu = NULL;
 STATUS cpu_status=ALIVE;
 
 
-
 void sim_init(int argc,char** argv){
 	env = new VerilatedContext;
 	cpu = new Vcpu(env);
@@ -34,7 +33,7 @@ void sim_init(int argc,char** argv){
 	cpu->eval();
 	printf("[INIT_PC=%#010x]\n\n",cpu->pc);
 	/* END 0.5clk */	
-
+	cout<<cpu_status<<endl;
 	/* 波形调试
 	env->traceEverOn(true);
 	VerilatedVcdC* m_trace = new VerilatedVcdC; 
