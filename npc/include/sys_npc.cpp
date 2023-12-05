@@ -1,13 +1,5 @@
 #include "sys_npc.h"
 
-vluint64_t sim_time=0;
-FILE* fp =NULL;
-uint32_t cmd_cur=0,cmd_num=0;
-uint32_t* cmd=NULL;
-
-VerilatedContext* env = NULL;
-Vcpu* cpu = NULL;
-
 
 void sim_init(int argc,char** argv){
 	env = new VerilatedContext;

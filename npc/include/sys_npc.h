@@ -8,6 +8,13 @@
 #ifndef __NPC_SYS__
 #define __NPC_SYS__
 
+static vluint64_t sim_time=0;
+static FILE* fp =NULL;
+static uint32_t cmd_cur=0,cmd_num=0;
+static uint32_t* cmd=NULL;
+
+static VerilatedContext* env = NULL;
+static Vcpu* cpu = NULL;
 
 
 //cpu运行参量，之后设置为static保护
