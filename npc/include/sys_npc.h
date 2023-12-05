@@ -8,7 +8,7 @@
 #include <bits/stdc++.h>
 #include "read_bin.h"
 
-#define MAX_SIM_TIME 100
+#define MAX_SIM_TIME 10000
 
 extern vluint64_t sim_time;
 extern FILE* fp;
