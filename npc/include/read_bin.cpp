@@ -8,6 +8,7 @@ uint32_t* read_bin(uint32_t* cmd_num,FILE* fp,const char* fileName){
 	long fsize = ftell(fp);
 	rewind(fp);
 	uint32_t* cmd = (uint32_t*)malloc(fsize);	
+	std::cout<<fsize<<std::endl;
 	assert(fread(cmd,sizeof(char),fsize,fp));
 	*cmd_num = (fsize/4) + (fsize%4);
 
