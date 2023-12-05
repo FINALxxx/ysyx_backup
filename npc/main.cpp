@@ -4,13 +4,6 @@
 
 using namespace std;
 
-vluint64_t sim_time=0;
-FILE* fp =NULL;
-uint32_t cmd_cur=0,cmd_num=0;
-uint32_t* cmd=NULL;
-
-VerilatedContext* env = NULL;
-Vcpu* cpu = NULL;
 
 
 int main(int argc, char** argv) {
