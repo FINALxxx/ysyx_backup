@@ -21,7 +21,7 @@ all:
 	@echo ${CSRC}
 sim:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
-	verilator -Wall --cc --exe -top-module ${VTOP} --build ${CSRC} ${VSRC} --trace -CFLAGS -lreadline
+	verilator -Wall --cc --exe -top-module ${VTOP} --build ${CSRC} ${VSRC} --trace -LDFLAGS -lreadline
 	make -C obj_dir -f ${TGS}.mk ${TGS}
 	./obj_dir/${TGS} ${BINSRC}
 	#gtkwave ./${WAVEFILE}
