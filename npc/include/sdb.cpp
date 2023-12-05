@@ -130,7 +130,7 @@ void sdb_mainloop(){
 			}
 		}
 
-		if (i == NR_CMD) printf("Unknown command '%s'\n", cmd);//找不到命令
+		if (i == NR_CMD) printf("\033[0m\033[1;31mUnknown command\033[0m '%s'\n", cmd);//找不到命令
 	}
 }
 
