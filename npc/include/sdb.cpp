@@ -20,7 +20,7 @@ static char* getarg(){
 }
 
 static int cmd_c(char *args) {
-	cpu_exec(-1),将-1换成limit.h中的最大值
+	exec(-1);//将-1换成limit.h中的最大值
 	return 0;
 }
 
