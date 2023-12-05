@@ -22,14 +22,14 @@ void sim_init(int argc,char** argv){
 	cmd = read_bin(&cmd_num,fp,argv[1]);
 	cpu->eval();
 	/* END 0clk */	
-	
+	std::cout<<cpu_status<<std::endl;
+
 	/* START 0.5clk */	
 	cpu->clk^=1;
 	//cpu->rst=0;//debug：严禁在此处复位，此时在下降沿，还没有更改tmp_pc
 	cpu->eval();
 	/* END 0.5clk */	
-	std::cout<<cpu_status<<std::endl;
-
+	
 	/* START 0.5clk */	
 	cpu->clk^=1;
 	cpu->rst=0;
