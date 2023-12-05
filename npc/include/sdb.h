@@ -8,6 +8,17 @@
 
 bool is_batch_mode=false;
 
+static int cmd_c(char *args);
+static int cmd_q(char *args);
+static int cmd_si(char* args);
+static int cmd_info(char* args);
+static int cmd_x(char* args);
+static int cmd_p(char* args);
+static int cmd_w(char* args);
+static int cmd_d(char* args);
+static int cmd_help(char *args);
+
+
 
 static struct { 
   const char *name;
@@ -28,17 +39,7 @@ static struct {
 #define NR_CMD ARRLEN(cmd_table)
 
 
-static char* getarg(){
-
-static int cmd_c(char *args)
-static int cmd_q(char *args)
-static int cmd_si(char* args)
-static int cmd_info(char* args)
-static int cmd_x(char* args)
-static int cmd_p(char* args)
-static int cmd_w(char* args)
-static int cmd_d(char* args)
-static int cmd_help(char *args)
+static char* getarg();
 
 
 void init_sdb();
