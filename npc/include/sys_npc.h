@@ -19,7 +19,7 @@ extern Vcpu* cpu;
 
 //cpu运行参量，之后设置为static保护
 enum STATUS {DEAD,ALIVE,ABORT};//待添加
-extern STATUS cpu_status=ALIVE;
+extern STATUS cpu_status;
 
 
 void sim_init(int argc,char** argv);

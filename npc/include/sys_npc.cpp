@@ -7,6 +7,9 @@ uint32_t* cmd=NULL;
 
 VerilatedContext* env = NULL;
 Vcpu* cpu = NULL;
+STATUS cpu_status=ALIVE;
+
+
 
 void sim_init(int argc,char** argv){
 	env = new VerilatedContext;
