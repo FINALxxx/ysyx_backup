@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
 #include <readline/readline.h>
 #include <readline/history.h>
-#include "../sys/macro.h"
-#include "../sys/sys_npc.h"
+#include "macro.h"
+#include "sys_npc.h"
 #include <assert.h>
 
 
