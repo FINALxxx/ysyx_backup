@@ -102,5 +102,4 @@ void exec(uint32_t n){
 		//trace_and_difftest();
 		if(cpu_status!=ALIVE) break;
 	}
-	sim_stop();
 }
