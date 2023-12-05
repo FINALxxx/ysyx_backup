@@ -91,9 +91,9 @@ void exec_once(){
 
 	//cout<<"PC="<<cpu->pc<<endl;
 	cmd_cur = (cpu->pc-0x80000000)/4;//虚拟地址转实际地址
-	printf("[CUR=%d]\n",cmd_cur);
+	printf("\t[CUR=%d]\n",cmd_cur);
 	cpu->cmd=cmd[cmd_cur];
-	printf("[CMD=%#010x]\n",cpu->cmd);
+	printf("\t[CMD=%#010x]\n",cpu->cmd);
 }
 
 void exec(uint32_t n){
