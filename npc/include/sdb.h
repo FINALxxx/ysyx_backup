@@ -9,7 +9,7 @@
 #include <assert.h>
 
 
-bool is_batch_mode=false;
+extern bool is_batch_mode;
 
 static int cmd_c(char *args);
 static int cmd_q(char *args);

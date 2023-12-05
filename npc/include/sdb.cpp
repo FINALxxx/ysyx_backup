@@ -1,7 +1,8 @@
 #include"sdb.h"
 
-//Warn: strtok切割字符串后，源字符串会被切割
+bool is_batch_mode = false;
 
+//Warn: strtok切割字符串后，源字符串会被切割
 static char* getarg(){
 	static char* input_line = NULL;
 	if(input_line){//pointer initialize
