@@ -1,3 +1,6 @@
+#ifndef __SDB_H__
+#define __SDB_H__
+
 #include <bits/stdc++.h>
 #include <readline/readline.h>
 #include <readline/history.h>
@@ -5,8 +8,6 @@
 #include "sys_npc.h"
 #include <assert.h>
 
-#ifndef __SDB_H__
-#define __SDB_H__
 
 bool is_batch_mode=false;
 
