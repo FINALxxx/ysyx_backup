@@ -9,8 +9,8 @@ BINSRC ?=
 
 CSRC = $(wildcard *${CFILE})
 CSRC += $(wildcard include/*${CFILE})
-CSRC += $(wildcard include/**/*${CFILE})
-CSRC += $(wildcard include/**/*.h)
+#CSRC += $(wildcard include/**/*${CFILE})
+#CSRC += $(wildcard include/**/*.h)
 
 
 VSRC = $(wildcard *${VFILE})
