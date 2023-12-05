@@ -5,6 +5,8 @@
 #include <bits/stdc++.h>
 #include "read_bin.h"
 
+#ifndef __NPC_SYS__
+#define __NPC_SYS__
 
 vluint64_t sim_time=0;
 FILE* fp =NULL;
@@ -30,3 +32,4 @@ static void clk_update();
 //void cpu_status_setter(STATUS new_status)
 //STATUS cpu_status_getter()
 
+#endif
