@@ -1,3 +1,6 @@
+#ifndef __NPC_SYS__
+#define __NPC_SYS__
+
 #include <verilated.h>
 #include <verilated_vcd_c.h>
 #include "Vcpu.h"
@@ -5,8 +8,7 @@
 #include <bits/stdc++.h>
 #include "read_bin.h"
 
-#ifndef __NPC_SYS__
-#define __NPC_SYS__
+#define MAX_SIM_TIME 100
 
 extern vluint64_t sim_time;
 extern FILE* fp;

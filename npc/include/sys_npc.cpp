@@ -1,5 +1,6 @@
 #include "sys_npc.h"
 
+
 vluint64_t sim_time=0;
 FILE* fp =NULL;
 uint32_t cmd_cur=0,cmd_num=0;
@@ -65,7 +66,7 @@ void sim_stop(){
 	delete cpu;
 }
 
-void sim_update(){
+void sim_update(){//测试用，一般使用exec
 	//cpu->eval();//在某些情况下，可能会导致一个循环eval多次，这个时候请把这一句删掉
 	sim_time++;
 }
@@ -94,8 +95,6 @@ void exec_once(){
 	cpu->cmd=cmd[cmd_cur];
 	printf("[CMD=%#010x]\n",cpu->cmd);
 }
-
-
 
 void exec(uint32_t n){
 	for(;n>0;--n){
