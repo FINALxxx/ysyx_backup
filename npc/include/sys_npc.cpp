@@ -33,7 +33,7 @@ void sim_init(int argc,char** argv){
 	cpu->eval();
 	printf("[INIT_PC=%#010x]\n\n",cpu->pc);
 	/* END 0.5clk */	
-	cout<<cpu_status<<endl;
+	std::cout<<cpu_status<<std::endl;
 	/* 波形调试
 	env->traceEverOn(true);
 	VerilatedVcdC* m_trace = new VerilatedVcdC; 
