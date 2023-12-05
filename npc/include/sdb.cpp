@@ -43,15 +43,29 @@ static int cmd_si(char* args){
 	return 0;
 }
 
-static int cmd_info(char* args){}
+static int cmd_info(char* args){
+	return 0;
+}
 
-static int cmd_x(char* args){}
+static int cmd_x(char* args){
+	return 0;
 
-static int cmd_p(char* args){}
+}
 
-static int cmd_w(char* args){}
+static int cmd_p(char* args){
+	return 0;
 
-static int cmd_d(char* args){}
+}
+
+static int cmd_w(char* args){
+	return 0;
+
+}
+
+static int cmd_d(char* args){
+	return 0;
+
+}
 
 static int cmd_help(char *args){
 	char *arg = strtok(NULL, " ");//mainloop中已经使用过一次strtok了，这里直接传NULL就能继续切割参数
