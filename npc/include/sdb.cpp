@@ -22,7 +22,7 @@ static char* getarg(){
 
 static int cmd_c(char *args) {
 	exec(-1);//将-1换成limit.h中的最大值
-	return -1;
+	return 0;
 }
 
 
