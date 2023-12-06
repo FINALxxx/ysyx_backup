@@ -77,8 +77,9 @@ WP* check_wp(uint32_t* new_result){//返回产生变化的变量
 		bool success=false;
 		//printf("LOG:%s\n",head->expr);
 		uint32_t result=expr(it->expr_s,&success);
-		if(!success) Assert(0,"illegal expr!\n");
-		else if(result!=it->val) {
+		if(!success){ 
+			Assert(0,"illegal expr!\n");
+		}else if(result!=it->val) {
 			*new_result=result;
 			return it;//只返回第一个变化的结点，后续可以再改
 		}
