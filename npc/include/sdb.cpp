@@ -55,7 +55,7 @@ static int cmd_info(char* args){
 	if(arg==NULL){     
 		printf("Without any argument...\n");
 	}else{
-		if(!strcmp(arg,"r")) isa_reg_display();
+		if(!strcmp(arg,"r")) reg_display();
 		else if(!strcmp(arg,"w")){
 			print_w();
 		}
