@@ -9,6 +9,7 @@
 #include "read_bin.h"
 
 #define MAX_SIM_TIME 10000
+#define BASE_Vaddr 0x80000000
 #define NPCTRAP(PC_now,code) status_setter(DEAD,PC_now,code)
 
 extern vluint64_t sim_time;
@@ -39,7 +40,12 @@ void exec_once();
 static void clk_update();
 int is_exit_status_bad();
 void status_setter(int state,uint32_t pc,int halt_ret);
+
+uint8_t pc_VtransP(uint32_t pc);
 uint32_t read_register(uint8_t n);
+uint32_t read_memory(uint32_t pc_Vdst,uint8_t size);
+
+
 
 //void cpu_status_setter(STATUS new_status)
 //STATUS cpu_status_getter()

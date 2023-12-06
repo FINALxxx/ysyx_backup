@@ -4,7 +4,7 @@
 vluint64_t sim_time=0;
 FILE* fp =NULL;
 uint32_t cmd_cur=0,cmd_num=0;
-uint32_t* cmd=NULL;
+uint32_t* cmd=NULL;//之后把这个cmd换成mem
 
 VerilatedContext* env = NULL;
 Vcpu* cpu = NULL;
@@ -92,11 +92,17 @@ extern "C" void halt(svBit is_halt){//TODO:待修改
 }
 
 //执行指令
+
+uint8_t pc_VtransP(uint32_t pc){//虚拟转物理地址
+	return pc-BASE_Vaddr;
+}
+
+
 void exec_once(){
 	clk_update();	
 
 	//cout<<"PC="<<cpu->pc<<endl;
-	cmd_cur = (cpu->pc-0x80000000)/4;//虚拟地址转实际地址
+	cmd_cur = pc_VtransP(cpu->pc)/4;
 	printf("\t[CUR=%d]\n",cmd_cur);
 	cpu->cmd=cmd[cmd_cur];
 	printf("\t[CMD=%#010x]\n",cpu->cmd);
@@ -139,8 +145,21 @@ void exec(uint32_t n){
 }
 
 
+
+//内存、寄存器读写
 uint32_t read_register(uint8_t n){
 	VlUnpacked<IData,32> rf_struct = cpu->rootp->cpu__DOT__rf1__DOT__rf;
 	if(n<=32) return rf_struct.m_storage[n];
 	else return 0;//超过数组大小
+}
+
+uint32_t read_memory(uint32_t pc_Vdst,uint8_t size){
+	uint8_t pc_Pdst = pc_VtransP(pc_Vdst);
+	
+
+	switch(size){
+		case 1: return (uint8_t)cmd[pc_Pdst];
+		case 2: return (uint16_t)cmd[pc_Pdst];
+		default: return (uint32_t)cmd[pc_Pdst];//case 4
+	}
 }
