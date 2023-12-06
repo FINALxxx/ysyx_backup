@@ -12,7 +12,7 @@ NPC_STATUS cpu_status={ .state = STOP };
 
 //cpu状态
 int is_exit_status_bad() {
-  int good = (cpu_status.state == END && cpu_status.halt_ret == 0) || (cpu_status.state == QUIT);
+  int good = (cpu_status.state == DEAD && cpu_status.halt_ret == 0) || (cpu_status.state == QUIT);
   return !good;
 }
 
