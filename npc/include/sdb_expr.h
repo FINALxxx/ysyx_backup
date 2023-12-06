@@ -26,6 +26,9 @@ void init_regex();
 
 //以下函数可以在其他地方使用
 uint32_t expr(char *e, bool *success);
+
 int check_paren(int l,int r);
+
 int op(int l,int r);
+
 int eval(int l,int r);
