@@ -7,6 +7,7 @@
  */
 #include <regex.h>
 #include <iostream>
+#include "sys_npc.h"
 
 #define MAX(a,b) (a)>(b) ? (a) : (b)
 
