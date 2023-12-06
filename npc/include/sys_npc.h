@@ -5,7 +5,7 @@
 #include <verilated_vcd_c.h>
 #include "Vcpu.h"
 #include <stdint.h>
-#include <bits/stdc++.h>
+#include <iostream>
 #include "read_bin.h"
 
 #define MAX_SIM_TIME 10000
