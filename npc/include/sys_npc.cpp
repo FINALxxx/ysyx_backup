@@ -175,13 +175,13 @@ uint32_t read_memory(uint32_t pc_Vdst,uint8_t size){
 }
 
 
-void isa_reg_display() {
+void reg_display() {
 	for(int i=0;i<reg_len;i ++){
 		printf("%s\t%#010x\t%d\n",regs[i],read_register(i),read_register(i));
 	}
 }
 
-uint32_t isa_reg_str2val(const char *s, bool *success) {
+uint32_t reg_str2val(const char *s, bool *success) {
 	for(int i=0;i<reg_len;i++){
 		if(!strcmp(regs[i],s)){ 
 			*success=true;

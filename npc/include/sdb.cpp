@@ -48,6 +48,20 @@ static int cmd_si(char* args){
 }
 
 static int cmd_info(char* args){
+	//extern WP* head;
+	//printf("LOG:In cmd_info START:%s\n",head->expr_s);
+
+	char *arg=strtok(NULL," ");
+	if(arg==NULL){     
+		printf("Without any argument...\n");
+	}else{
+		if(!strcmp(arg,"r")) isa_reg_display();
+		else if(!strcmp(arg,"w")){
+			print_w();
+		}
+		else printf("Unknown argument '%s'\n",arg);
+	}
+
 	return 0;
 }
 

@@ -47,8 +47,8 @@ void status_setter(int state,uint32_t pc,int halt_ret);
 uint8_t pc_VtransP(uint32_t pc);
 uint32_t read_register(uint8_t n);
 uint32_t read_memory(uint32_t pc_Vdst,uint8_t size);
-void isa_reg_display();
-uint32_t isa_reg_str2val(const char *s, bool *success);
+void reg_display();
+uint32_t reg_str2val(const char *s, bool *success);
 
 
 
