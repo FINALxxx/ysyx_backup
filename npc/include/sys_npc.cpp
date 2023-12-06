@@ -140,7 +140,7 @@ void exec(uint32_t n){
 
 
 uint32_t read_register(uint8_t n){
-	VlUnpacked<IData,32> rf_struct = cpu->rootp->cpu__DOT__rf1__DOT__rf;
-	if(n<=32) return rf_struct.m_storage[n];
+	VlUnpacked<IData,32>* rf_struct = cpu->rootp->cpu__DOT__rf1__DOT__rf;
+	if(n<=32) return rf_struct->m_storage[n];
 	else return 0;//超过数组大小
 }
