@@ -13,7 +13,7 @@ typedef struct watchpoint {
 	char expr_s[100];//表达式
 	uint32_t val;//值
 
-} WP;
+};
 
 
 WP* check_wp(uint32_t* new_result);
