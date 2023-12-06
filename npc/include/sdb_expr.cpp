@@ -23,7 +23,7 @@
  */
 #include <regex.h>
 #include "sys_npc.h"
-#include"sdb_expr.h"
+#include "sdb_expr.h"
 
 
 static struct rule {
