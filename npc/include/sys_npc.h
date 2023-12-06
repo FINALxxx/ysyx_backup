@@ -19,6 +19,7 @@ extern uint32_t* cmd;
 
 extern VerilatedContext* env;
 extern Vcpu* cpu;
+extern uint8_t reg_len;
 
 
 //cpu运行参量，之后设置为static保护
@@ -30,6 +31,14 @@ typedef struct {
 } NPC_STATUS;
 
 extern NPC_STATUS cpu_status;
+
+const char *regs[] = {
+  "$0", "ra", "sp", "gp", "tp", "t0", "t1", "t2",
+  "s0", "s1", "a0", "a1", "a2", "a3", "a4", "a5",
+  "a6", "a7", "s2", "s3", "s4", "s5", "s6", "s7",
+  "s8", "s9", "s10", "s11", "t3", "t4", "t5", "t6"
+};
+
 
 
 void sim_init(int argc,char** argv);
@@ -44,6 +53,8 @@ void status_setter(int state,uint32_t pc,int halt_ret);
 uint8_t pc_VtransP(uint32_t pc);
 uint32_t read_register(uint8_t n);
 uint32_t read_memory(uint32_t pc_Vdst,uint8_t size);
+void isa_reg_display();
+uint32_t isa_reg_str2val(const char *s, bool *success);
 
 
 

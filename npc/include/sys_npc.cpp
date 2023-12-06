@@ -10,6 +10,8 @@ VerilatedContext* env = NULL;
 Vcpu* cpu = NULL;
 NPC_STATUS cpu_status={ .state = STOP };
 
+uint8_t reg_len = sizeof(regs)/sizeof(regs[0]);
+
 //cpu状态
 int is_exit_status_bad() {
   int good = (cpu_status.state == DEAD && cpu_status.halt_ret == 0) || (cpu_status.state == QUIT);
@@ -162,4 +164,22 @@ uint32_t read_memory(uint32_t pc_Vdst,uint8_t size){
 		case 2: return (uint16_t)cmd[pc_Pdst];
 		default: return (uint32_t)cmd[pc_Pdst];//case 4
 	}
+}
+
+
+void isa_reg_display() {
+	for(int i=0;i<reg_len;i ++){
+		printf("%s\t%#010x\t%d\n",regs[i],read_register(i),read_register(i));
+	}
+}
+
+uint32_t isa_reg_str2val(const char *s, bool *success) {
+	for(int i=0;i<reg_len;i++){
+		if(!strcmp(regs[i],s)){ 
+			*success=true;
+			return read_register(i);
+		}
+	}
+	*success=false;
+	return 0;
 }
