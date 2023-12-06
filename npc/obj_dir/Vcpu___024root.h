@@ -32,7 +32,7 @@ class Vcpu___024root final : public VerilatedModule {
         CData/*3:0*/ cpu__DOT__cu1__DOT__I_sel;
         CData/*2:0*/ cpu__DOT__cu1__DOT__branch;
         CData/*2:0*/ cpu__DOT__cu1__DOT__branch_tmp;
-        CData/*0:0*/ cpu__DOT__cu1__DOT__is_dead;
+        CData/*0:0*/ cpu__DOT__cu1__DOT__is_halt;
         CData/*0:0*/ cpu__DOT__cu1__DOT____VdfgTmp_hf442cbef__0;
         CData/*0:0*/ cpu__DOT__cu1__DOT____VdfgTmp_hd4cadad9__0;
         CData/*0:0*/ cpu__DOT__cu1__DOT____VdfgTmp_h7f183419__0;

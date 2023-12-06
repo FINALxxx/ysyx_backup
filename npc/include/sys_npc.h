@@ -24,7 +24,7 @@ extern Vcpu* cpu;
 enum STATUS {DEAD,ALIVE,ABORT,STOP,QUIT};
 typedef struct {
   int state;
-  vaddr_t halt_pc;
+  uint32_t halt_pc;
   uint32_t halt_ret;
 } NPC_STATUS;
 

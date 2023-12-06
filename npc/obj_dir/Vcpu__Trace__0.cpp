@@ -392,7 +392,7 @@ void Vcpu___024root__trace_chg_sub_0(Vcpu___024root* vlSelf, VerilatedVcd::Buffe
                                          >> 0x1fU)))));
     }
     if (VL_UNLIKELY(vlSelf->__Vm_traceActivity[2U])) {
-        bufp->chgBit(oldp+270,(vlSelf->cpu__DOT__cu1__DOT__is_dead));
+        bufp->chgBit(oldp+270,(vlSelf->cpu__DOT__cu1__DOT__is_halt));
         bufp->chgIData(oldp+271,(vlSelf->cpu__DOT__pc1__DOT__tmp_pc),32);
         bufp->chgIData(oldp+272,(vlSelf->cpu__DOT__rf1__DOT__rf[0]),32);
         bufp->chgIData(oldp+273,(vlSelf->cpu__DOT__rf1__DOT__rf[1]),32);
