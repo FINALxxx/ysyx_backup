@@ -219,7 +219,7 @@ int eval(int l,int r){
 		Assert(0,"illegal expr:parentheses cannot be matched!\n");
 		return 0;
 	}else{
-		int operator=op(l,r);//返回op的下标
+		int operator = op(l,r);//返回op的下标
 		//printf("LOG:%d\n",(tokens[operator].type==PTR));
 		int val1=0,val2=0;
 		if(tokens[operator].type!=PTR){
