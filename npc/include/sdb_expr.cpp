@@ -233,7 +233,7 @@ int eval(int l,int r){
 			case '-': return val1 - val2;
 			case '*': return val1 * val2;
 			case '/': Assert(val2!=0,"illegal expr:division by 0!\n"); return val1 / val2; 
-			case PTR:return vaddr_read(val1,4); 
+			case PTR:return read_memory(val1,4); 
 			default: assert(0);
 		}	
 	}
