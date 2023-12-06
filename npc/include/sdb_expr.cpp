@@ -22,7 +22,6 @@
  */
 #include <regex.h>
 #include <iostream>
-#include <stdint.h>
 #include "sys_npc.h"
 
 
