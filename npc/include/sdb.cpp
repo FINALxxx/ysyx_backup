@@ -1,4 +1,6 @@
 #include"sdb.h"
+#include "sdb_watchpoint.h"
+
 
 bool is_batch_mode = false;
 

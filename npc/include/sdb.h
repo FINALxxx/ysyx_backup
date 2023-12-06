@@ -8,7 +8,6 @@
 #include "sys_npc.h"
 #include "debug.h"
 #include "sdb_expr.h"
-#include "sdb_watchpoint.h"
 
 
 extern bool is_batch_mode;
