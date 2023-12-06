@@ -173,7 +173,7 @@ VL_ATTR_COLD void Vcpu___024root__trace_init_sub__TOP__0(Vcpu___024root* vlSelf,
     tracep->declBit(c+324,"U_LUI", false,-1);
     tracep->declBus(c+80,"branch", false,-1, 2,0);
     tracep->declBus(c+81,"branch_tmp", false,-1, 2,0);
-    tracep->declBit(c+271,"is_dead", false,-1);
+    tracep->declBit(c+271,"is_halt", false,-1);
     tracep->pushNamePrefix("mux1 ");
     tracep->declBus(c+341,"NR_KEY", false,-1, 31,0);
     tracep->declBus(c+350,"KEY_LEN", false,-1, 31,0);
@@ -916,7 +916,7 @@ VL_ATTR_COLD void Vcpu___024root__trace_full_sub_0(Vcpu___024root* vlSelf, Veril
                                       >> 0x1fU))) ^ 
                                    (vlSelf->cpu__DOT__pc1__DOT__result 
                                     >> 0x1fU)))));
-    bufp->fullBit(oldp+271,(vlSelf->cpu__DOT__cu1__DOT__is_dead));
+    bufp->fullBit(oldp+271,(vlSelf->cpu__DOT__cu1__DOT__is_halt));
     bufp->fullIData(oldp+272,(vlSelf->cpu__DOT__pc1__DOT__tmp_pc),32);
     bufp->fullIData(oldp+273,(vlSelf->cpu__DOT__rf1__DOT__rf[0]),32);
     bufp->fullIData(oldp+274,(vlSelf->cpu__DOT__rf1__DOT__rf[1]),32);

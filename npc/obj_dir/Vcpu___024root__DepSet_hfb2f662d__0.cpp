@@ -44,7 +44,7 @@ void Vcpu___024root___eval_triggers__act(Vcpu___024root* vlSelf) {
 #endif
 }
 
-void Vcpu___024unit____Vdpiimwrap_halt_TOP____024unit(CData/*0:0*/ is_dead);
+void Vcpu___024unit____Vdpiimwrap_halt_TOP____024unit(CData/*0:0*/ is_halt);
 
 VL_INLINE_OPT void Vcpu___024root___nba_sequent__TOP__0(Vcpu___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
@@ -58,7 +58,7 @@ VL_INLINE_OPT void Vcpu___024root___nba_sequent__TOP__0(Vcpu___024root* vlSelf) 
     CData/*0:0*/ __Vdlyvset__cpu__DOT__rf1__DOT__rf__v0;
     __Vdlyvset__cpu__DOT__rf1__DOT__rf__v0 = 0;
     // Body
-    Vcpu___024unit____Vdpiimwrap_halt_TOP____024unit(vlSelf->cpu__DOT__cu1__DOT__is_dead);
+    Vcpu___024unit____Vdpiimwrap_halt_TOP____024unit(vlSelf->cpu__DOT__cu1__DOT__is_halt);
     __Vdlyvset__cpu__DOT__rf1__DOT__rf__v0 = 0U;
     if (((IData)(vlSelf->cpu__DOT__cu1__DOT____VdfgTmp_hf442cbef__0) 
          | ((0x6fU == (0x7fU & vlSelf->cmd)) | ((3U 
@@ -79,7 +79,7 @@ VL_INLINE_OPT void Vcpu___024root___nba_sequent__TOP__0(Vcpu___024root* vlSelf) 
     vlSelf->cpu__DOT__pc1__DOT__tmp_pc = ((IData)(vlSelf->rst)
                                            ? 0x80000000U
                                            : vlSelf->cpu__DOT__pc1__DOT__result);
-    vlSelf->cpu__DOT__cu1__DOT__is_dead = (IData)((0x73U 
+    vlSelf->cpu__DOT__cu1__DOT__is_halt = (IData)((0x73U 
                                                    == 
                                                    (0x4000707fU 
                                                     & vlSelf->cmd)));
