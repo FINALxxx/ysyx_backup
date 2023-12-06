@@ -1,5 +1,6 @@
 #include "sys_npc.h"
 #include "Vcpu___024root.h"
+#include "sdb_watchpoint.h"
 
 vluint64_t sim_time=0;
 FILE* fp =NULL;
@@ -131,7 +132,7 @@ void exec(uint32_t n){
 
 	for(;n>0;--n){
 		exec_once();
-		//trace_and_difftest();
+		trace_and_difftest();
 		if(cpu_status.state!=ALIVE) break;
 	}
 
@@ -190,4 +191,17 @@ uint32_t reg_str2val(const char *s, bool *success) {
 	}
 	*success=false;
 	return 0;
+}
+
+
+//基础设施相关
+static void trace_and_difftest(){
+	//断点调试
+	uint32_t new_result=0;
+	WP* wp=check_wp(&new_result);
+	if(wp!=NULL){
+		cpu_status.state=STOP;
+		printf("Watchpoint change:In No.%d,[%s],(%d==>%d)\n",wp->NO,wp->expr_s,wp->val,new_result);
+		wp->val=new_result;
+  }
 }
