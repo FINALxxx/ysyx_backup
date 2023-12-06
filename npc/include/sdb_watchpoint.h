@@ -1,4 +1,7 @@
-//#include "sdb.h"
+#ifndef __SDB_WP_H__
+#define __SDB_WP_H__
+
+#include "sdb.h"
 #include "sdb_watchpoint.h"
 #include "sdb_expr.h"
 
@@ -19,3 +22,5 @@ void new_wp(char* expr_s);
 void init_wp_pool();
 void free_wp(int NO);
 void print_w();
+
+#endif
