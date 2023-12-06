@@ -55,8 +55,10 @@ static int cmd_x(char* args){
 
 static int cmd_p(char* args){
 	char* expr_=strtok(NULL,"");
-	if(expr_==NULL) printf("Without any argument...\n");
 	printf("LOG:%s\n",expr_);
+
+
+	if(expr_==NULL) printf("Without any argument...\n");
 	else{ 
 		bool success=true;
 		uint32_t result=expr(expr_,&success);
