@@ -63,12 +63,19 @@ static int cmd_p(char* args){
 		//else printf("匹配不通过\n");
 		printf("the result=%d\n",result);
 	}
+	
 	return 0;
 }
 
 static int cmd_w(char* args){
-	return 0;
+	char* expr_s=strtok(NULL,"");	
+	//printf("LOG:In cmd_w:%p\n",expr_s);
+	if(expr_s==NULL) printf("Without any argument...\n");
+	else new_wp(expr_s);
+	
 
+	//printf("LOG:In cmd_w END:%s\n",args);
+	return 0;
 }
 
 static int cmd_d(char* args){
@@ -104,6 +111,7 @@ static int cmd_help(char *args){
 
 void sdb_init(){
 	init_regex();
+	init_wp_pool();
 }
 
 
