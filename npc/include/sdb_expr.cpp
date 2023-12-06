@@ -238,5 +238,4 @@ int eval(int l,int r){
 			default: assert(0);
 		}	
 	}
-
 }
