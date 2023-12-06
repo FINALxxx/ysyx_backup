@@ -46,7 +46,7 @@ static struct {
 static char* getarg();
 
 
-void init_sdb();
+void sdb_init();
 void sdb_set_batch_mode(); 
 void sdb_mainloop();
 

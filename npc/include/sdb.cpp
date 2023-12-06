@@ -102,7 +102,7 @@ static int cmd_help(char *args){
 }
 
 
-void init_sdb(){
+void sdb_init(){
 	init_regex();
 }
 
