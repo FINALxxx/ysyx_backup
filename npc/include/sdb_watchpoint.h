@@ -2,7 +2,6 @@
 #define __SDB_WP_H__
 
 #include "sdb.h"
-//#include "sdb_watchpoint.h"
 #include "sdb_expr.h"
 
 #define NR_WP 32
