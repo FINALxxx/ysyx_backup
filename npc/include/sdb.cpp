@@ -27,7 +27,7 @@ static int cmd_c(char *args) {
 
 
 static int cmd_q(char *args){
-	cpu_status=DEAD;
+	cpu_status.state=QUIT;//退出exec()
 	return -1;//返回-1表示退出sdb模式
 }
 

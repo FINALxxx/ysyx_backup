@@ -8,9 +8,22 @@ uint32_t* cmd=NULL;
 
 VerilatedContext* env = NULL;
 Vcpu* cpu = NULL;
-STATUS cpu_status=ALIVE;
+NPC_STATUS cpu_status={ .state = STOP };
+
+//cpu状态
+int is_exit_status_bad() {
+  int good = (cpu_status.state == END && cpu_status.halt_ret == 0) || (cpu_status.state == QUIT);
+  return !good;
+}
+
+void status_setter(int state, uint32_t pc, int halt_ret) {
+  cpu_status.state = state;
+  cpu_status.halt_pc = pc;
+  cpu_status.halt_ret = halt_ret;
+}
 
 
+//模拟器状态
 void sim_init(int argc,char** argv){
 	env = new VerilatedContext;
 	cpu = new Vcpu(env);
@@ -44,21 +57,13 @@ void sim_init(int argc,char** argv){
 	*/
 } 
 
-void sim_stop(){
-	switch(cpu_status){
-		
-		case DEAD: 
-			printf("\nNPC EXIT: \033[0m\033[1;32mHIT GOOD TRAP\033[0m at pc = %#010x\n\n",cpu->pc);
-		break;
-
-		case ALIVE:
-			printf("\nNPC EXIT: \033[0m\033[1;31mHIT BAD TRAP\033[0m at pc = %#010x\n\n",cpu->pc);
-		break;
-
-		default ://ABORT or unexpected situation
-			printf("\nNPC EXIT: \033[0m\033[1;31mABORT\033[0m at pc = %#010x\n\n",cpu->pc);
-		break;
-		
+void sim_terminate(){
+	if(cpu_status.state == ABORT){//ABORT
+		printf("\nNPC EXIT: \033[0m\033[1;31mABORT\033[0m at pc = %#010x\n\n",cpu_status.halt_pc);
+	}else if(cpu_status.halt_ret == 0){//GOOD
+		printf("\nNPC EXIT: \033[0m\033[1;32mHIT GOOD TRAP\033[0m at pc = %#010x\n\n",cpu_status.halt_pc);
+	}else{//BAD or unexpected situation
+		printf("\nNPC EXIT: \033[0m\033[1;31mHIT BAD TRAP\033[0m at pc = %#010x\n\n",cpu_status.halt_pc);	
 	}
 
 	//m_trace->close();
@@ -71,12 +76,6 @@ void sim_update(){//测试用，一般使用exec
 	sim_time++;
 }
 
-extern "C" void halt(svBit is_dead){//之后详细区分DEAD、ABORT
-	if(is_dead) cpu_status = DEAD;
-	
-	return;
-}
-
 static void clk_update(){
 	/* START 1clk in total */
 	cpu->eval(); 
@@ -86,6 +85,12 @@ static void clk_update(){
 	/* END */
 }
 
+extern "C" void halt(svBit is_halt){//TODO:待修改
+	//NPCTRAP(cpu->pc,10号寄存器($a0)的内容);
+	return;
+}
+
+//执行指令
 void exec_once(){
 	clk_update();	
 
@@ -97,9 +102,37 @@ void exec_once(){
 }
 
 void exec(uint32_t n){
+	
+	switch(cpu_status.state){
+		case DEAD:case ABORT:
+			printf("Program execution has ended. To restart the program, exit NPC and run again.\n");
+		return;
+
+		default://STOP、ALIVE
+			cpu_status=ALIVE;
+		break;
+	}
+
 	for(;n>0;--n){
 		exec_once();
 		//trace_and_difftest();
-		if(cpu_status!=ALIVE) break;
+		if(cpu_status.state!=ALIVE) break;
 	}
+
+	switch(cpu_status.state){
+		case ALIVE:
+			cpu_status.state = STOP;
+		break;
+
+		case DEAD: case ABORT:
+			if(cpu_status.halt_pc == 0){//运行结束
+				//TODO:输出调试信息
+			}
+			sim_terminate();
+			
+		case QUIT://DEAD、ABORT时也成立
+			//TODO:输出统计信息
+
+	}
+
 }

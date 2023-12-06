@@ -1,6 +1,6 @@
 `include "TYPES.v"
 
-import "DPI-C" function void halt(input bit is_dead);
+import "DPI-C" function void halt(input bit is_halt);
 
 module ControlUnit(
 	input clk,//同步halt()
@@ -150,11 +150,11 @@ module ControlUnit(
 
 
 
-    reg is_dead;
+    reg is_halt;
     always @(posedge clk) begin
 		//$display("BRANCH=%b\n",branch);
-        is_dead <= (opcode==7'b1110011)&(funct3=='b0)&(funct7=='b0);
-        halt(is_dead);
+        is_halt <= (opcode==7'b1110011)&(funct3=='b0)&(funct7=='b0);
+        halt(is_halt);
     end
 
 endmodule

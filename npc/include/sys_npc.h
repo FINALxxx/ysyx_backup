@@ -9,6 +9,7 @@
 #include "read_bin.h"
 
 #define MAX_SIM_TIME 10000
+#define NPC_TRAP(PC_now,code) status_setter(DEAD,PC_now,code)
 
 extern vluint64_t sim_time;
 extern FILE* fp;
@@ -20,16 +21,24 @@ extern Vcpu* cpu;
 
 
 //cpu运行参量，之后设置为static保护
-enum STATUS {DEAD,ALIVE,ABORT};//待添加
-extern STATUS cpu_status;
+enum STATUS {DEAD,ALIVE,ABORT,STOP,QUIT};
+typedef struct {
+  int state;
+  vaddr_t halt_pc;
+  uint32_t halt_ret;
+} NPC_STATUS;
+
+extern NPC_STATUS cpu_status;
 
 
 void sim_init(int argc,char** argv);
-void sim_stop();
+void sim_terminate();
 void sim_update();
 void exec(uint32_t n);
 void exec_once();
 static void clk_update();
+int is_exit_status_bad();
+void status_setter(int state,uint32_t pc,int halt_ret);
 
 //void cpu_status_setter(STATUS new_status)
 //STATUS cpu_status_getter()
