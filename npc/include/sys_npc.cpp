@@ -109,7 +109,7 @@ void exec(uint32_t n){
 		return;
 
 		default://STOP、ALIVE
-			cpu_status=ALIVE;
+			cpu_status.state=ALIVE;
 		break;
 	}
 
@@ -132,7 +132,7 @@ void exec(uint32_t n){
 			
 		case QUIT://DEAD、ABORT时也成立
 			//TODO:输出统计信息
-
+		break;
 	}
 
 }
