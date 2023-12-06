@@ -55,9 +55,6 @@ static int cmd_x(char* args){
 
 static int cmd_p(char* args){
 	char* expr_=strtok(NULL,"");
-	printf("LOG:%s\n",expr_);
-
-
 	if(expr_==NULL) printf("Without any argument...\n");
 	else{ 
 		bool success=true;
@@ -105,7 +102,9 @@ static int cmd_help(char *args){
 }
 
 
-void init_sdb(){}
+void init_sdb(){
+	init_regex();
+}
 
 
 void sdb_set_batch_mode() {
