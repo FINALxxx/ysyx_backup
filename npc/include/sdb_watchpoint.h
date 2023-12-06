@@ -1,8 +1,6 @@
 #ifndef __SDB_WP_H__
 #define __SDB_WP_H__
 
-#include "sdb_expr.h"
-
 #define NR_WP 32
 
 typedef struct watchpoint {
@@ -12,7 +10,7 @@ typedef struct watchpoint {
 	char expr_s[100];//表达式
 	uint32_t val;//值
 
-};
+} WP;
 
 
 WP* check_wp(uint32_t* new_result);
