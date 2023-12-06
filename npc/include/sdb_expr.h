@@ -6,6 +6,7 @@
  * Type 'man regex' for more information about POSIX regex functions.
  */
 #include <regex.h>
+#include <iostream>
 
 #define MAX(a,b) (a)>(b) ? (a) : (b)
 
