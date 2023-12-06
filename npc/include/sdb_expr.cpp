@@ -78,10 +78,11 @@ static bool make_token(char *e) {
       if (regexec(&re[i], e +  position, 1, &pmatch, 0) == 0 && pmatch.rm_so == 0) {
         char *substr_start = e + position;//当前子串
         int substr_len = pmatch.rm_eo;//匹配长度
+		
 
-        Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s",
+        /*Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s",
             i, rules[i].regex, position, substr_len, substr_len, substr_start);
-
+		*/
         position += substr_len;//提前切换到下一个子串开始处
 
         /* TODO: Now a new token is recognized with rules[i]. Add codes
