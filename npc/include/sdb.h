@@ -1,13 +1,6 @@
 #ifndef __SDB_H__
 #define __SDB_H__
 
-#include <bits/stdc++.h>
-#include <readline/readline.h>
-#include <readline/history.h>
-#include "macro.h"
-#include "sys_npc.h"
-#include "debug.h"
-#include "sdb_expr.h"
 
 
 extern bool is_batch_mode;

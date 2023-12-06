@@ -1,4 +1,11 @@
 #include"sdb.h"
+#include <bits/stdc++.h>
+#include <readline/readline.h>
+#include <readline/history.h>
+#include "macro.h"
+#include "sys_npc.h"
+#include "debug.h"
+#include "sdb_expr.h"
 #include "sdb_watchpoint.h"
 
 

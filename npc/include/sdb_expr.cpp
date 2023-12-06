@@ -13,6 +13,16 @@
 * See the Mulan PSL v2 for more details.
 ***************************************************************************************/
 #include"sdb_expr.h"
+#include <string.h>
+#include <math.h>
+#include "debug.h"
+#include "macro.h"
+/* We use the POSIX regex functions to process regular expressions.
+ * Type 'man regex' for more information about POSIX regex functions.
+ */
+#include <regex.h>
+#include <iostream>
+#include "sys_npc.h"
 
 
 static struct rule {
