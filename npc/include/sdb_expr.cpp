@@ -212,11 +212,11 @@ int eval(int l,int r){
 			return val;
 		}
 		
-		Assert(0,"illegal expr:cannot find the number or register!\n");//if not a number,then return bad expr
+		//Assert(0,"illegal expr:cannot find the number or register!\n");//if not a number,then return bad expr
 	}else if(check_paren(l,r)==1){
 		return eval(l+1,r-1);//目的是去掉括号，递归查看内部表达式
 	}else if(check_paren(l,r)==-1){
-		Assert(0,"illegal expr:parentheses cannot be matched!\n");
+		//Assert(0,"illegal expr:parentheses cannot be matched!\n");
 		return 0;
 	}else{
 		int operator = op(l,r);//返回op的下标
