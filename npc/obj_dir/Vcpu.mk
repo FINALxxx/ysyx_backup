@@ -44,6 +44,7 @@ VM_USER_LDLIBS = \
 VM_USER_CLASSES = \
 	read_bin \
 	sdb \
+	sdb_expr \
 	sys_npc \
 	main \
 
@@ -65,6 +66,8 @@ VPATH += $(VM_USER_DIR)
 read_bin.o: include/read_bin.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 sdb.o: include/sdb.cpp
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+sdb_expr.o: include/sdb_expr.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 sys_npc.o: include/sys_npc.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
