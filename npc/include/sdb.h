@@ -6,7 +6,8 @@
 #include <readline/history.h>
 #include "macro.h"
 #include "sys_npc.h"
-#include <assert.h>
+#include "debug.h"
+#include "sdb_expr.h"
 
 
 extern bool is_batch_mode;

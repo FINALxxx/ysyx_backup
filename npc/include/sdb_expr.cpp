@@ -12,24 +12,8 @@
 *
 * See the Mulan PSL v2 for more details.
 ***************************************************************************************/
+#include"sdb_expr.h"
 
-#include <string.h>
-#include <math.h>
-#include <debug.h>
-/* We use the POSIX regex functions to process regular expressions.
- * Type 'man regex' for more information about POSIX regex functions.
- */
-#include <regex.h>
-
-#define MAX(a,b) (a)>(b) ? (a) : (b)
-
-static int eval(int l,int r);
-
-enum {
-  TK_NOTYPE = 256, TK_EQ,NUM,L_PAREN,R_PAREN,NOT_EQ,LGC_AND,PTR,REG_NAME,HEX_NUM
-  /* TODO: Add more token types */
-
-};
 
 static struct rule {
   const char *regex;
@@ -77,10 +61,6 @@ void init_regex() {
   }
 }
 
-typedef struct token {
-  int type;
-  char str[32];
-} Token;
 
 static Token tokens[32] __attribute__((used)) = {};//匹配的token内容，这里有一个GNU C的__attribute__((...))功能
 static int nr_token __attribute__((used))  = 0;//匹配的数量
@@ -131,7 +111,7 @@ static bool make_token(char *e) {
 }
 
 
-word_t expr(char *e, bool *success) {//由于函数的return有其他用途，所以success用指针方式修改
+uint32_t expr(char *e, bool *success) {//由于函数的return有其他用途，所以success用指针方式修改
 	if (!make_token(e) ) { 
 		*success = false;
 		return 0;
