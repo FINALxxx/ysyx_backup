@@ -39,6 +39,7 @@ void exec_once();
 static void clk_update();
 int is_exit_status_bad();
 void status_setter(int state,uint32_t pc,int halt_ret);
+uint32_t read_register(uint8_t n);
 
 //void cpu_status_setter(STATUS new_status)
 //STATUS cpu_status_getter()

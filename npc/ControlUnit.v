@@ -142,19 +142,15 @@ module ControlUnit(
     assign op_PC_Asrc = (~branch[2] & branch[1]) | (~IS_ZERO & ~branch[1] & branch[0]) | (LESS & branch[1] & ~branch[0]) | (~branch[2] & branch[0]) | (IS_ZERO & branch[2] & ~branch[1] & ~branch[0]) | (~LESS & branch[1] & branch[0]);
 
     //assign op_PC_Asrc = (~branch[2]) | (~IS_ZERO & ~branch[1] & branch[0]) | (LESS & branch[1] & ~branch[0]) | (IS_ZERO & ~branch[1] & ~branch[0]) | (~LESS & branch[1] & branch[0]);
-
     assign op_PC_Bsrc = ~branch[2] & branch[1] & ~branch[0];
 
 /*  END PC操作数分类 */
 
 
-
-
     reg is_halt;
-    always @(posedge clk) begin
-		//$display("BRANCH=%b\n",branch);
-        is_halt <= (opcode==7'b1110011)&(funct3=='b0)&(funct7=='b0);
-        halt(is_halt);
-    end
+	always @(posedge clk) begin
+		is_halt = (opcode=='b1110011)&(funct3=='b0)&(funct7=='b0);
+		halt(is_halt);
+	end
 
 endmodule

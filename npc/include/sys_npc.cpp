@@ -1,5 +1,5 @@
 #include "sys_npc.h"
-
+#include "Vcpu___024root.h"
 
 vluint64_t sim_time=0;
 FILE* fp =NULL;
@@ -87,6 +87,7 @@ static void clk_update(){
 
 extern "C" void halt(svBit is_halt){//TODO:待修改
 	//NPCTRAP(cpu->pc,10号寄存器($a0)的内容);
+	if(is_halt) NPCTRAP(cpu->pc,read_register(10));	
 	return;
 }
 
@@ -135,4 +136,11 @@ void exec(uint32_t n){
 		break;
 	}
 
+}
+
+
+uint32_t read_register(uint8_t n){
+	VlUnpacked<IData,32> rf_struct = cpu->rootp->cpu__DOT__rf1__DOT__rf;
+	if(n<=32) return rf_struct->m_storage[n];
+	else return 0;//超过数组大小
 }
