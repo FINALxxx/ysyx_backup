@@ -9,6 +9,5 @@ int main(int argc, char** argv) {
 	//exec(MAX_SIM_TIME);
 	sdb_mainloop();
 
-	sim_stop();
 	return is_exit_status_bad();
 }
