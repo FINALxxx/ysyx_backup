@@ -5,7 +5,7 @@ module cpu(
     input [31:0] cmd,
 	output [31:0] pc//暂时引到这里
 );
-	export "DPI-C" function bit[31:0] cmd_getter();
+	export "DPI-C" function bit [31:0] cmd_getter();
 
     //rs1、rs2、rd是寄存器序号，src1、src2、src_rd、imm是数据
     wire [4:0] rs1,rs2,rd;
