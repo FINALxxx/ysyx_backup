@@ -125,9 +125,7 @@ module cpu(
     );
 
 	function bit [31:0] cmd_getter();
-		always @(posedge clk) begin
-			cmd_getter <= cmd;
-		end
+		assign cmd_getter = cmd;
 	endfunction
 
 
