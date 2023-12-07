@@ -92,6 +92,12 @@ extern "C" void init_disasm(const char *triple) {
     gIP->applyTargetSpecificCLOption("no-aliases");
 }
 
+
+//str:输出字符数组
+//size:输出字符数组中，剩余的空间大小
+//pc:指令pc
+//code:指令变量的地址
+//nbyte:指令变量的长度（由于一条指令为32bit=4Byte，因此此处默认为4）
 extern "C" void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte) {
   MCInst inst;
   llvm::ArrayRef<uint8_t> arr(code, nbyte);
