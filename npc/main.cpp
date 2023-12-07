@@ -1,7 +1,6 @@
 #include "include/sys_npc.h"
 #include "include/sdb.h"
 
-
 using namespace std;
 
 int main(int argc, char** argv) {

@@ -36,7 +36,7 @@ static bool g_print_step = false;
 
 void device_update();
 
-static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
+static void single_inst_debug(Decode *_this, vaddr_t dnpc) {
 
 	//itrace
 #ifdef CONFIG_ITRACE_COND
@@ -100,7 +100,8 @@ static void execute(uint64_t n) {//如果传入很大的值n，for循环将执�
   for (;n > 0; n --) { 
     exec_once(&s, cpu.pc);
     g_nr_guest_inst ++; //记录客户指令的计数器
-    trace_and_difftest(&s, cpu.pc);
+    //trace_and_difftest(&s, cpu.pc);
+	single_inst_debug(&s, cpu.pc);
     if (nemu_state.state != NEMU_RUNNING) break;
     IFDEF(CONFIG_DEVICE, device_update());
   }

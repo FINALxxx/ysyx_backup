@@ -169,3 +169,12 @@ void sdb_mainloop(){
 	}
 }
 
+
+void init_monitor(){
+	sdb_init();
+	//init_mem();
+	//init_isa();
+	//img_init();
+	//device_init();
+	//welcome();
+}
