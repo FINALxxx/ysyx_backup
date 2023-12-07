@@ -10,7 +10,7 @@ char* cmd_disasm(){
 	//svBitVecVal默认是uint32_t的数组
 	//此处需要先转化为“以byte或uint8_t为单位”存储，对接llvm::arrayref的存储要求
 	uint8_t* cmd_now = (uint8_t*)cmd_getter();
-	printf("TEST:%u\n",cmd_now);
+	printf("TEST:%hhn\n",cmd_now);
 	char disasm_rst[MAX_INST_LEN];
 	disassemble(disasm_rst,MAX_INST_LEN,cpu->pc,cmd_now,4);
 	return disasm_rst;
