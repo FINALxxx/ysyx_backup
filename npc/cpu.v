@@ -122,7 +122,7 @@ module cpu(
         .IS_ZERO(IS_ZERO)
     );
 
-	function [31:0] cmd_getter();
+	function bit[31:0] cmd_getter();
 		assign cmd_getter = cmd;
 	endfunction
 
