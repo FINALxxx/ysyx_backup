@@ -170,8 +170,9 @@ void sdb_mainloop(){
 }
 
 
-void init_monitor(){
+void monitor_init(){
 	sdb_init();
+	disasm_init();
 	//init_mem();
 	//init_isa();
 	//img_init();

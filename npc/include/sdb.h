@@ -48,5 +48,6 @@ static char* getarg();
 void sdb_init();
 void sdb_set_batch_mode(); 
 void sdb_mainloop();
+void monitor_init();
 
 #endif
