@@ -18,6 +18,7 @@
 #include "Vcpu___024unit.h"
 
 // DPI TYPES for DPI Export callbacks (Internal use)
+using Vcpu__Vcb_cmd_getter_t = void (*) (Vcpu__Syms* __restrict vlSymsp, IData/*31:0*/ &cmd_getter__Vfuncrtn);
 
 // SYMS CLASS (contains all model state)
 class Vcpu__Syms final : public VerilatedSyms {
@@ -32,6 +33,9 @@ class Vcpu__Syms final : public VerilatedSyms {
     // MODULE INSTANCE STATE
     Vcpu___024root                 TOP;
     Vcpu___024unit                 TOP____024unit;
+
+    // SCOPE NAMES
+    VerilatedScope __Vscope_cpu;
 
     // CONSTRUCTORS
     Vcpu__Syms(VerilatedContext* contextp, const char* namep, Vcpu* modelp);

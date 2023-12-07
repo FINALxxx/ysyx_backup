@@ -74,6 +74,9 @@ class Vcpu VL_NOT_FINAL : public VerilatedModel {
     /// Retrieve name of this model instance (as passed to constructor).
     const char* name() const;
 
+    /// DPI Export functions
+    static svBitVecVal cmd_getter();
+
     // Abstract methods from VerilatedModel
     const char* hierName() const override final;
     const char* modelName() const override final;

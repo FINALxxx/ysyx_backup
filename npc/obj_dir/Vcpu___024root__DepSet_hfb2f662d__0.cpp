@@ -8,6 +8,13 @@
 #include "Vcpu__Syms.h"
 #include "Vcpu___024root.h"
 
+void Vcpu___024root____Vdpiexp_cpu__DOT__cmd_getter_TOP(Vcpu__Syms* __restrict vlSymsp, IData/*31:0*/ &cmd_getter__Vfuncrtn) {
+    VL_DEBUG_IF(VL_DBG_MSGF("+    Vcpu___024root____Vdpiexp_cpu__DOT__cmd_getter_TOP\n"); );
+    // Init
+    // Body
+    cmd_getter__Vfuncrtn = vlSymsp->TOP.cmd;
+}
+
 #ifdef VL_DEBUG
 VL_ATTR_COLD void Vcpu___024root___dump_triggers__ico(Vcpu___024root* vlSelf);
 #endif  // VL_DEBUG

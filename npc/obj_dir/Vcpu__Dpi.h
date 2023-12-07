@@ -15,6 +15,10 @@ extern "C" {
 #endif
 
 
+    // DPI EXPORTS
+    // DPI export at cpu.v:125:21
+    extern svBitVecVal cmd_getter();
+
     // DPI IMPORTS
     // DPI import at ControlUnit.v:3:30
     extern void halt(svBit is_halt);
