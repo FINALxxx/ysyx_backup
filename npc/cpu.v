@@ -124,7 +124,7 @@ module cpu(
         .IS_ZERO(IS_ZERO)
     );
 
-	function [31:0] cmd_getter();
+	function bit [31:0] cmd_getter();
 		always @(posedge clk) begin
 			cmd_getter <= cmd;
 		end
