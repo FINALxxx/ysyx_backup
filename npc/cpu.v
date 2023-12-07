@@ -1,5 +1,5 @@
 /* verilator lint_off PINCONNECTEMPTY */
-export "DPI-C" function [31:0] cmd_getter;
+export "DPI-C" function void cmd_getter();
 
 
 
