@@ -85,7 +85,7 @@ static void exec_once(Decode *s, vaddr_t pc) {
 
 #ifndef CONFIG_ISA_loongarch32r
   void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
-  if(ilen!=4) printf("\n\nTEST=%ld\n\n",s->logbuf - p);
+  printf("\n\nTEST=%ld\n\n",s->logbuf - p);
   disassemble(p, s->logbuf + sizeof(s->logbuf) - p,
       MUXDEF(CONFIG_ISA_x86, s->snpc, s->pc), (uint8_t *)&s->isa.inst.val, ilen);
   insert_buffer(pc,p);//pa2.2:新增trace
