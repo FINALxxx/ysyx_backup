@@ -1,5 +1,5 @@
 /* verilator lint_off PINCONNECTEMPTY */
-export "DPI-C" function bit[31:0] cmd_getter;
+export "DPI-C" function [31:0] cmd_getter;
 
 
 
@@ -124,7 +124,7 @@ module cpu(
         .IS_ZERO(IS_ZERO)
     );
 
-	function bit [31:0] cmd_getter();
+	function [31:0] cmd_getter();
 		assign cmd_getter = cmd;
 	endfunction
 
