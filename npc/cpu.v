@@ -1,5 +1,5 @@
 /* verilator lint_off PINCONNECTEMPTY */
-export "DPI-C" function svBitVecVal cmd_getter;
+export "DPI-C" function cmd_getter;
 
 
 
