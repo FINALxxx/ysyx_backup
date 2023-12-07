@@ -4,5 +4,5 @@
 void cmd_disasm(){
 	uint32_t cmd_now = cmd_getter();
 	char* disasm_rst=NULL;
-	disassemble(disasm_rst,c);
+	disassemble(disasm_rst,,cpu->pc,4);
 }
