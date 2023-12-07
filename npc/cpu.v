@@ -5,6 +5,7 @@ module cpu(
     input [31:0] cmd,
 	output [31:0] pc//暂时引到这里
 );
+	export "DPI-C" function bit[31:0] cmd_getter();
 
     //rs1、rs2、rd是寄存器序号，src1、src2、src_rd、imm是数据
     wire [4:0] rs1,rs2,rd;
@@ -120,7 +121,16 @@ module cpu(
         .LESS(LESS),
         .IS_ZERO(IS_ZERO)
     );
-   //测试用，实现后一定要删除
+
+	function [31:0] cmd_getter();
+		always @(posedge clk) begin
+			cmd_getter <= cmd;
+		end
+	endfunction
+
+
+
+	//测试用，实现后一定要删除
     /*always @(posedge clk) begin
         //$display("clk=%b",clk);
 		//$display("pc=%x",pc);

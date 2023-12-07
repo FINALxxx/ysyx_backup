@@ -33,6 +33,8 @@ typedef struct {
 extern NPC_STATUS cpu_status;
 
 
+extern "C" void halt(svBit is_halt);
+extern "C" svBitVecVal* cmd_getter();
 
 
 void sim_init(int argc,char** argv);
