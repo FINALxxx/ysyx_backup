@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-#include <sys_npc.h>
+#include "sys_npc.h"
 
 traceNode buf[MAX_BUF_SIZE];
 uint32_t cur=0;
