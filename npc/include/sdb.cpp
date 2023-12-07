@@ -172,7 +172,7 @@ void sdb_mainloop(){
 
 void monitor_init(){
 	sdb_init();
-	disasm_init();
+	disasm_init("riscv32-pc-linux-gnu");
 	//init_mem();
 	//init_isa();
 	//img_init();
