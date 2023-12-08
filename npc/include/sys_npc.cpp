@@ -75,7 +75,9 @@ void sim_init(int argc,char** argv){
 	printf("[INIT_PC=%#010x]\n\n",cpu->pc);
 
 	/* END 0.5clk */	
-	
+	monitor_init();
+	buffer_init();
+
 }
 
 
@@ -127,7 +129,6 @@ uint8_t pc_VtransP(uint32_t pc){//虚拟转物理地址
 
 
 void exec_once(){
-	//buffer_insert(cpu->pc);
 	clk_update();	
 
 	//cout<<"PC="<<cpu->pc<<endl;
@@ -136,6 +137,8 @@ void exec_once(){
 	//cpu->cmd=cmd[cmd_cur];
 	printf("\t[CMD_HEX=%#010x]\n",cmd[cmd_cur]);
 	//printf("\t[CMD_ASM=%#010x]\n",cmd[cmd_cur]);
+	buffer_insert(cpu->pc);
+
 }
 
 void exec(uint32_t n){
