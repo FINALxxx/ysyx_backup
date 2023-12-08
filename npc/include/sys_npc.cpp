@@ -30,7 +30,6 @@ static void trace_and_difftest(){
 	buffer_insert(cpu->pc);
 
 	//FTRACE
-	printf("CPPTEST,PC=%x,DNPC=%x\n",cpu->pc,cpu->dnpc);
 	elf_call(cpu->pc,cpu->dnpc, (cmd[pc_VtransP(cpu->pc)/4]==0x00008067) );
 
 	//断点调试
