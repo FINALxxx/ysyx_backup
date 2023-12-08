@@ -76,8 +76,13 @@ void sim_init(int argc,char** argv){
 	printf("[INIT_PC=%#010x]\n\n",cpu->pc);
 
 	/* END 0.5clk */	
+
+	//sdb初始化，不使用sdb请关闭	
 	monitor_init();
 	buffer_init();
+	cmd_cur = pc_VtransP(cpu->pc)/4;
+	printf("\t[CUR=%d]\n",cmd_cur);
+	printf("\t[CMD_HEX=%#010x]\n",cmd[cmd_cur]);
 	buffer_insert(cpu->pc);
 
 }
@@ -111,7 +116,7 @@ static void clk_update(){
 	/* END */
 }
 
-extern "C" void halt(svBit is_halt){//TODO:待修改
+extern "C" void halt(svBit is_halt){
 	//NPCTRAP(cpu->pc,10号寄存器($a0)的内容);
 	if(is_halt) NPCTRAP(cpu->pc,read_register(10));	
 	return;
