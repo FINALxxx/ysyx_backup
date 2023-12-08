@@ -1,11 +1,10 @@
 #include<sdb/func_trace.h>
+#include<debug.h>
 #include<elf.h>
-#include <generated/autoconf.h>
 
 #define MAXN 100 //最多MAXN个函数
 #define MAXS 32 //最多MAXS层嵌套
 
-#ifdef CONFIG_FTRACE
 func fs[MAXN];
 uint32_t ptr=0;
 
@@ -61,16 +60,18 @@ void parse_elf(FILE* fp){
 
 }
 
+static void fs_init(){
+	ptr=0;
+}
+
 void elf_init(const char* fileName){
+	fs_init();
 	FILE* fp = fopen(fileName,"r");
-	Assert(fp!=NULL,"ERROR:NO ELF FILE!");
+	Assert(fp!=NULL,"ERROR:NO ELF FILE!\n");
 	//READFAIL = 0;
 	parse_elf(fp);
 }
 
-void fs_init(){
-	ptr=0;
-}
 
 int32_t find_func(uint32_t pc){//注意，返回值是有符号的
 	for(int i=0;i<ptr;i++){
@@ -87,4 +88,3 @@ void call(uint32_t pc_src,uint32_t pc_dst,bool is_ret){//is_ret为1表示
 		if(rst>=0) printf("%#010x:\t%s [%s@%#010x]\n",pc_src,flag,fs[rst].func_name,fs[rst].start);
 		else printf("%#010x:\t%s [???@%#010x]\n",pc_src,flag,fs[rst].start);//找不到函数
 }
-#endif
