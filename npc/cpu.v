@@ -125,11 +125,10 @@ module cpu(
         .IS_ZERO(IS_ZERO)
     );
 
-
+/*
 	//测试用，实现后一定要删除
     always @(posedge clk) begin
-		$display("cmd=%x",cmd);
-	/*    
+		$display("cmd=%x",cmd);   
 		//$display("clk=%b",clk);
 		//$display("pc=%x",pc);
 		$display("=========================================\n");
