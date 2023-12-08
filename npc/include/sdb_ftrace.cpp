@@ -95,6 +95,6 @@ void elf_call(uint32_t pc_src,uint32_t pc_dst,uint32_t cmd){
 	char* flag=NULL;
 	if(is_ret) flag="\tret";
 	else flag="call";
-		if(rst>=0) printf("%#010x:\t%s [%s@%#010x]\n\n",pc_src,flag,fs[rst].func_name,fs[rst].start);
-		else printf("%#010x:\t%s [???@%#010x]\n\n",pc_src,flag,fs[rst].start);//找不到函数
+		if(rst>=0) printf("%#010x:\t%s [%s@%#010x]\n",pc_src,flag,fs[rst].func_name,fs[rst].start);
+		else printf("%#010x:\t%s [???@%#010x]\n",pc_src,flag,fs[rst].start);//找不到函数
 }
