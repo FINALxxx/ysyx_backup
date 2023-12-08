@@ -76,11 +76,9 @@ void sim_init(int argc,char** argv){
 
 	/* END 0.5clk */	
 	
-	cmd_cur = pc_VtransP(cpu->pc)/4;
-	printf("\t[CUR=%d]\n",cmd_cur);
-	printf("\t[CMD_HEX=%#010x]\n",cmd[cmd_cur]);
-	buffer_insert(cpu->pc);
 }
+
+
 void sim_terminate(){
 	if(cpu_status.state == ABORT){//ABORT
 		printf("\nNPC EXIT: \033[0m\033[1;31mABORT\033[0m at pc = %#010x\n\n",cpu_status.halt_pc);
@@ -129,6 +127,7 @@ uint8_t pc_VtransP(uint32_t pc){//虚拟转物理地址
 
 
 void exec_once(){
+	buffer_insert(cpu->pc);
 	clk_update();	
 
 	//cout<<"PC="<<cpu->pc<<endl;
@@ -136,7 +135,6 @@ void exec_once(){
 	printf("\t[CUR=%d]\n",cmd_cur);
 	//cpu->cmd=cmd[cmd_cur];
 	printf("\t[CMD_HEX=%#010x]\n",cmd[cmd_cur]);
-	buffer_insert(cpu->pc);
 	//printf("\t[CMD_ASM=%#010x]\n",cmd[cmd_cur]);
 }
 
