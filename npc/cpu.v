@@ -1,5 +1,5 @@
 /* verilator lint_off PINCONNECTEMPTY */
-import "DPI-C" function bit[31:0] halt(input bit[31:0] pc_now);
+import "DPI-C" function bit[31:0] cmd_getter(input bit[31:0] pc_now);
 
 module cpu(
     input clk,
