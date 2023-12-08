@@ -1,7 +1,7 @@
 #include"sdb.h"
 #include "sdb_expr.h"
 #include "sdb_watchpoint.h"
-//#include "sdb_disasm.h"
+#include "sdb_disasm.h"
 
 bool is_batch_mode = false;
 
