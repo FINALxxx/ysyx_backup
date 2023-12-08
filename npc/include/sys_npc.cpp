@@ -119,7 +119,7 @@ extern "C" void halt(svBit is_halt){//TODO:待修改
 
 //取指
 extern "C" svBitVecVal* cmd_getter(svBitVecVal* pc_now){
-	return (uint32_t*)cmd[pc_VtransP(pc_now[0])/4];
+	return (svBitVecVal*)cmd[pc_VtransP(pc_now[0])/4];
 }
 
 
