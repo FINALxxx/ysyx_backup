@@ -73,17 +73,14 @@ void sim_init(int argc,char** argv){
 	cpu->rst=0;
 	cpu->eval();
 	printf("[INIT_PC=%#010x]\n\n",cpu->pc);
+
 	/* END 0.5clk */	
 	
-
-	/* 波形调试
-	env->traceEverOn(true);
-	VerilatedVcdC* m_trace = new VerilatedVcdC; 
-	cpu->trace(m_trace,5);
-	m_trace->open("wave.vcd");
-	*/
-} 
-
+	cmd_cur = pc_VtransP(cpu->pc)/4;
+	printf("\t[CUR=%d]\n",cmd_cur);
+	printf("\t[CMD_HEX=%#010x]\n",cmd[cmd_cur]);
+	buffer_insert(cpu->pc);
+}
 void sim_terminate(){
 	if(cpu_status.state == ABORT){//ABORT
 		printf("\nNPC EXIT: \033[0m\033[1;31mABORT\033[0m at pc = %#010x\n\n",cpu_status.halt_pc);
