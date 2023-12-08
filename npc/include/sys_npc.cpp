@@ -117,9 +117,15 @@ extern "C" void halt(svBit is_halt){//TODO:待修改
 	return;
 }
 
+//取指
+extern "C" svBitVecVal* cmd_getter(svBitVecVal* pc_now){
+	uint32_t cmd_val[1] = cmd + pc_VtransP(pc_now[0]);
+	return &cmd_val;
+}
 
 
-//执行指令
+
+//执行
 uint8_t pc_VtransP(uint32_t pc){//虚拟转物理地址
 	return pc-BASE_Vaddr;
 }
@@ -131,8 +137,8 @@ void exec_once(){
 	//cout<<"PC="<<cpu->pc<<endl;
 	cmd_cur = pc_VtransP(cpu->pc)/4;
 	printf("\t[CUR=%d]\n",cmd_cur);
-	cpu->cmd=cmd[cmd_cur];
-	printf("\t[CMD=%#010x]\n",cpu->cmd);
+	//cpu->cmd=cmd[cmd_cur];
+	printf("\t[CMD=%#010x]\n",cmd[cmd_cur]);
 }
 
 void exec(uint32_t n){

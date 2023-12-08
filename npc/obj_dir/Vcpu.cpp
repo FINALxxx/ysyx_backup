@@ -14,7 +14,6 @@ Vcpu::Vcpu(VerilatedContext* _vcontextp__, const char* _vcname__)
     , vlSymsp{new Vcpu__Syms(contextp(), _vcname__, this)}
     , clk{vlSymsp->TOP.clk}
     , rst{vlSymsp->TOP.rst}
-    , cmd{vlSymsp->TOP.cmd}
     , pc{vlSymsp->TOP.pc}
     , __PVT____024unit{vlSymsp->TOP.__PVT____024unit}
     , rootp{&(vlSymsp->TOP)}
