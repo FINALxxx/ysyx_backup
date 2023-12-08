@@ -24,7 +24,6 @@ VM_TRACE_FST = 0
 # Generated module classes, fast-path, compile with highest optimization
 VM_CLASSES_FAST += \
 	Vcpu \
-	Vcpu__Dpi_Export__0 \
 	Vcpu___024root__DepSet_hfb2f662d__0 \
 	Vcpu___024root__DepSet_h2d56fd23__0 \
 	Vcpu___024unit__DepSet_h08a7e8fb__0 \

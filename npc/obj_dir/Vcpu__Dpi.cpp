@@ -14,11 +14,3 @@
 #include "Vcpu__Dpi.h"
 #include "Vcpu.h"
 
-#ifndef VL_DPIDECL_cmd_getter_
-#define VL_DPIDECL_cmd_getter_
-svBitVecVal cmd_getter() {
-    // DPI export at cpu.v:125:21
-    return Vcpu::cmd_getter();
-}
-#endif
-
