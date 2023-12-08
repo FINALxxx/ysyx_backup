@@ -89,8 +89,8 @@ void sim_init(int argc,char** argv){
 	buffer_init();
 	elf_init(argv[2]);
 	cmd_cur = pc_VtransP(cpu->pc)/4;
-	printf("\t[CUR=%d]\n",cmd_cur);
-	printf("\t[CMD_HEX=%#010x]\n",cmd[cmd_cur]);
+	//printf("\t[CUR=%d]\n",cmd_cur);
+	//printf("\t[CMD_HEX=%#010x]\n",cmd[cmd_cur]);
 	buffer_insert(cpu->pc);
 
 }
@@ -148,9 +148,8 @@ void exec_once(){
 
 	//cout<<"PC="<<cpu->pc<<endl;
 	cmd_cur = pc_VtransP(cpu->pc)/4;
-	printf("\t[CUR=%d]\n",cmd_cur);
-	//cpu->cmd=cmd[cmd_cur];
-	printf("\t[CMD_HEX=%#010x]\n",cmd[cmd_cur]);
+	//printf("\t[CUR=%d]\n",cmd_cur);
+	//printf("\t[CMD_HEX=%#010x]\n",cmd[cmd_cur]);
 	
 }
 
