@@ -8,6 +8,7 @@ VFILE = .v
 WAVEFILE = wave.vcd
 
 BINSRC ?=
+ELFSRC ?=
 
 CSRC = $(wildcard *${CFILE})
 CSRC += $(wildcard include/*${CFILE})
@@ -39,10 +40,11 @@ sim:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
 	verilator -Wall --cc --exe -top-module ${VTOP} --build ${CSRC} ${VSRC} --trace -LDFLAGS "${LIBS}"
 	make -C obj_dir -f ${TGS}.mk ${TGS}
-	./obj_dir/${TGS} ${BINSRC}
+	./obj_dir/${TGS} ${BINSRC} ${ELFSRC}
 	#gtkwave ./${WAVEFILE}
 
 clean:
+	@echo remove <NPC>/obj_dir:
 	rm obj_dir -rf
 
 include ../Makefile

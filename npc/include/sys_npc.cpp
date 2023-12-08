@@ -80,9 +80,10 @@ void sim_init(int argc,char** argv){
 
 	/* END 0.5clk */	
 
-	//sdb初始化，不使用sdb请关闭	
+	//sdb、itrace、frace初始化，不使用请按需关闭	
 	monitor_init();
 	buffer_init();
+	elf_init(argv[2]);
 	cmd_cur = pc_VtransP(cpu->pc)/4;
 	printf("\t[CUR=%d]\n",cmd_cur);
 	printf("\t[CMD_HEX=%#010x]\n",cmd[cmd_cur]);
