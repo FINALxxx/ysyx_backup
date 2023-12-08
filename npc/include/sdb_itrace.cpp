@@ -15,14 +15,12 @@ void cmd_disasm(uint32_t pc,char* disasm_rst){
 }
 
 void buffer_insert(uint32_t pc){
-	//uint32_t _pc=pc;
 	buf[cur].pc = pc;
 	buf[cur].inst = cmd[pc_VtransP(pc)/4];
 	char log[MAX_INST_LEN];
 	cmd_disasm(pc,log);
 
 	strncpy(buf[cur].log, log, strlen(log));	
-	//printf("%d:%s\n",cur,buf[cur].log);
 	cur = (cur+1)%MAX_BUF_SIZE;
 	is_full = is_full || (cur==MAX_BUF_SIZE-1);
 }
