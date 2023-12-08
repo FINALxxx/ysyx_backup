@@ -34,7 +34,7 @@ $(OBJ_DIR)/%.o: %.cc
 
 
 
-all:
+sim-all:
 	@echo ${CSRC}
 sim:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
@@ -43,7 +43,7 @@ sim:
 	./obj_dir/${TGS} ${BINSRC} ${ELFSRC}
 	#gtkwave ./${WAVEFILE}
 
-clean:
+sim-clean:
 	@echo remove <NPC>/obj_dir:
 	rm obj_dir -rf
 

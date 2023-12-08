@@ -46,6 +46,7 @@ VM_USER_CLASSES = \
 	sdb \
 	sdb_disasm \
 	sdb_expr \
+	sdb_ftrace \
 	sdb_itrace \
 	sdb_watchpoint \
 	sys_npc \
@@ -73,6 +74,8 @@ sdb.o: include/sdb.cpp
 sdb_disasm.o: include/sdb_disasm.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 sdb_expr.o: include/sdb_expr.cpp
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+sdb_ftrace.o: include/sdb_ftrace.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 sdb_itrace.o: include/sdb_itrace.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
