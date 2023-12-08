@@ -73,7 +73,7 @@ void sim_init(int argc,char** argv){
 	cpu->clk^=1;
 	cpu->rst=0;
 	cpu->eval();
-	printf("[INIT_PC=%#010x]\n\n",cpu->pc);
+	printf("\t[INIT_PC=%#010x]\n\n",cpu->pc);
 
 	/* END 0.5clk */	
 
@@ -143,7 +143,6 @@ void exec_once(){
 	printf("\t[CUR=%d]\n",cmd_cur);
 	//cpu->cmd=cmd[cmd_cur];
 	printf("\t[CMD_HEX=%#010x]\n",cmd[cmd_cur]);
-	//printf("\t[CMD_ASM=%#010x]\n",cmd[cmd_cur]);
 	buffer_insert(cpu->pc);
 
 }
