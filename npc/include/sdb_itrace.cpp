@@ -8,9 +8,8 @@ uint32_t cur=0;
 bool is_full=false;//如果未满，就从0开始读取；如果满，就从cur+1开始读取。两者都一直读到cur-1为止
 
 char* cmd_disasm(){
-	//svBitVecVal默认是uint32_t的数组
 	//此处需要先转化为“以byte或uint8_t为单位”存储，对接llvm::arrayref的存储要求
-	uint8_t* cmd_now = (uint8_t*)cmd_getter();
+	uint8_t* cmd_src = (uint8_t*)cmd + pc_VtransP(pc);
 	printf("TEST:%hhn\n",cmd_now);
 	char disasm_rst[MAX_INST_LEN];
 	disassemble(disasm_rst,MAX_INST_LEN,cpu->pc,cmd_now,4);
@@ -20,8 +19,7 @@ char* cmd_disasm(){
 void insert_buffer(uint32_t pc,char* log){
 	//uint32_t _pc=pc;
 	buf[cur].pc = pc;
-	uint32_t* cmd_now = cmd_getter();
-	buf[cur].inst = cmd_now[0];
+	buf[cur].inst = cmd[pc_VtransP(pc)];
 	strncpy(buf[cur].log, log, strlen(log));	
 	//printf("%d:%s\n",cur,buf[cur].log);
 	cur = (cur+1)%MAX_BUF_SIZE;
