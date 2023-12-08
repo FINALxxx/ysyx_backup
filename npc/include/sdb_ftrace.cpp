@@ -81,7 +81,7 @@ int32_t find_func(uint32_t pc){//注意，返回值是有符号的
 }
 
 void elf_call(uint32_t pc_src,uint32_t pc_dst,bool is_ret){
-	printf("CPPTEST,PC=%x,DNPC=%x\n",cpu->pc,cpu->dnpc);
+	printf("CPPTEST,PC=%x,DNPC=%x\n",pc_src,pc_dst);
 
 	int32_t rst = find_func(pc_dst);
 	char* flag=NULL;
