@@ -168,12 +168,12 @@ void exec(uint32_t n){
 	}
 
 	switch(cpu_status.state){
-		buffer_disp();
 		case ALIVE:
 			cpu_status.state = STOP;
 		break;
 
 		case DEAD: case ABORT:
+			buffer_disp();
 			if(cpu_status.halt_pc == 0){//运行结束
 				//TODO:输出调试信息
 			}
