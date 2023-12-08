@@ -168,6 +168,7 @@ void exec(uint32_t n){
 	}
 
 	switch(cpu_status.state){
+		buffer_disp();
 		case ALIVE:
 			cpu_status.state = STOP;
 		break;
@@ -175,7 +176,6 @@ void exec(uint32_t n){
 		case DEAD: case ABORT:
 			if(cpu_status.halt_pc == 0){//运行结束
 				//TODO:输出调试信息
-				buffer_disp();
 			}
 			sim_terminate();
 			
