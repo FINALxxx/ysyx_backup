@@ -1,4 +1,4 @@
-#include<sdb/func_trace.h>
+#include"sdb_ftrace.h"
 #include<debug.h>
 #include<elf.h>
 
