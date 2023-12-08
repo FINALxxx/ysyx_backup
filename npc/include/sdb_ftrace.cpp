@@ -84,9 +84,14 @@ int32_t find_func(uint32_t pc){//注意，返回值是有符号的
 	return -1;
 }
 
-void elf_call(uint32_t pc_src,uint32_t pc_dst,bool is_ret){
-	printf("CPPTEST,PC=%x,DNPC=%x\n",pc_src,pc_dst);
-
+void elf_call(uint32_t pc_src,uint32_t pc_dst,uint32_t cmd){
+	
+	uint8_t Jflag = (cmd & 0x1111111);
+	bool is_jal_or_jalr = (Jflag==0x6F || Jflag==0x67);
+	if(!is_jal_or_jalr) return;
+	
+	//printf("CPPTEST,PC=%x,DNPC=%x\n",pc_src,pc_dst);
+	bool is_ret = (cmd == 0x80008067);
 	int32_t rst = find_func(pc_dst);
 	char* flag=NULL;
 	if(is_ret) flag="\tret";

@@ -30,7 +30,7 @@ static void trace_and_difftest(){
 	buffer_insert(cpu->pc);
 
 	//FTRACE
-	elf_call(cpu->pc,cpu->dnpc, (cmd[pc_VtransP(cpu->pc)/4]==0x00008067) );
+	elf_call(cpu->pc,cpu->dnpc, cmd[pc_VtransP(cpu->pc)/4] );
 
 	//断点调试
 	uint32_t new_result=0;
