@@ -1,12 +1,12 @@
 /* verilator lint_off PINCONNECTEMPTY */
+import "DPI-C" function bit[31:0] halt(input bit[31:0] pc_now);
+
 module cpu(
     input clk,
     input rst,
     input [31:0] cmd,
 	output [31:0] pc//暂时引到这里
 );
-	export "DPI-C" function cmd_getter;
-
     //rs1、rs2、rd是寄存器序号，src1、src2、src_rd、imm是数据
     wire [4:0] rs1,rs2,rd;
     wire [31:0] src1,src2,imm,src_rd;
@@ -121,11 +121,6 @@ module cpu(
         .LESS(LESS),
         .IS_ZERO(IS_ZERO)
     );
-
-	function bit[31:0] cmd_getter();
-		assign cmd_getter = cmd;
-	endfunction
-
 
 
 	//测试用，实现后一定要删除
