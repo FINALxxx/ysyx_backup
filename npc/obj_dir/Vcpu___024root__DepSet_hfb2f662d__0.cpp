@@ -44,8 +44,6 @@ VL_INLINE_OPT void Vcpu___024root___nba_sequent__TOP__0(Vcpu___024root* vlSelf) 
     // Body
     Vcpu___024unit____Vdpiimwrap_halt_TOP____024unit(vlSelf->cpu__DOT__cu1__DOT__is_halt);
     __Vdlyvset__cpu__DOT__rf1__DOT__rf__v0 = 0U;
-    VL_WRITEF("==FROM PC==\n\npc=%x\ndnpc=%x\n\n\n",
-              32,vlSelf->pc,32,vlSelf->dnpc);
     if (((IData)(vlSelf->cpu__DOT__cu1__DOT____VdfgTmp_hf442cbef__0) 
          | ((0x6fU == (0x7fU & vlSelf->cpu__DOT__cmd)) 
             | ((3U == (0x7fU & vlSelf->cpu__DOT__cmd)) 
@@ -57,6 +55,8 @@ VL_INLINE_OPT void Vcpu___024root___nba_sequent__TOP__0(Vcpu___024root* vlSelf) 
                                                    & (vlSelf->cpu__DOT__cmd 
                                                       >> 7U));
     }
+    vlSelf->pc = ((IData)(vlSelf->rst) ? 0x80000000U
+                   : vlSelf->dnpc);
     vlSelf->cpu__DOT__cu1__DOT__is_halt = (IData)((0x73U 
                                                    == 
                                                    (0x4000707fU 
@@ -65,8 +65,6 @@ VL_INLINE_OPT void Vcpu___024root___nba_sequent__TOP__0(Vcpu___024root* vlSelf) 
         vlSelf->cpu__DOT__rf1__DOT__rf[__Vdlyvdim0__cpu__DOT__rf1__DOT__rf__v0] 
             = __Vdlyvval__cpu__DOT__rf1__DOT__rf__v0;
     }
-    vlSelf->pc = ((IData)(vlSelf->rst) ? 0x80000000U
-                   : vlSelf->dnpc);
     vlSelf->cpu__DOT__mux2__DOT__i0__DOT__pair_list[1U] 
         = (QData)((IData)(vlSelf->pc));
     vlSelf->cpu__DOT__mux3__DOT__i0__DOT__pair_list[0U] 
