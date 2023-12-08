@@ -146,7 +146,6 @@ VL_ATTR_COLD void Vcpu___024root__trace_init_sub__TOP__0(Vcpu___024root* vlSelf,
     tracep->pushNamePrefix("genblk1 ");
     tracep->popNamePrefix(5);
     tracep->pushNamePrefix("cu1 ");
-    tracep->declBit(c+326,"clk", false,-1);
     tracep->declBus(c+154,"opcode", false,-1, 6,0);
     tracep->declBus(c+155,"funct3", false,-1, 2,0);
     tracep->declBit(c+156,"funct7", false,-1);
