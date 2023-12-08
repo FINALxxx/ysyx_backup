@@ -473,8 +473,8 @@ VL_ATTR_COLD void Vcpu___024root__trace_init_sub__TOP__0(Vcpu___024root* vlSelf,
     tracep->declBus(c+83,"a", false,-1, 31,0);
     tracep->declBus(c+84,"b", false,-1, 31,0);
     tracep->declBit(c+364,"wen", false,-1);
-    tracep->declBus(c+339,"npc", false,-1, 31,0);
-    tracep->declBus(c+299,"tmp_pc", false,-1, 31,0);
+    tracep->declBus(c+339,"dnpc", false,-1, 31,0);
+    tracep->declBus(c+299,"tmp_dnpc", false,-1, 31,0);
     tracep->declBus(c+300,"result", false,-1, 31,0);
     tracep->pushNamePrefix("add1 ");
     tracep->declBit(c+365,"mode", false,-1);
@@ -490,7 +490,7 @@ VL_ATTR_COLD void Vcpu___024root__trace_init_sub__TOP__0(Vcpu___024root* vlSelf,
     tracep->declBit(c+304,"LESS_s", false,-1);
     tracep->declBus(c+84,"add_cin", false,-1, 31,0);
     tracep->popNamePrefix(1);
-    tracep->pushNamePrefix("pc2snpc ");
+    tracep->pushNamePrefix("pc2dnpc ");
     tracep->declBus(c+342,"WIDTH", false,-1, 31,0);
     tracep->declBus(c+366,"RESET_VAL", false,-1, 31,0);
     tracep->declBit(c+337,"clk", false,-1);
@@ -560,8 +560,8 @@ VL_ATTR_COLD void Vcpu___024root__trace_full_sub_0(Vcpu___024root* vlSelf, Veril
     VlWide<4>/*127:0*/ __Vtemp_hedab82a1__0;
     VlWide<6>/*191:0*/ __Vtemp_h3b964fba__0;
     VlWide<3>/*95:0*/ __Vtemp_hfeedee49__0;
-    VlWide<3>/*95:0*/ __Vtemp_hc856c7a6__0;
-    VlWide<3>/*95:0*/ __Vtemp_h27f5bc9c__0;
+    VlWide<3>/*95:0*/ __Vtemp_h156b7331__0;
+    VlWide<3>/*95:0*/ __Vtemp_h96a86a1c__0;
     VlWide<4>/*127:0*/ __Vtemp_h2a03d93b__0;
     // Body
     bufp->fullCData(oldp+1,(vlSelf->cpu__DOT__alu1__DOT__mux1__DOT__i0__DOT__key_list[0]),3);
@@ -995,32 +995,32 @@ VL_ATTR_COLD void Vcpu___024root__trace_full_sub_0(Vcpu___024root* vlSelf, Veril
     bufp->fullIData(oldp+259,(vlSelf->cpu__DOT__mux1__DOT__i0__DOT__data_list[1]),32);
     bufp->fullIData(oldp+260,(vlSelf->cpu__DOT__mux1__DOT__i0__DOT__lut_out),32);
     bufp->fullBit(oldp+261,(vlSelf->cpu__DOT__mux1__DOT__i0__DOT__hit));
-    __Vtemp_hc856c7a6__0[0U] = (IData)((0x100000000ULL 
+    __Vtemp_h156b7331__0[0U] = (IData)((0x100000000ULL 
                                         | (QData)((IData)(vlSelf->cpu__DOT__src1))));
-    __Vtemp_hc856c7a6__0[1U] = ((vlSelf->cpu__DOT__pc1__DOT__tmp_pc 
+    __Vtemp_h156b7331__0[1U] = ((vlSelf->cpu__DOT__pc1__DOT__tmp_dnpc 
                                  << 1U) | (IData)((
                                                    (0x100000000ULL 
                                                     | (QData)((IData)(vlSelf->cpu__DOT__src1))) 
                                                    >> 0x20U)));
-    __Vtemp_hc856c7a6__0[2U] = (vlSelf->cpu__DOT__pc1__DOT__tmp_pc 
+    __Vtemp_h156b7331__0[2U] = (vlSelf->cpu__DOT__pc1__DOT__tmp_dnpc 
                                 >> 0x1fU);
-    bufp->fullWData(oldp+262,(__Vtemp_hc856c7a6__0),66);
+    bufp->fullWData(oldp+262,(__Vtemp_h156b7331__0),66);
     bufp->fullQData(oldp+265,(vlSelf->cpu__DOT__mux2__DOT__i0__DOT__pair_list[0]),33);
     bufp->fullQData(oldp+267,(vlSelf->cpu__DOT__mux2__DOT__i0__DOT__pair_list[1]),33);
     bufp->fullIData(oldp+269,(vlSelf->cpu__DOT__mux2__DOT__i0__DOT__data_list[0]),32);
     bufp->fullIData(oldp+270,(vlSelf->cpu__DOT__mux2__DOT__i0__DOT__data_list[1]),32);
     bufp->fullIData(oldp+271,(vlSelf->cpu__DOT__mux2__DOT__i0__DOT__lut_out),32);
     bufp->fullBit(oldp+272,(vlSelf->cpu__DOT__mux2__DOT__i0__DOT__hit));
-    __Vtemp_h27f5bc9c__0[0U] = (IData)((0x100000000ULL 
-                                        | (QData)((IData)(vlSelf->cpu__DOT__pc1__DOT__tmp_pc))));
-    __Vtemp_h27f5bc9c__0[1U] = ((vlSelf->cpu__DOT__src1 
+    __Vtemp_h96a86a1c__0[0U] = (IData)((0x100000000ULL 
+                                        | (QData)((IData)(vlSelf->cpu__DOT__pc1__DOT__tmp_dnpc))));
+    __Vtemp_h96a86a1c__0[1U] = ((vlSelf->cpu__DOT__src1 
                                  << 1U) | (IData)((
                                                    (0x100000000ULL 
-                                                    | (QData)((IData)(vlSelf->cpu__DOT__pc1__DOT__tmp_pc))) 
+                                                    | (QData)((IData)(vlSelf->cpu__DOT__pc1__DOT__tmp_dnpc))) 
                                                    >> 0x20U)));
-    __Vtemp_h27f5bc9c__0[2U] = (vlSelf->cpu__DOT__src1 
+    __Vtemp_h96a86a1c__0[2U] = (vlSelf->cpu__DOT__src1 
                                 >> 0x1fU);
-    bufp->fullWData(oldp+273,(__Vtemp_h27f5bc9c__0),66);
+    bufp->fullWData(oldp+273,(__Vtemp_h96a86a1c__0),66);
     bufp->fullQData(oldp+276,(vlSelf->cpu__DOT__mux3__DOT__i0__DOT__pair_list[0]),33);
     bufp->fullQData(oldp+278,(vlSelf->cpu__DOT__mux3__DOT__i0__DOT__pair_list[1]),33);
     bufp->fullIData(oldp+280,(vlSelf->cpu__DOT__mux3__DOT__i0__DOT__data_list[0]),32);
@@ -1044,7 +1044,7 @@ VL_ATTR_COLD void Vcpu___024root__trace_full_sub_0(Vcpu___024root* vlSelf, Veril
     bufp->fullIData(oldp+296,(vlSelf->cpu__DOT__mux4__DOT__i0__DOT__data_list[2]),32);
     bufp->fullIData(oldp+297,(vlSelf->cpu__DOT__mux4__DOT__i0__DOT__lut_out),32);
     bufp->fullBit(oldp+298,(vlSelf->cpu__DOT__mux4__DOT__i0__DOT__hit));
-    bufp->fullIData(oldp+299,(vlSelf->cpu__DOT__pc1__DOT__tmp_pc),32);
+    bufp->fullIData(oldp+299,(vlSelf->cpu__DOT__pc1__DOT__tmp_dnpc),32);
     bufp->fullIData(oldp+300,(vlSelf->cpu__DOT__pc1__DOT__result),32);
     bufp->fullBit(oldp+301,((1U & (IData)((1ULL & (
                                                    ((QData)((IData)(vlSelf->cpu__DOT__a0)) 

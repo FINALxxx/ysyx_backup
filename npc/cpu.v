@@ -5,7 +5,8 @@ module cpu(
     input clk,
     input rst,
     //input [31:0] cmd,
-	output [31:0] pc//暂时引到这里
+	output [31:0] pc,//暂时引到这里
+	output [31:0] dnpc
 );
     wire [31:0] cmd;
 	assign cmd = cmd_getter(pc);
@@ -108,7 +109,8 @@ module cpu(
         .rst(rst),
         .a(a0),
         .b(b0),
-        .dnpc(pc),
+        .dnpc(dnpc),
+		.pc(pc),
 		.wen(1'b1)
     );
 
@@ -125,7 +127,7 @@ module cpu(
         .IS_ZERO(IS_ZERO)
     );
 
-/*
+
 	//测试用，实现后一定要删除
     always @(posedge clk) begin
 		$display("cmd=%x",cmd);   
@@ -146,8 +148,8 @@ module cpu(
         $display("PCAsrc=%b",op_PC_Asrc);
         $display("PCBsrc=%b",op_PC_Bsrc);
         $display("a0=%b",a0);
-        $display("b0=%b",b0); 
-    end*/
+        $display("b0=%b",b0);*/
+    end
 	
 
 endmodule

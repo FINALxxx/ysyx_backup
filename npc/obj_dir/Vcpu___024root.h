@@ -71,7 +71,7 @@ class Vcpu___024root final : public VerilatedModule {
         IData/*31:0*/ cpu__DOT__mux2__DOT__i0__DOT__lut_out;
         IData/*31:0*/ cpu__DOT__mux3__DOT__i0__DOT__lut_out;
         IData/*31:0*/ cpu__DOT__mux4__DOT__i0__DOT__lut_out;
-        IData/*31:0*/ cpu__DOT__pc1__DOT__tmp_pc;
+        IData/*31:0*/ cpu__DOT__pc1__DOT__tmp_dnpc;
         IData/*31:0*/ cpu__DOT__pc1__DOT__result;
         IData/*31:0*/ cpu__DOT__alu1__DOT__ADDER_result;
         IData/*31:0*/ cpu__DOT__alu1__DOT__SHIFT_result;

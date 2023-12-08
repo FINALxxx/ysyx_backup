@@ -5,10 +5,11 @@ module PC(
     input [31:0] a,
     input [31:0] b,
 	input wen,
-    output [31:0] dnpc
+	output [31:0] dnpc,//提前算好dnpc，当到触发沿时才更新到pc上
+	output [31:0] pc
 );
 	//wire reset;
-    wire [31:0] tmp_dnpc,result;
+    wire [31:0] tmp_dnpc;
 
 
     adder add1(
@@ -16,28 +17,28 @@ module PC(
         .a(a),
         .b(b),
         .S_U(1),
-        .result(result),
+        .result(dnpc),
         .LESS(),
         .IS_ZERO()
     );
 
     //assign reset = ~(|npc) | rst;
-    Reg #(32,32'h80000000) pc2dnpc (
+    Reg #(32,32'h80000000) dnpc2pc (
         .clk(clk),
         .rst(rst),
-        .din(result),
-        .dout(tmp_dnpc),
+        .din(dnpc),
+        .dout(pc),
         .wen(wen)
     );
 
-    assign dnpc = tmp_dnpc;
-	always @(posedge clk) begin
+    //assign dnpc = tmp_dnpc;
+	/*always @(posedge clk) begin
 		$display("==FROM PC==\n");
 		/*$display("rst=%b",rst);
-		$display("wen=%b",wen);*/
+		$display("wen=%b",wen);
 		$display("result=%x",result);
 		$display("tmp_dnpc=%x",tmp_dnpc);
 		$display("dnpc=%x",dnpc);
 		$display("\n");
-	end
+	end*/
 endmodule
