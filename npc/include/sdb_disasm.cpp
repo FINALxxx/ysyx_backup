@@ -13,7 +13,7 @@
 * See the Mulan PSL v2 for more details.
 ***************************************************************************************/
 #include "sdb_disasm.h"
-
+#include "stdint.h"
 
 #if defined(__GNUC__) && !defined(__clang__)
 #pragma GCC diagnostic push
