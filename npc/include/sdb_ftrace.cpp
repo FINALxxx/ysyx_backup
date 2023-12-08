@@ -76,7 +76,10 @@ void elf_init(const char* fileName){
 int32_t find_func(uint32_t pc){//注意，返回值是有符号的
 	printf("CPPTEST_FIND_PC=%x\n",pc);
 	for(int i=0;i<ptr;i++){
-		if(fs[i].start <= pc && pc <= fs[i].end) return i;//返回func_idx
+		if(fs[i].start <= pc && pc <= fs[i].end) {
+			printf("%d\n",i);
+			return i;//返回func_idx
+		}
 	}
 	return -1;
 }
