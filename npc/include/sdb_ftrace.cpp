@@ -91,7 +91,7 @@ void elf_call(uint32_t pc_src,uint32_t pc_dst,uint32_t cmd){
 	if(!is_jal_or_jalr) return;
 	
 	bool is_ret = (cmd == 0x80008067);
-	printf("%d\n",is_ret);
+	printf("%d===%x\n",is_ret,cmd);
 	int32_t rst = find_func(pc_dst);
 	char* flag=NULL;
 	if(is_ret) flag="\tret";
