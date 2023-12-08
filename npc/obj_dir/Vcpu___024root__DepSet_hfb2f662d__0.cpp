@@ -44,7 +44,7 @@ VL_INLINE_OPT void Vcpu___024root___nba_sequent__TOP__0(Vcpu___024root* vlSelf) 
     // Body
     Vcpu___024unit____Vdpiimwrap_halt_TOP____024unit(vlSelf->cpu__DOT__cu1__DOT__is_halt);
     __Vdlyvset__cpu__DOT__rf1__DOT__rf__v0 = 0U;
-    VL_WRITEF("==FROM PC==\n\nresult=%x\ntmp_pc=%b\nnpc=%b\n\n\n",
+    VL_WRITEF("==FROM PC==\n\nresult=%x\ntmp_pc=%x\nnpc=%x\n\n\n",
               32,vlSelf->cpu__DOT__pc1__DOT__result,
               32,vlSelf->cpu__DOT__pc1__DOT__tmp_pc,
               32,vlSelf->pc);

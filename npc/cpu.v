@@ -108,7 +108,7 @@ module cpu(
         .rst(rst),
         .a(a0),
         .b(b0),
-        .npc(pc),
+        .dnpc(pc),
 		.wen(1'b1)
     );
 

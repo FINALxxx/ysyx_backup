@@ -5,10 +5,10 @@ module PC(
     input [31:0] a,
     input [31:0] b,
 	input wen,
-    output [31:0] npc
+    output [31:0] dnpc
 );
 	//wire reset;
-    wire [31:0] tmp_pc,result;
+    wire [31:0] tmp_dnpc,result;
 
 
     adder add1(
@@ -22,15 +22,15 @@ module PC(
     );
 
     //assign reset = ~(|npc) | rst;
-    Reg #(32,32'h80000000) pc2snpc (
+    Reg #(32,32'h80000000) pc2dnpc (
         .clk(clk),
         .rst(rst),
         .din(result),
-        .dout(tmp_pc),
+        .dout(tmp_dnpc),
         .wen(wen)
     );
 
-    assign npc = tmp_pc;
+    assign dnpc = tmp_dnpc;
 	always @(posedge clk) begin
 		$display("==FROM PC==\n");
 		/*$display("rst=%b",rst);
