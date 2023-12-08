@@ -128,7 +128,7 @@ module cpu(
     );
 
 
-	//测试用，实现后一定要删除
+	/*//测试用，实现后一定要删除
     always @(posedge clk) begin
 		$display("cmd=%x",cmd);   
 		//$display("clk=%b",clk);
