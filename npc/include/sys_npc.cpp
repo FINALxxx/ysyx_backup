@@ -2,6 +2,7 @@
 #include "Vcpu___024root.h"
 #include "sdb_watchpoint.h"
 #include "sdb_itrace.h"
+#include "sdb.h"
 
 vluint64_t sim_time=0;
 FILE* fp =NULL;
