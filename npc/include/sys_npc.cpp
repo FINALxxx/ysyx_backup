@@ -77,7 +77,8 @@ void sim_init(int argc,char** argv){
 
 	/* END 0.5clk */	
 	monitor_init();
-	buffer_init(cpu->pc);
+	buffer_init();
+	buffer_insert(cpu->pc);
 
 }
 
