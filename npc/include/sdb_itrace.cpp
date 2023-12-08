@@ -10,14 +10,17 @@ bool is_full=false;//如果未满，就从0开始读取；如果满，就从cur+
 void cmd_disasm(uint32_t pc,char* disasm_rst){
 	//此处需要先转化为“以byte或uint8_t为单位”存储，对接llvm::arrayref的存储要求
 	uint8_t* cmd_src = (uint8_t*)cmd + pc_VtransP(pc);
-	printf("TEST:%hhn\n",cmd_src);
+	printf("IN CMD_DISASM:%hhn\n",cmd_src);
 	disassemble(disasm_rst,MAX_INST_LEN,pc,cmd_src,4);
 }
 
-void insert_buffer(uint32_t pc,char* log){
+void insert_buffer(uint32_t pc){
 	//uint32_t _pc=pc;
 	buf[cur].pc = pc;
 	buf[cur].inst = cmd[pc_VtransP(pc)];
+	char log[MAX_INST_LEN];
+	cmd_disasm(pc,log);
+
 	strncpy(buf[cur].log, log, strlen(log));	
 	//printf("%d:%s\n",cur,buf[cur].log);
 	cur = (cur+1)%MAX_BUF_SIZE;

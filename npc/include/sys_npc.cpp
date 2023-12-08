@@ -1,6 +1,7 @@
 #include "sys_npc.h"
 #include "Vcpu___024root.h"
 #include "sdb_watchpoint.h"
+#include "sdb_itrace.h"
 
 vluint64_t sim_time=0;
 FILE* fp =NULL;
@@ -137,7 +138,9 @@ void exec_once(){
 	cmd_cur = pc_VtransP(cpu->pc)/4;
 	printf("\t[CUR=%d]\n",cmd_cur);
 	//cpu->cmd=cmd[cmd_cur];
-	printf("\t[CMD=%#010x]\n",cmd[cmd_cur]);
+	printf("\t[CMD_HEX=%#010x]\n",cmd[cmd_cur]);
+
+	//printf("\t[CMD_ASM=%#010x]\n",cmd[cmd_cur]);
 }
 
 void exec(uint32_t n){
