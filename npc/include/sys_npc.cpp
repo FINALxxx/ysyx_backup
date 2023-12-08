@@ -127,7 +127,7 @@ uint8_t pc_VtransP(uint32_t pc){//虚拟转物理地址
 
 
 void exec_once(){
-	buffer_insert(cpu->pc);
+	//buffer_insert(cpu->pc);
 	clk_update();	
 
 	//cout<<"PC="<<cpu->pc<<endl;
