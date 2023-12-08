@@ -56,6 +56,7 @@ class Vcpu___024root final : public VerilatedModule {
         CData/*0:0*/ __Vtrigrprev__TOP__clk;
         CData/*0:0*/ __VactContinue;
         VL_OUT(pc,31,0);
+        VL_OUT(dnpc,31,0);
         IData/*31:0*/ cpu__DOT__cmd;
         IData/*31:0*/ cpu__DOT__src1;
         IData/*31:0*/ cpu__DOT__src2;
@@ -72,7 +73,6 @@ class Vcpu___024root final : public VerilatedModule {
         IData/*31:0*/ cpu__DOT__mux3__DOT__i0__DOT__lut_out;
         IData/*31:0*/ cpu__DOT__mux4__DOT__i0__DOT__lut_out;
         IData/*31:0*/ cpu__DOT__pc1__DOT__tmp_dnpc;
-        IData/*31:0*/ cpu__DOT__pc1__DOT__result;
         IData/*31:0*/ cpu__DOT__alu1__DOT__ADDER_result;
         IData/*31:0*/ cpu__DOT__alu1__DOT__SHIFT_result;
         IData/*31:0*/ cpu__DOT__alu1__DOT__add1__DOT__add_cin;

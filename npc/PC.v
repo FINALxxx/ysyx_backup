@@ -9,7 +9,7 @@ module PC(
 	output [31:0] pc
 );
 	//wire reset;
-    wire [31:0] tmp_dnpc;
+    //wire [31:0] tmp_dnpc;
 
 
     adder add1(

@@ -33,14 +33,13 @@ VL_ATTR_COLD void Vcpu___024root___stl_sequent__TOP__0(Vcpu___024root* vlSelf) {
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vcpu___024root___stl_sequent__TOP__0\n"); );
     // Body
     vlSelf->cpu__DOT__mux2__DOT__i0__DOT__pair_list[1U] 
-        = (QData)((IData)(vlSelf->cpu__DOT__pc1__DOT__tmp_dnpc));
+        = (QData)((IData)(vlSelf->pc));
     vlSelf->cpu__DOT__mux3__DOT__i0__DOT__pair_list[0U] 
-        = (0x100000000ULL | (QData)((IData)(vlSelf->cpu__DOT__pc1__DOT__tmp_dnpc)));
+        = (0x100000000ULL | (QData)((IData)(vlSelf->pc)));
     vlSelf->cpu__DOT__mux2__DOT__i0__DOT__data_list[1U] 
-        = vlSelf->cpu__DOT__pc1__DOT__tmp_dnpc;
+        = vlSelf->pc;
     vlSelf->cpu__DOT__mux3__DOT__i0__DOT__data_list[0U] 
-        = vlSelf->cpu__DOT__pc1__DOT__tmp_dnpc;
-    vlSelf->pc = vlSelf->cpu__DOT__pc1__DOT__tmp_dnpc;
+        = vlSelf->pc;
     Vcpu___024unit____Vdpiimwrap_cmd_getter_TOP____024unit(vlSelf->pc, vlSelf->__Vfunc_cmd_getter__0__Vfuncout);
     vlSelf->cpu__DOT__cmd = vlSelf->__Vfunc_cmd_getter__0__Vfuncout;
     vlSelf->cpu__DOT__cu1__DOT__mux4__DOT__i0__DOT__pair_list[0U] 
@@ -924,6 +923,5 @@ VL_ATTR_COLD void Vcpu___024root___stl_sequent__TOP__0(Vcpu___024root* vlSelf) {
                         [1U]))) & vlSelf->cpu__DOT__mux1__DOT__i0__DOT__data_list
             [1U]));
     vlSelf->cpu__DOT__a0 = vlSelf->cpu__DOT__mux1__DOT__i0__DOT__lut_out;
-    vlSelf->cpu__DOT__pc1__DOT__result = (vlSelf->cpu__DOT__a0 
-                                          + vlSelf->cpu__DOT__b0);
+    vlSelf->dnpc = (vlSelf->cpu__DOT__a0 + vlSelf->cpu__DOT__b0);
 }
