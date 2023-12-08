@@ -42,6 +42,6 @@ void buffer_disp(){
 		disp_ptr = (disp_ptr+1)%MAX_BUF_SIZE;
 	}
 	printf("-->%#10x:\t%-40s\t:%#010x\n",buf[cur-1].pc,buf[cur-1].log,buf[cur-1].inst);
-	printf("\t[ITRACE TERMINATE]\n");
+	printf("\t\033[0m\033[1;31m[ITRACE TERMINATE]\033[0m\n");
 }
 
