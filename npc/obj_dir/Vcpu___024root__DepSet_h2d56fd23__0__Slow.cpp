@@ -367,7 +367,6 @@ VL_ATTR_COLD void Vcpu___024root___ctor_var_reset(Vcpu___024root* vlSelf) {
     }
     vlSelf->cpu__DOT__mux4__DOT__i0__DOT__lut_out = VL_RAND_RESET_I(32);
     vlSelf->cpu__DOT__mux4__DOT__i0__DOT__hit = VL_RAND_RESET_I(1);
-    vlSelf->cpu__DOT__pc1__DOT__tmp_dnpc = VL_RAND_RESET_I(32);
     vlSelf->cpu__DOT__alu1__DOT__ADDER_result = VL_RAND_RESET_I(32);
     vlSelf->cpu__DOT__alu1__DOT__SHIFT_result = VL_RAND_RESET_I(32);
     vlSelf->cpu__DOT__alu1__DOT__add1__DOT__add_cin = VL_RAND_RESET_I(32);

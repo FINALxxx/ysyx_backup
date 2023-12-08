@@ -477,9 +477,8 @@ VL_ATTR_COLD void Vcpu___024root__trace_init_sub__TOP__0(Vcpu___024root* vlSelf,
     tracep->declBit(c+363,"wen", false,-1);
     tracep->declBus(c+329,"dnpc", false,-1, 31,0);
     tracep->declBus(c+328,"pc", false,-1, 31,0);
-    tracep->declBus(c+364,"tmp_dnpc", false,-1, 31,0);
     tracep->pushNamePrefix("add1 ");
-    tracep->declBit(c+365,"mode", false,-1);
+    tracep->declBit(c+364,"mode", false,-1);
     tracep->declBus(c+83,"a", false,-1, 31,0);
     tracep->declBus(c+84,"b", false,-1, 31,0);
     tracep->declBit(c+363,"S_U", false,-1);
@@ -494,7 +493,7 @@ VL_ATTR_COLD void Vcpu___024root__trace_init_sub__TOP__0(Vcpu___024root* vlSelf,
     tracep->popNamePrefix(1);
     tracep->pushNamePrefix("dnpc2pc ");
     tracep->declBus(c+341,"WIDTH", false,-1, 31,0);
-    tracep->declBus(c+366,"RESET_VAL", false,-1, 31,0);
+    tracep->declBus(c+365,"RESET_VAL", false,-1, 31,0);
     tracep->declBit(c+326,"clk", false,-1);
     tracep->declBit(c+327,"rst", false,-1);
     tracep->declBus(c+329,"din", false,-1, 31,0);
@@ -1124,7 +1123,6 @@ VL_ATTR_COLD void Vcpu___024root__trace_full_sub_0(Vcpu___024root* vlSelf, Veril
     bufp->fullIData(oldp+361,(0x21U),32);
     bufp->fullIData(oldp+362,(2U),32);
     bufp->fullBit(oldp+363,(1U));
-    bufp->fullIData(oldp+364,(vlSelf->cpu__DOT__pc1__DOT__tmp_dnpc),32);
-    bufp->fullBit(oldp+365,(0U));
-    bufp->fullIData(oldp+366,(0x80000000U),32);
+    bufp->fullBit(oldp+364,(0U));
+    bufp->fullIData(oldp+365,(0x80000000U),32);
 }
