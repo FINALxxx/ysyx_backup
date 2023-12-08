@@ -165,15 +165,17 @@ void exec(uint32_t n){
 		break;
 	}
 
+
+	printf("\n\t\033[0m\033[1;31m[FTRACE RUNNING]\033[0m\n");
 	for(;n>0;--n){
 		exec_once();
 
-		printf("\n\t\033[0m\033[1;31m[FTRACE RUNNING]\033[0m\n");
-		trace_and_difftest();
-		printf("\t\033[0m\033[1;31m[FTRACE TERMINATE]\033[0m\n");
+				trace_and_difftest();
 		
 		if(cpu_status.state!=ALIVE) break;
 	}
+	printf("\t\033[0m\033[1;31m[FTRACE TERMINATE]\033[0m\n");
+
 
 	switch(cpu_status.state){
 		case ALIVE:
