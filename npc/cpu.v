@@ -32,7 +32,7 @@ module cpu(
 
     /* status setter */
     ControlUnit cu1(
-		.clk(clk),
+		//.clk(clk),
         .opcode(cmd[6:0]),
         .funct3(cmd[14:12]),
         .funct7(cmd[30]),
