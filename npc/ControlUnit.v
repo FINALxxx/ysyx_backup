@@ -148,7 +148,7 @@ module ControlUnit(
 
 
     reg is_halt;
-	always @(posedge clk) begin
+	always @(*) begin
 		is_halt <= (opcode=='b1110011)&(funct3=='b0)&(funct7=='b0);
 		halt(is_halt);
 	end
