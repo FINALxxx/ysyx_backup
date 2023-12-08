@@ -139,7 +139,7 @@ void exec_once(){
 	printf("\t[CUR=%d]\n",cmd_cur);
 	//cpu->cmd=cmd[cmd_cur];
 	printf("\t[CMD_HEX=%#010x]\n",cmd[cmd_cur]);
-
+	buffer_insert(cpu->pc);
 	//printf("\t[CMD_ASM=%#010x]\n",cmd[cmd_cur]);
 }
 
