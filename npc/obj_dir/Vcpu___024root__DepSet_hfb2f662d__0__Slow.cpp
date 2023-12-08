@@ -26,6 +26,7 @@ VL_ATTR_COLD void Vcpu___024root___eval_triggers__stl(Vcpu___024root* vlSelf) {
 }
 
 void Vcpu___024unit____Vdpiimwrap_cmd_getter_TOP____024unit(IData/*31:0*/ pc_now, IData/*31:0*/ &cmd_getter__Vfuncrtn);
+void Vcpu___024unit____Vdpiimwrap_halt_TOP____024unit(CData/*0:0*/ is_halt);
 
 VL_ATTR_COLD void Vcpu___024root___stl_sequent__TOP__0(Vcpu___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
@@ -42,6 +43,11 @@ VL_ATTR_COLD void Vcpu___024root___stl_sequent__TOP__0(Vcpu___024root* vlSelf) {
         = vlSelf->pc;
     Vcpu___024unit____Vdpiimwrap_cmd_getter_TOP____024unit(vlSelf->pc, vlSelf->__Vfunc_cmd_getter__0__Vfuncout);
     vlSelf->cpu__DOT__cmd = vlSelf->__Vfunc_cmd_getter__0__Vfuncout;
+    vlSelf->cpu__DOT__cu1__DOT__is_halt = (IData)((0x73U 
+                                                   == 
+                                                   (0x4000707fU 
+                                                    & vlSelf->cpu__DOT__cmd)));
+    Vcpu___024unit____Vdpiimwrap_halt_TOP____024unit(vlSelf->cpu__DOT__cu1__DOT__is_halt);
     vlSelf->cpu__DOT__cu1__DOT__mux4__DOT__i0__DOT__pair_list[0U] 
         = (0x50U | ((0x40000000U & vlSelf->cpu__DOT__cmd)
                      ? 0xdU : 5U));
