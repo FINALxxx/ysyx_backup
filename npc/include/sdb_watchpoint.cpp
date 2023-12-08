@@ -20,7 +20,7 @@
 static WP wp_pool[NR_WP] = {};//用static修饰可能是为了防止其他文件操作该变量
 static WP *head = NULL, *free_ = NULL;//记得改回static
 
-void init_wp_pool() {
+void wp_init() {
   int i;
   for (i = 0; i < NR_WP; i ++) {
     wp_pool[i].NO = i;

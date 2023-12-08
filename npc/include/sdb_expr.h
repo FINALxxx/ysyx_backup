@@ -13,7 +13,7 @@ typedef struct token {
   int type;
   char str[32];
 } Token;
-void init_regex();
+void regex_init();
 
 //以下函数可以在其他地方使用
 uint32_t expr(char *e, bool *success);

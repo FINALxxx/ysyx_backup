@@ -128,7 +128,7 @@ static int cmd_help(char *args){
 
 
 void sdb_init(){
-	init_regex();
+	regex_init();
 	init_wp_pool();
 	buffer_init();
 }
