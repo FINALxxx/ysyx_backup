@@ -90,7 +90,7 @@ void elf_call(uint32_t pc_src,uint32_t pc_dst,uint32_t cmd){
 	bool is_jal_or_jalr = (Jflag==0x6F || Jflag==0x67);
 	if(!is_jal_or_jalr) return;
 	
-	bool is_ret = (cmd == 0x80008067);
+	bool is_ret = (cmd == 0x8067);
 	printf("%d===%x\n",is_ret,cmd);
 	int32_t rst = find_func(pc_dst);
 	char* flag=NULL;
