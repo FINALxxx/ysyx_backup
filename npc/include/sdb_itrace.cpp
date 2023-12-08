@@ -14,7 +14,7 @@ void cmd_disasm(uint32_t pc,char* disasm_rst){
 	disassemble(disasm_rst,MAX_INST_LEN,pc,cmd_src,4);
 }
 
-void insert_buffer(uint32_t pc){
+void buffer_insert(uint32_t pc){
 	//uint32_t _pc=pc;
 	buf[cur].pc = pc;
 	buf[cur].inst = cmd[pc_VtransP(pc)];
@@ -27,14 +27,14 @@ void insert_buffer(uint32_t pc){
 	is_full = is_full || (cur==MAX_BUF_SIZE-1);
 }
 
-void init_buffer(){
+void buffer_init(){
 	is_full=false,cur=0;
 	//while(!is_full){
 	//	insert_buffer();
 	//}
 }
 
-void disp_buffer(){
+void buffer_disp(){
 	printf("\n[ITRACE RUNNING]\n");
 	uint32_t disp_ptr = is_full ? (cur+1)%MAX_BUF_SIZE : 0 ;//从0或者从cur+1开始
 	while(disp_ptr != cur-1){

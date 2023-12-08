@@ -8,7 +8,7 @@ typedef struct{
 } traceNode;
 
 void cmd_disasm(uint32_t pc,char* disasm_rst);
-void insert_buffer(uint32_t pc,char* log);
-void init_buffer();
-void disp_buffer();
+void buffer_insert(uint32_t pc,char* log);
+void buffer_init();
+void buffer_disp();
 
