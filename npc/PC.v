@@ -31,14 +31,15 @@ module PC(
         .wen(wen)
     );
 
-    //assign dnpc = tmp_dnpc;
+    /*
+	//assign dnpc = tmp_dnpc;
 	always @(posedge clk) begin
 		$display("==FROM PC==\n");
 		/*$display("rst=%b",rst);
-		$display("wen=%b",wen);*/
+		$display("wen=%b",wen)
 		$display("pc=%x",pc);
 		//$display("tmp_dnpc=%x",tmp_dnpc);
 		$display("dnpc=%x",dnpc);
 		$display("\n");
-	end
+	end*/
 endmodule
