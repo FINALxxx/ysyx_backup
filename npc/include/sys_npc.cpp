@@ -25,6 +25,9 @@ uint8_t reg_len = sizeof(regs)/sizeof(regs[0]);
 
 //基础设施相关
 static void trace_and_difftest(){
+	//ITRACE
+	buffer_insert(cpu->pc);
+
 	//断点调试
 	uint32_t new_result=0;
 	WP* wp=check_wp(&new_result);
@@ -143,8 +146,7 @@ void exec_once(){
 	printf("\t[CUR=%d]\n",cmd_cur);
 	//cpu->cmd=cmd[cmd_cur];
 	printf("\t[CMD_HEX=%#010x]\n",cmd[cmd_cur]);
-	buffer_insert(cpu->pc);
-
+	
 }
 
 void exec(uint32_t n){
