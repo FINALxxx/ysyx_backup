@@ -29,6 +29,9 @@ static void trace_and_difftest(){
 	//ITRACE
 	buffer_insert(cpu->pc);
 
+	//FTRACE
+	elf_call(cpu->pc,cpu->dnpc, (cmd[pc_VtransP(cpu->pc)/4]==0x00008067) );
+
 	//断点调试
 	uint32_t new_result=0;
 	WP* wp=check_wp(&new_result);
