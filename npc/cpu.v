@@ -148,8 +148,8 @@ module cpu(
         $display("PCBsrc=%b",op_PC_Bsrc);
         $display("a0=%b",a0);
         $display("b0=%b",b0);
-        
-    end*/
+    */ 
+    end
 	
 
 endmodule
