@@ -58,7 +58,7 @@ static regex_t re[NR_REGEX] = {};
 /* Rules are used for many times.
  * Therefore we compile them only once before any usage.
  */
-void init_regex() {
+void regex_init() {
   int i;
   char error_msg[128];
   int ret;

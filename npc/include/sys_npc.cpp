@@ -1,6 +1,9 @@
 #include "sys_npc.h"
 #include "Vcpu___024root.h"
 #include "sdb_watchpoint.h"
+#include "sdb_itrace.h"
+#include "sdb_ftrace.h"
+#include "sdb.h"
 
 vluint64_t sim_time=0;
 FILE* fp =NULL;
@@ -23,6 +26,12 @@ uint8_t reg_len = sizeof(regs)/sizeof(regs[0]);
 
 //基础设施相关
 static void trace_and_difftest(){
+	//ITRACE
+	buffer_insert(cpu->pc);
+
+	//FTRACE
+	elf_call(cpu->pc,cpu->dnpc, cmd[pc_VtransP(cpu->pc)/4] );
+
 	//断点调试
 	uint32_t new_result=0;
 	WP* wp=check_wp(&new_result);
@@ -71,17 +80,21 @@ void sim_init(int argc,char** argv){
 	cpu->clk^=1;
 	cpu->rst=0;
 	cpu->eval();
-	printf("[INIT_PC=%#010x]\n\n",cpu->pc);
-	/* END 0.5clk */	
-	
+	printf("\t[INIT_PC=%#010x]\n\n",cpu->pc);
 
-	/* 波形调试
-	env->traceEverOn(true);
-	VerilatedVcdC* m_trace = new VerilatedVcdC; 
-	cpu->trace(m_trace,5);
-	m_trace->open("wave.vcd");
-	*/
-} 
+	/* END 0.5clk */	
+
+	//sdb、itrace、frace初始化，不使用请按需关闭	
+	monitor_init();
+	buffer_init();
+	elf_init(argv[2]);
+	cmd_cur = pc_VtransP(cpu->pc)/4;
+	//printf("\t[CUR=%d]\n",cmd_cur);
+	//printf("\t[CMD_HEX=%#010x]\n",cmd[cmd_cur]);
+	buffer_insert(cpu->pc);
+
+}
+
 
 void sim_terminate(){
 	if(cpu_status.state == ABORT){//ABORT
@@ -111,14 +124,20 @@ static void clk_update(){
 	/* END */
 }
 
-extern "C" void halt(svBit is_halt){//TODO:待修改
+extern "C" void halt(svBit is_halt){
 	//NPCTRAP(cpu->pc,10号寄存器($a0)的内容);
 	if(is_halt) NPCTRAP(cpu->pc,read_register(10));	
 	return;
 }
 
-//执行指令
+//取指
+extern "C" svBitVecVal* cmd_getter(svBitVecVal* pc_now){
+	return (svBitVecVal*)cmd[pc_VtransP(pc_now[0])/4];
+}
 
+
+
+//执行
 uint8_t pc_VtransP(uint32_t pc){//虚拟转物理地址
 	return pc-BASE_Vaddr;
 }
@@ -129,9 +148,9 @@ void exec_once(){
 
 	//cout<<"PC="<<cpu->pc<<endl;
 	cmd_cur = pc_VtransP(cpu->pc)/4;
-	printf("\t[CUR=%d]\n",cmd_cur);
-	cpu->cmd=cmd[cmd_cur];
-	printf("\t[CMD=%#010x]\n",cpu->cmd);
+	//printf("\t[CUR=%d]\n",cmd_cur);
+	//printf("\t[CMD_HEX=%#010x]\n",cmd[cmd_cur]);
+	
 }
 
 void exec(uint32_t n){
@@ -146,11 +165,17 @@ void exec(uint32_t n){
 		break;
 	}
 
+
+	printf("\n\t\033[0m\033[1;31m[FTRACE RUNNING]\033[0m\n");
 	for(;n>0;--n){
 		exec_once();
-		trace_and_difftest();
+
+				trace_and_difftest();
+		
 		if(cpu_status.state!=ALIVE) break;
 	}
+	printf("\t\033[0m\033[1;31m[FTRACE TERMINATE]\033[0m\n");
+
 
 	switch(cpu_status.state){
 		case ALIVE:
@@ -158,6 +183,7 @@ void exec(uint32_t n){
 		break;
 
 		case DEAD: case ABORT:
+			buffer_disp();
 			if(cpu_status.halt_pc == 0){//运行结束
 				//TODO:输出调试信息
 			}

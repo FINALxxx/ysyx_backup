@@ -3,7 +3,7 @@
 import "DPI-C" function void halt(input bit is_halt);
 
 module ControlUnit(
-	input clk,//同步halt()
+	//input clk,//同步halt()
     input [6:0] opcode,
     input [2:0] funct3,
     input funct7,
@@ -148,8 +148,8 @@ module ControlUnit(
 
 
     reg is_halt;
-	always @(posedge clk) begin
-		is_halt <= (opcode=='b1110011)&(funct3=='b0)&(funct7=='b0);
+	always @(*) begin
+		is_halt = (opcode=='b1110011)&(funct3=='b0)&(funct7=='b0);
 		halt(is_halt);
 	end
 

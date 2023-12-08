@@ -1,7 +1,8 @@
 #include"sdb.h"
 #include "sdb_expr.h"
 #include "sdb_watchpoint.h"
-
+#include "sdb_disasm.h"
+#include "sdb_itrace.h"
 
 bool is_batch_mode = false;
 
@@ -127,8 +128,8 @@ static int cmd_help(char *args){
 
 
 void sdb_init(){
-	init_regex();
-	init_wp_pool();
+	regex_init();
+	wp_init();
 }
 
 
@@ -169,3 +170,13 @@ void sdb_mainloop(){
 	}
 }
 
+
+void monitor_init(){
+	sdb_init();
+	disasm_init("riscv32-pc-linux-gnu");
+	//init_mem();
+	//init_isa();
+	//img_init();
+	//device_init();
+	//welcome();
+}

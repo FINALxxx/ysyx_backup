@@ -137,6 +137,7 @@ void init_monitor(int argc, char *argv[]) {
   init_sdb();
 
 #ifndef CONFIG_ISA_loongarch32r
+//riscv32时为：riscv32-pc-linux-gnu
   IFDEF(CONFIG_ITRACE, init_disasm(
     MUXDEF(CONFIG_ISA_x86,     "i686",
     MUXDEF(CONFIG_ISA_mips32,  "mipsel",

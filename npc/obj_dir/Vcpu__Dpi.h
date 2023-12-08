@@ -16,6 +16,8 @@ extern "C" {
 
 
     // DPI IMPORTS
+    // DPI import at cpu.v:2:35
+    extern svBitVecVal cmd_getter(const svBitVecVal* pc_now);
     // DPI import at ControlUnit.v:3:30
     extern void halt(svBit is_halt);
 
