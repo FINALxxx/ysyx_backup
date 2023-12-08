@@ -36,8 +36,8 @@ module PC(
 		/*$display("rst=%b",rst);
 		$display("wen=%b",wen);*/
 		$display("result=%x",result);
-		$display("tmp_pc=%x",tmp_pc);
-		$display("npc=%x",npc);
+		$display("tmp_dnpc=%x",tmp_dnpc);
+		$display("dnpc=%x",dnpc);
 		$display("\n");
 	end
 endmodule
