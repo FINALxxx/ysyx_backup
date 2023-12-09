@@ -21,20 +21,20 @@
 
 //spike有类似的函数，在${HEMU_HOME}/tools/spike-diff/difftest.cc中
 __EXPORT void difftest_memcpy(paddr_t addr, void *buf, size_t n, bool direction) {
-	assert(0);
-	/*if(direction == DIFFTEST_TO_REF){
+	//assert(0);
+	if(direction == DIFFTEST_TO_REF){
 		for(int i=0;i<n;++i){
 			paddr_write(addr+i,1, *((int8_t*)buf) );//写入1Byte数据
 		}
 	}else{
 		//spike中也没有具体语句
 		assert(0);
-	}*/
+	}
 }
 
 __EXPORT void difftest_regcpy(void *dut, bool direction) {
-	assert(0);
-	/*uint32_t reg_len = sizeof(cpu.gpr)/sizeof(cpu.gpr[0]);
+	//assert(0);
+	uint32_t reg_len = sizeof(cpu.gpr)/sizeof(cpu.gpr[0]);
 	if(direction == DIFFTEST_TO_REF){
 		for(int i=0;i<reg_len;i++){
 			cpu.gpr[i] = ((uint32_t*)dut)[i];
@@ -43,13 +43,13 @@ __EXPORT void difftest_regcpy(void *dut, bool direction) {
 		for(int i=0;i<reg_len;i++){
 			((uint32_t*)dut)[i] = cpu.gpr[i];
 		}
-	}*/
+	}
 
 }
 
 __EXPORT void difftest_exec(uint64_t n) {
-  assert(0);
-  //cpu_exec(n);
+  //assert(0);
+  cpu_exec(n);
 }
 
 __EXPORT void difftest_raise_intr(word_t NO) {
