@@ -9,6 +9,7 @@ WAVEFILE = wave.vcd
 
 BINSRC ?=
 ELFSRC ?=
+SOSRC ?=
 
 CSRC = $(wildcard *${CFILE})
 CSRC += $(wildcard include/*${CFILE})
@@ -32,6 +33,10 @@ $(OBJ_DIR)/%.o: %.cc
 	#$(call call_fixdep, $(@:.o=.d), $@)
 # END
 
+# START - 链接NEMU difftest
+LIB += ${SOSRC}
+
+# END
 
 
 sim-all:
