@@ -24,8 +24,8 @@ run: image
 	#@echo cp ${IMAGE}.bin ${NPC_IMAGE}
 	make -C ${NPC_HOME} -f Makefile BINSRC=${IMAGE}.bin ELFSRC=${IMAGE}.elf sim
 
-clean:
+sim-clean:
 	make -C ${NPC_HOME} -f Makefile clean
 
-all:
+sim-all:
 	make -C ${NPC_HOME} -f Makefile all
