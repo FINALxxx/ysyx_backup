@@ -22,14 +22,14 @@
 //spike有类似的函数，在${HEMU_HOME}/tools/spike-diff/difftest.cc中
 __EXPORT void difftest_memcpy(paddr_t addr, void *buf, size_t n, bool direction) {
 	//assert(0);
-	if(direction == DIFFTEST_TO_REF){
+	/*if(direction == DIFFTEST_TO_REF){
 		for(int i=0;i<n;++i){
 			paddr_write(addr+i,1, *((int8_t*)buf) );//写入1Byte数据
 		}
 	}else{
 		//spike中也没有具体语句
 		assert(0);
-	}
+	}*/
 }
 
 __EXPORT void difftest_regcpy(void *dut, bool direction) {
