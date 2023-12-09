@@ -17,9 +17,16 @@
 #include <cpu/cpu.h>
 #include <difftest-def.h>
 #include <memory/paddr.h>
+#define DIFFTEST_TO_REF 1
 
+
+//spike有类似的函数，在${HEMU_HOME}/tools/spike-diff/difftest.cc中
 __EXPORT void difftest_memcpy(paddr_t addr, void *buf, size_t n, bool direction) {
-  assert(0);
+	assert(0);
+	//if(direction == DIFFTEST_TO_REF){
+		
+	//}
+
 }
 
 __EXPORT void difftest_regcpy(void *dut, bool direction) {
