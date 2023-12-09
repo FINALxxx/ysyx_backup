@@ -14,7 +14,7 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 }
 
 int sprintf(char *out, const char *fmt, ...) {
-	int cnt=0;
+	/*int cnt=0;
 	char* out_ptr = out;
 	//while(*out_ptr!='\0') out_ptr++;
 	
@@ -67,7 +67,8 @@ int sprintf(char *out, const char *fmt, ...) {
     }
     va_end(args);
     *out_ptr='\0';
-    return cnt;
+    return cnt;*/
+	return 0;
 
 }
 

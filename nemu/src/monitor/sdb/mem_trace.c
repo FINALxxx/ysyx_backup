@@ -1,7 +1,7 @@
 #include <sdb/mem_trace.h>
 #include <generated/autoconf.h>
 
-//#ifdef CONFIG_MTRACE
+#ifdef CONFIG_MTRACE
 #ifdef CONFIG_MTRACE_SIZE
 memTraceNode membuf[CONFIG_MTRACE_SIZE];
 #else
@@ -37,4 +37,4 @@ void disp_mem_buffer(){
 	printf("M%c\t%#010x\t%-8d\t(Byte)\t%#010x\n",status,membuf[mem_cur-1].addr,membuf[mem_cur-1].op_size,membuf[mem_cur-1].data);
 	printf("[MRACE TERMINATE]\n");
 }
-//#endif
+#endif
