@@ -79,7 +79,7 @@ void sim_init(int argc,char** argv){
 	/* START 0.5clk */	
 	cpu->clk^=1;
 	cpu->rst=0;
-	cpu->eval();
+	//cpu->eval();
 	printf("\t[INIT_PC=%#010x]\n\n",cpu->pc);
 
 	/* END 0.5clk */	
