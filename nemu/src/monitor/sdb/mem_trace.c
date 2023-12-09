@@ -12,7 +12,7 @@ bool mem_is_full=false;//如果未满，就从0开始读取；如果满，就从
 
 
 void insert_mem_buffer(bool status,uint32_t addr,uint32_t op_size,uint32_t data){
-	printf("%d\n",op_size);
+	//printf("%d\n",op_size);
 	membuf[mem_cur].status=status;
 	membuf[mem_cur].addr=addr;
 	membuf[mem_cur].op_size=op_size;
