@@ -36,6 +36,6 @@ void disp_mem_buffer(){
 	}
 	char status = membuf[mem_cur-1].status ? 'w' : 'r' ;
 	printf("M%c\t%#010x\t%-8d\t(Byte)\t%#010x\n",status,membuf[mem_cur-1].addr,membuf[mem_cur-1].op_size,membuf[mem_cur-1].data);
-	printf("[MRACE TERMINATE]\n");
+	printf("[MTRACE TERMINATE]\n");
 }
 #endif
