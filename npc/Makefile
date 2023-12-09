@@ -34,12 +34,12 @@ $(OBJ_DIR)/%.o: %.cc
 # END
 
 # START - 链接NEMU difftest
-LIB += ${SOSRC}
+LIBS += ${SOSRC}
 
 # END
 
 
-sim-all:
+all:
 	@echo ${CSRC}
 sim:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
@@ -48,7 +48,7 @@ sim:
 	./obj_dir/${TGS} ${BINSRC} ${ELFSRC}
 	#gtkwave ./${WAVEFILE}
 
-sim-clean:
+clean:
 	@echo remove <NPC>/obj_dir:
 	rm obj_dir -rf
 
