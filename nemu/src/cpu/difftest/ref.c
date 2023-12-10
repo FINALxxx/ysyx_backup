@@ -12,8 +12,10 @@
 *
 * See the Mulan PSL v2 for more details.
 ***************************************************************************************/
-
-#include <test.h>
+#include <isa.h>
+#include <cpu/cpu.h>
+#include <difftest-def.h>
+#include <memory/paddr.h>
 
 
 //spike有类似的函数，在${HEMU_HOME}/tools/spike-diff/difftest.cc中
