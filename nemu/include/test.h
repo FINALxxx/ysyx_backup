@@ -1,4 +1,7 @@
-#include "difftest-def.h"
+#include <isa.h>
+#include <cpu/cpu.h>
+#include <difftest-def.h>
+#include <memory/paddr.h>
 
 __EXPORT void difftest_memcpy(paddr_t addr, void *buf, size_t n, bool direction);
 
