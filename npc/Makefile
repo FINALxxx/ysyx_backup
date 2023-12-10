@@ -42,7 +42,7 @@ LIBS += -L${NEMU_HOME}/build -lriscv32-nemu-interpreter-so
 all:
 	@echo ${CSRC}
 sim:
-	@echo TEST = ${LIBS}
+	@echo LINK_LIBS = ${LIBS}
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
 	verilator -Wall --cc --exe -top-module ${VTOP} --build ${CSRC} ${VSRC} --trace -CFLAGS "${CFLAGS}" -LDFLAGS "${LIBS}"
 	make -C obj_dir -f ${TGS}.mk ${TGS}
