@@ -10,7 +10,7 @@ VSRC = $(shell find $(abspath ./vsrc) -name "*.v")
 VINC = $(abspath ./vinc) 
 CSRC = $(shell find $(abspath ./csrc) -name "*.cpp")
 CINC = $(abspath ./cinc) 
-LIB += -I${CINC}
+#LIB += -I${CINC}
 
 VTOP = cpu
 TGS = V${VTOP}
