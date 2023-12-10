@@ -15,7 +15,7 @@ CSRC += $(wildcard include/*${CFILE})
 #CSRC += $(wildcard include/**/*${CFILE})
 #CSRC += $(wildcard include/**/*.h)
 
-VSRC = $(shell find $(abspath ./vsrc) -name .v)
+VSRC = $(shell find $(abspath ./vsrc) -name "*.v")
 VTOP = cpu
 TGS = V${VTOP}
 
@@ -56,7 +56,7 @@ $(OBJ_DIR)/%.o: %.cc
 
 
 all:
-	@echo ${CSRC}
+	@echo ${VSRC}
 
 sim:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
