@@ -1,5 +1,6 @@
 .PHONY:all sim clean
 
+# START - 基本编译信息
 OBJ_DIR = obj_dir
 
 BINSRC ?=
@@ -8,11 +9,11 @@ ELFSRC ?=
 VSRC = $(shell find $(abspath ./vsrc) -name "*.v")
 VINC = $(abspath ./vinc) 
 CSRC = $(shell find $(abspath ./csrc) -name "*.cpp")
-CINC = $(shell find $(abspath ./cinc) -name "*.h")
+CINC = $(abspath ./cinc) 
 
 VTOP = cpu
 TGS = V${VTOP}
-
+# END
 
 
 
@@ -57,7 +58,8 @@ sim:
 	verilator -Wall --cc --exe -top-module ${VTOP} \
 	-I${VINC} \
 	--build ${CSRC} ${CINC} ${VSRC} \
-	--trace -LDFLAGS "${LIBS}"
+	-CFLAGS "-I${CINC}" \
+	-LDFLAGS "${LIBS}"
 	make -C obj_dir -f ${TGS}.mk ${TGS}
 	ldd ./obj_dir/${TGS}
 	./obj_dir/${TGS} ${BINSRC} ${ELFSRC} 
