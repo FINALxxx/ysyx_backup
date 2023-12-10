@@ -9,7 +9,6 @@ WAVEFILE = wave.vcd
 
 BINSRC ?=
 ELFSRC ?=
-SOSRC ?=
 
 CSRC = $(wildcard *${CFILE})
 CSRC += $(wildcard include/*${CFILE})
@@ -19,6 +18,9 @@ CSRC += $(wildcard include/*${CFILE})
 VSRC = $(wildcard *${VFILE})
 VTOP = cpu
 TGS = V${VTOP}
+
+
+
 
 # START - 链接llvm
 CXXSRC = include/sdb_disasm.cpp
@@ -33,10 +35,24 @@ $(OBJ_DIR)/%.o: %.cc
 	#$(call call_fixdep, $(@:.o=.d), $@)
 # END
 
+
+
+
+
 # START - 链接NEMU difftest
-LIBS += -L${NEMU_HOME}/build -lriscv32-nemu-interpreter-so
-#CFLAGS += -I${NEMU_HOME}/include -I${NEMU_HOME}/src/isa/riscv32/include
+
+# 已废弃的方式：使用头文件+编译时指定so库
+# LIBS += -L${NEMU_HOME}/build -lriscv32-nemu-interpreter-so
+# CFLAGS += -I${NEMU_HOME}/include -I${NEMU_HOME}/src/isa/riscv32/include
+
+# nemu中的方式：使用dlopen+so库位置，直接打开so库
+LIBS +=ldl
+SOSRC ?=
+
 # END
+
+
+
 
 
 all:
@@ -47,7 +63,7 @@ sim:
 	verilator -Wall --cc --exe -top-module ${VTOP} --build ${CSRC} ${VSRC} --trace -LDFLAGS "${LIBS}"
 	make -C obj_dir -f ${TGS}.mk ${TGS}
 	ldd ./obj_dir/${TGS}
-	./obj_dir/${TGS} ${BINSRC} ${ELFSRC}
+	./obj_dir/${TGS} ${BINSRC} ${ELFSRC} ${SOSRC}
 	#gtkwave ./${WAVEFILE}
 
 clean:

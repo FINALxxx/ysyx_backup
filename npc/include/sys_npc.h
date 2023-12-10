@@ -10,6 +10,10 @@
 
 #define MAX_SIM_TIME 10000
 #define BASE_Vaddr 0x80000000
+#define BASE_Vsize 0x8000000
+#define BASE_LEFT ((uint32_t)BASE_Vaddr)
+#define BASE_RIGHT ((uint32_t)BASE_Vaddr+BASE_Vsize-1)
+
 #define NPCTRAP(PC_now,code) status_setter(DEAD,PC_now,code)
 
 extern vluint64_t sim_time;
