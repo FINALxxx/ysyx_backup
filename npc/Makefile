@@ -35,7 +35,7 @@ $(OBJ_DIR)/%.o: %.cc
 
 # START - 链接NEMU difftest
 LIBS += -L${NEMU_HOME}/build -lriscv32-nemu-interpreter-so
-
+CFLAGS += -I${NEMU_HOME}/include
 # END
 
 
@@ -44,7 +44,7 @@ all:
 sim:
 	@echo TEST = ${LIBS}
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
-	verilator -Wall --cc --exe -top-module ${VTOP} --build ${CSRC} ${VSRC} --trace -LDFLAGS "${LIBS}"
+	verilator -Wall --cc --exe -top-module ${VTOP} --build ${CSRC} ${VSRC} --trace -CFLAGS "${CFLAGS}" -LDFLAGS "${LIBS}"
 	make -C obj_dir -f ${TGS}.mk ${TGS}
 	ldd ./obj_dir/${TGS}
 	./obj_dir/${TGS} ${BINSRC} ${ELFSRC}
