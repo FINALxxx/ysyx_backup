@@ -54,6 +54,7 @@ all:
 	@echo ${VSRC}
 
 sim:
+	rm obj_dir -rf
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
 	verilator -Wall --cc --exe \
 	-top-module ${VTOP} \

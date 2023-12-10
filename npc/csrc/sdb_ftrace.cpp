@@ -1,5 +1,5 @@
-#include "sdb_ftrace.h"
-#include "debug.h"
+#include <sdb_ftrace.h>
+#include <debug.h>
 #include <elf.h>
 
 #define MAXN 100 //最多MAXN个函数
