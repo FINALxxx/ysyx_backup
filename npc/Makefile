@@ -46,8 +46,8 @@ $(OBJ_DIR)/%.o: %.cc
 # CFLAGS += -I${NEMU_HOME}/include -I${NEMU_HOME}/src/isa/riscv32/include
 
 # nemu中的方式：使用dlopen+so库位置，直接打开so库
-LIBS +=ldl
-SOSRC ?=
+#LIBS +=ldl
+#SOSRC ?=
 
 # END
 
@@ -63,7 +63,7 @@ sim:
 	verilator -Wall --cc --exe -top-module ${VTOP} --build ${CSRC} ${VSRC} --trace -LDFLAGS "${LIBS}"
 	make -C obj_dir -f ${TGS}.mk ${TGS}
 	ldd ./obj_dir/${TGS}
-	./obj_dir/${TGS} ${BINSRC} ${ELFSRC} ${SOSRC}
+	./obj_dir/${TGS} ${BINSRC} ${ELFSRC} 
 	#gtkwave ./${WAVEFILE}
 
 clean:
