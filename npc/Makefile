@@ -58,7 +58,7 @@ sim:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
 	verilator -Wall --cc --exe -top-module ${VTOP} \
 	-I${VINC} \
-	--build ${CSRC} ${CINC} ${VSRC} \
+	--build ${CSRC} ${VSRC} \
 	-LDFLAGS "${LIBS}"
 	make -C obj_dir -f ${TGS}.mk ${TGS}
 	ldd ./obj_dir/${TGS}
