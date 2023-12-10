@@ -35,7 +35,7 @@ $(OBJ_DIR)/%.o: %.cc
 
 # START - 链接NEMU difftest
 LIBS += -L${NEMU_HOME}/build -lriscv32-nemu-interpreter-so
-CFLAGS += -I${NEMU_HOME}/include
+CFLAGS += -I${NEMU_HOME}/include -I${NEMU_HOME}/src/isa/riscv32/include
 # END
 
 

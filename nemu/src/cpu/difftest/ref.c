@@ -13,10 +13,6 @@
 * See the Mulan PSL v2 for more details.
 ***************************************************************************************/
 
-#include <isa.h>
-#include <cpu/cpu.h>
-#include <difftest-def.h>
-#include <memory/paddr.h>
 #include <test.h>
 
 
