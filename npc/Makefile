@@ -55,7 +55,8 @@ all:
 
 sim:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
-	verilator -Wall --cc --exe -top-module ${VTOP} \
+	verilator -Wall --cc --exe \
+	-top-module ${VTOP} \
 	-I${VINC} \
 	-CFLAGS "-I${CINC}" \
 	-LDFLAGS "${LIBS}" \
