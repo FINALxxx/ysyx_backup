@@ -17,6 +17,7 @@
 #include <cpu/cpu.h>
 #include <difftest-def.h>
 #include <memory/paddr.h>
+#include <test.h>
 
 
 //spike有类似的函数，在${HEMU_HOME}/tools/spike-diff/difftest.cc中
