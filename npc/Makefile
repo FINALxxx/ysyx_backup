@@ -2,21 +2,15 @@
 
 OBJ_DIR = obj_dir
 
-CFILE = .cpp
-HFILE = .h
-VFILE = .v
-WAVEFILE = wave.vcd
-
 BINSRC ?=
 ELFSRC ?=
 
-CSRC = $(wildcard *${CFILE})
-CSRC += $(wildcard include/*${CFILE})
-#CSRC += $(wildcard include/**/*${CFILE})
-#CSRC += $(wildcard include/**/*.h)
-
 VSRC = $(shell find $(abspath ./vsrc) -name "*.v")
-VINC = ./vsrc
+VINC = $(shell find $(abspath ./vinc) -name "*.v")
+
+CSRC = $(shell find $(abspath ./vinc) -name "*.cpp")
+CINC = $(shell find $(abspath ./vinc) -name "*.h")
+
 VTOP = cpu
 TGS = V${VTOP}
 
@@ -63,7 +57,7 @@ sim:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
 	verilator -Wall --cc --exe -top-module ${VTOP} \
 	-I${VINC} \
-	--build ${CSRC} ${VSRC} \
+	--build ${CSRC} ${CINC} ${VSRC} \
 	--trace -LDFLAGS "${LIBS}"
 	make -C obj_dir -f ${TGS}.mk ${TGS}
 	ldd ./obj_dir/${TGS}
