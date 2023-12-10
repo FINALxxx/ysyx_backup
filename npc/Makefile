@@ -15,7 +15,7 @@ CSRC += $(wildcard include/*${CFILE})
 #CSRC += $(wildcard include/**/*${CFILE})
 #CSRC += $(wildcard include/**/*.h)
 
-VSRC = $(wildcard vsrc/*${VFILE})
+VSRC = $(wildcard *${VFILE})
 VTOP = cpu
 TGS = V${VTOP}
 
@@ -59,7 +59,7 @@ all:
 	@echo ${CSRC}
 sim:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
-	verilator -Wall --cc --exe -top-module ${VTOP} --build ${CSRC} ${VSRC} --trace -LDFLAGS "${LIBS}"
+	verilator -Wall --cc --exe -top-module ${VTOP} --build ${CSRC} -y vsrc ${VSRC} --trace -LDFLAGS "${LIBS}"
 	make -C obj_dir -f ${TGS}.mk ${TGS}
 	ldd ./obj_dir/${TGS}
 	./obj_dir/${TGS} ${BINSRC} ${ELFSRC} 
