@@ -1,6 +1,6 @@
 #include "include/sys_npc.h"
 #include "include/sdb.h"
-#include <difftest.h>
+#include <cpu/difftest.h>
 
 using namespace std;
 

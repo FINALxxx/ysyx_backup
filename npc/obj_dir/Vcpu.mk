@@ -35,7 +35,7 @@ VM_PREFIX = Vcpu
 VM_MODPREFIX = Vcpu
 # User CFLAGS (from -CFLAGS on Verilator command line)
 VM_USER_CFLAGS = \
-	-I/home/finalx/ysyx-workbench/nemu/include/cpu/difftest.h \
+	-I/home/finalx/ysyx-workbench/nemu/include/cpu \
 
 # User LDLIBS (from -LDFLAGS on Verilator command line)
 VM_USER_LDLIBS = \
