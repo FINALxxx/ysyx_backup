@@ -9,7 +9,7 @@
 
 
 //通用单位
-typedef uint8_t byte_t
+typedef uint8_t byte_t;
 typedef uint32_t uword_t;
 typedef int32_t word_t;
 typedef uint32_t vaddr_t;
