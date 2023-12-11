@@ -1,5 +1,4 @@
 #include <init-load/read_bin.h>
-#include <bits/stdc++.h>
 #include <memory/config.h>
 #include <debug-print.h>
 void read_bin(const char* fileName){
