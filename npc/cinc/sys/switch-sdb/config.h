@@ -1,5 +1,7 @@
 #ifndef __SDB_CONFIG__
 #define __SDB_CONFIG__
+#include <common.h>
+
 
 #define CONFIG_SDB 1
 #define CONFIG_ITRACE 1

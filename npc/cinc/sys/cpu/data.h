@@ -1,5 +1,6 @@
 #ifndef __CPU_DATA__
 #define __CPU_DATA__
+#include <common.h>
 
 #define REG_NUM 32
 #define TARGET_PC 0
