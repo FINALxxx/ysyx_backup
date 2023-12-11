@@ -1,7 +1,6 @@
 #ifndef __SDB_H__
 #define __SDB_H__
 
-#include <bits/stdc++.h>
 #include <readline/readline.h>
 #include <readline/history.h>
 #include "macro.h"

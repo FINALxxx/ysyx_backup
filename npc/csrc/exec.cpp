@@ -1,7 +1,6 @@
 #include <cpu/exec.h>
 #include <cpu/status.h>
 #include <cpu/data.h>
-#include <bits/stdc++.h>
 #include <sys_npc.h>
 
 //基础设施相关
