@@ -29,7 +29,7 @@ void exec_once(){
 	clk_update();	
 	inst_exec_cnt++;	
 	
-	cout<<"PC="<<pc_getter()<<endl;
+	std::cout<<"PC="<<pc_getter()<<std::endl;
 	printf("\t[CMD_HEX=%#010x]\n",inst_getter());
 	
 }
