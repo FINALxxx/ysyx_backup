@@ -1,3 +1,6 @@
+#ifndef __FTRACE__
+#define __FTRACE__
+
 #include<iostream>
 #include<stdint.h>
 
@@ -12,3 +15,6 @@ void parse_elf(FILE* fp);
 void elf_init(const char* fileName);
 int32_t find_func(uint32_t pc);
 void elf_call(uint32_t pc_src,uint32_t pc_dst,uint32_t cmd);
+
+
+#endif

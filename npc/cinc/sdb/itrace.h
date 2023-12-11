@@ -1,3 +1,5 @@
+#ifndef __ITRACE__
+
 #define MAX_BUF_SIZE 16
 #define MAX_INST_LEN 128
 
@@ -12,3 +14,4 @@ void buffer_insert(uint32_t pc);
 void buffer_init();
 void buffer_disp();
 
+#endif

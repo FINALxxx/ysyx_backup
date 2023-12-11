@@ -41,8 +41,8 @@ $(OBJ_DIR)/%.o: %.cc
 # CFLAGS += -I${NEMU_HOME}/include -I${NEMU_HOME}/src/isa/riscv32/include
 
 # nemu中的方式：使用dlopen+so库位置，直接打开so库
-#LIBS +=ldl
-#SOSRC ?=
+# LIBS +=ldl
+# SOSRC ?=
 
 # END
 
