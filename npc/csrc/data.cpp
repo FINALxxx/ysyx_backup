@@ -55,7 +55,7 @@ inline void pc_setter(){//之后换成DPIC
 
 
 inline uword_t inst_getter(){	
-	inst_setter(pc_getter());
+	inst_setter(pc_getter(TARGET_PC));
 	return cpu_data.inst;
 }
 
