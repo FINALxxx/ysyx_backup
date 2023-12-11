@@ -6,8 +6,6 @@
 #include <stdbool.h>
 #include <string.h>
 #include <debug-print.h>
-#include <verilated.h>
-
 
 //通用单位
 typedef uint8_t byte_t;
