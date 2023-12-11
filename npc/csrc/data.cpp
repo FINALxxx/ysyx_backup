@@ -1,4 +1,5 @@
 #include <verilated.h>
+#include "Vcpu.h"
 
 #include <cpu/data.h>
 #include <memory/config.h>
