@@ -9,7 +9,8 @@ ELFSRC ?=
 VSRC = $(shell find $(abspath ./vsrc) -name "*.v")
 VINC = $(abspath ./vinc) 
 CSRC = $(shell find $(abspath ./csrc) -name "*.cpp")
-CINC = $(abspath ./cinc) 
+CINC += $(abspath ./cinc) 
+CINC += $(abspath ./cinc/**)
 
 VTOP = cpu
 TGS = V${VTOP}
