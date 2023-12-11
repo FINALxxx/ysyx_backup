@@ -1,7 +1,7 @@
 #ifndef __MACRO_H__
 #define __MACRO_H__
 
-#include <string.h>
+//#include <string.h>
 
 // macro stringizing
 #define str_temp(x) #x
