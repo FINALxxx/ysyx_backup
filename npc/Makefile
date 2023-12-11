@@ -9,8 +9,8 @@ ELFSRC ?=
 VSRC = $(shell find $(abspath ./vsrc) -name "*.v")
 VINC = $(abspath ./vinc) 
 CSRC = $(shell find $(abspath ./csrc) -name "*.cpp")
-CINC = $(abspath ./cinc) 
-CINC_SUB = $(abspath ./cinc/**)
+CINC += -I$(wildcard ./cinc) 
+CINC += $(addprefix -I,$(wildcard ./cinc/**))
 
 VTOP = cpu
 TGS = V${VTOP}
@@ -52,7 +52,7 @@ $(OBJ_DIR)/%.o: %.cc
 
 
 all:
-	@echo ${VSRC}
+	@echo ${CINC}
 
 sim:
 	rm obj_dir -rf
