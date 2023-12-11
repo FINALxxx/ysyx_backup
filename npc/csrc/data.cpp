@@ -1,4 +1,4 @@
-#include <sys/cpu/data.h>
+#include <cpu/data.h>
 #include <memory/config.h>
 
 const char *regs[] = {
