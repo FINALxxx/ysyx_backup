@@ -1,3 +1,5 @@
+#include <verilated.h>
+
 #include <cpu/data.h>
 #include <memory/config.h>
 #include "Vcpu___024root.h"
