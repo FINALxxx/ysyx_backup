@@ -10,7 +10,7 @@
 typedef struct {
 	uword_t gpr[REG_NUM];//由reg_setter更新，reg_getter取值
 	vaddr_t pc;//由pc_setter更新，pc_getter取值
-	vaddr_t nextpc;//由pc_setter更新，pc_getter取值
+	vaddr_t dnpc;//由pc_setter更新，pc_getter取值
 	uword_t inst;//由inst_setter更新，inst_getter取值
 }CPU_state;
 
