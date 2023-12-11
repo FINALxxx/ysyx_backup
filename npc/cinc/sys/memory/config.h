@@ -56,7 +56,7 @@ static inline void inline_write(void *addr, int len, uword_t data) {
 
 
 static inline bool in_pmem(vaddr_t addr) {
-  return addr - PMEM_BASE_VADDR < MEM_SIZE;
+  return addr - PMEM_BASE_VADDR < PMEM_SIZE;
 }
 
 

@@ -1,5 +1,7 @@
 #include <cpu/data.h>
 #include <memory/config.h>
+#include "Vcpu___024root.h"
+
 
 const char *regs[] = {
   "$0", "ra", "sp", "gp", "tp", "t0", "t1", "t2",

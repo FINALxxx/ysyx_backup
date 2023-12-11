@@ -1,5 +1,4 @@
 #include <sys_npc.h>
-#include "Vcpu___024root.h"
 
 #include <memory/config.h>
 #include <init-load/read_bin.h>
