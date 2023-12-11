@@ -5,7 +5,7 @@
 #include <inttypes.h>
 #include <stdbool.h>
 #include <string.h>
-#include "debug.h"
+#include <debug-print.h>
 
 
 //通用单位
