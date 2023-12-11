@@ -27,7 +27,7 @@ inline uword_t pc_getter(bool target);
 inline void pc_setter();//暂时使用cpu->pc，之后使用DPIC
 
 inline uword_t inst_getter();
-inline void inst_setter();
+inline void inst_setter(uword_t pc);
 
 
 #endif
