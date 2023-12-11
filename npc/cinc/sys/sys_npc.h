@@ -1,7 +1,6 @@
 #ifndef __NPC_SYS__
 #define __NPC_SYS__
 
-#include <verilated.h>
 #include <verilated_vcd_c.h>
 #include "Vcpu.h"
 #include <stdint.h>
