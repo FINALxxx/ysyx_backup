@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <utils-print.h>
 #include <assert.h>
+#include <macro.h>
 
 #define Log(format, ...) \
     _Log(ANSI_FMT("[%s:%d %s] " format, ANSI_FG_BLUE) "\n", \
