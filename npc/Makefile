@@ -9,8 +9,8 @@ ELFSRC ?=
 VSRC = $(shell find $(abspath ./vsrc) -name "*.v")
 VINC = $(abspath ./vinc) 
 CSRC = $(shell find $(abspath ./csrc) -name "*.cpp")
-CINC += $(abspath ./cinc) 
-CINC += $(abspath ./cinc/**)
+CINC = $(abspath ./cinc) 
+CINC_SUB = $(abspath ./cinc/**)
 
 VTOP = cpu
 TGS = V${VTOP}
@@ -60,7 +60,7 @@ sim:
 	verilator -Wall --cc --exe \
 	-top-module ${VTOP} \
 	-I${VINC} \
-	-CFLAGS "-I${CINC}" \
+	-CFLAGS "-I${CINC} -I${CINC_SUB}" \
 	-LDFLAGS "${LIBS}" \
 	--build ${CSRC} ${VSRC}
 	make -C obj_dir -f ${TGS}.mk ${TGS}
