@@ -2,8 +2,8 @@
 #include <debug-print.h>
 
 void mem_init(){
-	#if   defined(CONFIG_PMEM_MALLOC)
-		pmem = malloc(PMEM_SIZE);
+	#if defined(CONFIG_PMEM_MALLOC)
+		pmem = (byte_t*)malloc(PMEM_SIZE);
 		assert(pmem);
 	#endif
 	Log("physical memory area [" FMT_VADDR ", " FMT_VADDR "]", PMEM_LEFT, PMEM_RIGHT);
