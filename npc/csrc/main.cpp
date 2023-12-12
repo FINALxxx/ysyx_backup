@@ -1,5 +1,5 @@
 #include <sys_npc.h>
-#include <sdb.h>
+//#include <sdb.h>
 
 using namespace std;
 
