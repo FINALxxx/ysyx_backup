@@ -6,10 +6,10 @@
 #include <cpu/status.h>
 #include <cpu/data.h>
 
-#include <sdb.h>
-#include <sdb_watchpoint.h>
-#include <itrace.h>
-#include <ftrace.h>
+//#include <sdb.h>
+//#include <sdb_watchpoint.h>
+//#include <itrace.h>
+//#include <ftrace.h>
 
 vluint64_t sim_time=0;
 
