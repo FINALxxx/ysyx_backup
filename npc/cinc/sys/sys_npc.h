@@ -4,7 +4,6 @@
 #include <verilated.h>
 #include "Vcpu.h"
 #include <verilated_vcd_c.h>
-#include "Vcpu.h"
 #include <stdint.h>
 #include <init-load/read_bin.h>
 
