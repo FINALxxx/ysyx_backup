@@ -21,13 +21,13 @@ void reg_setter();
 void reg_display();
 uword_t reg_str2val(const char *s, bool *success);
 
-inline uword_t pc_getter(bool target);
+uword_t pc_getter(bool target);
 
 //pc_setter会很耗时，之后想办法只在get时，才set，其余时候不用set
-inline void pc_setter();//暂时使用cpu->pc，之后使用DPIC
+void pc_setter();//暂时使用cpu->pc，之后使用DPIC
 
-inline uword_t inst_getter();
-inline void inst_setter(uword_t pc);
+uword_t inst_getter();
+void inst_setter(uword_t pc);
 
 
 #endif

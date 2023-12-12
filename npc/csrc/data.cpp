@@ -41,25 +41,25 @@ uint32_t reg_str2val(const char *s, bool *success) {
 	return 0;
 }
 
-inline uword_t pc_getter(bool target){
+uword_t pc_getter(bool target){
 	pc_setter();
 	if(target == TARGET_PC) return cpu_data.pc;
 	else return cpu_data.dnpc;
 }
 
 
-inline void pc_setter(){//之后换成DPIC
+void pc_setter(){//之后换成DPIC
 	cpu_data.pc = cpu->pc;
 	cpu_data.dnpc = cpu->dnpc;
 }
 
 
-inline uword_t inst_getter(){	
+uword_t inst_getter(){	
 	inst_setter(pc_getter(TARGET_PC));
 	return cpu_data.inst;
 }
 
-inline void inst_setter(uword_t pc){//相当于vaddr_ifetch
+void inst_setter(uword_t pc){//相当于vaddr_ifetch
 	cpu_data.inst = vaddr_read(pc,4);
 }
 
