@@ -89,7 +89,7 @@ static void clk_update(){
 
 extern "C" void halt(svBit is_halt){
 	//NPCTRAP(cpu->pc,10号寄存器($a0)的内容);
-	if(is_halt) NPCTRAP(pc_getter(),reg_getter(10));	
+	if(is_halt) NPCTRAP(pc_getter(TARGET_PC),reg_getter(10));	
 	return;
 }
 
