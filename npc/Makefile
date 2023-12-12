@@ -21,16 +21,16 @@ TGS = V${VTOP}
 
 
 # START - 链接llvm
-CXXSRC = include/sdb_disasm.cpp
-CXXFLAGS += $(shell llvm-config --cxxflags) -fPIE
-LIBS += -lreadline
-LIBS += $(shell llvm-config --libs)
+#CXXSRC = include/sdb_disasm.cpp
+#CXXFLAGS += $(shell llvm-config --cxxflags) -fPIE
+#LIBS += -lreadline
+#LIBS += $(shell llvm-config --libs)
 
-$(OBJ_DIR)/%.o: %.cc
-	@echo + CXX $<
-	@mkdir -p $(dir $@)
-	@$(CXX) $(CFLAGS) $(CXXFLAGS) -c -o $@ $<
-	#$(call call_fixdep, $(@:.o=.d), $@)
+#$(OBJ_DIR)/%.o: %.cc
+#	@echo + CXX $<
+#	@mkdir -p $(dir $@)
+#	@$(CXX) $(CFLAGS) $(CXXFLAGS) -c -o $@ $<
+#	#$(call call_fixdep, $(@:.o=.d), $@)
 # END
 
 
@@ -55,6 +55,7 @@ $(OBJ_DIR)/%.o: %.cc
 
 all:
 	@echo ${CINC}
+	# -LDFLAGS "${LIBS}" \
 
 sim:
 	rm obj_dir -rf
@@ -63,7 +64,6 @@ sim:
 	-top-module ${VTOP} \
 	-I${VINC} \
 	-CFLAGS "${CINC}" \
-	-LDFLAGS "${LIBS}" \
 	--build ${CSRC} ${VSRC}
 	make -C obj_dir -f ${TGS}.mk ${TGS}
 	#ldd ./obj_dir/${TGS}
