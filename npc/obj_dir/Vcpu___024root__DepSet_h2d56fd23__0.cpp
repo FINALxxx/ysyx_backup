@@ -22,7 +22,6 @@ void Vcpu___024root___eval_nba(Vcpu___024root* vlSelf) {
     // Body
     if (vlSelf->__VnbaTriggered.at(0U)) {
         Vcpu___024root___nba_sequent__TOP__0(vlSelf);
-        vlSelf->__Vm_traceActivity[1U] = 1U;
     }
 }
 
@@ -59,7 +58,7 @@ void Vcpu___024root___eval(Vcpu___024root* vlSelf) {
 #ifdef VL_DEBUG
                     Vcpu___024root___dump_triggers__act(vlSelf);
 #endif
-                    VL_FATAL_MT("cpu.v", 4, "", "Active region did not converge.");
+                    VL_FATAL_MT("/home/finalx/ysyx-workbench/npc/vsrc/cpu.v", 4, "", "Active region did not converge.");
                 }
                 vlSelf->__VactIterCount = ((IData)(1U) 
                                            + vlSelf->__VactIterCount);
@@ -74,7 +73,7 @@ void Vcpu___024root___eval(Vcpu___024root* vlSelf) {
 #ifdef VL_DEBUG
                 Vcpu___024root___dump_triggers__nba(vlSelf);
 #endif
-                VL_FATAL_MT("cpu.v", 4, "", "NBA region did not converge.");
+                VL_FATAL_MT("/home/finalx/ysyx-workbench/npc/vsrc/cpu.v", 4, "", "NBA region did not converge.");
             }
             __VnbaIterCount = ((IData)(1U) + __VnbaIterCount);
             Vcpu___024root___eval_nba(vlSelf);

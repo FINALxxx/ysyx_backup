@@ -35,27 +35,24 @@ VM_PREFIX = Vcpu
 VM_MODPREFIX = Vcpu
 # User CFLAGS (from -CFLAGS on Verilator command line)
 VM_USER_CFLAGS = \
+	-I/home/finalx/ysyx-workbench/npc/cinc  -I/home/finalx/ysyx-workbench/npc/cinc/sys -I/home/finalx/ysyx-workbench/npc/cinc/tool \
 
 # User LDLIBS (from -LDFLAGS on Verilator command line)
 VM_USER_LDLIBS = \
-	-lreadline -lLLVM-14 \
 
 # User .cpp files (from .cpp's on Verilator command line)
 VM_USER_CLASSES = \
-	read_bin \
-	sdb \
-	sdb_disasm \
-	sdb_expr \
-	sdb_ftrace \
-	sdb_itrace \
-	sdb_watchpoint \
-	sys_npc \
+	data \
+	exec \
 	main \
+	mem_config \
+	read_bin \
+	status \
+	sys_npc \
 
 # User .cpp directories (from .cpp's on Verilator command line)
 VM_USER_DIR = \
-	. \
-	include \
+	/home/finalx/ysyx-workbench/npc/csrc \
 
 
 ### Default rules...
@@ -67,23 +64,19 @@ include $(VERILATOR_ROOT)/include/verilated.mk
 ### Executable rules... (from --exe)
 VPATH += $(VM_USER_DIR)
 
-read_bin.o: include/read_bin.cpp
+data.o: /home/finalx/ysyx-workbench/npc/csrc/data.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-sdb.o: include/sdb.cpp
+exec.o: /home/finalx/ysyx-workbench/npc/csrc/exec.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-sdb_disasm.o: include/sdb_disasm.cpp
+main.o: /home/finalx/ysyx-workbench/npc/csrc/main.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-sdb_expr.o: include/sdb_expr.cpp
+mem_config.o: /home/finalx/ysyx-workbench/npc/csrc/mem_config.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-sdb_ftrace.o: include/sdb_ftrace.cpp
+read_bin.o: /home/finalx/ysyx-workbench/npc/csrc/read_bin.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-sdb_itrace.o: include/sdb_itrace.cpp
+status.o: /home/finalx/ysyx-workbench/npc/csrc/status.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-sdb_watchpoint.o: include/sdb_watchpoint.cpp
-	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-sys_npc.o: include/sys_npc.cpp
-	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-main.o: main.cpp
+sys_npc.o: /home/finalx/ysyx-workbench/npc/csrc/sys_npc.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 
 ### Link rules... (from --exe)
