@@ -36,7 +36,7 @@ vaddr_t mem_to_v(byte_t* mem){
 
 uword_t vaddr_read(vaddr_t addr,int size){
 	if (likely(in_pmem(addr))){
-		return pmem_read(addr,len);
+		return pmem_read(addr,size);
 	}
 	out_of_bound(addr);
 	return 0;
