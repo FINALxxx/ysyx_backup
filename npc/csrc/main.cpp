@@ -1,4 +1,5 @@
 #include <sys_npc.h>
+#include <cpu/exec.h>
 //#include <sdb.h>
 
 using namespace std;
