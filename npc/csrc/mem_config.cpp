@@ -12,7 +12,7 @@ void mem_init(){
 
 static void out_of_bound(vaddr_t addr) {
 	panic("address = " FMT_VADDR " is out of bound of pmem [" FMT_VADDR ", " FMT_VADDR "] at pc = " FMT_WORD,
-      addr, PMEM_LEFT, PMEM_RIGHT, cpu_data.pc);
+      addr, PMEM_LEFT, PMEM_RIGHT, pc_getter(TARGET_PC));
 }
 
 
