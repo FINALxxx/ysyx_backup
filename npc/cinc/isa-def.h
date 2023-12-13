@@ -1,5 +1,5 @@
-#ifndef __ISA__
-#define __ISA__
+#ifndef __ISA_DEF__
+#define __ISA_DEF__
 
 #include <common.h>
 #define REG_NUM 32
