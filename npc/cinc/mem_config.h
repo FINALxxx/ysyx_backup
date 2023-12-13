@@ -3,19 +3,6 @@
 #include <common.h>
 #include <debug-print.h>
 
-
-#define CONFIG_PMEM_MALLOC 1
-#define CONFIG_PMEM_RESET_OFFSET 0x0
-#define PMEM_ALIGN __attribute((aligned(4096)))
-
-#define PMEM_BASE_VADDR 0x80000000
-#define PMEM_SIZE 0x8000000
-#define PMEM_LEFT ((vaddr_t)PMEM_BASE_VADDR)
-#define PMEM_RIGHT ((vaddr_t)PMEM_BASE_VADDR + PMEM_SIZE -1)
-#define PMEM_RESET (PMEM_LEFT + CONFIG_PMEM_RESET_OFFSET)
- 
-
-
 #if   defined(CONFIG_PMEM_MALLOC)
 static byte_t *pmem = NULL;
 #else // CONFIG_PMEM_GARRAY

@@ -4,9 +4,6 @@
 #include <isa.h>
 #include <Vcpu___024root.h>
 
-#define TARGET_PC 0
-#define TARGET_DNPC 1
-#define NPCTRAP(PC_now,code) status_setter(DEAD,PC_now,code)
 
 /* DATA */
 uword_t reg_getter(byte_t n);

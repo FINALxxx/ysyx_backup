@@ -2,7 +2,6 @@
 #define __ISA_DEF__
 
 #include <common.h>
-#define REG_NUM 32
 
 typedef struct {
 	uword_t gpr[REG_NUM];//由reg_setter更新，reg_getter取值
