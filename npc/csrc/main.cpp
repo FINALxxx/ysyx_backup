@@ -1,5 +1,5 @@
-#include "cinc/sys_npc.h"
-#include "cinc/sdb.h"
+#include <sys_npc.h>
+#include <sdb.h>
 
 using namespace std;
 
