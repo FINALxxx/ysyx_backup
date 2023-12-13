@@ -14,7 +14,7 @@ typedef struct {
 	byte_t logbuf;
 }CPU_state;
 
-extern CPU_state cpu_data;
+CPU_state cpu_data;
 
 uword_t reg_getter(byte_t n);
 void reg_setter();
