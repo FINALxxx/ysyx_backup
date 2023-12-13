@@ -69,7 +69,7 @@ void pc_setter(){//之后换成DPIC
     }
 }*/
 
-extern clk_update();
+extern void clk_update();
 void exec_once(){
 	clk_update();	
 	inst_exec_cnt++;	
@@ -79,7 +79,7 @@ void exec_once(){
 	
 }
 
-extern sim_terminate();
+extern void sim_terminate();
 void exec(uint32_t n){
 	
 	switch(cpu_status.state){
