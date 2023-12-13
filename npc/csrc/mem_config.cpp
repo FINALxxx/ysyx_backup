@@ -8,7 +8,7 @@ void mem_init(){
 	Log("physical memory area [" FMT_VADDR ", " FMT_VADDR "]", PMEM_LEFT, PMEM_RIGHT);
 }
 
-
+extern vaddr_t pc_getter(bool target);
 static void out_of_bound(vaddr_t addr) {
 	panic("address = " FMT_VADDR " is out of bound of pmem [" FMT_VADDR ", " FMT_VADDR "] at pc = " FMT_WORD,
       addr, PMEM_LEFT, PMEM_RIGHT, pc_getter(TARGET_PC));
