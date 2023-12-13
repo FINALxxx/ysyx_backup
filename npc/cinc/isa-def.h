@@ -13,15 +13,24 @@
 * See the Mulan PSL v2 for more details.
 ***************************************************************************************/
 
-#ifndef __MACRO_H__
-#define __MACRO_H__
+#ifndef __ISA_RISCV_H__
+#define __ISA_RISCV_H__
 
-#include <string.h>
+#include <common.h>
 
-// strlen() for string constant
-#define STRLEN(CONST_STR) (sizeof(CONST_STR) - 1)
+typedef struct {
+  word_t gpr[32];
+  vaddr_t pc;
+} CPU_state;
 
-// calculate the length of an array
-#define ARRLEN(arr) (int)(sizeof(arr) / sizeof(arr[0]))
+/*// decode
+typedef struct {
+  union {
+    uint32_t val;
+  } inst;
+} MUXDEF(CONFIG_RV64, riscv64_ISADecodeInfo, riscv32_ISADecodeInfo);
+*/
+
+#define isa_mmu_check(vaddr, len, type) (MMU_DIRECT)
 
 #endif

@@ -35,6 +35,7 @@ VM_PREFIX = Vcpu
 VM_MODPREFIX = Vcpu
 # User CFLAGS (from -CFLAGS on Verilator command line)
 VM_USER_CFLAGS = \
+	-I/home/finalx/ysyx-workbench/npc/cinc  \
 
 # User LDLIBS (from -LDFLAGS on Verilator command line)
 VM_USER_LDLIBS = \
@@ -42,6 +43,7 @@ VM_USER_LDLIBS = \
 
 # User .cpp files (from .cpp's on Verilator command line)
 VM_USER_CLASSES = \
+	main \
 	read_bin \
 	sdb \
 	sdb_disasm \
@@ -50,12 +52,10 @@ VM_USER_CLASSES = \
 	sdb_itrace \
 	sdb_watchpoint \
 	sys_npc \
-	main \
 
 # User .cpp directories (from .cpp's on Verilator command line)
 VM_USER_DIR = \
-	. \
-	include \
+	/home/finalx/ysyx-workbench/npc/csrc \
 
 
 ### Default rules...
@@ -67,23 +67,23 @@ include $(VERILATOR_ROOT)/include/verilated.mk
 ### Executable rules... (from --exe)
 VPATH += $(VM_USER_DIR)
 
-read_bin.o: include/read_bin.cpp
+main.o: /home/finalx/ysyx-workbench/npc/csrc/main.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-sdb.o: include/sdb.cpp
+read_bin.o: /home/finalx/ysyx-workbench/npc/csrc/read_bin.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-sdb_disasm.o: include/sdb_disasm.cpp
+sdb.o: /home/finalx/ysyx-workbench/npc/csrc/sdb.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-sdb_expr.o: include/sdb_expr.cpp
+sdb_disasm.o: /home/finalx/ysyx-workbench/npc/csrc/sdb_disasm.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-sdb_ftrace.o: include/sdb_ftrace.cpp
+sdb_expr.o: /home/finalx/ysyx-workbench/npc/csrc/sdb_expr.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-sdb_itrace.o: include/sdb_itrace.cpp
+sdb_ftrace.o: /home/finalx/ysyx-workbench/npc/csrc/sdb_ftrace.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-sdb_watchpoint.o: include/sdb_watchpoint.cpp
+sdb_itrace.o: /home/finalx/ysyx-workbench/npc/csrc/sdb_itrace.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-sys_npc.o: include/sys_npc.cpp
+sdb_watchpoint.o: /home/finalx/ysyx-workbench/npc/csrc/sdb_watchpoint.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-main.o: main.cpp
+sys_npc.o: /home/finalx/ysyx-workbench/npc/csrc/sys_npc.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 
 ### Link rules... (from --exe)
