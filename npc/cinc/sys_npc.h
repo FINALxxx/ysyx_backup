@@ -5,7 +5,6 @@
 #include <verilated.h>
 #include <verilated_vcd_c.h>
 #include "Vcpu.h"
-#include <ifetch.h>
 
 
 extern vluint64_t sim_time;
