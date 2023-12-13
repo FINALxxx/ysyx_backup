@@ -34,7 +34,7 @@ void sim_init(int argc,char** argv){
 	cpu->clk^=1;
 	cpu->rst=0;
 	//cpu->eval();
-	printf("\t[INIT_PC=%#010x]\n\n",pc_getter(TARGET_PC));
+	//printf("\t[INIT_PC=%#010x]\n\n",pc_getter(TARGET_PC));
 
 	/* END 0.5clk */	
 
