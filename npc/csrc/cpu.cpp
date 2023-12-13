@@ -1,9 +1,9 @@
 #include <cpu.h>
 
-extern NPC_STATUS cpu_status;
-extern long inst_exec_cnt;
-extern CPU_state cpu_data;
-extern Vcpu* cpu;
+NPC_STATUS cpu_status;
+long inst_exec_cnt;
+CPU_state cpu_data;
+Vcpu* cpu;
 
 /* DATA */
 const char *regs[] = {
