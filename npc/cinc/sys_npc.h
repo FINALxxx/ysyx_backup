@@ -2,7 +2,6 @@
 #define __NPC_SYS__
 
 #include <common.h>
-#include <isa.h>
 #include <verilated.h>
 #include <verilated_vcd_c.h>
 #include "Vcpu.h"
