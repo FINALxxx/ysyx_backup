@@ -31,3 +31,5 @@ void status_setter(int state,vaddr_t pc,bool halt_ret);
 void exec(uword_t cnt);
 void exec_once();
 
+
+#endif

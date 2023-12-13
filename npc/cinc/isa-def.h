@@ -19,3 +19,4 @@ typedef struct{
   bool halt_ret;
 } NPC_STATUS;
 
+#endif
