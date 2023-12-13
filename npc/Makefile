@@ -46,8 +46,8 @@ sim:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
 	verilator -Wall --cc --exe -top-module ${VTOP} --build ${CSRC} ${VSRC} \
 	-I${VINC} \
-	-LDFLAGS "${LIBS}" \
-	-CFLAGS "${CINC} -mmd"
+	-LDFLAGS "${LIBS} -MMD" \
+	-CFLAGS "${CINC}"
 	make -C obj_dir -f ${TGS}.mk ${TGS}
 	./obj_dir/${TGS} ${BINSRC} ${ELFSRC}
 	#gtkwave ./${WAVEFILE}
