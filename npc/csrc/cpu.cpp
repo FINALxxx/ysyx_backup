@@ -73,9 +73,9 @@ extern void clk_update();
 void exec_once(){
 	clk_update();	
 	inst_exec_cnt++;	
-	vaddr_t pc = pc_getter(TARGET_PC);
-	std::cout<<"PC="<<pc<<std::endl;
-	printf("\t[CMD_HEX=%#010x]\n",inst_fetch(pc,4));
+	//vaddr_t pc = pc_getter(TARGET_PC);
+	//std::cout<<"PC="<<pc<<std::endl;
+	//printf("\t[CMD_HEX=%#010x]\n",inst_fetch(pc,4));
 	
 }
 
