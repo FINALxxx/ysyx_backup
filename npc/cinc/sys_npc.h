@@ -1,6 +1,7 @@
 #ifndef __NPC_SYS__
 #define __NPC_SYS__
 
+#include <isa-def.h>
 #include <common.h>
 #include <verilated.h>
 #include <verilated_vcd_c.h>
