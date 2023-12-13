@@ -6,7 +6,6 @@
 #include <verilated_vcd_c.h>
 
 #include <common.h>
-#include <init-load/read_bin.h>
 
 #define MAX_SIM_TIME 10000
 #define NPCTRAP(PC_now,code) status_setter(DEAD,PC_now,code)
