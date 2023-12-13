@@ -12,7 +12,7 @@
 
 extern vluint64_t sim_time;
 extern FILE* fp;
-
+Vcpu* cpu = NULL;
 extern VerilatedContext* env;
 
 

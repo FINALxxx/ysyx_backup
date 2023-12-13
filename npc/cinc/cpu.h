@@ -3,6 +3,7 @@
 
 #include <isa.h>
 #include <Vcpu___024root.h>
+#include <sys_npc.h>
 
 #define TARGET_PC 0
 #define TARGET_DNPC 1

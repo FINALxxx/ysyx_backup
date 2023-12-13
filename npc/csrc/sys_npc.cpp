@@ -4,7 +4,6 @@
 vluint64_t sim_time=0;
 
 VerilatedContext* env = NULL;
-Vcpu* cpu = NULL;
 NPC_STATUS cpu_status={ .state = STOP };
 
 
