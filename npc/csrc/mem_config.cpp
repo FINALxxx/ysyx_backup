@@ -1,5 +1,4 @@
 #include <mem_config.h>
-#include <debug-print.h>
 
 void mem_init(){
 	#if defined(CONFIG_PMEM_MALLOC)
