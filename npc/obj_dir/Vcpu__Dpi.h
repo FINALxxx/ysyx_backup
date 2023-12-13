@@ -16,9 +16,9 @@ extern "C" {
 
 
     // DPI IMPORTS
-    // DPI import at cpu.v:2:35
+    // DPI import at /home/finalx/ysyx-workbench/npc/vsrc/cpu.v:2:35
     extern svBitVecVal cmd_getter(const svBitVecVal* pc_now);
-    // DPI import at ControlUnit.v:3:30
+    // DPI import at /home/finalx/ysyx-workbench/npc/vsrc/ControlUnit.v:3:30
     extern void halt(svBit is_halt);
 
 #ifdef __cplusplus
