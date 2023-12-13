@@ -1,6 +1,6 @@
 #ifndef __MEM_CONFIG__
 #define __MEM_CONFIG__
-#include <sys_common.h>
+#include <common.h>
 
 #define CONFIG_PMEM_MALLOC 1
 #define CONFIG_PMEM_RESET_OFFSET 0x0

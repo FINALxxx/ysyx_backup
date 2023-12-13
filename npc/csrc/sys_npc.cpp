@@ -1,6 +1,6 @@
 #include <sys_npc.h>
 
-#include <memory/config.h>
+#include <cpu/ifetch.h>
 #include <init-load/read_bin.h>
 
 #include <cpu/status.h>
@@ -95,8 +95,7 @@ extern "C" void halt(svBit is_halt){
 
 //相当于vaddr_ifetch
 extern "C" svBitVecVal* cmd_getter(svBitVecVal* pc_now){
-	inst_setter(pc_now[0]);
-	return (svBitVecVal*)inst_getter();
+	return (svBitVecVal*)inst_fetch(pc_now[0],4);
 }
 
 

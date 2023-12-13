@@ -42,12 +42,10 @@ VM_USER_LDLIBS = \
 
 # User .cpp files (from .cpp's on Verilator command line)
 VM_USER_CLASSES = \
-	data \
-	exec \
+	cpu \
 	main \
 	mem_config \
 	read_bin \
-	status \
 	sys_npc \
 
 # User .cpp directories (from .cpp's on Verilator command line)
@@ -64,17 +62,13 @@ include $(VERILATOR_ROOT)/include/verilated.mk
 ### Executable rules... (from --exe)
 VPATH += $(VM_USER_DIR)
 
-data.o: /home/finalx/ysyx-workbench/npc/csrc/data.cpp
-	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-exec.o: /home/finalx/ysyx-workbench/npc/csrc/exec.cpp
+cpu.o: /home/finalx/ysyx-workbench/npc/csrc/cpu.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 main.o: /home/finalx/ysyx-workbench/npc/csrc/main.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 mem_config.o: /home/finalx/ysyx-workbench/npc/csrc/mem_config.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 read_bin.o: /home/finalx/ysyx-workbench/npc/csrc/read_bin.cpp
-	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-status.o: /home/finalx/ysyx-workbench/npc/csrc/status.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 sys_npc.o: /home/finalx/ysyx-workbench/npc/csrc/sys_npc.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
