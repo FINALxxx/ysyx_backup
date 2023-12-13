@@ -1,6 +1,6 @@
 #ifndef __CPU_STATUS__
 #define __CPU_STATUS__
-#include <common.h>
+#include <sys_common.h>
 
 #define NPCTRAP(PC_now,code) status_setter(DEAD,PC_now,code)
 //cpu运行参量，之后设置为static保护
