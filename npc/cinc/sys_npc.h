@@ -7,9 +7,6 @@
 #include <isa-def.h>
 
 
-vluint64_t sim_time;
-FILE* fp;
-VerilatedContext* env;
 
 extern "C" void halt(svBit is_halt);
 extern "C" svBitVecVal* cmd_getter(svBitVecVal* pc_now);

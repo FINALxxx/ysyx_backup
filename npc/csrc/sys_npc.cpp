@@ -1,10 +1,15 @@
 #include <sys_npc.h>
 
+extern NPC_STATUS cpu_status;
+extern long inst_exec_cnt;
+extern CPU_state cpu_data;
+extern Vcpu* cpu;
 
 vluint64_t sim_time=0;
-
 VerilatedContext* env = NULL;
-NPC_STATUS cpu_status={ .state = STOP };
+cpu_status={ .state = STOP };
+
+
 extern void mem_init();
 extern void read_bin(const char* fileName);
 extern uword_t inst_fetch(vaddr_t pc, int size); 
