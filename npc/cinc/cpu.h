@@ -1,7 +1,6 @@
 #ifndef __CPU__
 #define __CPU__
 
-#include <verilated.h>
 
 #include <Vcpu___024root.h>
 #include "Vcpu.h"
