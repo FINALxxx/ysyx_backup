@@ -7,7 +7,7 @@ VerilatedContext* env = NULL;
 NPC_STATUS cpu_status={ .state = STOP };
 extern void mem_init();
 extern void read_bin(const char* fileName);
-extern static inline uword_t inst_fetch(vaddr_t pc, int size); 
+extern uword_t inst_fetch(vaddr_t pc, int size); 
 
 int is_exit_status_bad() {
   int good = (cpu_status.state == DEAD && cpu_status.halt_ret == 0) || (cpu_status.state == QUIT);
