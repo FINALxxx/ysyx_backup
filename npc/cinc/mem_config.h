@@ -1,7 +1,7 @@
 #ifndef __MEM_CONFIG__
 #define __MEM_CONFIG__
 #include <common.h>
-//#include <cpu.h>
+#include <cpu.h>
 #include <debug-print.h>
 
 
