@@ -10,8 +10,8 @@ VSRC = $(shell find $(abspath ./vsrc) -name "*.v")
 VINC = $(abspath ./vinc) 
 CSRC = $(shell find $(abspath ./csrc) -name "*.cpp")
 CINC += -I$(abspath ./cinc) 
-CINC += $(addprefix -I,$(abspath ./cinc/sys))
-CINC += $(addprefix -I,$(abspath ./cinc/tool))
+#CINC += $(addprefix -I,$(abspath ./cinc/sys))
+#CINC += $(addprefix -I,$(abspath ./cinc/tool))
 
 
 VTOP = cpu
