@@ -47,7 +47,7 @@ sim:
 	verilator -Wall --cc --exe -top-module ${VTOP} --build ${CSRC} ${VSRC} \
 	-I${VINC} \
 	-LDFLAGS "${LIBS} -MMD"
-	#-CFLAGS "${CINC}"
+	-CFLAGS "-I./cinc"
 	make -C obj_dir -f ${TGS}.mk ${TGS}
 	./obj_dir/${TGS} ${BINSRC} ${ELFSRC}
 	#gtkwave ./${WAVEFILE}
