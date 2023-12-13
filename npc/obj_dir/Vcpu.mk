@@ -35,11 +35,11 @@ VM_PREFIX = Vcpu
 VM_MODPREFIX = Vcpu
 # User CFLAGS (from -CFLAGS on Verilator command line)
 VM_USER_CFLAGS = \
-	-I/home/finalx/ysyx-workbench/npc/cinc  -mmd \
+	-I/home/finalx/ysyx-workbench/npc/cinc  \
 
 # User LDLIBS (from -LDFLAGS on Verilator command line)
 VM_USER_LDLIBS = \
-	-lreadline -lLLVM-14 \
+	-lreadline -lLLVM-14 -MMD \
 
 # User .cpp files (from .cpp's on Verilator command line)
 VM_USER_CLASSES = \
