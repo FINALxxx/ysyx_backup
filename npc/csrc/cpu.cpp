@@ -1,5 +1,10 @@
 #include <cpu.h>
 
+extern NPC_STATUS cpu_status;
+extern long inst_exec_cnt;
+extern CPU_state cpu_data;
+extern Vcpu* cpu;
+
 /* DATA */
 const char *regs[] = {
   "$0", "ra", "sp", "gp", "tp", "t0", "t1", "t2",
