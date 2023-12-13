@@ -10,12 +10,18 @@ WAVEFILE = wave.vcd
 BINSRC ?=
 ELFSRC ?=
 
-CSRC = $(wildcard *${CFILE})
-CSRC += $(wildcard include/*${CFILE})
+#CSRC = $(wildcard *${CFILE})
+#CSRC += $(wildcard include/*${CFILE})
 #CSRC += $(wildcard include/**/*${CFILE})
 #CSRC += $(wildcard include/**/*.h)
+#VSRC = $(wildcard *${VFILE})
 
-VSRC = $(wildcard *${VFILE})
+VSRC = $(shell find $(abspath ./vsrc) -name "*.v")
+VINC = $(abspath ./vinc) 
+CSRC = $(shell find $(abspath ./csrc) -name "*.cpp")
+CINC += -I$(abspath ./cinc) 
+
+
 VTOP = cpu
 TGS = V${VTOP}
 
@@ -38,7 +44,10 @@ sim-all:
 	@echo ${CSRC}
 sim:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
-	verilator -Wall --cc --exe -top-module ${VTOP} --build ${CSRC} ${VSRC} --trace -LDFLAGS "${LIBS}"
+	verilator -Wall --cc --exe -top-module ${VTOP} --build ${CSRC} ${VSRC} \
+	-I${VINC} \
+	-LDFLAGS "${LIBS}" \
+	-CFLAGS "${CINC}"
 	make -C obj_dir -f ${TGS}.mk ${TGS}
 	./obj_dir/${TGS} ${BINSRC} ${ELFSRC}
 	#gtkwave ./${WAVEFILE}
