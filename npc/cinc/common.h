@@ -22,6 +22,7 @@ typedef uint16_t ioaddr_t;
 
 #define REG_NUM 32
 #define MAX_SIM_TIME 10000
+extern void status_setter(int state,vaddr_t pc,bool halt_ret);
 #define NPCTRAP(PC_now,code) status_setter(DEAD,PC_now,code)
 #define TARGET_PC 0
 #define TARGET_DNPC 1

@@ -76,6 +76,9 @@ static void clk_update(){
 	/* END */
 }
 
+extern uword_t pc_getter(bool target);
+extern uword_t reg_getter(byte_t n);
+
 extern "C" void halt(svBit is_halt){
 	//NPCTRAP(cpu->pc,10号寄存器($a0)的内容);
 	if(is_halt) NPCTRAP(pc_getter(TARGET_PC),reg_getter(10));	
