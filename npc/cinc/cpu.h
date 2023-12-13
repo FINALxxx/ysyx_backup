@@ -1,9 +1,9 @@
 #ifndef __CPU__
 #define __CPU__
 
-#include <isa-def.h>
 #include <Vcpu___024root.h>
 #include "Vcpu.h"
+#include <isa-def.h>
 
 /* DATA */
 uword_t reg_getter(byte_t n);
