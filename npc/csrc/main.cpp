@@ -1,4 +1,4 @@
-#inclue <common.h>
+#include <common.h>
 
 extern void sim_init(int argc,char** argv);
 int main(int argc, char** argv) {
