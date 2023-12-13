@@ -5,7 +5,7 @@ vluint64_t sim_time=0;
 
 VerilatedContext* env = NULL;
 NPC_STATUS cpu_status={ .state = STOP };
-extern mem_init();
+extern void mem_init();
 
 int is_exit_status_bad() {
   int good = (cpu_status.state == DEAD && cpu_status.halt_ret == 0) || (cpu_status.state == QUIT);
