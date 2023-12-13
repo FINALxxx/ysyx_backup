@@ -2,6 +2,7 @@
 #define __CPU__
 
 #include <isa.h>
+#include <Vcpu___024root.h>
 
 #define TARGET_PC 0
 #define TARGET_DNPC 1
