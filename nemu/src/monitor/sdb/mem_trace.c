@@ -12,7 +12,6 @@ bool mem_is_full=false;//如果未满，就从0开始读取；如果满，就从
 
 
 void insert_mem_buffer(bool status,uint32_t addr,uint32_t op_size,uint32_t data){
-	//printf("%d\n",op_size);
 	membuf[mem_cur].status=status;
 	membuf[mem_cur].addr=addr;
 	membuf[mem_cur].op_size=op_size;
@@ -36,6 +35,6 @@ void disp_mem_buffer(){
 	}
 	char status = membuf[mem_cur-1].status ? 'w' : 'r' ;
 	printf("M%c\t%#010x\t%-8d\t(Byte)\t%#010x\n",status,membuf[mem_cur-1].addr,membuf[mem_cur-1].op_size,membuf[mem_cur-1].data);
-	printf("[MTRACE TERMINATE]\n");
+	printf("[MRACE TERMINATE]\n");
 }
 #endif
