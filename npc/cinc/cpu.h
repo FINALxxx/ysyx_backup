@@ -3,6 +3,7 @@
 
 #include <isa-def.h>
 #include <Vcpu___024root.h>
+#include "Vcpu.h"
 
 /* DATA */
 uword_t reg_getter(byte_t n);
