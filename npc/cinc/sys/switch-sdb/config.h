@@ -1,6 +1,6 @@
 #ifndef __SDB_CONFIG__
 #define __SDB_CONFIG__
-#include <sys_common.h>
+#include <common.h>
 
 
 #define CONFIG_SDB 1
