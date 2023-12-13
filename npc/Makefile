@@ -64,7 +64,7 @@ sim:
 	-top-module ${VTOP} \
 	-I${VINC} \
 	-CFLAGS "${CINC}" \
-	-LDFLAGS -MMD
+	-LDFLAGS "-MMD"
 	--build ${CSRC} ${VSRC}
 	make -C obj_dir -f ${TGS}.mk ${TGS}
 	#ldd ./obj_dir/${TGS}
