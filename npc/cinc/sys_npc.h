@@ -5,7 +5,6 @@
 #include <verilated.h>
 #include <verilated_vcd_c.h>
 #include "Vcpu.h"
-#include <read_bin.h>
 #include <ifetch.h>
 
 
