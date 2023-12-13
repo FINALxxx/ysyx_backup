@@ -1,11 +1,5 @@
 #include <sys_npc.h>
 
-#include <ifetch.h>
-#include <read_bin.h>
-
-#include <status.h>
-#include <data.h>
-
 
 vluint64_t sim_time=0;
 

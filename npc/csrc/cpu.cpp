@@ -1,12 +1,6 @@
-#include <data.h>
-#include <status.h>
-#include <exec.h>
-#include <ifetch.h>
-#include "Vcpu___024root.h"
-#include <sys_npc.h>
+#include <cpu.h>
 
 /* DATA */
-
 const char *regs[] = {
   "$0", "ra", "sp", "gp", "tp", "t0", "t1", "t2",
   "s0", "s1", "a0", "a1", "a2", "a3", "a4", "a5",
@@ -23,7 +17,36 @@ void reg_setter(byte_t n){
 }
 
 uword_t reg_getter(byte_t n){
-	reg_setter(n);
+	//reg_setter(n);
+	if(n<REG_NUM) return cpu_data.gpr[n];
+}
+
+void reg_display() {
+	for(int i=0;i<REG_NUM;i ++){
+		printf("%s\t%#010x\t%d\n",regs[i],reg_getter(i),reg_getter(i));
+	}
+}
+
+uint32_t reg_str2val(const char *s, bool *success) {
+	for(int i=0;i<REG_NUM;i++){
+		if(!strcmp(regs[i],s)){ 
+			*success=true;
+			return reg_getter(i);
+		}
+	}
+	*success=false;
+	return 0;
+}
+
+uword_t pc_getter(bool target){
+	pc_setter();
+	if(target == TARGET_PC) return cpu_data.pc;
+	else return cpu_data.dnpc;
+}
+
+
+uword_t reg_getter(byte_t n){
+	//reg_setter(n);
 	if(n<REG_NUM) return cpu_data.gpr[n];
 }
 
