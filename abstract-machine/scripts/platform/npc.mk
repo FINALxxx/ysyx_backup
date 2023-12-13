@@ -20,12 +20,16 @@ image: $(IMAGE).elf
 	@echo + OBJCOPY "->" $(IMAGE_REL).bin
 	@$(OBJCOPY) -S --set-section-flags .bss=alloc,contents -O binary $(IMAGE).elf $(IMAGE).bin
 
+SOSRC = ${NEMU_HOME}/build/riscv32-nemu-interpreter-so 
+
 run: image
+	#@echo TEST = ${SOSRC}
 	#@echo cp ${IMAGE}.bin ${NPC_IMAGE}
-	make -C ${NPC_HOME} -f Makefile BINSRC=${IMAGE}.bin ELFSRC=${IMAGE}.elf sim
+	make -C ${NPC_HOME} -f Makefile BINSRC=${IMAGE}.bin ELFSRC=${IMAGE}.elf SOSRC=${SOSRC} sim
 
-clean:
-	make -C ${NPC_HOME} -f Makefile clean
+#clean:
+#	make -C ${NPC_HOME} -f Makefile clean
 
-all:
-	make -C ${NPC_HOME} -f Makefile all
+#all:
+#	#@echo ${BINARY}
+#	make -C ${NPC_HOME} -f Makefile all
