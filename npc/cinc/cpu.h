@@ -1,7 +1,7 @@
 #ifndef __CPU__
 #define __CPU__
 
-#include <isa.h>
+#include <isa-def.h>
 #include <Vcpu___024root.h>
 
 /* DATA */
