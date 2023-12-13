@@ -7,7 +7,6 @@
 #include <isa-def.h>
 
 
-
 extern "C" void halt(svBit is_halt);
 extern "C" svBitVecVal* cmd_getter(svBitVecVal* pc_now);
 

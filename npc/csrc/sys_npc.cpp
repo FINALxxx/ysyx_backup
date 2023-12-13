@@ -7,7 +7,7 @@ extern Vcpu* cpu;
 
 vluint64_t sim_time=0;
 VerilatedContext* env = NULL;
-cpu_status={ .state = STOP };
+//cpu_status={ .state = STOP };
 
 
 extern void mem_init();
