@@ -1,5 +1,4 @@
 #include <mem_config.h>
-#include <data.h>
 #include <debug-print.h>
 
 void mem_init(){
