@@ -10,8 +10,8 @@
 #define NPCTRAP(PC_now,code) status_setter(DEAD,PC_now,code)
 
 /* DATA */
-//uword_t reg_getter(byte_t n);
-//void reg_setter();
+uword_t reg_getter(byte_t n);
+void reg_setter();
 void reg_display();
 uword_t reg_str2val(const char *s, bool *success);
 

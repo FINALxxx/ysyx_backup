@@ -8,6 +8,7 @@
 #include "Vcpu.h"
 #include <mem_config.h>
 #include <read_bin.h>
+#include <cpu.h>
 
 #define MAX_SIM_TIME 10000
 #define NPCTRAP(PC_now,code) status_setter(DEAD,PC_now,code)
