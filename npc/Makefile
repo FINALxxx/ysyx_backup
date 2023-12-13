@@ -44,7 +44,7 @@ sim:
 	#gtkwave ./${WAVEFILE}
 
 sim-clean:
-	@echo remove <NPC>/obj_dir:
+	@echo "remove <NPC>/obj_dir:"
 	rm obj_dir -rf
 
 include ../Makefile
