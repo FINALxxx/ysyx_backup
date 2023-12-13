@@ -1,7 +1,7 @@
-#include <cpu/data.h>
-#include <cpu/status.h>
-#include <cpu/exec.h>
-#include <cpu/ifetch.h>
+#include <data.h>
+#include <status.h>
+#include <exec.h>
+#include <ifetch.h>
 #include "Vcpu___024root.h"
 #include <sys_npc.h>
 
