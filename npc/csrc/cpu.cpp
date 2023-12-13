@@ -44,44 +44,10 @@ uword_t pc_getter(bool target){
 	else return cpu_data.dnpc;
 }
 
-
-uword_t reg_getter(byte_t n){
-	//reg_setter(n);
-	if(n<REG_NUM) return cpu_data.gpr[n];
-}
-
-void reg_display() {
-	for(int i=0;i<REG_NUM;i ++){
-		printf("%s\t%#010x\t%d\n",regs[i],reg_getter(i),reg_getter(i));
-	}
-}
-
-uint32_t reg_str2val(const char *s, bool *success) {
-	for(int i=0;i<REG_NUM;i++){
-		if(!strcmp(regs[i],s)){ 
-			*success=true;
-			return reg_getter(i);
-		}
-	}
-	*success=false;
-	return 0;
-}
-
-uword_t pc_getter(bool target){
-	pc_setter();
-	if(target == TARGET_PC) return cpu_data.pc;
-	else return cpu_data.dnpc;
-}
-
-
 void pc_setter(){//之后换成DPIC
 	cpu_data.pc = cpu->pc;
 	cpu_data.dnpc = cpu->dnpc;
 }
-
-
-
-
 
 /* EXEC */
 
