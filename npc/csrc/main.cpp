@@ -1,8 +1,5 @@
 #include <sys_npc.h>
-#include <exec.h>
-//#include <sdb.h>
-
-using namespace std;
+#include <cpu.h>
 
 int main(int argc, char** argv) {
 	sim_init(argc,argv);
