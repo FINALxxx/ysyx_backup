@@ -1,10 +1,10 @@
 #ifndef __NPC_SYS__
 #define __NPC_SYS__
 
-#include <isa-def.h>
 #include <verilated.h>
 #include <verilated_vcd_c.h>
 #include "Vcpu.h"
+#include <isa-def.h>
 
 
 extern vluint64_t sim_time;
