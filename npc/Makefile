@@ -62,7 +62,7 @@ sim:
 	verilator -Wall --cc --exe \
 	-top-module ${VTOP} \
 	-I${VINC} \
-	-CFLAGS "${CINC}" \
+	-CFLAGS "${CINC} -Wl,--verbose" \
 	--build ${CSRC} ${VSRC}
 	make -C obj_dir -f ${TGS}.mk ${TGS}
 	#ldd ./obj_dir/${TGS}
