@@ -1,10 +1,10 @@
 #include <sys_npc.h>
 
-#include <cpu/ifetch.h>
-#include <init-load/read_bin.h>
+#include <ifetch.h>
+#include <read_bin.h>
 
-#include <cpu/status.h>
-#include <cpu/data.h>
+#include <status.h>
+#include <data.h>
 
 //#include <sdb.h>
 //#include <sdb_watchpoint.h>
