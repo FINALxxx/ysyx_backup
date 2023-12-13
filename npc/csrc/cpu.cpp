@@ -3,6 +3,7 @@
 #include <cpu/exec.h>
 #include <cpu/ifetch.h>
 #include "Vcpu___024root.h"
+#include <sys_npc.h>
 
 /* DATA */
 
