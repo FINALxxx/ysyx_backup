@@ -58,9 +58,8 @@ static void single_inst_debug(){
 extern void clk_update();
 void exec_once(){
 	get_cpu_pc();
-	printf("%#010x:\t%#010x\n",cpu_data.pc,set_cpu_inst());
+	printf("%#010x:\t%#010x\n",cpu->pc,set_cpu_inst());
 	clk_update();
-	clk_update();	
 }
 
 void exec(uint64_t n){
