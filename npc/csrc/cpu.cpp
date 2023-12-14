@@ -15,7 +15,7 @@ const char *regs[] = {
 	"s8", "s9", "s10", "s11", "t3", "t4", "t5", "t6"
 };
 
-void status_setter(int state, vaddr_t pc, int halt_ret) {
+void set_cpu_status(int state, vaddr_t pc, int halt_ret) {
 	cpu_status.state = state;
 	cpu_status.halt_pc = pc;
 	cpu_status.halt_ret = halt_ret;
