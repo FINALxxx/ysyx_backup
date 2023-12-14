@@ -82,7 +82,7 @@ extern "C" void halt(svBit is_halt){
 
 //相当于vaddr_ifetch
 extern "C" svBitVecVal* cmd_getter(svBitVecVal* pc_now){
-	return inst_fetch(pc_now[0],4);
+	return (svBitVecVal*)inst_fetch(pc_now[0],4);
 }
 
 
