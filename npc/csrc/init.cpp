@@ -18,13 +18,14 @@ static void welcome(){
 }
 
 static long bin_init(){
-	printf("%s:%s",ANSI_FMT("READING",ANSI_FG_GREEN),fileName);
+	Assert(bin_file,"<FILE>: BIN DO NOT EXIST");
+	printf("%s:%s",ANSI_FMT("READING",ANSI_FG_GREEN),);
 	FILE* fp = fopen(bin_file,"rb");
-	Assert(fp!=NULL,"<FILE>: FILE NOT EXIST\n");
+	Assert(fp,"<FILE>: CANNOT READ FROM BIN\n");
 	fseek(fp,0,SEEK_END);
 	long fsize = ftell(fp);
 	rewind(fp);
-	Assert(pmem!=NULL,"<FILE>: PMEM NOT EXIST\n");
+	Assert(pmem,"<FILE>: PMEM DO NOT EXIST\n");
 	assert(fread(paddr_to_ptr(PMEM_RESET),fsize,1,fp) == 1);
 	fclose(fp);
 

@@ -44,12 +44,15 @@ VM_USER_LDLIBS = \
 # User .cpp files (from .cpp's on Verilator command line)
 VM_USER_CLASSES = \
 	init \
+	paddr \
+	vaddr \
 	non-isa \
 	sim-npc \
 
 # User .cpp directories (from .cpp's on Verilator command line)
 VM_USER_DIR = \
 	/home/finalx/ysyx-workbench/npc/csrc \
+	/home/finalx/ysyx-workbench/npc/csrc/memory \
 
 
 ### Default rules...
@@ -62,6 +65,10 @@ include $(VERILATOR_ROOT)/include/verilated.mk
 VPATH += $(VM_USER_DIR)
 
 init.o: /home/finalx/ysyx-workbench/npc/csrc/init.cpp
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+paddr.o: /home/finalx/ysyx-workbench/npc/csrc/memory/paddr.cpp
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+vaddr.o: /home/finalx/ysyx-workbench/npc/csrc/memory/vaddr.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 non-isa.o: /home/finalx/ysyx-workbench/npc/csrc/non-isa.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
