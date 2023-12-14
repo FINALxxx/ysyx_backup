@@ -68,7 +68,6 @@ int sprintf(char *out, const char *fmt, ...) {
     va_end(args);
     *out_ptr='\0';
     return cnt;
-	return 0;
 
 }
 
