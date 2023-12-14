@@ -31,7 +31,7 @@ word_t paddr_read(paddr_t addr, int len){
 	}
 
 	out_pmem(addr);
-
+	return 0;
 }
 
 void paddr_write(paddr_t addr, int len, word_t data){
