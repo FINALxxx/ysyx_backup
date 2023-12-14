@@ -42,7 +42,7 @@ void paddr_write(paddr_t addr, int len, word_t data){
 
 void mem_init(){
 	#ifdef CONFIG_PMEM_MALLOC
-	pmem = malloc(CONFIG_MSIZE);
+	pmem = (byte_t*)malloc(CONFIG_MSIZE);
 	assert(pmem);
 	#endif
 	//TODO:+LOG
