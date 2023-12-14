@@ -1,7 +1,7 @@
 #include <common.h>
 
 
-extern void exec_once();
+extern void exec(uint64_t n);
 int is_exit_status_bad();
 void init(int argc,char** argv);
 int main(int argc,char** argv){
