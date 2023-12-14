@@ -19,7 +19,7 @@ static void welcome(){
 
 static long bin_init(){
 	Assert(bin_file,"<FILE>: BIN DO NOT EXIST");
-	printf("%s:%s",ANSI_FMT("READING",ANSI_FG_GREEN),);
+	printf("%s:%s",ANSI_FMT("READING",ANSI_FG_GREEN),bin_file);
 	FILE* fp = fopen(bin_file,"rb");
 	Assert(fp,"<FILE>: CANNOT READ FROM BIN\n");
 	fseek(fp,0,SEEK_END);
