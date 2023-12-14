@@ -43,15 +43,7 @@ VM_USER_LDLIBS = \
 
 # User .cpp files (from .cpp's on Verilator command line)
 VM_USER_CLASSES = \
-	main \
-	read_bin \
-	sdb \
-	sdb_disasm \
-	sdb_expr \
-	sdb_ftrace \
-	sdb_itrace \
-	sdb_watchpoint \
-	sys_npc \
+	sim-npc \
 
 # User .cpp directories (from .cpp's on Verilator command line)
 VM_USER_DIR = \
@@ -67,23 +59,7 @@ include $(VERILATOR_ROOT)/include/verilated.mk
 ### Executable rules... (from --exe)
 VPATH += $(VM_USER_DIR)
 
-main.o: /home/finalx/ysyx-workbench/npc/csrc/main.cpp
-	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-read_bin.o: /home/finalx/ysyx-workbench/npc/csrc/read_bin.cpp
-	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-sdb.o: /home/finalx/ysyx-workbench/npc/csrc/sdb.cpp
-	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-sdb_disasm.o: /home/finalx/ysyx-workbench/npc/csrc/sdb_disasm.cpp
-	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-sdb_expr.o: /home/finalx/ysyx-workbench/npc/csrc/sdb_expr.cpp
-	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-sdb_ftrace.o: /home/finalx/ysyx-workbench/npc/csrc/sdb_ftrace.cpp
-	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-sdb_itrace.o: /home/finalx/ysyx-workbench/npc/csrc/sdb_itrace.cpp
-	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-sdb_watchpoint.o: /home/finalx/ysyx-workbench/npc/csrc/sdb_watchpoint.cpp
-	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-sys_npc.o: /home/finalx/ysyx-workbench/npc/csrc/sys_npc.cpp
+sim-npc.o: /home/finalx/ysyx-workbench/npc/csrc/sim-npc.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 
 ### Link rules... (from --exe)
