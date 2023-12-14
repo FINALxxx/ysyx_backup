@@ -24,8 +24,9 @@ static long bin_init(){
 	Assert(fp,"<FILE>: CANNOT READ FROM BIN\n");
 	fseek(fp,0,SEEK_END);
 	long fsize = ftell(fp);
+	//TODO:+log
+
 	rewind(fp);
-	Assert(pmem,"<FILE>: PMEM DO NOT EXIST\n");
 	assert(fread(paddr_to_ptr(PMEM_RESET),fsize,1,fp) == 1);
 	fclose(fp);
 
