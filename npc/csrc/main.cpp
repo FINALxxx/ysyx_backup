@@ -9,6 +9,7 @@ int main(int argc, char** argv) {
 	sim_init(argc,argv);
 	//exec(MAX_SIM_TIME);
 	//sdb_mainloop();
-	cpu_status.state=QUIT;	
-	return is_exit_status_bad();
+	//cpu_status.state=QUIT;	
+	//return is_exit_status_bad();
+	return 0;
 }
