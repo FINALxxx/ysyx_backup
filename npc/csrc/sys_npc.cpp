@@ -16,7 +16,7 @@ vluint64_t sim_time=0;
 VerilatedContext* env = NULL;
 Vcpu* cpu = NULL;
 NPC_STATUS cpu_status={ .state = STOP };
-CPU_state cpu_data = NULL;
+CPU_state cpu_data = {};
 
 int is_exit_status_bad() {
   int good = (cpu_status.state == DEAD && cpu_status.halt_ret == 0) || (cpu_status.state == QUIT);
