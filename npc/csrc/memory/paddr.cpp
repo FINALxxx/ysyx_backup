@@ -18,7 +18,9 @@ paddr_t ptr_to_paddr(byte_t* ptr){
 }
 
 static void out_pmem(paddr_t addr){
-	Assert(0,"<MEMORY> addr = " FMT_PADDR "is out of bound of pmem [" FMT_PADDR "] at pc =" FMT_WORD, addr, PMEM_LEFT, PMEM_RIGHT, cpu_data.pc);
+	//Assert(0,"<MEMORY> addr = " FMT_PADDR "is out of bound of pmem [" FMT_PADDR "] at pc =" FMT_WORD, addr, PMEM_LEFT, PMEM_RIGHT, cpu_data.pc);
+	assert(0);
+
 }
 
 
