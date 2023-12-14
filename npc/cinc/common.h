@@ -10,6 +10,8 @@
 #include <assert.h>
 #include <stdlib.h>
 
+#include <verilated.h>
+#include "Vcpu.h"
 
 typedef uint32_t word_t;
 typedef int32_t  sword_t;

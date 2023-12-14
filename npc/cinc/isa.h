@@ -16,9 +16,7 @@
 #ifndef __ISA_H__
 #define __ISA_H__
 
-// Located at src/isa/$(GUEST_ISA)/include/isa-def.h
 #include <isa-def.h>
-
 
 // monitor
 extern unsigned char isa_logo[];

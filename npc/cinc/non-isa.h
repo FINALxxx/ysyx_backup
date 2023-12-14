@@ -13,10 +13,12 @@
 * See the Mulan PSL v2 for more details.
 ***************************************************************************************/
 
-#ifndef __UTILS_H__
-#define __UTILS_H__
+#ifndef __NON_ISA_H__
+#define __NON_ISA_H__
 
 #include <common.h>
+
+//保存非isa相关的参量
 
 // ----------- state -----------
 

@@ -19,7 +19,7 @@
 #include <common.h>
 #include <stdio.h>
 #include <iostream>
-#include <utils.h>
+#include <non-isa.h>
 
 #define Log(format, ...) \
     _Log(ANSI_FMT("[%s:%d %s] " format, ANSI_FG_BLUE) "\n", \
