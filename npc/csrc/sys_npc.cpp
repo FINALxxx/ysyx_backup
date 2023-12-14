@@ -27,6 +27,7 @@ void sim_init(int argc,char** argv){
 	env = new VerilatedContext;
 	cpu = new Vcpu(env);
 	mem_init();
+	printf("TEST\n");
 	read_bin(argv[1]);
 
 	cpu->rst=1;
