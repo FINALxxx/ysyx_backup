@@ -34,15 +34,15 @@ static long bin_init(){
 }
 
 void clk_update(){//1clk
-	cpu->clk^=1;
 	cpu->eval();
 	cpu->clk^=1;
 	cpu->eval();
+	cpu->clk^=1;
 }
 
 static inline void half_clk_update(){
-	cpu->clk^=1;
 	cpu->eval();
+	cpu->clk^=1;
 } 
 
 //下降沿读取
@@ -53,9 +53,9 @@ void cpu_init(){
 	
 	cpu->clk = 0;
 	cpu->rst = 1;
-	half_clk_update();
-	cpu->rst = 0;
 	clk_update();
+	cpu->rst = 0;
+	//clk_update();
 	printf(ANSI_FMT("PC_INIT:",ANSI_FG_GREEN) FMT_PADDR "\n",cpu->pc);
 }
 
