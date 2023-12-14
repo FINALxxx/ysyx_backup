@@ -35,7 +35,7 @@ word_t set_cpu_inst(){//之后加入DPIC
 
 void get_cpu_reg(){
 	VlUnpacked<IData,32> rf_struct = cpu->rootp->cpu__DOT__rf1__DOT__rf;
-	cpu_data.gpr = rf_struct.m_storage;
+	for(int i=0;i<32;i++) cpu_data.gpr[i] = rf_struct.m_storage[i];
 }
 
 static void single_inst_debug(){
