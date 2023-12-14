@@ -29,25 +29,12 @@ void sim_init(int argc,char** argv){
 	mem_init();
 	read_bin(argv[1]);
 
-	/* START 0clk */	
-	cpu->clk=0;
 	cpu->rst=1;
 	cpu->eval();//cpu启动
-	/* END 0clk */	
+	clk_update();
 
-	/* START 0.5clk */	
-	cpu->clk^=1;
-	//cpu->rst=0;//debug：严禁在此处复位，此时在下降沿，还没有dnpc更新为pc
-	cpu->eval();
-	/* END 0.5clk */	
-	
-	/* START 0.5clk */	
-	cpu->clk^=1;
-	cpu->rst=0;
-	//cpu->eval();
 	printf("\t[INIT_PC=%#010x]\n\n",pc_getter(TARGET_PC));
 
-	/* END 0.5clk */	
 
 	//sdb、itrace、frace初始化，不使用请按需关闭	
 	//monitor_init();
@@ -95,7 +82,7 @@ extern "C" void halt(svBit is_halt){
 
 //相当于vaddr_ifetch
 extern "C" svBitVecVal* cmd_getter(svBitVecVal* pc_now){
-	return (svBitVecVal*)inst_fetch(pc_now[0],4);
+	return inst_fetch(pc_now[0],4);
 }
 
 
