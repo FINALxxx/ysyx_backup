@@ -1,5 +1,6 @@
 #include <cpu.h>
 #include <isa.h>
+#include <memory/vaddr.h>
 
 CPU_state cpu_data = {};
 vluint64_t sim_time = 0;
