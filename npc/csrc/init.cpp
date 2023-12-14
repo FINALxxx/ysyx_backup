@@ -1,7 +1,5 @@
 #include <verilated.h>
-#include "Vcpu.h"
 #include <verilated_vcd_c.h>
-
 #include <isa.h>
 #include <memory/paddr.h>
 
@@ -12,7 +10,7 @@ static char* diff_file = NULL;//diff动态链接库
 
 vluint64_t sim_time = 0;
 VerilatedContext* env;
-Vcpu* cpu;
+extern Vcpu* cpu;
 
 static void welcome(){
 	printf("welcome to %s-NPC\n",ANSI_FMT(CONFIG_ISA,ANSI_FG_YELLOW ANSI_BG_RED));
@@ -46,31 +44,6 @@ static inline void half_clk_update(){
 	cpu->eval();
 } 
 
-void cpu_init(){
-	env = new VerilatedContext;
-	cpu = new Vcpu(env);
-	
-	cpu->clk = 1;
-	cpu->rst = 1;
-	clk_update();
-	//clk_update();
-	printf("PC_INIT:" FMT_PADDR "\n",cpu->pc);
-}
-
-
-void cpu_terminate(){
-	if(cpu_status.state == ABORT){//ABORT
-		printf("\nNPC EXIT: \033[0m\033[1;31mABORT\033[0m at pc = %#010x\n\n",cpu_status.halt_pc);
-	}else if(cpu_status.halt_ret == 0){//GOOD
-		printf("\nNPC EXIT: \033[0m\033[1;32mHIT GOOD TRAP\033[0m at pc = %#010x\n\n",cpu_status.halt_pc);
-	}else{//BAD or unexpected situation
-		printf("\nNPC EXIT: \033[0m\033[1;31mHIT BAD TRAP\033[0m at pc = %#010x\n\n",cpu_status.halt_pc);	
-	}
-
-	//m_trace->close();
-	cpu->final();
-	delete cpu;
-}
 
 void init(int argc,char** argv){
 	mem_init();
