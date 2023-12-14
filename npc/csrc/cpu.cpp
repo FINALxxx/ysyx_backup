@@ -8,6 +8,18 @@ vluint64_t sim_time = 0;
 CPU_state cpu_data = {};
 extern Vcpu* cpu;
 
+const char *regs[] = {
+	"$0", "ra", "sp", "gp", "tp", "t0", "t1", "t2",
+	"s0", "s1", "a0", "a1", "a2", "a3", "a4", "a5",
+	"a6", "a7", "s2", "s3", "s4", "s5", "s6", "s7",
+	"s8", "s9", "s10", "s11", "t3", "t4", "t5", "t6"
+};
+
+void status_setter(int state, vaddr_t pc, int halt_ret) {
+	cpu_status.state = state;
+	cpu_status.halt_pc = pc;
+	cpu_status.halt_ret = halt_ret;
+}
 
 void cpu_terminate(){
 	if(cpu_status.state == ABORT){//ABORT
