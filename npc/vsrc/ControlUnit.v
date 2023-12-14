@@ -1,6 +1,6 @@
 `include "TYPES.v"
 
-import "DPI-C" function void halt(input bit is_halt);
+//import "DPI-C" function void halt(input bit is_halt);
 
 module ControlUnit(
 	//input clk,//同步halt()
@@ -147,10 +147,10 @@ module ControlUnit(
 /*  END PC操作数分类 */
 
 
-    reg is_halt;
+   /* reg is_halt;
 	always @(*) begin
 		is_halt = (opcode=='b1110011)&(funct3=='b0)&(funct7=='b0);
 		halt(is_halt);
-	end
+	end */
 
 endmodule
