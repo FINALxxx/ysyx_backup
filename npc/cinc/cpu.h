@@ -11,7 +11,7 @@ void set_cpu_status(int state, vaddr_t pc, int halt_ret);
 /* DATA */
 void get_cpu_pc();//之后加入DPIC
 word_t set_cpu_inst();//之后加入DPIC
-
+void get_cpu_reg();
 
 
 /* EXEC */
