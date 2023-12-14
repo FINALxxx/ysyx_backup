@@ -1,30 +1,7 @@
-#ifndef __NON_ISA_H__
-#define __NON_ISA_H__
+#ifndef __UTILS_H__
+#define __UTILS_H__
 
 #include <common.h>
-
-//保存非isa相关的参量
-
-// ----------- state -----------
-
-//RUNNING,STOP,END,ABORT,QUIT
-enum { ALIVE, STOP, TERMINATE, ABORT, QUIT };
-
-typedef struct {
-  int state;
-  vaddr_t halt_pc;
-  uint32_t halt_ret;
-} NPCState;
-
-extern NPCState cpu_status;
-
-//int is_exit_status_bad();
-
-// ----------- timer -----------
-
-uint64_t get_time();
-
-// ----------- log -----------
 
 #define ANSI_FG_BLACK   "\33[1;30m"
 #define ANSI_FG_RED     "\33[1;31m"
@@ -44,6 +21,7 @@ uint64_t get_time();
 #define ANSI_BG_WHITE   "\33[1;47m"
 #define ANSI_NONE       "\33[0m"
 
+
 #define ANSI_FMT(str, fmt) fmt str ANSI_NONE
 
 #define log_write(...) IFDEF(CONFIG_TARGET_NATIVE_ELF, \
@@ -56,6 +34,7 @@ uint64_t get_time();
     } \
   } while (0) \
 )
+
 
 #define _Log(...) \
   do { \

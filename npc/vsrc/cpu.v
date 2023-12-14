@@ -1,5 +1,5 @@
 /* verilator lint_off PINCONNECTEMPTY */
-//import "DPI-C" function bit[31:0] cmd_getter(input bit[31:0] pc_now);
+import "DPI-C" function bit[31:0] cmd_getter(input bit[31:0] pc_now);
 
 module cpu(
     input clk,
@@ -9,7 +9,7 @@ module cpu(
 	output [31:0] dnpc
 );
     wire [31:0] cmd;
-	assign cmd = 32'h00008067;
+	assign cmd = cmd_getter(pc);
 
 	//rs1、rs2、rd是寄存器序号，src1、src2、src_rd、imm是数据
     wire [4:0] rs1,rs2,rd;
