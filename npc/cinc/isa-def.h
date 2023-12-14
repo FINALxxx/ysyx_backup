@@ -3,8 +3,9 @@
 
 #include <common.h>
 
+#define REG_NUM 32
 typedef struct {
-  word_t gpr[32];
+  word_t gpr[REG_NUM];
   vaddr_t pc;
   vaddr_t dnpc;
 } CPU_state;
