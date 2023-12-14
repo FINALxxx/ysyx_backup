@@ -8,6 +8,7 @@ int main(int argc,char** argv){
 	//for(int it = 0;it<argc;it++)
 	//	std::cout<<argv[it]<<std::endl;
 	init(argc,argv);
+	printf("TEST");
 	exec_once();	
 	return is_exit_status_bad();
 }
