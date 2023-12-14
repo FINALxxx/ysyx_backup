@@ -74,8 +74,8 @@ void init(int argc,char** argv){
 	bin_file = argv[1];
 	bin_init();
 	
-	//cpu_init();
-	welcome();
+	cpu_init();
+	//welcome();
 }
 
 
