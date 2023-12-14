@@ -35,21 +35,21 @@ static long bin_init(){
 
 static inline void clk_update(){//1clk
 	cpu->clk^=1;
-	cpu->exec();
+	cpu->eval();
 	cpu->clk^=1;
-	cpu->exec();
+	cpu->eval();
 }
 
 static inline void half_clk_update(){
 	cpu->clk^=1;
-	cpu->exec();
+	cpu->eval();
 } 
 
 void cpu_init(){
 	cpu->clk = 0;
 	cpu->rst = 1;
 	clk_update();
-	printf("PC_INIT:\n" FMT_PADDR,clk->pc);
+	printf("PC_INIT:\n" FMT_PADDR,cpu->pc);
 }
 
 
