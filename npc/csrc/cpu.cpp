@@ -6,6 +6,7 @@
 #include <sys_npc.h>
 
 /* DATA */
+long inst_exec_cnt = 0; 
 
 const char *regs[] = {
   "$0", "ra", "sp", "gp", "tp", "t0", "t1", "t2",
