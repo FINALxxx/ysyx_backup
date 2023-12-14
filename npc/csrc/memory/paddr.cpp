@@ -17,6 +17,7 @@ paddr_t ptr_to_paddr(byte_t* ptr){
 	return (ptr - pmem) + PMEM_LEFT;
 }
 
+extern CPUState cpu_data;
 static void out_pmem(paddr_t addr){
 	panic("<MEMORY> addr = " FMT_PADDR "is out of bound of pmem [" FMT_PADDR "] at pc =" FMT_WORD, addr, PMEM_LEFT, PMEM_RIGHT, cpu_data.pc);
 }
