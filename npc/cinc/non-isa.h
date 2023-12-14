@@ -18,7 +18,7 @@ typedef struct {
 
 extern NPCState npc_status;
 
-int is_exit_status_bad();
+//int is_exit_status_bad();
 
 // ----------- timer -----------
 
