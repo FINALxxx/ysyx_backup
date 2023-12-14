@@ -67,7 +67,7 @@ void init(int argc,char** argv){
 	bin_init();
 	
 	cpu_init();
-	//welcome();
+	welcome();
 }
 
 
