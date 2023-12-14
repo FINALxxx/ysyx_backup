@@ -1,8 +1,8 @@
-#include <isa.h>
 #include <memory/paddr.h>
 #include <verilated.h>
 #include "Vcpu.h"
 #include <verilated_vcd_c.h>
+#include <isa.h>
 
 static char* bin_file = NULL;//img文件
 static char* elf_file = NULL;//elf文件
