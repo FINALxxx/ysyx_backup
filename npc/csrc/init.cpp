@@ -47,6 +47,9 @@ static inline void half_clk_update(){
 } 
 
 void cpu_init(){
+	env = new VerilatedContext;
+	cpu = new Vcpu(env);
+	
 	cpu->clk = 0;
 	cpu->rst = 1;
 	clk_update();
