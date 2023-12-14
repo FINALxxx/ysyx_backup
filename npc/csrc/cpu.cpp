@@ -1,27 +1,10 @@
 #include <cpu.h>
 #include <isa.h>
-#include <verilated.h>
-#include <verilated_vcd_c.h>
-#include "Vcpu.h"
 
-vluint64_t sim_time = 0;
-VerilatedContext* env = NULL;
 CPU_state cpu_data = {};
-Vcpu* cpu = NULL;
+vluint64_t sim_time = 0;
+extern Vcpu* cpu;
 
-
-//下降沿读取
-//上升沿执行和写入
-extern void clk_update();
-void cpu_init(){
-	env = new VerilatedContext;
-	cpu = new Vcpu(env);
-	
-	cpu->clk = 1;
-	cpu->rst = 1;
-	clk_update();
-	printf("PC_INIT:" FMT_PADDR "\n",cpu->pc);
-}
 
 void cpu_terminate(){
 	if(cpu_status.state == ABORT){//ABORT
