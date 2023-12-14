@@ -14,7 +14,7 @@ VerilatedContext* env = NULL;
 Vcpu* cpu = NULL;
 
 static void welcome(){
-	printf("welcome to %s-NPC\n",ANSI_FMT(CONFIG_ISA,ANSI_FG_YELLOW ANSI_BG_RED));
+	printf("\nwelcome to %s-NPC\n\n",ANSI_FMT(CONFIG_ISA,ANSI_FG_YELLOW ANSI_BG_RED));
 }
 
 static long bin_init(){
