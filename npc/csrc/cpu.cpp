@@ -1,8 +1,9 @@
 #include <cpu/data.h>
 #include <cpu/status.h>
 #include <cpu/exec.h>
-#include <memory/config.h>
+#include <cpu/ifetch.h>
 #include "Vcpu___024root.h"
+#include <sys_npc.h>
 
 /* DATA */
 
@@ -56,14 +57,6 @@ void pc_setter(){//之后换成DPIC
 }
 
 
-/*uword_t inst_getter(){	
-	inst_setter(pc_getter(TARGET_PC));
-	return cpu_data.inst;
-}*/
-
-void inst_setter(uword_t pc){//相当于vaddr_ifetch
-	cpu_data.inst = vaddr_read(pc,4);
-}
 
 
 
@@ -90,9 +83,9 @@ void inst_setter(uword_t pc){//相当于vaddr_ifetch
 void exec_once(){
 	clk_update();	
 	inst_exec_cnt++;	
-	
-	std::cout<<"PC="<<pc_getter(TARGET_PC)<<std::endl;
-	printf("\t[CMD_HEX=%#010x]\n",inst_getter());
+	vaddr_t pc = pc_getter(TARGET_PC);
+	std::cout<<"PC="<<pc<<std::endl;
+	printf("\t[CMD_HEX=%#010x]\n",inst_fetch(pc,4));
 	
 }
 
