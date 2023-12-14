@@ -16,7 +16,7 @@ typedef struct {
   uint32_t halt_ret;
 } NPCState;
 
-extern NPCState npc_status;
+extern NPCState cpu_status;
 
 //int is_exit_status_bad();
 
