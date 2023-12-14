@@ -5,13 +5,13 @@
 
 #define PMEM_LEFT  ((paddr_t)CONFIG_MBASE)
 #define PMEM_RIGHT ((paddr_t)CONFIG_MBASE + CONFIG_MSIZE - 1)
-#define RESET_VECTOR (PMEM_LEFT + CONFIG_PC_RESET_OFFSET)
+#define PMEM_RESET (PMEM_LEFT + CONFIG_PC_RESET_OFFSET)
 
-//将物理地址(如paddr = 0x80000000)转为物理地址的指针(haddr = pmem + (paddr - PMEM_LEFT))
-uint8_t* guest_to_host(paddr_t paddr);
+//将物理地址(如paddr = 0x80000000)转为物理地址的指针(ptr = pmem + (paddr - PMEM_LEFT))
+uint8_t* paddr_to_ptr(paddr_t paddr);
 
-//将物理地址的指针(如haddr = pmem)转为物理地址(paddr = (haddr - pmem) + PMEM_LEFT)
-paddr_t host_to_guest(uint8_t *haddr);
+//将物理地址的指针(如ptr = pmem)转为物理地址(paddr = (ptr - pmem) + PMEM_LEFT)
+paddr_t ptr_to_paddr(uint8_t *haddr);
 
 
 static inline bool in_pmem(paddr_t addr) {

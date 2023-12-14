@@ -5,7 +5,7 @@
 
 //使用pmem变量的地址读写len字节的数据
 
-static inline word_t host_read(void *addr, int len) {
+static inline word_t ptr_read(void *addr, int len) {
   switch (len) {
     case 1: return *(uint8_t  *)addr;
     case 2: return *(uint16_t *)addr;
@@ -15,7 +15,7 @@ static inline word_t host_read(void *addr, int len) {
   }
 }
 
-static inline void host_write(void *addr, int len, word_t data) {
+static inline void ptr_write(void *addr, int len, word_t data) {
   switch (len) {
     case 1: *(uint8_t  *)addr = data; return;
     case 2: *(uint16_t *)addr = data; return;

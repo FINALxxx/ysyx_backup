@@ -23,7 +23,7 @@ extern unsigned char isa_logo[];
 void init_isa();
 
 // reg
-extern CPU_state cpu;
+extern CPU_state cpu_data;
 void isa_reg_display();
 word_t isa_reg_str2val(const char *name, bool *success);
 
