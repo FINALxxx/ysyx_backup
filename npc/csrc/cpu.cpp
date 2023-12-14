@@ -1,6 +1,7 @@
 #include <cpu.h>
 #include <isa.h>
 #include <memory/vaddr.h>
+#include "Vcpu___024root.h"
 
 vluint64_t sim_time = 0;
 CPU_state cpu_data = {};
@@ -41,6 +42,7 @@ static void single_inst_debug(){
 	//TODO
 }
 
+extern void clk_update();
 void exec_once(){
 	get_cpu_pc();
 	printf("%#010x\n",set_cpu_inst());
