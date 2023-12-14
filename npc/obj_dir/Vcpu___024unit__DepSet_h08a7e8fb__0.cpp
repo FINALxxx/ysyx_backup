@@ -8,16 +8,6 @@
 #include "Vcpu__Syms.h"
 #include "Vcpu___024unit.h"
 
-extern "C" void halt(svBit is_halt);
-
-VL_INLINE_OPT void Vcpu___024unit____Vdpiimwrap_halt_TOP____024unit(CData/*0:0*/ is_halt) {
-    VL_DEBUG_IF(VL_DBG_MSGF("+        Vcpu___024unit____Vdpiimwrap_halt_TOP____024unit\n"); );
-    // Body
-    svBit is_halt__Vcvt;
-    for (size_t is_halt__Vidx = 0; is_halt__Vidx < 1; ++is_halt__Vidx) is_halt__Vcvt = is_halt;
-    halt(is_halt__Vcvt);
-}
-
 extern "C" svBitVecVal cmd_getter(const svBitVecVal* pc_now);
 
 VL_INLINE_OPT void Vcpu___024unit____Vdpiimwrap_cmd_getter_TOP____024unit(IData/*31:0*/ pc_now, IData/*31:0*/ &cmd_getter__Vfuncrtn) {
