@@ -43,7 +43,7 @@ static void single_inst_debug(){
 	//TODO
 }
 
-extern void clk_update();
+extern inline void clk_update();
 void exec_once(){
 	get_cpu_pc();
 	printf("%#010x\n",set_cpu_inst());
