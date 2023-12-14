@@ -50,11 +50,11 @@ void cpu_init(){
 	cpu->clk = 0;
 	cpu->rst = 1;
 	clk_update();
-	printf("PC_INIT:\n" FMT_PADDR,cpu->pc);
+	printf("PC_INIT:" FMT_PADDR "\n",cpu->pc);
 }
 
 
-/*void cpu_terminate(){
+void cpu_terminate(){
 	if(cpu_status.state == ABORT){//ABORT
 		printf("\nNPC EXIT: \033[0m\033[1;31mABORT\033[0m at pc = %#010x\n\n",cpu_status.halt_pc);
 	}else if(cpu_status.halt_ret == 0){//GOOD
@@ -66,7 +66,7 @@ void cpu_init(){
 	//m_trace->close();
 	cpu->final();
 	delete cpu;
-}*/
+}
 
 void init(int argc,char** argv){
 	mem_init();
