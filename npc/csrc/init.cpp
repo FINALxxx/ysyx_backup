@@ -1,6 +1,7 @@
 #include <verilated.h>
 #include <verilated_vcd_c.h>
 #include <isa.h>
+#include <cpu.h>
 #include <memory/paddr.h>
 
 static char* bin_file = NULL;//img文件

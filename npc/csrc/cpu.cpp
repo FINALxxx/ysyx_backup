@@ -1,7 +1,11 @@
 #include <cpu.h>
 #include <isa.h>
+#include <verilated.h>
+#include <verilated_vcd_c.h>
 #include "Vcpu.h"
 
+vluint64_t sim_time = 0;
+VerilatedContext* env = NULL;
 CPU_state cpu_data = {};
 Vcpu* cpu = NULL;
 //下降沿读取
