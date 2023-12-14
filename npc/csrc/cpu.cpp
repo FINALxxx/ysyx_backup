@@ -6,6 +6,7 @@
 #include <sys_npc.h>
 
 /* DATA */
+long inst_exec_cnt = 0; 
 
 const char *regs[] = {
   "$0", "ra", "sp", "gp", "tp", "t0", "t1", "t2",
@@ -132,7 +133,7 @@ void exec(uint32_t n){
 
 
 /* STATUS */
-void status_setter(int state, uint32_t pc, int halt_ret) {
+void status_setter(int state, vaddr_t pc, int halt_ret) {
   cpu_status.state = state;
   cpu_status.halt_pc = pc;
   cpu_status.halt_ret = halt_ret;

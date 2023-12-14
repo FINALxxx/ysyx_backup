@@ -13,7 +13,7 @@ typedef struct {
 
 extern NPC_STATUS cpu_status;
 
-void status_setter(int state,vaddr_t pc,bool halt_ret);
+void status_setter(int state,vaddr_t pc,int halt_ret);
 
 #endif
 

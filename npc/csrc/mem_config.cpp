@@ -7,13 +7,12 @@ void mem_init(){
 		pmem = (byte_t*)malloc(PMEM_SIZE);
 		assert(pmem);
 	#endif
-	Log("physical memory area [" FMT_VADDR ", " FMT_VADDR "]", PMEM_LEFT, PMEM_RIGHT);
+	//Log("physical memory area [" FMT_VADDR ", " FMT_VADDR "]", PMEM_LEFT, PMEM_RIGHT);
 }
 
 
 static void out_of_bound(vaddr_t addr) {
-	panic("address = " FMT_VADDR " is out of bound of pmem [" FMT_VADDR ", " FMT_VADDR "] at pc = " FMT_WORD,
-      addr, PMEM_LEFT, PMEM_RIGHT, pc_getter(TARGET_PC));
+	//panic("address = " FMT_VADDR " is out of bound of pmem [" FMT_VADDR ", " FMT_VADDR "] at pc = " FMT_WORD,addr, PMEM_LEFT, PMEM_RIGHT, pc_getter(TARGET_PC));
 }
 
 

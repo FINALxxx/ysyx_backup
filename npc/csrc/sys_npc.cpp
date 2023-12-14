@@ -16,7 +16,7 @@ vluint64_t sim_time=0;
 VerilatedContext* env = NULL;
 Vcpu* cpu = NULL;
 NPC_STATUS cpu_status={ .state = STOP };
-
+CPU_state cpu_data = {};
 
 int is_exit_status_bad() {
   int good = (cpu_status.state == DEAD && cpu_status.halt_ret == 0) || (cpu_status.state == QUIT);
@@ -29,25 +29,12 @@ void sim_init(int argc,char** argv){
 	mem_init();
 	read_bin(argv[1]);
 
-	/* START 0clk */	
-	cpu->clk=0;
 	cpu->rst=1;
 	cpu->eval();//cpu启动
-	/* END 0clk */	
+	clk_update();
 
-	/* START 0.5clk */	
-	cpu->clk^=1;
-	//cpu->rst=0;//debug：严禁在此处复位，此时在下降沿，还没有dnpc更新为pc
-	cpu->eval();
-	/* END 0.5clk */	
-	
-	/* START 0.5clk */	
-	cpu->clk^=1;
-	cpu->rst=0;
-	//cpu->eval();
 	printf("\t[INIT_PC=%#010x]\n\n",pc_getter(TARGET_PC));
 
-	/* END 0.5clk */	
 
 	//sdb、itrace、frace初始化，不使用请按需关闭	
 	//monitor_init();
@@ -78,12 +65,12 @@ void sim_update(){//测试用，一般使用exec
 	sim_time++;
 }
 
-static void clk_update(){
+void clk_update(){
 	/* START 1clk in total */
 	cpu->eval(); 
-	cpu->clk^=1;//0.5clk
+	cpu->clk^=1;
 	cpu->eval();
-	cpu->clk^=1;//0.5clk
+	cpu->clk^=1;
 	/* END */
 }
 

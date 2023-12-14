@@ -12,8 +12,6 @@
 #define NPCTRAP(PC_now,code) status_setter(DEAD,PC_now,code)
 
 extern vluint64_t sim_time;
-extern FILE* fp;
-
 extern VerilatedContext* env;
 extern Vcpu* cpu;
 
@@ -25,7 +23,7 @@ extern "C" svBitVecVal* cmd_getter(svBitVecVal* pc_now);
 void sim_init(int argc,char** argv);
 void sim_terminate();
 void sim_update();
-static void clk_update();
+void clk_update();
 int is_exit_status_bad();
 
 
