@@ -2,6 +2,7 @@
 #include <isa.h>
 #include <memory/vaddr.h>
 #include "Vcpu___024root.h"
+#include "verilated.h"
 
 vluint64_t sim_time = 0;
 CPU_state cpu_data = {};
