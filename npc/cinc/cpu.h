@@ -3,7 +3,7 @@
 
 #include <common.h>
 
-void cpu_exec(uint64_t n);
+void exec(uint64_t n);
 
 void set_cpu_status(int state, vaddr_t pc, int halt_ret);
 //void invalid_inst(vaddr_t thispc);
