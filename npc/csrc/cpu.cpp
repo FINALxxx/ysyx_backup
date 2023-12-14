@@ -63,13 +63,40 @@ void exec_once(){
 }
 
 void exec(uint64_t n){
+	switch(cpu_status.state){
+		case TERMINATE:case ABORT:
+			printf("Program execution has ended. To restart the program, exit NPC and run again.\n");
+		return;
+
+		default://STOP、ALIVE
+			cpu_status.state=ALIVE;
+		break;
+	}
+
 	for(;n>0;n--){
 		exec_once();
 		sim_time++;
 		//single_inst_debug();
-		//if(cpu_status.state != ALIVE) break;
-		printf("TEST");
-	}	
+		if(cpu_status.state != ALIVE) break;
+		//printf("TEST");
+	}
+
+	switch(cpu_status.state){
+		case ALIVE:
+			cpu_status.state = STOP;
+		break;
+
+		case TERMINATE: case ABORT:
+			//buffer_disp();
+			if(cpu_status.halt_pc == 0){//运行结束
+				//TODO:输出调试信息
+			}
+			cpu_terminate();
+			
+		case QUIT://DEAD、ABORT时也成立
+			//TODO:输出统计信息
+		break;
+	}
 }
 
 extern "C" void halt(svBit is_halt){
