@@ -59,6 +59,7 @@ extern void clk_update();
 void exec_once(){
 	get_cpu_pc();
 	printf("%#010x:\t%#010x\n",cpu_data.pc,set_cpu_inst());
+	clk_update();
 	clk_update();	
 }
 
@@ -78,7 +79,7 @@ void exec(uint64_t n){
 		sim_time++;
 		//single_inst_debug();
 		if(cpu_status.state != ALIVE) break;
-		printf("TEST");
+		//printf("TEST");
 	}
 
 	switch(cpu_status.state){
