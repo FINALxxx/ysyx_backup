@@ -17,7 +17,7 @@ void cpu_init(){
 }
 
 void cpu_terminate(){
-	if(cpu_s tatus.state == ABORT){//ABORT
+	if(cpu_status.state == ABORT){//ABORT
 		printf("\nNPC EXIT: \033[0m\033[1;31mABORT\033[0m at pc = %#010x\n\n",cpu_status.halt_pc);
 	}else if(cpu_status.halt_ret == 0){//GOOD
 		printf("\nNPC EXIT: \033[0m\033[1;32mHIT GOOD TRAP\033[0m at pc = %#010x\n\n",cpu_status.halt_pc);
