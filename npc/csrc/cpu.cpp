@@ -2,7 +2,6 @@
 #include <isa.h>
 #include <memory/vaddr.h>
 #include "Vcpu___024root.h"
-#include <verilated.h>
 #include <svdpi.h>
 
 vluint64_t sim_time = 0;
