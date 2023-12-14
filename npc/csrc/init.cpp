@@ -55,7 +55,7 @@ void cpu_init(){
 	cpu->rst = 1;
 	clk_update();
 	cpu->rst = 0;
-	//clk_update();
+	half_clk_update();
 	printf(ANSI_FMT("PC_INIT:",ANSI_FG_GREEN) FMT_PADDR "\n",cpu->pc);
 }
 
