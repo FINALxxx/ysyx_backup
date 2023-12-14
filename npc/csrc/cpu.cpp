@@ -12,7 +12,7 @@ Vcpu* cpu = NULL;
 
 //下降沿读取
 //上升沿执行和写入
-extern clk_update();
+extern void clk_update();
 void cpu_init(){
 	env = new VerilatedContext;
 	cpu = new Vcpu(env);
