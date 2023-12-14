@@ -68,6 +68,7 @@ void exec(uint64_t n){
 		sim_time++;
 		//single_inst_debug();
 		if(cpu_status.state != ALIVE) break;
+		printf("TEST");
 	}	
 }
 
