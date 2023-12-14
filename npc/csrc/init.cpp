@@ -33,7 +33,7 @@ static long bin_init(){
 	return fsize;
 }
 
-static inline void clk_update(){//1clk
+inline void clk_update(){//1clk
 	cpu->clk^=1;
 	cpu->eval();
 	cpu->clk^=1;
