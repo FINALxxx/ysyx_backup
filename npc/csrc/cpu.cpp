@@ -1,5 +1,6 @@
 #include <cpu.h>
 #include <isa.h>
+#include <ifetch.h>
 
 CPU_state cpu_data = {};
 vluint64_t sim_time = 0;
@@ -29,7 +30,7 @@ static void single_inst_debug(){
 }
 
 static void exec_once(){
-		
+	inst_fetch(get_pc(),)	
 }
 
 
