@@ -13,30 +13,17 @@
 * See the Mulan PSL v2 for more details.
 ***************************************************************************************/
 
-#include <isa.h>
-#include <cpu/cpu.h>
-#include <difftest-def.h>
-#include <memory/paddr.h>
+#ifndef __CPU_CPU_H__
+#define __CPU_CPU_H__
 
-__EXPORT void difftest_memcpy(paddr_t addr, void *buf, size_t n, bool direction) {
-  assert(0);
-}
+#include <common.h>
 
-__EXPORT void difftest_regcpy(void *dut, bool direction) {
-  assert(0);
-}
+void cpu_exec(uint64_t n);
 
-__EXPORT void difftest_exec(uint64_t n) {
-  assert(0);
-}
+void set_npc_status(int state, vaddr_t pc, int halt_ret);
+//void invalid_inst(vaddr_t thispc);
 
-__EXPORT void difftest_raise_intr(word_t NO) {
-  assert(0);
-}
+#define NPCTRAP(thispc, code) set_npc_status(NPC_END, thispc, code)
+//#define INV(thispc) invalid_inst(thispc)
 
-__EXPORT void difftest_init(int port) {
-  void init_mem();
-  init_mem();
-  /* Perform ISA dependent initialization. */
-  init_isa();
-}
+#endif
