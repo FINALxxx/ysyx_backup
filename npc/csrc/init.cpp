@@ -1,5 +1,3 @@
-#include <verilated.h>
-#include <verilated_vcd_c.h>
 #include <isa.h>
 #include <cpu.h>
 #include <memory/paddr.h>
@@ -9,8 +7,6 @@ static char* elf_file = NULL;//elf文件
 static char* log_file = NULL;//log文件
 static char* diff_file = NULL;//diff动态链接库
 
-vluint64_t sim_time = 0;
-VerilatedContext* env;
 extern Vcpu* cpu;
 
 static void welcome(){
@@ -45,7 +41,7 @@ static inline void half_clk_update(){
 	cpu->eval();
 } 
 
-
+extern void cpu_init();//on delete
 void init(int argc,char** argv){
 	mem_init();
 
