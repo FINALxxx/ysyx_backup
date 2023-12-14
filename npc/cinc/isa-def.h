@@ -6,6 +6,7 @@
 typedef struct {
   word_t gpr[32];
   vaddr_t pc;
+  vaddr_t dnpc;
 } CPU_state;
 
 /*// decode
