@@ -63,6 +63,6 @@ extern "C" void halt(svBit is_halt){
 	//NPCTRAP(cpu->pc,10号寄存器($a0)的内容);
 	get_cpu_pc();
 	get_cpu_reg();
-	if(is_halt) NPCTRAP(cpu.pc,cpu.gpr[10]);	
+	if(is_halt) NPCTRAP(cpu_data.pc,cpu_data.gpr[10]);	
 	return;
 }

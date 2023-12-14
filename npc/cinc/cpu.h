@@ -8,7 +8,7 @@ void exec(uint64_t n);
 void set_cpu_status(int state, vaddr_t pc, int halt_ret);
 //void invalid_inst(vaddr_t thispc);
 
-#define NPCTRAP(thispc, code) set_npc_status(TEMINATE, thispc, code)
+#define NPCTRAP(thispc, code) set_npc_status(TERMINATE, thispc, code)
 //#define INV(thispc) invalid_inst(thispc)
 
 #endif
