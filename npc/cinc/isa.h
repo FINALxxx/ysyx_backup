@@ -13,8 +13,7 @@ void isa_reg_display();
 word_t isa_reg_str2val(const char *name, bool *success);
 
 // exec
-struct Decode;
-int exec_once(struct Decode *s);
+int exec_once();
 
 // memory
 enum { MMU_DIRECT, MMU_TRANSLATE, MMU_FAIL };

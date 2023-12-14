@@ -1,6 +1,5 @@
 #include <cpu.h>
 #include <isa.h>
-#include <ifetch.h>
 
 CPU_state cpu_data = {};
 vluint64_t sim_time = 0;
@@ -21,16 +20,25 @@ void cpu_terminate(){
 	delete cpu;
 }
 
-vaddr_t get_pc(){//之后改成DPIC
-	return cpu->pc;
+void get_cpu_pc(){//之后加入DPIC
+	cpu_data.pc = cpu->pc;
+	cpu_data.dnpc = cpu->dnpc;
+}
+
+word_t set_cpu_inst(){//之后加入DPIC
+	word_t inst = vaddr_read(cpu_data.pc,4);
+	cpu->cmd = inst;
+	return inst;
 }
 
 static void single_inst_debug(){
 	//TODO
 }
 
-static void exec_once(){
-	inst_fetch(get_pc(),)	
+void exec_once(){
+	get_cpu_pc();
+	set_cpu_inst();
+
 }
 
 
