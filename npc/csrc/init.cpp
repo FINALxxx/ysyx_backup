@@ -53,6 +53,7 @@ void cpu_init(){
 	cpu->clk = 0;
 	cpu->rst = 1;
 	clk_update();
+	clk_update();
 	printf("PC_INIT:" FMT_PADDR "\n",cpu->pc);
 }
 
