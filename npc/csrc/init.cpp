@@ -51,7 +51,7 @@ void cpu_init(){
 	env = new VerilatedContext;
 	cpu = new Vcpu(env);
 	
-	cpu->clk = 1;
+	cpu->clk = 0;
 	cpu->rst = 1;
 	clk_update();
 	cpu->rst = 0;
