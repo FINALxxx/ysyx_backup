@@ -8,6 +8,6 @@ int main(int argc,char** argv){
 	//for(int it = 0;it<argc;it++)
 	//	std::cout<<argv[it]<<std::endl;
 	init(argc,argv);
-	exec(10);	
+	exec(1000);	
 	return is_exit_status_bad();
 }
