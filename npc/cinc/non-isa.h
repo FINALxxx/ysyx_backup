@@ -22,7 +22,8 @@
 
 // ----------- state -----------
 
-enum { NEMU_RUNNING, NEMU_STOP, NEMU_END, NEMU_ABORT, NEMU_QUIT };
+//RUNNING,STOP,END,ABORT,QUIT
+enum { ALIVE, STOP, TERMINATE, ABORT, QUIT };
 
 typedef struct {
   int state;
