@@ -60,7 +60,6 @@ void exec_once(){
 	get_cpu_pc();
 	printf("%#010x:\t%#010x\n",cpu->dnpc,set_cpu_inst());
 	clk_update();
-	printf("%x\n",cpu->pc);
 }
 
 void exec(uint64_t n){
