@@ -50,10 +50,10 @@ void cpu_init(){
 	env = new VerilatedContext;
 	cpu = new Vcpu(env);
 	
-	cpu->clk = 0;
+	cpu->clk = 1;
 	cpu->rst = 1;
 	clk_update();
-	clk_update();
+	//clk_update();
 	printf("PC_INIT:" FMT_PADDR "\n",cpu->pc);
 }
 
