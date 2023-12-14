@@ -38,6 +38,7 @@ static void single_inst_debug(){
 
 void exec_once(){
 	get_cpu_pc();
+	printf("TEST");
 	set_cpu_inst();
 
 }
