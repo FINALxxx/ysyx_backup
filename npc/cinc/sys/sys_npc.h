@@ -25,7 +25,7 @@ extern "C" svBitVecVal* cmd_getter(svBitVecVal* pc_now);
 void sim_init(int argc,char** argv);
 void sim_terminate();
 void sim_update();
-inline void clk_update();
+void clk_update();
 int is_exit_status_bad();
 
 

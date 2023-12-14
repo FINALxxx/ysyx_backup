@@ -78,7 +78,7 @@ void sim_update(){//测试用，一般使用exec
 	sim_time++;
 }
 
-inline void clk_update(){
+void clk_update(){
 	/* START 1clk in total */
 	cpu->eval(); 
 	cpu->clk^=1;
