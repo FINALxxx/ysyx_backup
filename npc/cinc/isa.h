@@ -11,8 +11,8 @@ void init_isa();
 
 #define gpr(x) cpu_data.gpr[(x)]
 extern CPU_state cpu_data;
-void isa_reg_display();
-word_t isa_reg_str2val(const char *name, bool *success);
+void reg_display();
+word_t reg_str2val(const char *name, bool *success);
 
 // exec
 void exec_once();

@@ -16,7 +16,7 @@ static struct rule {
   {" +", TK_NOTYPE},    // spaces
   {"\\+", '+'},         // plus
   {"\\-", '-'},			// minus
-  {"\\*", '*'},			// times or PTR
+  {"\\*", '*'},			// times or PTR,distinguish them in expr()
   {"\\/", '/'},			// devide
   {"\\b[0-9]+\\b", NUM},// DEC number
   {"\\(", L_PAREN},		// left parenthese，parenthese=括弧，你甚至能学到英语hhh

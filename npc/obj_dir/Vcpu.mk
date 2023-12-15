@@ -49,13 +49,16 @@ VM_USER_CLASSES = \
 	paddr \
 	vaddr \
 	non-isa \
+	expr \
 	sdb \
+	watchpoint \
 	sim-npc \
 
 # User .cpp directories (from .cpp's on Verilator command line)
 VM_USER_DIR = \
 	/home/finalx/ysyx-workbench/npc/csrc \
 	/home/finalx/ysyx-workbench/npc/csrc/memory \
+	/home/finalx/ysyx-workbench/npc/csrc/sdb \
 
 
 ### Default rules...
@@ -79,7 +82,11 @@ vaddr.o: /home/finalx/ysyx-workbench/npc/csrc/memory/vaddr.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 non-isa.o: /home/finalx/ysyx-workbench/npc/csrc/non-isa.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-sdb.o: /home/finalx/ysyx-workbench/npc/csrc/sdb.cpp
+expr.o: /home/finalx/ysyx-workbench/npc/csrc/sdb/expr.cpp
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+sdb.o: /home/finalx/ysyx-workbench/npc/csrc/sdb/sdb.cpp
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+watchpoint.o: /home/finalx/ysyx-workbench/npc/csrc/sdb/watchpoint.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 sim-npc.o: /home/finalx/ysyx-workbench/npc/csrc/sim-npc.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<

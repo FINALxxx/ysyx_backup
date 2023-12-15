@@ -72,6 +72,17 @@ void reg_display() {
 	}
 }
 
+word_t reg_str2val(const char *s, bool *success) {
+	for(int i=0;i<reg_len;i++){
+		if(!strcmp(regs[i],s)){ 
+			*success=true;
+			return gpr(i);
+		}
+	}
+	*success=false;
+	return 0;
+}
+
 
 /* EXEC */
 
