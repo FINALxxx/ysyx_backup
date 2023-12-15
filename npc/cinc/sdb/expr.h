@@ -14,7 +14,7 @@ typedef struct token {
 	    char str[32];
 } Token;
 
-void init_regex();
+void regex_init();
 uint32_t expr(char *e, bool *success);
 int check_paren(int l,int r);
 int op(int l,int r);
