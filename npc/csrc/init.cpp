@@ -4,12 +4,12 @@
 #include <verilated.h>
 #include <verilated_vcd_c.h>
 #include "Vcpu.h"
-#include <std_sdb_init.h>
 
-bin_file = NULL;
-elf_file = NULL;
-log_file = NULL;
-diff_file = NULL;
+static char* bin_file = NULL;//img文件
+static char* elf_file = NULL;//elf文件
+static char* log_file = NULL;//log文件
+static char* diff_file = NULL;//diff动态链接库
+
 VerilatedContext* env = NULL;
 Vcpu* cpu = NULL;
 
