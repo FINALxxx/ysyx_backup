@@ -4,10 +4,8 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
-
-#define NR_CMD ARRLEN(cmd_table)
-
 void sdb_init();
+void sdb_monitor_init(int argc,char** argv);
 void sdb_set_batch_mode(); 
 void sdb_mainloop();
 
