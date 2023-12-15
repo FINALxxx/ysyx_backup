@@ -1,12 +1,10 @@
-#include <sdb.h>
-//#include <sdb/expr.h>
-//#include <sdb/watchpoint.h>
-//#include <disasm.h>
-//#include <itrace.h>
+#include <common.h>
+#include <sdb/sdb.h>
+#include <sdb/expr.h>
 
 //WARNING:该文件未调整好
 
-bool is_batch_mode = false;
+static bool is_batch_mode = false;
 
 //Warn: strtok切割字符串后，源字符串会被切割
 static char* getarg(){
@@ -175,6 +173,6 @@ void sdb_mainloop(){
 void std_monitor_init(int argc,char** argv);
 void sdb_monitor_init(int argc,char** argv){
 	sdb_init();
-	disasm_init("riscv32-pc-linux-gnu");
+	//disasm_init("riscv32-pc-linux-gnu");
 	std_monitor_init(int argc,char** argv);
 }
