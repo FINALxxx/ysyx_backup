@@ -13,11 +13,11 @@ diff_file = NULL;
 VerilatedContext* env = NULL;
 Vcpu* cpu = NULL;
 
-static void welcome(){
+void welcome(){
 	printf("\nwelcome to %s-NPC\n\n",ANSI_FMT(CONFIG_ISA,ANSI_FG_YELLOW ANSI_BG_RED));
 }
 
-static long bin_init(){
+long bin_init(){
 	Assert(bin_file,"<FILE>: BIN DO NOT EXIST");
 	printf("%s:%s\n",ANSI_FMT("READING",ANSI_FG_GREEN),bin_file);
 	FILE* fp = fopen(bin_file,"rb");

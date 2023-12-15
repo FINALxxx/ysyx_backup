@@ -10,7 +10,7 @@ static char* diff_file;//diff动态链接库
 
 extern VerilatedContext* env;
 extern Vcpu* cpu;
-extern void bin_init();
+extern long bin_init();
 extern void mem_init();
 extern void cpu_init();
 extern void welcome();
