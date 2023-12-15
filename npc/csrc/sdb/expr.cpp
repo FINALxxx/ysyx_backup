@@ -2,7 +2,7 @@
 #include <math.h>
 #include <regex.h>
 #include <sdb/expr.h>
-
+#include <memory/vaddr.h>
 
 static struct rule {
   const char *regex;
@@ -175,6 +175,7 @@ int op(int l,int r){
 }
 
 
+word_t reg_str2val(const char *name, bool *success);
 int eval(int l,int r){
 	//printf("l=%d,r=%d\n",l,r);
 	if(l>r){ 
@@ -223,7 +224,7 @@ int eval(int l,int r){
 			case '-': return val1 - val2;
 			case '*': return val1 * val2;
 			case '/': Assert(val2!=0,"illegal expr:division by 0!\n"); return val1 / val2; 
-			case PTR:return read_memory(val1,4); 
+			case PTR:return vaddr_read(val1,4); 
 			default: assert(0);
 		}	
 	}
