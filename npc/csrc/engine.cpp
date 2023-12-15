@@ -8,7 +8,7 @@ void std_monitor_init(int argc,char** argv);
 void exec(uint64_t n);
 void sdb_monitor_init(int argc,char** argv);
 void sdb_mainloop();
-void engine_launch(){
+void engine_launch(int argc,char** argv){
 	if(launch_mode == STD){
 		std_monitor_init(argc,argv);
 		exec(-1);	
