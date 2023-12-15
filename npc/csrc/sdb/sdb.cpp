@@ -175,5 +175,5 @@ void std_monitor_init(int argc,char** argv);
 void sdb_monitor_init(int argc,char** argv){
 	sdb_init();
 	//disasm_init("riscv32-pc-linux-gnu");
-	std_monitor_init(int argc,char** argv);
+	std_monitor_init(argc,argv);
 }
