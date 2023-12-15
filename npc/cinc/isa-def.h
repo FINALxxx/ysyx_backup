@@ -3,19 +3,13 @@
 
 #include <common.h>
 
+#define REG_NUM 32
 typedef struct {
-  word_t gpr[32];
+  word_t gpr[REG_NUM];
   vaddr_t pc;
   vaddr_t dnpc;
 } CPU_state;
 
-/*// decode
-typedef struct {
-  union {
-    uint32_t val;
-  } inst;
-} MUXDEF(CONFIG_RV64, riscv64_ISADecodeInfo, riscv32_ISADecodeInfo);
-*/
 
 #define isa_mmu_check(vaddr, len, type) (MMU_DIRECT)
 

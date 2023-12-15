@@ -4,12 +4,10 @@
 module cpu(
     input clk,
     input rst,
-    //input [31:0] cmd,
+    input [31:0] cmd,
 	output [31:0] pc,//暂时引到这里
 	output [31:0] dnpc
 );
-    wire [31:0] cmd;
-	assign cmd = 32'h00008067;
 
 	//rs1、rs2、rd是寄存器序号，src1、src2、src_rd、imm是数据
     wire [4:0] rs1,rs2,rd;

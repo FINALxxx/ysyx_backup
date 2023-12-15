@@ -9,9 +9,12 @@
 #define VERILATED_VCPU_H_  // guard
 
 #include "verilated.h"
+#include "svdpi.h"
 
 class Vcpu__Syms;
 class Vcpu___024root;
+class Vcpu___024unit;
+
 
 // This class is the main interface to the Verilated model
 class Vcpu VL_NOT_FINAL : public VerilatedModel {
@@ -26,12 +29,14 @@ class Vcpu VL_NOT_FINAL : public VerilatedModel {
     // propagate new values into/out from the Verilated model.
     VL_IN8(&clk,0,0);
     VL_IN8(&rst,0,0);
+    VL_IN(&cmd,31,0);
     VL_OUT(&pc,31,0);
     VL_OUT(&dnpc,31,0);
 
     // CELLS
     // Public to allow access to /* verilator public */ items.
     // Otherwise the application code can consider these internals.
+    Vcpu___024unit* const __PVT____024unit;
 
     // Root instance pointer to allow access to model internals,
     // including inlined /* verilator public_flat_* */ items.

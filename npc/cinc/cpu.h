@@ -3,12 +3,20 @@
 
 #include <common.h>
 
-void cpu_exec(uint64_t n);
 
+/* STATUS */
 void set_cpu_status(int state, vaddr_t pc, int halt_ret);
-//void invalid_inst(vaddr_t thispc);
+#define NPCTRAP(thispc, code) set_cpu_status(TERMINATE, thispc, code)
 
-#define NPCTRAP(thispc, code) set_npc_status(TEMINATE, thispc, code)
-//#define INV(thispc) invalid_inst(thispc)
+/* DATA */
+void get_cpu_pc();//之后加入DPIC
+word_t set_cpu_inst();//之后加入DPIC
+void get_cpu_reg();
+void reg_display();
+word_t reg_str2val(const char *s, bool *success);
+
+
+/* EXEC */
+void exec(uint64_t n);
 
 #endif

@@ -8,13 +8,14 @@ extern unsigned char isa_logo[];
 void init_isa();
 
 // reg
+
+#define gpr(x) cpu_data.gpr[(x)]
 extern CPU_state cpu_data;
-void isa_reg_display();
-word_t isa_reg_str2val(const char *name, bool *success);
+void reg_display();
+word_t reg_str2val(const char *name, bool *success);
 
 // exec
-struct Decode;
-int exec_once(struct Decode *s);
+void exec_once();
 
 // memory
 enum { MMU_DIRECT, MMU_TRANSLATE, MMU_FAIL };
