@@ -13,7 +13,9 @@ static char* diff_file = NULL;//diff动态链接库
 VerilatedContext* env = NULL;
 Vcpu* cpu = NULL;
 
-extern MODE mode;
+enum MODE {
+	STD,SDB	
+}mode;
 extern mode launch_mode;
 void welcome(){
 	printf("\nwelcome to %s-NPC",ANSI_FMT(CONFIG_ISA,ANSI_FG_YELLOW ANSI_BG_RED));
