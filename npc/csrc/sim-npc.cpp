@@ -1,6 +1,6 @@
 #include <common.h>
 
-
+extern void std_monitor_init(int argc,char** argv);
 extern void exec(uint64_t n);
 int is_exit_status_bad();
 void init(int argc,char** argv);
