@@ -93,7 +93,7 @@ static void single_inst_debug(){
 extern void clk_update();
 void exec_once(){
 	get_cpu_pc();
-	printf("%#010x:\t%#010x\n",cpu->pc,set_cpu_inst());
+	printf(ANSI_FMT("%#010x:\t%#010x\n",ANSI_FG_BULE),cpu->pc,set_cpu_inst());
 	clk_update();
 }
 
@@ -113,7 +113,6 @@ void exec(uint64_t n){
 		sim_time++;
 		//single_inst_debug();
 		if(cpu_status.state != ALIVE) break;
-		//printf("TEST");
 	}
 
 	switch(cpu_status.state){
