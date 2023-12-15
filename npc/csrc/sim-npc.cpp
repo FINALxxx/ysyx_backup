@@ -2,12 +2,12 @@
 
 #include <sdb/sdb.h>
 
-//void std_monitor_init(int argc,char** argv);
-//void exec(uint64_t n);
+enum{STD,SDB} mode;
+extern mode launch_mode;
+void engine_launch();
 int is_exit_status_bad();
-void init(int argc,char** argv);
+
 int main(int argc,char** argv){
-	sdb_monitor_init(argc,argv);
-	sdb_mainloop();	
+	engine_launch();
 	return is_exit_status_bad();
 }
