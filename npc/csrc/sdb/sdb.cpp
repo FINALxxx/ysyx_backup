@@ -142,7 +142,7 @@ static struct {
   { "w", "add a new watchpoint by using EXPR", cmd_w},
   { "d", "delete a working watchpoint by using NO", cmd_d},
 };
-
+#define NR_CMD ARRLEN(cmd_table)
 
 
 void sdb_init(){
