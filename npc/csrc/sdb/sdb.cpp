@@ -1,6 +1,7 @@
 #include <common.h>
 #include <sdb/sdb.h>
 #include <sdb/expr.h>
+#include <sdb/watchpoint.h>
 
 //WARNING:该文件未调整好
 
