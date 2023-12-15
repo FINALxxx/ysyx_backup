@@ -73,7 +73,7 @@ void reg_display() {
 }
 
 word_t reg_str2val(const char *s, bool *success) {
-	for(int i=0;i<reg_len;i++){
+	for(int i=0;i<REG_NUM;i++){
 		if(!strcmp(regs[i],s)){ 
 			*success=true;
 			return gpr(i);
