@@ -68,7 +68,7 @@ void get_cpu_reg(){
 void reg_display() {
 	printf(ANSI_FMT("name   value   name   value   name   value   name   value\n",ANSI_FG_BLUE));
 	for(int i=0;i<32;i+=4){
-		printf("%3s 0x%08x %3s 0x%08x %3s 0x%08x %3s 0x%08x\n", regs[i], gpr(i), regs[i+1], gpr(i+1), regs[i+2], gpr(i+2), regs[i+3], gpr(i+3));
+		printf(ANSI_FMT("%3s 0x%08x %3s 0x%08x %3s 0x%08x %3s 0x%08x\n",ANSI_FG_BLUE), regs[i], gpr(i), regs[i+1], gpr(i+1), regs[i+2], gpr(i+2), regs[i+3], gpr(i+3));
 	}
 }
 
