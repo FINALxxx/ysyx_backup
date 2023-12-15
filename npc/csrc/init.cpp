@@ -13,8 +13,12 @@ static char* diff_file = NULL;//diff动态链接库
 VerilatedContext* env = NULL;
 Vcpu* cpu = NULL;
 
+extern MODE mode;
+extern mode launch_mode;
 void welcome(){
-	printf("\nwelcome to %s-NPC\n\n",ANSI_FMT(CONFIG_ISA,ANSI_FG_YELLOW ANSI_BG_RED));
+	printf("\nwelcome to %s-NPC",ANSI_FMT(CONFIG_ISA,ANSI_FG_YELLOW ANSI_BG_RED));
+	if(launch_mode == STD) printf("\n\n");
+	else printf(ANSI_FMT(" (sdb)",ANSI_FG_GREEN) "\n\n");
 }
 
 long bin_init(){
