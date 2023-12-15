@@ -58,8 +58,8 @@ void welcome(){
 	if(launch_mode == STD){
 		printf("\n\n");
 	}else{
-		printf(ANSI_FMT(" (sdb)",ANSI_FG_GREEN) "\n\n");
-		printf(ANSI_FMT("%s",ANSI_FG_BLUE),isa_logo);
+		printf(ANSI_FMT(" (sdb)",ANSI_FG_GREEN) "\n");
+		printf(ANSI_FMT("%s\n\n",ANSI_FG_BLUE),isa_logo);
 	}
 }
 
