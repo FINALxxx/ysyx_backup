@@ -92,7 +92,7 @@ static bool make_token(char *e) {
     }
 
     if (i == NR_REGEX) {
-      Assert(0,"no match at position %d\n%s\n%*.s^\n", position, e, position, "");
+      Assert(0,"<EXPR> no match at position %d\n%s\n%*.s^\n", position, e, position, "");
       return false;
     }
   }
@@ -170,7 +170,7 @@ int op(int l,int r){
 		ptr++;
 	}
 	//printf("test:%d\n",main_op);
-	Assert(main_op!=-1,"illegal expr:cannot find operator\n");
+	Assert(main_op!=-1,"<EXPR> cannot find operator\n");
 	return main_op;
 }
 
@@ -179,7 +179,7 @@ word_t reg_str2val(const char *name, bool *success);
 int eval(int l,int r){
 	//printf("l=%d,r=%d\n",l,r);
 	if(l>r){ 
-		Assert(0,"illegal expr!\n");//bad expr
+		Assert(0,"<EXPR> illegal expr!\n");//bad expr
 		return 0;
 	}else if(l==r){
 		//in this case,it must be a number or register(the smallest expr),and return its value.
@@ -202,11 +202,11 @@ int eval(int l,int r){
 			return val;
 		}
 		
-		Assert(0,"illegal expr:cannot find the number or register!\n");//if not a number,then return bad expr
+		Assert(0,"<EXPR> cannot find the number or register!\n");//if not a number,then return bad expr
 	}else if(check_paren(l,r)==1){
 		return eval(l+1,r-1);//目的是去掉括号，递归查看内部表达式
 	}else if(check_paren(l,r)==-1){
-		Assert(0,"illegal expr:parentheses cannot be matched!\n");
+		Assert(0,"<EXPR> parentheses cannot be matched!\n");
 		return 0;
 	}else{
 		int opt = op(l,r);//返回op的下标
@@ -223,7 +223,7 @@ int eval(int l,int r){
 			case '+': return val1 + val2;
 			case '-': return val1 - val2;
 			case '*': return val1 * val2;
-			case '/': Assert(val2!=0,"illegal expr:division by 0!\n"); return val1 / val2; 
+			case '/': Assert(val2!=0,"<EXPR> division by 0!\n"); return val1 / val2; 
 			case PTR:return vaddr_read(val1,4); 
 			default: assert(0);
 		}	

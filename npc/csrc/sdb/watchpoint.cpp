@@ -74,6 +74,6 @@ WP* check_wp(uint32_t* new_result){//返回产生变化的变量
 void print_w(){
 	//printf("LOG:In print_w:%s,%d,%p\n",head->expr_s,head->val,head->expr_s);
 	for(WP* it=head;it!=NULL;it=it->next){
-		printf(ANSI_FMT(" watchpoint[%d]:%s\tnow = (DEC)%d\t (HEX)%x\n",ANSI_FG_BLUE),it->NO,it->expr_s,it->val,it->val);
+		printf(ANSI_FMT(" watchpoint[%d]:%s\tnow = (DEC)%d  (HEX)%#010x\n",ANSI_FG_BLUE),it->NO,it->expr_s,it->val,it->val);
 	}
 }
