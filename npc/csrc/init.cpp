@@ -6,10 +6,10 @@
 #include "Vcpu.h"
 #include <std_sdb_init.h>
 
-bin_file = NULL;
-elf_file = NULL;
-log_file = NULL;
-diff_file = NULL;
+*bin_file = NULL;
+*elf_file = NULL;
+*log_file = NULL;
+*diff_file = NULL;
 VerilatedContext* env = NULL;
 Vcpu* cpu = NULL;
 
