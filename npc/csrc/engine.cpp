@@ -1,6 +1,6 @@
 #include <common.h>
 
-enum{STD,SDB} mode;
+enum mode{STD,SDB};
 
 mode launch_mode = STD;
 
