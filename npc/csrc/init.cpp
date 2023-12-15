@@ -1,5 +1,6 @@
 #include <isa.h>
 #include <cpu.h>
+#include <memory/paddr.h>
 #include <verilated.h>
 #include <verilated_vcd_c.h>
 #include "Vcpu.h"
