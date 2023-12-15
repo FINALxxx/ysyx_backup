@@ -1,4 +1,4 @@
-#include <common.h>
+#include <isa.h>
 #include <sdb/sdb.h>
 #include <sdb/expr.h>
 #include <sdb/watchpoint.h>
