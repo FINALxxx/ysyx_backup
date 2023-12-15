@@ -55,11 +55,12 @@ enum mode {STD,SDB};
 extern mode launch_mode;
 void welcome(){
 	printf("\nwelcome to %s-NPC",ANSI_FMT(CONFIG_ISA,ANSI_FG_YELLOW ANSI_BG_RED));
-	if(launch_mode == STD) printf("\n\n");
-	else{
-		printf(ANSI_FMT("%s",ANSI_FG_BLUE),isa_logo);
+	if(launch_mode == STD){
+		printf("\n\n");
+	}else{
 		printf(ANSI_FMT(" (sdb)",ANSI_FG_GREEN) "\n\n");
-		}
+		printf(ANSI_FMT("%s",ANSI_FG_BLUE),isa_logo);
+	}
 }
 
 long bin_init(){
