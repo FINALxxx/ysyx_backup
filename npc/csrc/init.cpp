@@ -1,15 +1,14 @@
 #include <isa.h>
 #include <cpu.h>
-#include <memory/paddr.h>
 #include <verilated.h>
 #include <verilated_vcd_c.h>
 #include "Vcpu.h"
+#include <std_sdb_init.h>
 
-static char* bin_file = NULL;//img文件
-static char* elf_file = NULL;//elf文件
-static char* log_file = NULL;//log文件
-static char* diff_file = NULL;//diff动态链接库
-
+bin_file = NULL;
+elf_file = NULL;
+log_file = NULL;
+diff_file = NULL;
 VerilatedContext* env = NULL;
 Vcpu* cpu = NULL;
 
@@ -60,7 +59,7 @@ void cpu_init(){
 }
 
 
-void init(int argc,char** argv){
+void std_monitor_init(int argc,char** argv){
 	mem_init();
 
 	bin_file = argv[1];
