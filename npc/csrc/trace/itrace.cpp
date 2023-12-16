@@ -1,6 +1,7 @@
 #include <common.h>
 #include <cpu.h>
 #include <isa.h>
+#include <trace/itrace.h>
 
 static traceNode buf[CONFIG_MAX_BUF_SIZE];
 static uint32_t cur=0;
