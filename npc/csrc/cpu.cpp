@@ -134,7 +134,6 @@ void exec(uint64_t n){
 
 	for(;n>0;n--){
 		exec_once();
-		printf("TEST\n");
 		sim_time++;
 		inst_cnt++;
 		single_inst_debug();
