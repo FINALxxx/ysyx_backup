@@ -68,7 +68,7 @@ static void checkregs(CPU_state *cpu_data_ref, vaddr_t pc) {
 void difftest_step(vaddr_t pc, vaddr_t npc) {
 	CPU_state cpu_data_ref;
 
-	if (skip_dut_nr_inst > 0) {
+	if (skip_inst_cnt_dut > 0) {
 		ref_difftest_regcpy(&cpu_data_ref, DIFFTEST_TO_DUT);//复制reg到dut的cpu_data（dut此处为npc）
 		if (cpu_data_ref.pc == npc) {
 			skip_dut_nr_inst = 0;
