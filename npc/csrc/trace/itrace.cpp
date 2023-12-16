@@ -1,5 +1,6 @@
 #include <common.h>
 #include <cpu.h>
+#include <isa.h>
 
 static traceNode buf[CONFIG_MAX_BUF_SIZE];
 static uint32_t cur=0;
@@ -18,7 +19,7 @@ void buffer_insert(){
 	buf[cur].pc = cpu_data.pc;
 	buf[cur].inst = cpu_data.inst;
 	char log[CONFIG_MAX_INST_LEN];
-	cmd_disasm(log);
+	single_cmd_disasm(log);
 	strncpy(buf[cur].log, log, strlen(log));	
 	//使用LOG
 	Log("   %#10x:\t%-40s\t:%#010x\n",buf[cur].pc, buf[cur].log, buf[cur].inst);
