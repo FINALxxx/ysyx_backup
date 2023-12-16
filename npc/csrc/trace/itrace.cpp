@@ -21,8 +21,8 @@ void buffer_insert(){
 	buf[cur].pc = cpu_data.pc;
 	buf[cur].inst = cpu_data.inst;
 	char log[CONFIG_MAX_INST_LEN];
+	printf("TEST");
 	single_cmd_disasm(log);
-	printf("%s\n",log);
 	strncpy(buf[cur].log, log, strlen(log));	
 	//使用LOG
 	Log("   %#10x:\t%-40s\t:%#010x\n",buf[cur].pc, buf[cur].log, buf[cur].inst);
