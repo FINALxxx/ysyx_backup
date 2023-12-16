@@ -53,12 +53,16 @@ VM_USER_CLASSES = \
 	sdb \
 	watchpoint \
 	sim-npc \
+	disasm \
+	itrace \
+	log \
 
 # User .cpp directories (from .cpp's on Verilator command line)
 VM_USER_DIR = \
 	/home/finalx/ysyx-workbench/npc/csrc \
 	/home/finalx/ysyx-workbench/npc/csrc/memory \
 	/home/finalx/ysyx-workbench/npc/csrc/sdb \
+	/home/finalx/ysyx-workbench/npc/csrc/trace \
 
 
 ### Default rules...
@@ -89,6 +93,12 @@ sdb.o: /home/finalx/ysyx-workbench/npc/csrc/sdb/sdb.cpp
 watchpoint.o: /home/finalx/ysyx-workbench/npc/csrc/sdb/watchpoint.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 sim-npc.o: /home/finalx/ysyx-workbench/npc/csrc/sim-npc.cpp
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+disasm.o: /home/finalx/ysyx-workbench/npc/csrc/trace/disasm.cpp
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+itrace.o: /home/finalx/ysyx-workbench/npc/csrc/trace/itrace.cpp
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+log.o: /home/finalx/ysyx-workbench/npc/csrc/trace/log.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 
 ### Link rules... (from --exe)

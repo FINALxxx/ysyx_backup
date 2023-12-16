@@ -3,7 +3,7 @@
 #include <memory/vaddr.h>
 #include "Vcpu___024root.h"
 #include <svdpi.h>
-#include <itrace.h>
+#include <trace/itrace.h>
 
 vluint64_t sim_time = 0;
 CPU_state cpu_data = {};
