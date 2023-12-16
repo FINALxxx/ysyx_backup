@@ -102,7 +102,7 @@ static void single_inst_debug(){
 	uint32_t new_result=0;
 	WP* wp=check_wp(&new_result);
 	if(wp!=NULL){
-		nemu_state.state=NEMU_STOP;
+		cpu_status.state=STOP;
 		printf(ANSI_FMT("Watchpoint change",ANSI_FG_GREEN) ":In No.%d,[%s],(%d==>%d)\n",wp->NO,wp->expr_s,wp->val,new_result);
 		wp->val=new_result;
 	}
@@ -122,7 +122,7 @@ void exec_once(){
 }
 
 void exec(uint64_t n){
-	switch(cpu_status.s tate){
+	switch(cpu_status.state){
 		case TERMINATE:case ABORT:
 			printf("Program execution has ended. To restart the program, exit NPC and run again.\n");
 		return;
