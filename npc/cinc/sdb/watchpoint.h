@@ -1,15 +1,11 @@
-#ifndef __SDB_WP_H__
-#define __SDB_WP_H__
-
-#include <common.h>
-struct WP {
+typedef struct watchpoint {
 	int NO;
 	struct watchpoint *next;
 	/* TODO: Add more members if necessary */
 	char expr_s[100];//表达式
 	uint32_t val;//值
 
-};
+} WP;
 
 #define NR_WP 32
 
