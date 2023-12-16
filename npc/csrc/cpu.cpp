@@ -4,6 +4,7 @@
 #include "Vcpu___024root.h"
 #include <svdpi.h>
 #include <trace/itrace.h>
+#include <trace/ftrace.h>
 #include <sdb/watchpoint.h>
 
 vluint64_t sim_time = 0;
@@ -117,7 +118,11 @@ void exec_once(){
 	printf("%#010x:\t%#010x\n",cpu->pc,set_cpu_inst());
 	//cpu_data更新inst
 	get_cpu_inst();
+
+	//TRACE
 	buffer_insert();
+	elf_call(cpu_data.pc,cpu_data.dnpc,cpu_data.inst);
+	
 	clk_update();
 }
 

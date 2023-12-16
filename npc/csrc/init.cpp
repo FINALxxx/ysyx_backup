@@ -108,11 +108,13 @@ void cpu_init(){
 void log_init(const char* log_file);
 extern "C" void disasm_init(const char *triple); 
 void buffer_init();
+void elf_init();
 void std_monitor_init(int argc,char** argv){
 	mem_init();
 	
 	bin_file = argv[1];
 	log_file = argv[2];
+	elf_file = argv[3];
 	bin_init();
 	
 	//ITRACE INIT	
@@ -120,6 +122,9 @@ void std_monitor_init(int argc,char** argv){
 	disasm_init("riscv32-pc-linux-gnu");
 	buffer_init();
 	
+	//FTRACE INIT
+	elf_init();
+
 	cpu_init();
 	welcome();
 }
