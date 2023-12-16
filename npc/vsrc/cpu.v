@@ -127,10 +127,10 @@ module cpu(
 
 
 	//测试用，实现后一定要删除
-    always @(posedge clk) begin
+    always @(*) begin
 		//$display("cpu_dnpc=%x",dnpc);
-		/*$display("cmd=%x",cmd);   
-		//$display("clk=%b",clk);
+		//$display("cmd=%x",cmd);   
+		/*//$display("clk=%b",clk);
 		//$display("pc=%x",pc);
 		$display("=========================================\n");
         $display("rs1=%b",rs1);

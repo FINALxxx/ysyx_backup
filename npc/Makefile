@@ -8,6 +8,7 @@ VFILE = .v
 WAVEFILE = wave.vcd
 
 BINSRC ?=
+LOGSRC = ${NPC_HOME}/npc-log.txt
 ELFSRC ?=
 
 #CSRC = $(wildcard *${CFILE})
@@ -26,7 +27,7 @@ VTOP = cpu
 TGS = V${VTOP}
 
 # START - 链接llvm
-CXXSRC = include/sdb_disasm.cpp
+CXXSRC = csrc/trace/disasm.cpp
 CXXFLAGS += $(shell llvm-config --cxxflags) -fPIE
 LIBS += -lreadline
 LIBS += $(shell llvm-config --libs)
@@ -47,11 +48,22 @@ sim:
 	verilator -Wall --cc --exe -top-module ${VTOP} --build \
 	-I${VINC} \
 	-LDFLAGS "${LIBS} -MMD" \
-	-CFLAGS "${CINC}" \
+	-CFLAGS "${CINC} -g -w" \
 	${CSRC} ${VSRC}
 	make -C obj_dir -f ${TGS}.mk ${TGS}
-	./obj_dir/${TGS} ${BINSRC} ${ELFSRC}
+	./obj_dir/${TGS} ${BINSRC} ${LOGSRC} ${ELFSRC}
 	#gtkwave ./${WAVEFILE}
+
+gdb:
+	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
+	verilator -Wall --cc --exe -top-module ${VTOP} --build \
+	-I${VINC} \
+	-LDFLAGS "${LIBS} -MMD" \
+	-CFLAGS "${CINC} -g -w" \
+	${CSRC} ${VSRC}
+	make -C obj_dir -f ${TGS}.mk ${TGS}
+	gdb --args ./obj_dir/${TGS} ${BINSRC} ${LOGSRC} ${ELFSRC}
+
 
 sim-clean:
 	@echo "remove <NPC>/obj_dir:"

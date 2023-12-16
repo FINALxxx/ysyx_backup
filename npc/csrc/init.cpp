@@ -105,12 +105,20 @@ void cpu_init(){
 	printf(ANSI_FMT("PC_INIT",ANSI_FG_GREEN) ":" FMT_PADDR "\n",cpu->pc);
 }
 
-
+void log_init(const char* log_file);
+extern "C" void disasm_init(const char *triple); 
+void buffer_init();
 void std_monitor_init(int argc,char** argv){
 	mem_init();
-
+	
 	bin_file = argv[1];
+	log_file = argv[2];
 	bin_init();
+	
+	//ITRACE INIT	
+	log_init(log_file);
+	disasm_init("riscv32-pc-linux-gnu");
+	buffer_init();
 	
 	cpu_init();
 	welcome();

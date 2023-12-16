@@ -1,8 +1,7 @@
 #ifndef __SDB_WP_H__
 #define __SDB_WP_H__
 
-#define NR_WP 32
-
+#include <common.h>
 typedef struct watchpoint {
 	int NO;
 	struct watchpoint *next;
@@ -11,6 +10,7 @@ typedef struct watchpoint {
 	uint32_t val;//值
 
 } WP;
+#define NR_WP 32
 
 
 WP* check_wp(uint32_t* new_result);

@@ -3,9 +3,12 @@
 #include <memory/vaddr.h>
 #include "Vcpu___024root.h"
 #include <svdpi.h>
+#include <trace/itrace.h>
+#include <sdb/watchpoint.h>
 
 vluint64_t sim_time = 0;
 CPU_state cpu_data = {};
+uint64_t inst_cnt =0;
 extern Vcpu* cpu;
 
 const char *regs[] = {
@@ -48,15 +51,22 @@ void cpu_terminate(){
 
 /* DATA */
 
-void get_cpu_pc(){
+//当前实际的pc
+void get_cpu_pc(){//之后写成DPIC
 	cpu_data.pc = cpu->pc;
 	cpu_data.dnpc = cpu->dnpc;
 }
 
+//返回预计将执行的指令
 word_t set_cpu_inst(){
-	word_t inst = vaddr_read(cpu_data.pc,4);
-	cpu->cmd = inst;
-	return inst;
+	word_t pending_inst = vaddr_read(cpu_data.pc,4);
+	cpu->cmd = pending_inst;
+	return pending_inst;
+}
+
+//当前实际执行的指令
+void get_cpu_inst(){//之后写成DPIC
+	cpu_data.inst = cpu->cmd;
 }
 
 void get_cpu_reg(){
@@ -87,13 +97,27 @@ word_t reg_str2val(const char *s, bool *success) {
 /* EXEC */
 
 static void single_inst_debug(){
-	//TODO
+	
+	//watchpoint update
+	uint32_t new_result=0;
+	WP* wp=check_wp(&new_result);
+	if(wp!=NULL){
+		cpu_status.state=STOP;
+		printf(ANSI_FMT("Watchpoint change",ANSI_FG_GREEN) ":In No.%d,[%s],(%d==>%d)\n",wp->NO,wp->expr_s,wp->val,new_result);
+		wp->val=new_result;
+	}
+
 }
 
 extern void clk_update();
 void exec_once(){
+	//cpu_data更新pc
 	get_cpu_pc();
-	printf(ANSI_FMT("%#010x:\t%#010x\n",ANSI_FG_BLUE),cpu->pc,set_cpu_inst());
+	//加载inst
+	printf("%#010x:\t%#010x\n",cpu->pc,set_cpu_inst());
+	//cpu_data更新inst
+	get_cpu_inst();
+	buffer_insert();
 	clk_update();
 }
 
@@ -107,11 +131,13 @@ void exec(uint64_t n){
 			cpu_status.state=ALIVE;
 		break;
 	}
-
+	log_write("\nSTART INST LOGGING:\n");
+	log_write("   %+7s\t\t%+15s\t\t\t%+10s\n","PC","INST","INST-HEX");
 	for(;n>0;n--){
 		exec_once();
 		sim_time++;
-		//single_inst_debug();
+		inst_cnt++;
+		single_inst_debug();
 		if(cpu_status.state != ALIVE) break;
 	}
 
@@ -121,9 +147,9 @@ void exec(uint64_t n){
 		break;
 
 		case TERMINATE: case ABORT:
-			//buffer_disp();
 			if(cpu_status.halt_pc == 0){//运行结束
 				//TODO:输出调试信息
+				buffer_disp();
 			}
 			cpu_terminate();
 			
