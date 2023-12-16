@@ -117,8 +117,6 @@ void exec_once(){
 	printf("%#010x:\t%#010x\n",cpu->pc,set_cpu_inst());
 	//cpu_data更新inst
 	get_cpu_inst();
-	printf("TEST");
-
 	buffer_insert();
 	clk_update();
 }
