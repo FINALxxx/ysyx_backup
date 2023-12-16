@@ -48,10 +48,10 @@ void difftest_init(const char* ref_so_file, long img_size, int port){
 	ref_difftest_raise_intr = (void(*)(uint64_t))dlsym(handle, "difftest_raise_intr");
 	assert(ref_difftest_raise_intr);
 
-	void (*ref_difftest_init)(int) = dlsym(handle, "difftest_init");
+	void (*ref_difftest_init)(int) = (void(*)(int))dlsym(handle, "difftest_init");
 	assert(ref_difftest_init);
 	
-	log("differential testing: %s\n", ANSI_FMT("ON", ANSI_FG_GREEN));
+	Log("differential testing: %s\n", ANSI_FMT("ON", ANSI_FG_GREEN));
 	ref_difftest_init(port);
 	ref_difftest_memcpy(PMEM_RESET, paddr_to_ptr(PMEM_RESET), img_size, DIFFTEST_TO_REF);
 	ref_difftest_regcpy(&cpu_data, DIFFTEST_TO_REF);
