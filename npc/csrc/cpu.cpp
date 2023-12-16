@@ -147,7 +147,7 @@ void exec(uint64_t n){
 			cpu_status.state=ALIVE;
 		break;
 	}
-	log_write("\nSTART INST LOGGING:\n");
+	log_write("\n[START INST LOGGING]\n");
 	log_write("   %+7s\t\t%+15s\t\t\t%+10s\n","PC","INST","INST-HEX");
 	for(;n>0;n--){
 		exec_once();
@@ -156,6 +156,7 @@ void exec(uint64_t n){
 		single_inst_debug();
 		if(cpu_status.state != ALIVE) break;
 	}
+	log_write("\n[TERMINATE INST LOGGING]\n");
 	switch(cpu_status.state){
 		case ALIVE:
 			cpu_status.state = STOP;
