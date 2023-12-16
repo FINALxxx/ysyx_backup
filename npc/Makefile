@@ -45,7 +45,7 @@ sim-all:
 	@echo ${CSRC}
 sim:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
-	verilator -W --cc --exe -top-module ${VTOP} --build \
+	verilator --cc --exe -top-module ${VTOP} --build \
 	-I${VINC} \
 	-LDFLAGS "${LIBS} -MMD" \
 	-CFLAGS "${CINC} -g" \
