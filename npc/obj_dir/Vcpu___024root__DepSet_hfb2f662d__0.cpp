@@ -32,7 +32,6 @@ VL_INLINE_OPT void Vcpu___024root___ico_sequent__TOP__0(Vcpu___024root* vlSelf) 
     Vcpu__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vcpu___024root___ico_sequent__TOP__0\n"); );
     // Body
-    VL_WRITEF("cmd=%x\n",32,vlSelf->cmd);
     vlSelf->cpu__DOT__cu1__DOT__is_halt = (IData)((0x73U 
                                                    == 
                                                    (0x4000707fU 
