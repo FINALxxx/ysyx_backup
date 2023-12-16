@@ -6,8 +6,8 @@
 #define MAXS 32 //最多MAXS层嵌套
 
 func fs[MAXN];
-uint32_t ptr=0;
-
+static uint32_t ptr=0;
+static uint32_t level = 0;
 
 static void parse_elf(FILE* fp){
 	rewind(fp);
@@ -92,9 +92,17 @@ void elf_call(uint32_t pc_src,uint32_t pc_dst,uint32_t cmd){
 	bool is_ret = (cmd == 0x8067);
 	int32_t rst = find_func(pc_dst);
 	char* flag=NULL;
-	if(is_ret) flag="\tret";
-	else flag="call";
-	
-	if(rst>=0) printf("%#010x:\t%s [%s@%#010x]\n",pc_src,flag,fs[rst].func_name,fs[rst].start);
-	else printf("%#010x:\t%s [???@%#010x]\n",pc_src,flag,fs[rst].start);//找不到函数
+	if(is_ret){
+		flag="ret";
+		level--;
+		Assert(level>=0,"<FTRACE> \"ret\" cnts are more than \"call\" cnts\n");
+	}else{ 
+		flag="call";
+		level++;
+	}
+	printf("%#010:\t",pc_src);
+	for(int i=0;i<level;i++) printf("\t");
+
+	if(rst>=0) printf("%s [%s@%#010x]\n",flag,fs[rst].func_name,fs[rst].start);
+	else printf("%s [???@%#010x]\n",flag,fs[rst].start);//找不到函数
 }
