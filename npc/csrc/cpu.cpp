@@ -39,9 +39,11 @@ void cpu_terminate(){
 	if(cpu_status.state == ABORT){//ABORT
 		printf("\nNPC EXIT: \033[0m\033[1;31mABORT\033[0m at pc = %#010x\n\n",cpu_status.halt_pc);
 	}else if(cpu_status.halt_ret == 0){//GOOD
+		buffer_disp();
 		printf("\nNPC EXIT: \033[0m\033[1;32mHIT GOOD TRAP\033[0m at pc = %#010x\n\n",cpu_status.halt_pc);
 	}else{//BAD or unexpected situation
-		printf("\nNPC EXIT: \033[0m\033[1;31mHIT BAD TRAP\033[0m at pc = %#010x\n\n",cpu_status.halt_pc);	
+		printf("\nNPC EXIT: \033[0m\033[1;31mHIT BAD TRAP\033[0m at pc = %#010x\n\n",cpu_status.halt_pc);
+		buffer_disp();
 	}
 
 	//m_trace->close();
@@ -153,14 +155,12 @@ void exec(uint64_t n){
 		case TERMINATE: case ABORT:
 			if(cpu_status.halt_pc == 0){//运行结束
 				//TODO:输出调试信息
-				buffer_disp();
 
 			}
 			cpu_terminate();
 			
 		case QUIT://TERMINATE、ABORT时也成立
 			//TODO:输出统计信息
-			buffer_disp();
 
 		break;
 	}
