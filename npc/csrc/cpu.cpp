@@ -116,8 +116,9 @@ void exec_once(){
 	//加载inst
 	IFDEF(CONFIG_STEP_PRINT, printf(ANSI_FMT("%#010x:\t%#010x\n",ANSI_FG_BLUE),cpu->pc,set_cpu_inst()), set_cpu_inst());
 	//cpu_data更新inst
+	printf("TEST");
+
 	get_cpu_inst();
-printf("TEST");
 	buffer_insert();
 	clk_update();
 }
