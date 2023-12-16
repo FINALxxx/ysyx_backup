@@ -108,7 +108,7 @@ void cpu_init(){
 void log_init(const char* log_file);
 extern "C" void disasm_init(const char *triple); 
 void buffer_init();
-void elf_init();
+void elf_init(const char* fileName);
 void std_monitor_init(int argc,char** argv){
 	mem_init();
 	
