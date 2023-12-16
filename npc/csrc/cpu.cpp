@@ -132,6 +132,7 @@ void exec(uint64_t n){
 		break;
 	}
 
+	log_write("   PC\t\t\tINST\t\t\tINST-HEX");
 	for(;n>0;n--){
 		exec_once();
 		sim_time++;
