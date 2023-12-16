@@ -45,10 +45,10 @@ sim-all:
 	@echo ${CSRC}
 sim:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
-	verilator --cc --exe -top-module ${VTOP} --build \
+	verilator -Wall --cc --exe -top-module ${VTOP} --build \
 	-I${VINC} \
 	-LDFLAGS "${LIBS} -MMD" \
-	-CFLAGS "${CINC} -g" \
+	-CFLAGS "${CINC} -g -w" \
 	${CSRC} ${VSRC}
 	make -C obj_dir -f ${TGS}.mk ${TGS}
 	./obj_dir/${TGS} ${BINSRC} ${LOGSRC} ${ELFSRC}
