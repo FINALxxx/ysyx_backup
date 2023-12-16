@@ -132,7 +132,7 @@ void exec(uint64_t n){
 		break;
 	}
 
-	log_write("   %+7s\t\t%+10s\t\t\t%+5s\n","PC","INST","INST-HEX");
+	log_write("   %+7s\t\t%+15s\t\t\t%+5s\n","PC","INST","INST-HEX");
 	for(;n>0;n--){
 		exec_once();
 		sim_time++;
