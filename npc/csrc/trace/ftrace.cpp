@@ -103,7 +103,7 @@ void elf_call(uint32_t pc_src,uint32_t pc_dst,uint32_t cmd){
 		flag="call";
 		//增加level后print
 		level++;
-		for(int i=0;i<level;i++) printf("=>");
+		for(int i=0;i<level;i++) printf("=> ");
 	}	
 	if(rst>=0) printf("%s [%s@%#010x]\n",flag,fs[rst].func_name,fs[rst].start);
 	else printf("%s [???@%#010x]\n",flag,fs[rst].start);//找不到函数
