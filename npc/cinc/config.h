@@ -3,7 +3,7 @@
 
 //basic
 #define CONFIG_ISA "riscv32"
-#define CONFIG_INST_PRINT 1
+#define CONFIG_STEP_PRINT 1
 
 //memory
 #define CONFIG_PC_RESET_OFFSET 0x0
