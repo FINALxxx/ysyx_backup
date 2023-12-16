@@ -160,7 +160,7 @@ void exec(uint64_t n){
 			
 		case QUIT://TERMINATE、ABORT时也成立
 			//TODO:输出统计信息
-			buffer_disp();
+			//buffer_disp();
 
 		break;
 	}
