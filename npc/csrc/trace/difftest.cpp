@@ -75,8 +75,8 @@ void difftest_step(vaddr_t pc, vaddr_t npc) {
 			checkregs(&cpu_data_ref, npc);
 			return;
 		}
-		skip_dut_nr_inst --;
-		if (skip_dut_nr_inst == 0)
+		skip_inst_cnt_dut --;
+		if (skip_inst_cnt_dut == 0)
 			panic("can not catch up with ref.pc = " FMT_WORD " at pc = " FMT_WORD, cpu_data_ref.pc, pc);
 		return;
 	}
