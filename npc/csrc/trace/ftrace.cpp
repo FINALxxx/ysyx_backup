@@ -66,7 +66,7 @@ static void fs_init(){
 void elf_init(const char* fileName){
 	fs_init();
 	FILE* fp = fopen(fileName,"r");
-	Assert(fp!=NULL,"<FILE> NO ELF FILE!\n");
+	Assert(fp!=NULL,"<FILE> ELF FILE DO NOT EXIST!\n");
 	//READFAIL = 0;
 	parse_elf(fp);
 }

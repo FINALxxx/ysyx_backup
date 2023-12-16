@@ -39,11 +39,10 @@ void cpu_terminate(){
 	if(cpu_status.state == ABORT){//ABORT
 		printf("\nNPC EXIT: \033[0m\033[1;31mABORT\033[0m at pc = %#010x\n\n",cpu_status.halt_pc);
 	}else if(cpu_status.halt_ret == 0){//GOOD
-		buffer_disp();
 		printf("\nNPC EXIT: \033[0m\033[1;32mHIT GOOD TRAP\033[0m at pc = %#010x\n\n",cpu_status.halt_pc);
-	}else{//BAD or unexpected situation
-		printf("\nNPC EXIT: \033[0m\033[1;31mHIT BAD TRAP\033[0m at pc = %#010x\n\n",cpu_status.halt_pc);
+	}else{//BAD or unexpected situation	
 		buffer_disp();
+		printf("\nNPC EXIT: \033[0m\033[1;31mHIT BAD TRAP\033[0m at pc = %#010x\n\n",cpu_status.halt_pc);
 	}
 
 	//m_trace->close();
@@ -96,11 +95,24 @@ word_t reg_str2val(const char *s, bool *success) {
 	return 0;
 }
 
+bool difftest_checkregs(CPU_state* cpu_data_ref, vaddr_t pc){
+	for(int i=0;i<REG_NUM;i++){
+		if(gpr(i) != cpu_data_ref->gpr[i]){
+			pc = cpu_data_ref->pc;
+			return false;
+		}
+		return true;
+	}
+}
+
 
 /* EXEC */
 
 static void single_inst_debug(){
-	
+	//TRACE
+	buffer_insert();
+	elf_call(cpu_data.pc,cpu_data.dnpc,cpu_data.inst);
+
 	//watchpoint update
 	uint32_t new_result=0;
 	WP* wp=check_wp(&new_result);
@@ -121,10 +133,7 @@ void exec_once(){
 	//cpu_data更新inst
 	get_cpu_inst();
 
-	//TRACE
-	buffer_insert();
-	elf_call(cpu_data.pc,cpu_data.dnpc,cpu_data.inst);
-	
+		
 	clk_update();
 }
 
