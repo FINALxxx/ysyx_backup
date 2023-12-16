@@ -54,6 +54,7 @@ VM_USER_CLASSES = \
 	watchpoint \
 	sim-npc \
 	disasm \
+	ftrace \
 	itrace \
 	log \
 
@@ -95,6 +96,8 @@ watchpoint.o: /home/finalx/ysyx-workbench/npc/csrc/sdb/watchpoint.cpp
 sim-npc.o: /home/finalx/ysyx-workbench/npc/csrc/sim-npc.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 disasm.o: /home/finalx/ysyx-workbench/npc/csrc/trace/disasm.cpp
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+ftrace.o: /home/finalx/ysyx-workbench/npc/csrc/trace/ftrace.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 itrace.o: /home/finalx/ysyx-workbench/npc/csrc/trace/itrace.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
