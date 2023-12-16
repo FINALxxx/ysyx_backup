@@ -145,7 +145,7 @@ void exec(uint64_t n){
 		single_inst_debug();
 		if(cpu_status.state != ALIVE) break;
 	}
-	buffer_disp();
+	
 	switch(cpu_status.state){
 		case ALIVE:
 			cpu_status.state = STOP;
@@ -160,6 +160,8 @@ void exec(uint64_t n){
 			
 		case QUIT://DEAD、ABORT时也成立
 			//TODO:输出统计信息
+			buffer_disp();
+
 		break;
 	}
 }
