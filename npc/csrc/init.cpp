@@ -123,7 +123,7 @@ void std_monitor_init(int argc,char** argv){
 	buffer_init();
 	
 	//FTRACE INIT
-	elf_init();
+	elf_init(elf_file);
 
 	cpu_init();
 	welcome();
