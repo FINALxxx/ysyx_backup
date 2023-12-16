@@ -145,16 +145,15 @@ void exec(uint64_t n){
 		single_inst_debug();
 		if(cpu_status.state != ALIVE) break;
 	}
-	printf("%d",cpu_status.state == QUIT);	
 	switch(cpu_status.state){
 		case ALIVE:
 			cpu_status.state = STOP;
 		break;
 
 		case TERMINATE: case ABORT:
+			buffer_disp();
 			if(cpu_status.halt_pc == 0){//运行结束
 				//TODO:输出调试信息
-				buffer_disp();
 			}
 			cpu_terminate();
 			
