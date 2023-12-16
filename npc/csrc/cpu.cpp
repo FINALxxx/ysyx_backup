@@ -4,6 +4,7 @@
 #include "Vcpu___024root.h"
 #include <svdpi.h>
 #include <trace/itrace.h>
+#include <sdb/watchpoint.h>
 
 vluint64_t sim_time = 0;
 CPU_state cpu_data = {};
