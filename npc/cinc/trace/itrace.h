@@ -3,6 +3,6 @@
 #include <common.h>
 
 void buffer_insert();
-void buffer_disp()
+void buffer_disp();
 
 #endif
