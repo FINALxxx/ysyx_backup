@@ -66,7 +66,7 @@ static void fs_init(){
 void elf_init(const char* fileName){
 	fs_init();
 	FILE* fp = fopen(fileName,"r");
-	Assert(fp!=NULL,"ERROR:NO ELF FILE!\n");
+	Assert(fp!=NULL,"<FILE> NO ELF FILE!\n");
 	//READFAIL = 0;
 	parse_elf(fp);
 }
@@ -92,7 +92,7 @@ void elf_call(uint32_t pc_src,uint32_t pc_dst,uint32_t cmd){
 	bool is_ret = (cmd == 0x8067);
 	int32_t rst = find_func(pc_dst);
 	char* flag=NULL;
-	printf(ANSI_FMT("[FTRACE] %#010x:\t",ANSI_FG_GREEN),pc_src);
+	printf(ANSI_FMT("[FTRACE] %#010x\t",ANSI_FG_GREEN) ":",pc_src);
 	if(is_ret){
 		flag="ret";
 		//print后减少level
