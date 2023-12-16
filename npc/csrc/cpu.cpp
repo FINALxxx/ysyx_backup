@@ -60,11 +60,9 @@ void get_cpu_pc(){//之后写成DPIC
 //返回预计将执行的指令
 word_t set_cpu_inst(){
 	word_t pending_inst = vaddr_read(cpu_data.pc,4);
-	printf("TEST");
-
 	cpu->cmd = pending_inst;
+	printf("TEST");
 	return pending_inst;
-
 }
 
 //当前实际执行的指令
