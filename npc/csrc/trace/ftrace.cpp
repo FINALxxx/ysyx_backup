@@ -92,7 +92,7 @@ void elf_call(uint32_t pc_src,uint32_t pc_dst,uint32_t cmd){
 	bool is_ret = (cmd == 0x8067);
 	int32_t rst = find_func(pc_dst);
 	char* flag=NULL;
-	printf("%#010x:\t",pc_src);
+	printf(ANSI_FMT("[FTRACE] %#010x:\t",ANSI_FG_GREEN),pc_src);
 	if(is_ret){
 		flag="ret";
 		//print后减少level

@@ -149,6 +149,7 @@ void exec(uint64_t n){
 	switch(cpu_status.state){
 		case ALIVE:
 			cpu_status.state = STOP;
+			buffer_disp();
 		break;
 
 		case TERMINATE: case ABORT:
