@@ -62,7 +62,7 @@ word_t set_cpu_inst(){
 	word_t pending_inst = vaddr_read(cpu_data.pc,4);
 	cpu->cmd = pending_inst;
 
-	printf("TEST");
+	printf("%x",pending_inst);
 	return pending_inst;
 }
 
