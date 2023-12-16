@@ -37,6 +37,7 @@ VL_INLINE_OPT void Vcpu___024root___nba_sequent__TOP__0(Vcpu___024root* vlSelf) 
     CData/*0:0*/ __Vdlyvset__cpu__DOT__rf1__DOT__rf__v0;
     __Vdlyvset__cpu__DOT__rf1__DOT__rf__v0 = 0;
     // Body
+    VL_WRITEF("cmd=%x\n",32,vlSelf->cmd);
     __Vdlyvset__cpu__DOT__rf1__DOT__rf__v0 = 0U;
     if (((IData)(vlSelf->cpu__DOT__cu1__DOT____VdfgTmp_hf442cbef__0) 
          | ((0x6fU == (0x7fU & vlSelf->cmd)) | ((3U 
