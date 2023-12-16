@@ -39,7 +39,7 @@ void buffer_disp(){
 		printf("   %#10x:\t%-40s\t:%#010x\n",buf[disp_ptr].pc, buf[disp_ptr].log, buf[disp_ptr].inst);
 		disp_ptr = (disp_ptr+1)%CONFIG_MAX_BUF_SIZE;
 	}
-	printf("-->%#10x:\t%-25s\t:%#010x\n",buf[cur-1].pc,buf[cur-1].log,buf[cur-1].inst);
+	printf("-->%#10x:\t%-40s\t:%#010x\n",buf[cur-1].pc,buf[cur-1].log,buf[cur-1].inst);
 	printf("\t" ANSI_FMT("[ITRACE TERMINATE]",ANSI_BG_YELLOW) "\n");
 }
 
