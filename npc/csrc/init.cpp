@@ -105,6 +105,7 @@ void cpu_init(){
 	printf(ANSI_FMT("PC_INIT",ANSI_FG_GREEN) ":" FMT_PADDR "\n",cpu->pc);
 }
 
+void log_init(const char* log_file);
 extern "C" void disasm_init(const char *triple); 
 void buffer_init();
 void std_monitor_init(int argc,char** argv){
