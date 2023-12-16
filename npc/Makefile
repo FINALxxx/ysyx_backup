@@ -8,6 +8,7 @@ VFILE = .v
 WAVEFILE = wave.vcd
 
 BINSRC ?=
+LOGSRC = ${NPC_HOME}/npc-log.txt
 ELFSRC ?=
 
 #CSRC = $(wildcard *${CFILE})
@@ -50,7 +51,7 @@ sim:
 	-CFLAGS "${CINC}" \
 	${CSRC} ${VSRC}
 	make -C obj_dir -f ${TGS}.mk ${TGS}
-	./obj_dir/${TGS} ${BINSRC} ${ELFSRC}
+	./obj_dir/${TGS} ${BINSRC} ${LOGSRC} ${ELFSRC}
 	#gtkwave ./${WAVEFILE}
 
 sim-clean:
