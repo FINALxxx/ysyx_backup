@@ -1,8 +1,7 @@
 #ifndef __SDB_WP_H__
 #define __SDB_WP_H__
+
 #include <common.h>
-
-
 typedef struct watchpoint {
 	int NO;
 	struct watchpoint *next;
