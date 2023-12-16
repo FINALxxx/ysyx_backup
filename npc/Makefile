@@ -27,7 +27,7 @@ VTOP = cpu
 TGS = V${VTOP}
 
 # START - 链接llvm
-CXXSRC = include/sdb_disasm.cpp
+CXXSRC = csrc/trace/disasm.cpp
 CXXFLAGS += $(shell llvm-config --cxxflags) -fPIE
 LIBS += -lreadline
 LIBS += $(shell llvm-config --libs)
