@@ -145,11 +145,10 @@ void exec(uint64_t n){
 		single_inst_debug();
 		if(cpu_status.state != ALIVE) break;
 	}
-
+	buffer_disp();
 	switch(cpu_status.state){
 		case ALIVE:
 			cpu_status.state = STOP;
-			buffer_disp();
 		break;
 
 		case TERMINATE: case ABORT:
