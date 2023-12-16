@@ -131,7 +131,7 @@ void exec(uint64_t n){
 			cpu_status.state=ALIVE;
 		break;
 	}
-
+	log_write("START INST LOGGING:\n");
 	log_write("   %+7s\t\t%+15s\t\t\t%+10s\n","PC","INST","INST-HEX");
 	for(;n>0;n--){
 		exec_once();
