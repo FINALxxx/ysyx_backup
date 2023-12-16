@@ -51,14 +51,14 @@ void difftest_init(const char* ref_so_file, long img_size, int port){
 	void (*ref_difftest_init)(int) = dlsym(handle, "difftest_init");
 	assert(ref_difftest_init);
 	
-	log("differential testing: %s\n", ansi_fmt("ON", ansi_fg_green));
+	log("differential testing: %s\n", ANSI_FMT("ON", ANSI_FG_GREEN));
 	ref_difftest_init(port);
 	ref_difftest_memcpy(PMEM_RESET, paddr_to_ptr(PMEM_RESET), img_size, DIFFTEST_TO_REF);
-	ref_difftest_regcpy(&cpu, DIFFTEST_TO_REF);
+	ref_difftest_regcpy(&cpu_data, DIFFTEST_TO_REF);
 }
 
 static void checkregs(CPU_state *cpu_data_ref, vaddr_t pc) {
-  if (!difftest_checkregs(ref, pc)) {//difftest_checkreg放在了cpu.cpp中
+  if (!difftest_checkregs(cpu_data_ref, pc)) {//difftest_checkreg放在了cpu.cpp中
     cpu_status.state = ABORT;
     cpu_status.halt_pc = pc;
     reg_display();
