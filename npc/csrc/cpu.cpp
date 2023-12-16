@@ -158,7 +158,7 @@ void exec(uint64_t n){
 			}
 			cpu_terminate();
 			
-		case QUIT://DEAD、ABORT时也成立
+		case QUIT://TERMINATE、ABORT时也成立
 			//TODO:输出统计信息
 			buffer_disp();
 
