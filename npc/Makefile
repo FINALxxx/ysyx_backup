@@ -51,7 +51,7 @@ sim:
 	-CFLAGS "${CINC}" \
 	${CSRC} ${VSRC}
 	make -C obj_dir -f ${TGS}.mk ${TGS}
-	gdb --args ./obj_dir/${TGS} ${BINSRC} ${LOGSRC} ${ELFSRC}
+	./obj_dir/${TGS} ${BINSRC} ${LOGSRC} ${ELFSRC}
 	#gtkwave ./${WAVEFILE}
 
 sim-clean:
