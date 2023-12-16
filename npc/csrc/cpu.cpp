@@ -62,11 +62,14 @@ word_t set_cpu_inst(){
 	word_t pending_inst = vaddr_read(cpu_data.pc,4);
 	cpu->cmd = pending_inst;
 	return pending_inst;
+
+printf("TEST");
 }
 
 //当前实际执行的指令
 void get_cpu_inst(){//之后写成DPIC
 	cpu_data.inst = cpu->cmd;
+
 }
 
 void get_cpu_reg(){
@@ -114,7 +117,7 @@ void exec_once(){
 	//cpu_data更新pc
 	get_cpu_pc();
 	//加载inst
-	printf(ANSI_FMT("%#010x:\t%#010x\n",ANSI_FG_BLUE),cpu->pc,set_cpu_inst());
+	IFDEF(CONFIG_STEP_PRINT, printf(ANSI_FMT("%#010x:\t%#010x\n",ANSI_FG_BLUE),cpu->pc,set_cpu_inst()), set_cpu_inst());
 	//cpu_data更新inst
 	printf("TEST");
 
