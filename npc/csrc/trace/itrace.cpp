@@ -23,7 +23,7 @@ void buffer_insert(){
 	single_cmd_disasm(log);
 	strncpy(buf[cur].log, log, strlen(log));	
 	//使用LOG
-	log_write("   %#10x:\t%-25s\t:%#010x\n",buf[cur].pc, buf[cur].log, buf[cur].inst);
+	log_write("   %#10x:\t%-20s\t:%#010x\n",buf[cur].pc, buf[cur].log, buf[cur].inst);
 	cur = (cur+1)%CONFIG_MAX_BUF_SIZE;
 	is_full = is_full || (cur==CONFIG_MAX_BUF_SIZE-1);
 }
