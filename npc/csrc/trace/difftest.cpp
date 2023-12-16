@@ -70,14 +70,14 @@ void difftest_step(vaddr_t pc, vaddr_t npc) {
 
 	if (skip_dut_nr_inst > 0) {
 		ref_difftest_regcpy(&cpu_data_ref, DIFFTEST_TO_DUT);//复制reg到dut的cpu_data（dut此处为npc）
-		if (ref_r.pc == npc) {
+		if (cpu_data_ref.pc == npc) {
 			skip_dut_nr_inst = 0;
 			checkregs(&cpu_data_ref, npc);
 			return;
 		}
 		skip_dut_nr_inst --;
 		if (skip_dut_nr_inst == 0)
-			panic("can not catch up with ref.pc = " FMT_WORD " at pc = " FMT_WORD, ref_r.pc, pc);
+			panic("can not catch up with ref.pc = " FMT_WORD " at pc = " FMT_WORD, cpu_data_ref.pc, pc);
 		return;
 	}
 
