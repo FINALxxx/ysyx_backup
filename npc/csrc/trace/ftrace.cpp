@@ -96,7 +96,7 @@ void elf_call(uint32_t pc_src,uint32_t pc_dst,uint32_t cmd){
 	if(is_ret){
 		flag="ret";
 		//print后减少level
-		for(int i=0;i<level;i++) printf("=>");
+		for(int i=0;i<level;i++) printf("=> ");
 		level--;
 		Assert(level>=0,"<FTRACE> \"ret\" cnts are more than \"call\" cnts\n");
 	}else{ 
