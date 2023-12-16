@@ -145,7 +145,7 @@ void exec(uint64_t n){
 		single_inst_debug();
 		if(cpu_status.state != ALIVE) break;
 	}
-	
+	printf("%d",cpu_status.state == QUIT);	
 	switch(cpu_status.state){
 		case ALIVE:
 			cpu_status.state = STOP;
