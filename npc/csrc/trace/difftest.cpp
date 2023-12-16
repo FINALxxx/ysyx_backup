@@ -1,4 +1,5 @@
 #include <isa-difftest.h>
+#include <dlfcn.h>
 #include <common.h>
 #include <isa.h>
 #include <cpu.h>
