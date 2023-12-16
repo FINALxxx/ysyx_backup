@@ -92,6 +92,7 @@ void elf_call(uint32_t pc_src,uint32_t pc_dst,uint32_t cmd){
 	bool is_ret = (cmd == 0x8067);
 	int32_t rst = find_func(pc_dst);
 	char* flag=NULL;
+	printf("%#010x:\t",pc_src);
 	if(is_ret){
 		flag="ret";
 		//print后减少level
@@ -103,9 +104,7 @@ void elf_call(uint32_t pc_src,uint32_t pc_dst,uint32_t cmd){
 		//增加level后print
 		level++;
 		for(int i=0;i<level;i++) printf("=>");
-	}
-	printf("%#010:\t",pc_src);
-	
+	}	
 	if(rst>=0) printf("%s [%s@%#010x]\n",flag,fs[rst].func_name,fs[rst].start);
 	else printf("%s [???@%#010x]\n",flag,fs[rst].start);//找不到函数
 }
