@@ -10,7 +10,8 @@ static bool is_full=false;//如果未满，就从0开始读取；如果满，就
 extern "C" void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
 static void single_cmd_disasm(char* disasm_rst){
 	//此处需要先转化为“以byte或uint8_t为单位”存储，对接llvm::arrayref的存储要求
-	uint8_t* cmd_src = cpu_data.inst;
+	uint32_t* cmd_src=NULL;
+	*cmd_src = cpu_data.inst;
 	vaddr_t pc = cpu_data.pc;
 	disassemble(disasm_rst,CONFIG_MAX_INST_LEN,pc,(uint8_t*)cmd_src,4);
 	//printf("\t[CMD_ASM:%s]\n",disasm_rst);
