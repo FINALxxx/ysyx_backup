@@ -54,6 +54,17 @@ sim:
 	./obj_dir/${TGS} ${BINSRC} ${LOGSRC} ${ELFSRC}
 	#gtkwave ./${WAVEFILE}
 
+gdb:
+	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
+	verilator -Wall --cc --exe -top-module ${VTOP} --build \
+	-I${VINC} \
+	-LDFLAGS "${LIBS} -MMD" \
+	-CFLAGS "${CINC} -g -w" \
+	${CSRC} ${VSRC}
+	make -C obj_dir -f ${TGS}.mk ${TGS}
+	gdb --args ./obj_dir/${TGS} ${BINSRC} ${LOGSRC} ${ELFSRC}
+
+
 sim-clean:
 	@echo "remove <NPC>/obj_dir:"
 	rm obj_dir -rf
