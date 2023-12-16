@@ -15,4 +15,4 @@ void wp_init();
 void free_wp(int NO);
 void print_w();
 
-#endif
+//#endif
