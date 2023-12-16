@@ -1,5 +1,6 @@
 #ifndef __SDB_WP_H__
 #define __SDB_WP_H__
+#include <common.h>
 
 #define NR_WP 32
 
