@@ -34,7 +34,7 @@ module PMEM(
       			pmem_write(waddr, wdata, wmask);
     		end
 		end else begin
-    		rdata_tmp = 0;
+    		rdata_tmp <= 0;
   		end
 	end
 	
