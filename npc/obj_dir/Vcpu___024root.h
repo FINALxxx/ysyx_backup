@@ -85,7 +85,7 @@ class Vcpu___024root final : public VerilatedModule {
         IData/*31:0*/ cpu__DOT__pmem1__DOT__mux1__DOT__i0__DOT__lut_out;
     };
     struct {
-        VlWide<3>/*82:0*/ __VdfgTmp_h5c0f7e61__0;
+        VlWide<3>/*82:0*/ __VdfgTmp_h5c0d22ae__0;
         IData/*31:0*/ __Vtask_pmem_read__1__rdata;
         IData/*31:0*/ __VstlIterCount;
         IData/*31:0*/ __VicoIterCount;

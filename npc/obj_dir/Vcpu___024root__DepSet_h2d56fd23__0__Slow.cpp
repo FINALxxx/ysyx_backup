@@ -375,7 +375,7 @@ VL_ATTR_COLD void Vcpu___024root___ctor_var_reset(Vcpu___024root* vlSelf) {
     }
     vlSelf->cpu__DOT__pmem1__DOT__mux1__DOT__i0__DOT__lut_out = VL_RAND_RESET_I(32);
     vlSelf->cpu__DOT__pmem1__DOT__mux1__DOT__i0__DOT__hit = VL_RAND_RESET_I(1);
-    VL_ZERO_RESET_W(83, vlSelf->__VdfgTmp_h5c0f7e61__0);
+    VL_ZERO_RESET_W(83, vlSelf->__VdfgTmp_h5c0d22ae__0);
     vlSelf->__Vtask_pmem_read__1__rdata = 0;
     vlSelf->__Vtrigrprev__TOP__clk = VL_RAND_RESET_I(1);
 }
