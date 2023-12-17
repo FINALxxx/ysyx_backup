@@ -238,6 +238,16 @@ VL_ATTR_COLD void Vcpu___024root___stl_sequent__TOP__0(Vcpu___024root* vlSelf) {
     CData/*0:0*/ cpu__DOT__alu1__DOT__mux1__DOT__i0__DOT__hit;
     cpu__DOT__alu1__DOT__mux1__DOT__i0__DOT__hit = 0;
     // Body
+    VL_WRITEF("is_load=%b\nis_store=%b\nis_pmem_valid=%b\npmem_catgory=%b\n",
+              1,(3U == (0x7fU & vlSelf->cmd)),1,(0x23U 
+                                                 == 
+                                                 (0x7fU 
+                                                  & vlSelf->cmd)),
+              1,((3U == (0x7fU & vlSelf->cmd)) | (0x23U 
+                                                  == 
+                                                  (0x7fU 
+                                                   & vlSelf->cmd))),
+              3,(7U & (vlSelf->cmd >> 0xcU)));
     vlSelf->cpu__DOT__mux2__DOT__i0__DOT__data_list[1U] 
         = vlSelf->pc;
     cpu__DOT__cu1__DOT__mux2__DOT__i0__DOT__lut_out 

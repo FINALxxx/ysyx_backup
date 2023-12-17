@@ -1,5 +1,5 @@
 /* verilator lint_off PINCONNECTEMPTY */
-
+/* verilator lint_off UNDRIVEN */ 
 module cpu(
     input clk,
     input rst,
