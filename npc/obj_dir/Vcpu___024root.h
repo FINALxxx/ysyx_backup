@@ -24,6 +24,7 @@ class Vcpu___024root final : public VerilatedModule {
     CData/*3:0*/ cpu__DOT__op_ALU_sel;
     CData/*0:0*/ cpu__DOT__op_PC_Bsrc;
     CData/*2:0*/ cpu__DOT__cu1__DOT__branch;
+    CData/*0:0*/ cpu__DOT__cu1__DOT__is_halt;
     CData/*0:0*/ cpu__DOT__cu1__DOT____VdfgTmp_hf442cbef__0;
     CData/*0:0*/ cpu__DOT__cu1__DOT____VdfgTmp_hd4cadad9__0;
     CData/*0:0*/ cpu__DOT__cu1__DOT____VdfgTmp_h7f183419__0;

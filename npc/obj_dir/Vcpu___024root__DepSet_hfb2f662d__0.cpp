@@ -51,8 +51,6 @@ VL_INLINE_OPT void Vcpu___024root___nba_sequent__TOP__0(Vcpu___024root* vlSelf) 
     Vcpu__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vcpu___024root___nba_sequent__TOP__0\n"); );
     // Init
-    CData/*0:0*/ cpu__DOT__cu1__DOT__is_halt;
-    cpu__DOT__cu1__DOT__is_halt = 0;
     CData/*4:0*/ __Vdlyvdim0__cpu__DOT__rf1__DOT__rf__v0;
     __Vdlyvdim0__cpu__DOT__rf1__DOT__rf__v0 = 0;
     IData/*31:0*/ __Vdlyvval__cpu__DOT__rf1__DOT__rf__v0;
@@ -60,11 +58,8 @@ VL_INLINE_OPT void Vcpu___024root___nba_sequent__TOP__0(Vcpu___024root* vlSelf) 
     CData/*0:0*/ __Vdlyvset__cpu__DOT__rf1__DOT__rf__v0;
     __Vdlyvset__cpu__DOT__rf1__DOT__rf__v0 = 0;
     // Body
+    Vcpu___024unit____Vdpiimwrap_halt_TOP____024unit(vlSelf->cpu__DOT__cu1__DOT__is_halt);
     __Vdlyvset__cpu__DOT__rf1__DOT__rf__v0 = 0U;
-    cpu__DOT__cu1__DOT__is_halt = (IData)((0x73U == 
-                                           (0x4000707fU 
-                                            & vlSelf->cmd)));
-    Vcpu___024unit____Vdpiimwrap_halt_TOP____024unit(cpu__DOT__cu1__DOT__is_halt);
     if (((IData)(vlSelf->cpu__DOT__cu1__DOT____VdfgTmp_hf442cbef__0) 
          | ((0x6fU == (0x7fU & vlSelf->cmd)) | ((3U 
                                                  == 
@@ -83,6 +78,10 @@ VL_INLINE_OPT void Vcpu___024root___nba_sequent__TOP__0(Vcpu___024root* vlSelf) 
     }
     vlSelf->pc = ((IData)(vlSelf->rst) ? 0x80000000U
                    : vlSelf->dnpc);
+    vlSelf->cpu__DOT__cu1__DOT__is_halt = (IData)((0x73U 
+                                                   == 
+                                                   (0x4000707fU 
+                                                    & vlSelf->cmd)));
     if (__Vdlyvset__cpu__DOT__rf1__DOT__rf__v0) {
         vlSelf->cpu__DOT__rf1__DOT__rf[__Vdlyvdim0__cpu__DOT__rf1__DOT__rf__v0] 
             = __Vdlyvval__cpu__DOT__rf1__DOT__rf__v0;

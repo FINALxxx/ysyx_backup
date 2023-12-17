@@ -11,6 +11,7 @@
 vluint64_t sim_time = 0;
 CPU_state cpu_data = {};
 uint64_t inst_cnt =0;
+bool difftest_is_ebreak = false;//difftest中是否触发ebreak退出
 extern Vcpu* cpu;
 
 const char *regs[] = {
@@ -33,6 +34,7 @@ extern "C" void halt(svBit is_halt){
 	get_cpu_pc();
 	get_cpu_reg();
 	if(is_halt) NPCTRAP(cpu_data.pc,gpr(10));	
+	difftest_is_ebreak = true;
 	return;
 }
 
@@ -146,6 +148,9 @@ void exec_once(){
 }
 
 void exec(uint64_t n){
+	//每次执行前，注意先把difftest_ebreak标识为false
+	difftest_is_ebreak = false;
+
 	switch(cpu_status.state){
 		case TERMINATE:case ABORT:
 			printf("Program execution has ended. To restart the program, exit NPC and run again.\n");
