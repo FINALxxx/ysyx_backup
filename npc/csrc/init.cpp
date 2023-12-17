@@ -99,7 +99,7 @@ static inline void half_clk_update(){
 	cpu->eval();
 	cpu->clk^=1;
 	sim_time++;
-	tfp->trace();
+	tfp->dump(sim_time);
 } 
 
 //下降沿读取
