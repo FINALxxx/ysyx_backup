@@ -83,10 +83,10 @@ long bin_init(){
 }
 
 void clk_update(){//1clk
-	cpu->clk^=1;
 	cpu->eval();
 	cpu->clk^=1;
 	cpu->eval();
+	cpu->clk^=1;
 }
 
 static inline void half_clk_update(){
