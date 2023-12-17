@@ -28,7 +28,7 @@ module RegisterFile #(DATA_WIDTH=32,REG_NUM=32,REG_NUM_BIT=5)  (
 		$display("wdata=%b",wdata);
 		$display("waddr=%b",waddr);*/
 		$display("sp=%b\n",rf[5'b0010]);
-		$display("a4=%b\n",rf[5'b1110]);
+		$display("a5=%b\n",rf[5'b1110]);
 		$display("a4=%b\n",rf[5'b1111]);
 		$display("\n");
   end

@@ -1054,8 +1054,10 @@ VL_INLINE_OPT void Vcpu___024root___nba_sequent__TOP__0(Vcpu___024root* vlSelf) 
     __Vdlyvset__cpu__DOT__rf1__DOT__rf__v0 = 0;
     // Body
     Vcpu___024unit____Vdpiimwrap_halt_TOP____024unit(vlSelf->cpu__DOT__cu1__DOT__is_halt);
-    VL_WRITEF("x1=%b\n\n\n\n",32,vlSelf->cpu__DOT__rf1__DOT__rf
-              [3U]);
+    VL_WRITEF("sp=%b\n\na4=%b\n\na4=%b\n\n\n\n",32,
+              vlSelf->cpu__DOT__rf1__DOT__rf[2U],32,
+              vlSelf->cpu__DOT__rf1__DOT__rf[0xeU],
+              32,vlSelf->cpu__DOT__rf1__DOT__rf[0xfU]);
     __Vdlyvset__cpu__DOT__rf1__DOT__rf__v0 = 0U;
     if (((IData)(vlSelf->cpu__DOT__cu1__DOT____VdfgTmp_hf442cbef__0) 
          | ((0x6fU == (0x7fU & vlSelf->cmd)) | ((3U 
