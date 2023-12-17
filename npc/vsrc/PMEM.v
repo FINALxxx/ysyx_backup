@@ -14,7 +14,7 @@ module PMEM(
 	//读写请求
 	input valid,
 	input [31:0] raddr,
-	output [31:0] rdata,
+	output reg [31:0] rdata,
 	
 	//写请求
 	input wen,
