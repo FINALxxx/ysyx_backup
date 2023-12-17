@@ -149,7 +149,7 @@ module ControlUnit(
 /*  END PC操作数分类 */
 
 /* START PMEM掩码与移位分类 */
-	MuxKeyWithDefault #(5, 3, 8) mux4(op_PMEM,funct3,`BYTE,{
+	MuxKeyWithDefault #(5, 3, 8) mux5(op_PMEM,funct3,`BYTE,{
             3'b000,   `BYTE,
             3'b001,   `HALF_WORD,
             3'b010,	  `WORD,
