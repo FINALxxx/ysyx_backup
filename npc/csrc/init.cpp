@@ -132,7 +132,7 @@ void std_monitor_init(int argc,char** argv){
 	elf_init(elf_file);
 
 	//DIFFTEST INIT
-	void difftest_init(diff_file, img_size, diff_port);
+	difftest_init(diff_file, img_size, diff_port);
 
 	cpu_init();
 	welcome();
