@@ -43,8 +43,9 @@ void paddr_write(paddr_t addr, int len, word_t data){
 
 extern "C" void pmem_read(int raddr, int *rdata) {
 	// 总是读取地址为`raddr & ~0x3u`的4字节返回给`rdata`
-	printf("PREAD:%x\n",raddr);
 	*rdata = paddr_read(raddr,4);
+	printf("PREAD:%x,%x\n",raddr,*rdata);
+
 }
 extern "C" void pmem_write(int waddr, int wdata, char wmask) {
 	// 总是往地址为`waddr & ~0x3u`的4字节按写掩码`wmask`写入`wdata`

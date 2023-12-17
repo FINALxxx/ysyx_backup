@@ -955,7 +955,10 @@ VL_ATTR_COLD void Vcpu___024root___stl_sequent__TOP__0(Vcpu___024root* vlSelf) {
                                      ? vlSelf->cpu__DOT__alu1__DOT__mux1__DOT__i0__DOT__lut_out
                                      : 0U);
     vlSelf->dnpc = (vlSelf->cpu__DOT__a0 + vlSelf->cpu__DOT__b0);
-    VL_WRITEF("src1=%b\nsrc2=%b\nrd=%b\nop-imm=%b\nimm=%b\n\n\nALUsel=%b\nALUAsrc=%b\nALUBsrc=%b\nALU_result=%x\n",
+    VL_WRITEF("rs1=%b\nrs2=%b\nsrc1=%b\nsrc2=%b\nrd=%b\nop-imm=%b\nimm=%b\n\n\nALUsel=%b\nALUAsrc=%b\nALUBsrc=%b\nALU_result=%x\n",
+              5,(0x1fU & (vlSelf->cmd >> 0xfU)),5,(0x1fU 
+                                                   & (vlSelf->cmd 
+                                                      >> 0x14U)),
               32,vlSelf->cpu__DOT__src1,32,vlSelf->cpu__DOT__src2,
               5,(0x1fU & (vlSelf->cmd >> 7U)),3,(IData)(vlSelf->cpu__DOT__op_IMM),
               32,vlSelf->cpu__DOT__imm,4,(IData)(vlSelf->cpu__DOT__op_ALU_sel),
