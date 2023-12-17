@@ -81,7 +81,7 @@ long bin_init(){
 
 	return fsize;
 }
-
+extern vluint64_t sim_time; 
 void clk_update(){//1clk
 	cpu->eval();
 	cpu->clk^=1;
