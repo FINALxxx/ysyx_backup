@@ -146,7 +146,6 @@ void exec_once(){
 	//执行inst
 	clk_update();
 
-	get_cpu_reg();
 	if(cpu_status.state == ALIVE){
 		printf("%#010x:\t%#010x\n",cpu_data.pc,cpu_data.inst);
 	}
@@ -177,6 +176,7 @@ void exec(uint64_t n){
 		inst_cnt++;
 		if(cpu_status.state == ALIVE) single_inst_debug();
 		else break;
+		get_cpu_reg();
 		//cpu_data更新下一周期的pc
 		get_cpu_pc();
 	}
