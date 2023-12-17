@@ -947,6 +947,9 @@ VL_INLINE_OPT void Vcpu___024root___ico_sequent__TOP__0(Vcpu___024root* vlSelf) 
                                      ? vlSelf->cpu__DOT__alu1__DOT__mux1__DOT__i0__DOT__lut_out
                                      : 0U);
     vlSelf->dnpc = (vlSelf->cpu__DOT__a0 + vlSelf->cpu__DOT__b0);
+    VL_WRITEF("ALUsel=%b\nALUAsrc=%b\nALUBsrc=%b\nALU_result=%x\n",
+              4,vlSelf->cpu__DOT__op_ALU_sel,1,(IData)(vlSelf->cpu__DOT__op_ALU_Asrc),
+              2,vlSelf->cpu__DOT__op_ALU_Bsrc,32,vlSelf->cpu__DOT__src_rd_ALU);
     if (vlSelf->cpu__DOT__en_PMEM) {
         Vcpu___024unit____Vdpiimwrap_pmem_read_TOP____024unit(vlSelf->cpu__DOT__src_rd_ALU, vlSelf->__Vtask_pmem_read__1__rdata);
         vlSelf->cpu__DOT__pmem1__DOT__rdata_tmp = vlSelf->__Vtask_pmem_read__1__rdata;
@@ -1451,6 +1454,9 @@ VL_INLINE_OPT void Vcpu___024root___nba_sequent__TOP__1(Vcpu___024root* vlSelf) 
                                      ? vlSelf->cpu__DOT__alu1__DOT__mux1__DOT__i0__DOT__lut_out
                                      : 0U);
     vlSelf->dnpc = (vlSelf->cpu__DOT__a0 + vlSelf->cpu__DOT__b0);
+    VL_WRITEF("ALUsel=%b\nALUAsrc=%b\nALUBsrc=%b\nALU_result=%x\n",
+              4,vlSelf->cpu__DOT__op_ALU_sel,1,(IData)(vlSelf->cpu__DOT__op_ALU_Asrc),
+              2,vlSelf->cpu__DOT__op_ALU_Bsrc,32,vlSelf->cpu__DOT__src_rd_ALU);
     if (vlSelf->cpu__DOT__en_PMEM) {
         Vcpu___024unit____Vdpiimwrap_pmem_read_TOP____024unit(vlSelf->cpu__DOT__src_rd_ALU, vlSelf->__Vtask_pmem_read__1__rdata);
         vlSelf->cpu__DOT__pmem1__DOT__rdata_tmp = vlSelf->__Vtask_pmem_read__1__rdata;

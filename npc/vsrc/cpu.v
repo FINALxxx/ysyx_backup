@@ -150,12 +150,12 @@ module cpu(
 		$display("cmd=%x",cmd);   
 		//$display("clk=%b",clk);
 		//$display("pc=%x",pc);
-		$display("=========================================\n");
+		$display("=========================================\n");*/
         $display("rs1=%b",rs1);
         $display("rs2=%b",rs2);
         $display("rd=%b",rd);
         $display("op-imm=%b",op_IMM);
-		$display("imm=%b\n\n",imm);*/
+		$display("imm=%b\n\n",imm);
         $display("ALUsel=%b",op_ALU_sel);
 		$display("ALUAsrc=%b",op_ALU_Asrc);
 		$display("ALUBsrc=%b",op_ALU_Bsrc);
