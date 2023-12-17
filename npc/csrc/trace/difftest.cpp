@@ -54,6 +54,7 @@ void difftest_init(const char* ref_so_file, long img_size, int port){
 	Log("differential testing: %s\n", ANSI_FMT("ON", ANSI_FG_GREEN));
 	ref_difftest_init(port);
 	ref_difftest_memcpy(PMEM_RESET, paddr_to_ptr(PMEM_RESET), img_size, DIFFTEST_TO_REF);
+	printf("CPU_DATA_PC=%#010x",cpu_data.pc);
 	ref_difftest_regcpy(&cpu_data, DIFFTEST_TO_REF);
 }
 
