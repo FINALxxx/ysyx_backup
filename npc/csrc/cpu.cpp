@@ -177,7 +177,7 @@ void exec(uint64_t n){
 		if(cpu_status.state == ALIVE) single_inst_debug();
 		else break;
 		//cpu_data更新下一周期的pc
-		get_cpu_pc();
+		if(!difftest_is_ebreak) get_cpu_pc();
 
 	}
 	log_write("\n[TERMINATE INST LOGGING]\n");
