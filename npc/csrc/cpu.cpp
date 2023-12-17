@@ -138,15 +138,13 @@ extern void clk_update();
 void exec_once(){
 
 	//加载当前周期的pc
-	//debug:不要移动get_cpu_pc()的位置
-	//即使pc_init加载了一次pc，此处也要加载一次
 	get_cpu_pc();
+	clk_update();
 	//加载inst
 	printf("%#010x:\t%#010x\n",cpu->pc,set_cpu_inst());
 	//cpu_data更新inst
 	get_cpu_inst();
 
-	clk_update();
 	
 }
 
