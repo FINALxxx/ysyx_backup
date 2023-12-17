@@ -66,12 +66,12 @@ VL_INLINE_OPT void Vcpu___024root___nba_sequent__TOP__0(Vcpu___024root* vlSelf) 
     __Vdlyvset__cpu__DOT__rf1__DOT__rf__v0 = 0U;
     if (vlSelf->cpu__DOT__en_PMEM) {
         Vcpu___024unit____Vdpiimwrap_pmem_read_TOP____024unit(vlSelf->cpu__DOT__src_rd_ALU, __Vtask_pmem_read__1__rdata);
-        vlSelf->cpu__DOT__pmem1__DOT__rdata_tmp = __Vtask_pmem_read__1__rdata;
+        vlSelf->cpu__DOT__src_rd_PMEM = __Vtask_pmem_read__1__rdata;
         if ((0x23U == (0x7fU & vlSelf->cmd))) {
             Vcpu___024unit____Vdpiimwrap_pmem_write_TOP____024unit(vlSelf->cpu__DOT__src_rd_ALU, vlSelf->cpu__DOT__src2, (IData)(vlSelf->cpu__DOT__op_PMEM));
         }
     } else {
-        vlSelf->cpu__DOT__pmem1__DOT__rdata_tmp = 0U;
+        vlSelf->cpu__DOT__src_rd_PMEM = 0U;
     }
     if (((IData)(vlSelf->cpu__DOT__cu1__DOT____VdfgTmp_hf442cbef__0) 
          | ((0x6fU == (0x7fU & vlSelf->cmd)) | ((3U 
@@ -96,16 +96,6 @@ VL_INLINE_OPT void Vcpu___024root___nba_sequent__TOP__0(Vcpu___024root* vlSelf) 
     }
     vlSelf->pc = ((IData)(vlSelf->rst) ? 0x80000000U
                    : vlSelf->dnpc);
-    vlSelf->cpu__DOT__pmem1__DOT__mux1__DOT__i0__DOT__data_list[0U] 
-        = (((- (IData)((1U & (vlSelf->cpu__DOT__pmem1__DOT__rdata_tmp 
-                              >> 0xfU)))) << 0x10U) 
-           | (0xffffU & vlSelf->cpu__DOT__pmem1__DOT__rdata_tmp));
-    vlSelf->cpu__DOT__pmem1__DOT__mux1__DOT__i0__DOT__data_list[1U] 
-        = (((- (IData)((1U & (vlSelf->cpu__DOT__pmem1__DOT__rdata_tmp 
-                              >> 7U)))) << 8U) | (0xffU 
-                                                  & vlSelf->cpu__DOT__pmem1__DOT__rdata_tmp));
-    vlSelf->cpu__DOT__pmem1__DOT__mux1__DOT__i0__DOT__data_list[2U] 
-        = vlSelf->cpu__DOT__pmem1__DOT__rdata_tmp;
     vlSelf->cpu__DOT__cu1__DOT__is_halt = (IData)((0x73U 
                                                    == 
                                                    (0x4000707fU 

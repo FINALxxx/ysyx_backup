@@ -25,7 +25,6 @@ class Vcpu___024root final : public VerilatedModule {
     CData/*0:0*/ cpu__DOT__op_PC_Bsrc;
     CData/*7:0*/ cpu__DOT__op_PMEM;
     CData/*0:0*/ cpu__DOT__en_PMEM;
-    CData/*1:0*/ cpu__DOT__op_load_sext;
     CData/*2:0*/ cpu__DOT__cu1__DOT__branch;
     CData/*0:0*/ cpu__DOT__cu1__DOT__is_halt;
     CData/*0:0*/ cpu__DOT__cu1__DOT____VdfgTmp_hf442cbef__0;
@@ -40,7 +39,6 @@ class Vcpu___024root final : public VerilatedModule {
     IData/*31:0*/ cpu__DOT__src2;
     IData/*31:0*/ cpu__DOT__src_rd_ALU;
     IData/*31:0*/ cpu__DOT__src_rd_PMEM;
-    IData/*31:0*/ cpu__DOT__pmem1__DOT__rdata_tmp;
     IData/*31:0*/ __VstlIterCount;
     IData/*31:0*/ __VicoIterCount;
     IData/*31:0*/ __VactIterCount;
@@ -69,8 +67,6 @@ class Vcpu___024root final : public VerilatedModule {
     VlUnpacked<IData/*31:0*/, 3> cpu__DOT__alu1__DOT__shift1__DOT__mux1__DOT__i0__DOT__data_list;
     VlUnpacked<CData/*2:0*/, 8> cpu__DOT__alu1__DOT__mux1__DOT__i0__DOT__key_list;
     VlUnpacked<IData/*31:0*/, 8> cpu__DOT__alu1__DOT__mux1__DOT__i0__DOT__data_list;
-    VlUnpacked<CData/*1:0*/, 3> cpu__DOT__pmem1__DOT__mux1__DOT__i0__DOT__key_list;
-    VlUnpacked<IData/*31:0*/, 3> cpu__DOT__pmem1__DOT__mux1__DOT__i0__DOT__data_list;
     VlTriggerVec<1> __VstlTriggered;
     VlTriggerVec<1> __VicoTriggered;
     VlTriggerVec<1> __VactTriggered;
