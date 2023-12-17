@@ -11,10 +11,9 @@ module ControlUnit(
     input LESS,
     output [2:0] op_IMM,
     output en_Wreg,
-	//output branch_signal,
     output store,
     output load,
-	output [2:0] op_PMEM,
+	//output [2:0] op_PMEM,
     output op_ALU_Asrc,//0表示选择src1，1表示选择PC
     output [1:0] op_ALU_Bsrc,//00表示选择src2，01表示选择imm，10表示选择常数4（默认选择rs2）
     output [3:0] op_ALU_sel,
