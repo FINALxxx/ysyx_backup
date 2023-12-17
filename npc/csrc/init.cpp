@@ -9,7 +9,7 @@ static char* bin_file = NULL;//img文件
 static char* elf_file = NULL;//elf文件
 static char* log_file = NULL;//log文件
 static char* diff_file = NULL;//diff动态链接库
-static char* diff_port = 3085;//ref_difftest_raise_intr中的port
+static int diff_port = 3085;//ref_difftest_raise_intr中的port
 
 
 VerilatedContext* env = NULL;
