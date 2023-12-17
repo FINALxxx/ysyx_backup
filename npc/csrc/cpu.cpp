@@ -157,7 +157,7 @@ void exec_once(){
 //初始周期的pc已经在cpu_init中更新
 void exec(uint64_t n){
 	//每次执行前，注意先把difftest_ebreak标识为false
-	//difftest_is_ebreak = false;
+	difftest_is_ebreak = false;
 
 	switch(cpu_status.state){
 		case TERMINATE:case ABORT:
