@@ -1,4 +1,4 @@
-#include <isa-difftest.h>
+#include <trace/isa-difftest.h>
 #include <dlfcn.h>
 #include <common.h>
 #include <isa.h>
