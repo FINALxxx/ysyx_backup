@@ -160,11 +160,11 @@ module cpu(
         $display("PCAsrc=%b",op_PC_Asrc);
         $display("PCBsrc=%b",op_PC_Bsrc);
         $display("a0=%b",a0);
-        $display("b0=%b",b0);
+        $display("b0=%b",b0);*/
 		$display("is_load=%b",load);
 		$display("is_store=%b",store);
 		$display("is_pmem_valid=%b",en_PMEM);
-		$display("pmem_catgory=%b",op_PMEM);*/
+		$display("pmem_catgory=%b",op_PMEM);
     end
 	
 
