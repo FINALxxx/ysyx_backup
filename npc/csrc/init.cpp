@@ -105,7 +105,8 @@ void cpu_init(){
 	cpu->rst = 0;
 	//clk_update();
 	printf(ANSI_FMT("PC_INIT",ANSI_FG_GREEN) ":" FMT_PADDR "\n",cpu->pc);
-	get_cpu_pc();//debug:pc_init之后需要额外将pc加载进cpu_data
+	//WARN:请注意，初始pc在确定后并未更新到cpu_data中，也没有进行cpu->eval
+	//	   如需使用init_pc，务必自行get_cpu_pc()
 }
 
 void log_init(const char* log_file);

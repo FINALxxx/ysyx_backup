@@ -31,10 +31,12 @@ void set_cpu_status(int state, vaddr_t pc, int halt_ret) {
 
 extern "C" void halt(svBit is_halt){
 	//NPCTRAP(cpu->pc,10号寄存器($a0)的内容);
-	get_cpu_pc();
-	get_cpu_reg();
-	if(is_halt) NPCTRAP(cpu_data.pc,gpr(10));	
-	difftest_is_ebreak = true;
+	if(is_halt){
+		get_cpu_pc();
+		get_cpu_reg();
+		NPCTRAP(cpu_data.pc,gpr(10));
+		difftest_is_ebreak = true;
+	}
 	return;
 }
 
@@ -133,8 +135,11 @@ static void single_inst_debug(){
 
 extern void clk_update();
 
-//第一周期的pc已经在cpu_init中加载完毕
 void exec_once(){
+
+	//加载当前周期的pc
+	//debug:不要移动get_cpu_pc()的位置
+	//即使pc_init加载了一次pc，此处也要加载一次
 	get_cpu_pc();
 	//加载inst
 	printf("%#010x:\t%#010x\n",cpu->pc,set_cpu_inst());
@@ -143,9 +148,6 @@ void exec_once(){
 
 	clk_update();
 	
-	//cpu_data更新下一周期的pc
-	//get_cpu_pc();
-
 }
 
 void exec(uint64_t n){
