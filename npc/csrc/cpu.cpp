@@ -137,8 +137,10 @@ extern void clk_update();
 
 void exec_once(){
 
-	//加载当前周期的pc
+	//cpu_data更新pc
 	get_cpu_pc();
+	vaddr_t current_pc = cpu_data.pc;
+
 	//加载inst
 	word_t future_inst = set_cpu_inst();
 	//cpu_data更新inst
@@ -147,7 +149,7 @@ void exec_once(){
 	//执行inst
 	clk_update();
 
-	printf("%#010x:\t(this clk)%#010x\t(next clk)%#010x\n",cpu->pc,cpu_data.inst,future_inst);
+	printf("%#010x:\t(this clk)%#010x\t(next clk)%#010x\n",current_pc,cpu_data.inst,future_inst);
 
 }
 
