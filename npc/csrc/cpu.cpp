@@ -1,6 +1,7 @@
 #include <cpu.h>
 #include <isa.h>
 #include <memory/vaddr.h>
+#include <verilated_vcd_c.h>
 #include "Vcpu___024root.h"
 #include <svdpi.h>
 #include <sdb/watchpoint.h>
