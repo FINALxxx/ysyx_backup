@@ -146,14 +146,14 @@ module cpu(
 
 	//测试用，实现后一定要删除
     always @(*) begin
-		/*$display("cpu_dnpc=%x",dnpc);
+		/*/*$display("cpu_dnpc=%x",dnpc);
 		$display("cmd=%x",cmd);   
 		//$display("clk=%b",clk);
 		//$display("pc=%x",pc);
 		$display("=========================================\n");
         $display("rs1=%b",rs1);
         $display("rs2=%b",rs2);
-        $display("rd=%b",rd);*/
+        $display("rd=%b",rd);
         $display("op-imm=%b",op_IMM);
 		$display("imm=%b\n\n",imm);
         $display("ALUsel=%b",op_ALU_sel);
@@ -163,14 +163,15 @@ module cpu(
 		//$display("a1=%b",a1);
         //$display("b1=%b",b1);
         $display("src_rd=%b",src_rd);
-        /*$display("PCAsrc=%b",op_PC_Asrc);
+        $display("PCAsrc=%b",op_PC_Asrc);
         $display("PCBsrc=%b",op_PC_Bsrc);
         $display("a0=%b",a0);
         $display("b0=%b",b0);
 		$display("is_load=%b",load);
 		$display("is_store=%b",store);
 		$display("is_pmem_valid=%b",en_PMEM);
-		$display("pmem_catgory=%b",op_PMEM);*/
+		$display("pmem_catgory=%b",op_PMEM);
+		*/
     end
 	
 
