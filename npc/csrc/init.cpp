@@ -9,6 +9,8 @@ static char* bin_file = NULL;//img文件
 static char* elf_file = NULL;//elf文件
 static char* log_file = NULL;//log文件
 static char* diff_file = NULL;//diff动态链接库
+static char* diff_port = 3085;//ref_difftest_raise_intr中的port
+
 
 VerilatedContext* env = NULL;
 Vcpu* cpu = NULL;
@@ -109,13 +111,17 @@ void log_init(const char* log_file);
 extern "C" void disasm_init(const char *triple); 
 void buffer_init();
 void elf_init(const char* fileName);
+void difftest_init(const char* ref_so_file, long img_size, int port);
+
 void std_monitor_init(int argc,char** argv){
+	//BASIS
 	mem_init();
 	
 	bin_file = argv[1];
 	log_file = argv[2];
 	elf_file = argv[3];
-	bin_init();
+	diff_file = argv[4];
+	long img_size = bin_init();
 	
 	//ITRACE INIT	
 	log_init(log_file);
@@ -124,6 +130,9 @@ void std_monitor_init(int argc,char** argv){
 	
 	//FTRACE INIT
 	elf_init(elf_file);
+
+	//DIFFTEST INIT
+	void difftest_init(diff_file, img_size, diff_port);
 
 	cpu_init();
 	welcome();
