@@ -30,7 +30,7 @@ typedef struct {
 
 //spike有类似的函数，在${HEMU_HOME}/tools/spike-diff/difftest.cc中
 __EXPORT void difftest_memcpy(paddr_t addr, void *buf, size_t n, bool direction) {
-  	printf("INIT_MEM = %#010x, size = %d\n");
+  	printf("INIT_MEM = %#010x, size = %ld\n",addr,n);
 	//assert(0);
 	if(direction == DIFFTEST_TO_REF){
 		for(int i=0;i<n;++i){
