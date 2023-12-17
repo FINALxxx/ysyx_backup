@@ -179,6 +179,8 @@ void exec(uint64_t n){
 		inst_cnt++;
 		if(cpu_status.state == ALIVE){
 			single_inst_debug();
+		}else{
+			break;
 		}
 		
 	}
