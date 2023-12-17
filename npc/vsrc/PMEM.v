@@ -37,7 +37,7 @@ module PMEM(
   		end
 	end
 	
-	MuxKeyWithDefault #(3, 2, 32) mux2(rdata,op_load_sext,rdata_tmp,{//默认为jal-branch
+	MuxKeyWithDefault #(3, 2, 32) mux1(rdata,op_load_sext,rdata_tmp,{//默认为jal-branch
             3'b00,	  rdata_tmp,
             3'b01,	  { {24{rdata_tmp[7]}}, rdata_tmp},
             3'b10,	  { {16{rdata_tmp[15]}}, rdata_tmp}
