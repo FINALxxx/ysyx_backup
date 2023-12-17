@@ -25,7 +25,7 @@ static void out_pmem(paddr_t addr){
 
 
 word_t paddr_read(paddr_t addr, int len){
-	if(likely(in_pme m(addr))){
+	if(likely(in_pmem(addr))){
 		return ptr_read(paddr_to_ptr(addr),len);
 	}
 
