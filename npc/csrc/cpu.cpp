@@ -178,8 +178,9 @@ void exec(uint64_t n){
 		exec_once();
 		sim_time++;
 		inst_cnt++;
-		single_inst_debug();
-		if(cpu_status.state != ALIVE) break;
+		if(cpu_status.state == ALIVE){
+			single_inst_debug();
+		}
 		
 	}
 	log_write("\n[TERMINATE INST LOGGING]\n");
