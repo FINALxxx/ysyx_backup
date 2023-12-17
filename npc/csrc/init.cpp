@@ -137,7 +137,7 @@ void std_monitor_init(int argc,char** argv){
 	//DIFFTEST INIT
 	//debug:difftest_init一定要在cpu_init之后进行
 	//否则初始的pc将无法被正确加载
-	difftest_init(diff_file, img_size, diff_port);
+	//difftest_init(diff_file, img_size, diff_port);
 	welcome();
 }
 
