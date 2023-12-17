@@ -15,7 +15,8 @@ module ControlUnit(
 	output en_Wreg,
 	output load,//0表示将ALU结果给reg，1表示将PMEM结果给reg
 	output store,
-	output [7:0] op_PMEM,//DPIC的byte类型有限制
+	output [7:0] op_PMEM,
+	output [1:0] op_load_sext,//00表示不扩展，01表示b拓展，10表示h拓展
     
 	output op_ALU_Asrc,//0表示选择src1，1表示选择PC
     output [1:0] op_ALU_Bsrc,//00表示选择src2，01表示选择imm，10表示选择常数4（默认选择rs2）
@@ -147,9 +148,17 @@ module ControlUnit(
 
 /*  END PC操作数分类 */
 
-/* START PMEM字节数分类 */
-	assign op_PMEM = {5'b0,funct3};//funct3就足够分类b、h、w、bu、bh
-/* END PMEM字节数分类 */
+/* START PMEM掩码与移位分类 */
+	MuxKeyWithDefault #(5, 3, 8) mux4(op_PMEM,funct3,`BYTE,{
+            3'b000,   `BYTE,
+            3'b001,   `HALF_WORD,
+            3'b010,	  `WORD,
+            3'b100,	  `BYTE,
+            3'b101,	  `HALF_WORD,
+    });
+	assign op_load_shift[0] = ~funct3[0] | ~funct3[1] | ~funct3[2];
+	assign op_load_shift[1] = ~funct3[2] | funct3[0];
+/* END PMEM掩码与移位分类 */
 
 
 

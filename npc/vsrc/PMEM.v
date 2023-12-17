@@ -14,8 +14,9 @@ module PMEM(
 	//读写请求
 	input valid,
 	input [31:0] raddr,
+	input [1:0] op_load_sext,
 	output reg [31:0] rdata,
-	
+
 	//写请求
 	input wen,
 	input [31:0] waddr,
@@ -24,10 +25,10 @@ module PMEM(
 );
 
 	
-	//wire [31:0] rdata;
+	wire [31:0] rdata_tmp;
 	always @(*) begin
   		if (valid) begin // 有读写请求时
-    		pmem_read(raddr, rdata);
+    		pmem_read(raddr, rdata_tmp);
     		if (wen) begin // 有写请求时
       			pmem_write(waddr, wdata, wmask);
     		end
@@ -35,4 +36,13 @@ module PMEM(
     		rdata = 0;
   		end
 	end
+	
+	MuxKeyWithDefault #(3, 2, 32) mux2(rdata,op_load_sext,rdata_tmp,{//默认为jal-branch
+            3'b00,	  rdata_tmp,
+            3'b01,	  { {24{rdata_tmp[7]}}, rdata_tmp},
+            3'b10,	  { {16{rdata_tmp[15]}}, rdata_tmp}
+    });
+
+
+
 endmodule

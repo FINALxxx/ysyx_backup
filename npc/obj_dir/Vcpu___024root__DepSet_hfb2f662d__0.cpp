@@ -348,6 +348,13 @@ VL_INLINE_OPT void Vcpu___024root___ico_sequent__TOP__0(Vcpu___024root* vlSelf) 
     vlSelf->cpu__DOT__cu1__DOT__R_sel = ((IData)(vlSelf->cpu__DOT__cu1__DOT__mux3__DOT__i0__DOT__hit)
                                           ? (IData)(vlSelf->cpu__DOT__cu1__DOT__mux3__DOT__i0__DOT__lut_out)
                                           : 7U);
+    VL_WRITEF("is_load=%b\nis_store=%b\nis_pmem_valid=%b\npmem_catgory=%b\n",
+              1,(3U == (0x7fU & vlSelf->cmd)),1,(0x23U 
+                                                 == 
+                                                 (0x7fU 
+                                                  & vlSelf->cmd)),
+              1,(IData)(vlSelf->cpu__DOT__en_PMEM),
+              8,(7U & (vlSelf->cmd >> 0xcU)));
     vlSelf->cpu__DOT__op_IMM = (((IData)(vlSelf->cpu__DOT__cu1__DOT____VdfgTmp_hf442cbef__0) 
                                  | (3U == (0x7fU & vlSelf->cmd)))
                                  ? 0U : ((IData)(vlSelf->cpu__DOT__cu1__DOT____VdfgTmp_hd4cadad9__0)

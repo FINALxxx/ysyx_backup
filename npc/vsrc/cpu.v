@@ -26,6 +26,7 @@ module cpu(
     
 	wire [7:0] op_PMEM;
 	wire en_Wreg,load,store,en_PMEM;
+	wire [1:0] op_load_sext;
     
     /* status setter */
     ControlUnit cu1(
@@ -39,6 +40,7 @@ module cpu(
         .en_Wreg(en_Wreg),
         .store(store),
         .load(load),
+		.op_load_sext(op_load_sext),
 		.op_PMEM(op_PMEM),
         .op_ALU_Asrc(op_ALU_Asrc),
         .op_ALU_Bsrc(op_ALU_Bsrc),
@@ -67,7 +69,8 @@ module cpu(
         .rdata_a(src1),
         .rdata_b(src2)
     );
-    /* end */
+
+	/* end */
 
 
     /* data mux */
@@ -100,9 +103,10 @@ module cpu(
     assign S_U = (op_ALU_sel!=`SLT);
     assign A_L = (op_ALU_sel!=`SRA);
 
-	//PMEM_mux
+	//PMEM_src_mux
 	assign src_rd = load?src_rd_PMEM:src_rd_ALU;
 	assign en_PMEM = load | store;
+	
 
     /* end */
 
@@ -136,7 +140,8 @@ module cpu(
 		.wen(store),
 		.waddr(src_rd_ALU),
 		.wdata(src2),//准备将reg(rs2)写入到pmem
-		.wmask(op_PMEM)
+		.wmask(op_PMEM),
+		.op_load_sext(op_load_sext)
 	);
 
 	//测试用，实现后一定要删除
@@ -160,11 +165,11 @@ module cpu(
         $display("PCAsrc=%b",op_PC_Asrc);
         $display("PCBsrc=%b",op_PC_Bsrc);
         $display("a0=%b",a0);
-        $display("b0=%b",b0);*/
+        $display("b0=%b",b0);
 		$display("is_load=%b",load);
 		$display("is_store=%b",store);
 		$display("is_pmem_valid=%b",en_PMEM);
-		$display("pmem_catgory=%b",op_PMEM);
+		$display("pmem_catgory=%b",op_PMEM);*/
     end
 	
 
