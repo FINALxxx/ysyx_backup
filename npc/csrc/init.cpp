@@ -105,8 +105,6 @@ void cpu_init(){
 	cpu->rst = 0;
 	//clk_update();
 	printf(ANSI_FMT("PC_INIT",ANSI_FG_GREEN) ":" FMT_PADDR "\n",cpu->pc);
-	//WARN:请注意，初始pc在确定后并未更新到cpu_data中，也没有进行cpu->eval
-	//	   如需使用init_pc，务必自行get_cpu_pc()
 	get_cpu_pc();
 }
 
@@ -139,7 +137,7 @@ void std_monitor_init(int argc,char** argv){
 	//DIFFTEST INIT
 	//debug:difftest_init一定要在cpu_init之后进行
 	//否则初始的pc将无法被正确加载
-	//difftest_init(diff_file, img_size, diff_port);
+	difftest_init(diff_file, img_size, diff_port);
 	welcome();
 }
 
