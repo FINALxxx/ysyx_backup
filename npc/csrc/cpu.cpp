@@ -138,26 +138,23 @@ static void single_inst_debug(){
 
 
 extern void clk_update();
-//初始周期的pc已经在cpu_init中更新
 void exec_once(){
 	//加载inst
 	set_cpu_inst();
 	//cpu_data更新inst
 	get_cpu_inst();
-	
 	//执行inst
 	clk_update();
 	
-
 	if(cpu_status.state == ALIVE){
 		printf("%#010x:\t%#010x\n",cpu_data.pc,cpu_data.inst);
 	}
 
-	//cpu_data更新下一周期的pc
-	get_cpu_pc();
 
 }
 
+
+//初始周期的pc已经在cpu_init中更新
 void exec(uint64_t n){
 	//每次执行前，注意先把difftest_ebreak标识为false
 	difftest_is_ebreak = false;
@@ -177,12 +174,11 @@ void exec(uint64_t n){
 		exec_once();
 		sim_time++;
 		inst_cnt++;
-		if(cpu_status.state == ALIVE){
-			single_inst_debug();
-		}else{
-			break;
-		}
-		
+		if(cpu_status.state == ALIVE) single_inst_debug();
+		else break;
+		//cpu_data更新下一周期的pc
+		get_cpu_pc();
+
 	}
 	log_write("\n[TERMINATE INST LOGGING]\n");
 	switch(cpu_status.state){
