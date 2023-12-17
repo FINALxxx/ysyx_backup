@@ -85,10 +85,10 @@ void difftest_step(vaddr_t pc, vaddr_t npc) {
 		ref_difftest_regcpy(&cpu_data, DIFFTEST_TO_REF);//复制reg到cpu_data_ref
 		is_skip_ref = false;
 		return;
-	}
+	}	
+	ref_difftest_exec(1);
 	printf("TEST\n");
 
-	ref_difftest_exec(1);
 	ref_difftest_regcpy(&cpu_data_ref, DIFFTEST_TO_DUT);
 	checkregs(&cpu_data_ref, pc);
 }
