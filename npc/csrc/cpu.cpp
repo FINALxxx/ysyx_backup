@@ -145,7 +145,8 @@ void exec_once(){
 	get_cpu_inst();
 	//执行inst
 	clk_update();
-	
+
+	get_cpu_reg();
 	if(cpu_status.state == ALIVE){
 		printf("%#010x:\t%#010x\n",cpu_data.pc,cpu_data.inst);
 	}
