@@ -4,7 +4,7 @@ extern uint64_t inst_cnt;
 FILE* log_fp = NULL;
 
 void log_init(const char* log_file){
-	printf("%s:%s\n",ANSI_FMT("READING",ANSI_FG_GREEN),log_file);
+	printf("%s:%s\n",ANSI_FMT("WRITING",ANSI_FG_GREEN),log_file);
 	log_fp = stdout;
 	if (log_file != NULL) {
 		FILE *fp = fopen(log_file, "w");
