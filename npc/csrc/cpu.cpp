@@ -143,10 +143,9 @@ void exec_once(){
 
 	//cpu_data更新pc
 	get_cpu_pc();
-	vaddr_t current_pc = cpu_data.pc;
 
 	//加载inst
-	word_t future_inst = set_cpu_inst();
+	set_cpu_inst();
 	//cpu_data更新inst
 	get_cpu_inst();
 	
@@ -155,7 +154,7 @@ void exec_once(){
 
 
 	if(cpu_status.state == ALIVE){
-		printf("%#010x:\t(this clk)%#010x\t(next clk)%#010x\n",cpu_data.pc,cpu_data.inst,future_inst);
+		printf("%#010x:\t%#010x\n",cpu_data.pc,cpu_data.inst);
 	}
 }
 
