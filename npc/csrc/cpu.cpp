@@ -14,6 +14,10 @@ uint64_t inst_cnt =0;
 bool difftest_is_ebreak = false;//difftest中是否触发ebreak退出
 extern Vcpu* cpu;
 
+//仅用于显示
+//static vaddr_t current_pc = 0;
+//static word_t current_inst = 0,future_inst = 0;
+
 const char *regs[] = {
 	"$0", "ra", "sp", "gp", "tp", "t0", "t1", "t2",
 	"s0", "s1", "a0", "a1", "a2", "a3", "a4", "a5",
@@ -149,8 +153,10 @@ void exec_once(){
 	//执行inst
 	clk_update();
 
-	printf("%#010x:\t(this clk)%#010x\t(next clk)%#010x\n",current_pc,cpu_data.inst,future_inst);
 
+	if(cpu_status.state == ALIVE){
+		printf("%#010x:\t(this clk)%#010x\t(next clk)%#010x\n",cpu_data.pc,cpu_data.inst,future_inst);
+	}
 }
 
 void exec(uint64_t n){
@@ -174,6 +180,7 @@ void exec(uint64_t n){
 		inst_cnt++;
 		single_inst_debug();
 		if(cpu_status.state != ALIVE) break;
+		
 	}
 	log_write("\n[TERMINATE INST LOGGING]\n");
 	switch(cpu_status.state){
