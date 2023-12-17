@@ -154,7 +154,7 @@ module ControlUnit(
             3'b001,   `HALF_WORD,
             3'b010,	  `WORD,
             3'b100,	  `BYTE,
-            3'b101,	  `HALF_WORD,
+            3'b101,	  `HALF_WORD
     });
 	assign op_load_shift[0] = ~funct3[0] | ~funct3[1] | ~funct3[2];
 	assign op_load_shift[1] = ~funct3[2] | funct3[0];
