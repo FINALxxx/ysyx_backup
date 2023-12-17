@@ -130,11 +130,13 @@ void std_monitor_init(int argc,char** argv){
 	
 	//FTRACE INIT
 	elf_init(elf_file);
+	
+	cpu_init();
 
 	//DIFFTEST INIT
+	//debug:difftest_init一定要在cpu_init之后进行
+	//否则初始的pc将无法被正确加载
 	difftest_init(diff_file, img_size, diff_port);
-
-	cpu_init();
 	welcome();
 }
 
