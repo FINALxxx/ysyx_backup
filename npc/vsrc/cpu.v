@@ -134,7 +134,6 @@ module cpu(
     );
 
 	PMEM pmem1(
-		.clk(clk),
 		.valid(en_PMEM),
 		.raddr(src_rd_ALU),
 		.rdata(src_rd_PMEM),//准备将pmem读取到reg(rd)
