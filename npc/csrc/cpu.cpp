@@ -140,6 +140,7 @@ static void single_inst_debug(){
 
 extern void clk_update();
 void exec_once(){
+	get_cpu_reg();
 	//加载inst
 	set_cpu_inst();
 	//cpu_data更新inst
@@ -177,7 +178,6 @@ void exec(uint64_t n){
 		inst_cnt++;
 		if(cpu_status.state == ALIVE) single_inst_debug();
 		else break;
-		get_cpu_reg();
 		//cpu_data更新下一周期的pc
 		get_cpu_pc();
 	}
