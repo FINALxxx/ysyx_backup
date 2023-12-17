@@ -54,7 +54,6 @@ void difftest_init(const char* ref_so_file, long img_size, int port){
 	Log("differential testing: %s\n", ANSI_FMT("ON", ANSI_FG_GREEN));
 	ref_difftest_init(port);
 	ref_difftest_memcpy(PMEM_RESET, paddr_to_ptr(PMEM_RESET), img_size, DIFFTEST_TO_REF);
-	printf("TEST\n");
 	ref_difftest_regcpy(&cpu_data, DIFFTEST_TO_REF);
 }
 
@@ -87,6 +86,8 @@ void difftest_step(vaddr_t pc, vaddr_t npc) {
 		is_skip_ref = false;
 		return;
 	}
+	printf("TEST\n");
+
 	ref_difftest_exec(1);
 	ref_difftest_regcpy(&cpu_data_ref, DIFFTEST_TO_DUT);
 	checkregs(&cpu_data_ref, pc);
