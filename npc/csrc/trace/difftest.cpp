@@ -29,8 +29,6 @@ void difftest_skip_dut(int inst_cnt_ref, int inst_cnt_dut) {
 
 
 void difftest_init(const char* ref_so_file, long img_size, int port){
-	//get_cpu_pc();//将init_pc加载到cpu_data，防止difftest找不到初始pc
-
 	printf(ANSI_FMT("READING",ANSI_FG_GREEN) ":%s\n", ref_so_file);
 	Assert(ref_so_file,"<FILE> REF SO FILE DO NOT EXIST\n");
 

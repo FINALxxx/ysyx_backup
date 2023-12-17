@@ -138,7 +138,7 @@ static void single_inst_debug(){
 
 
 extern void clk_update();
-
+//初始周期的pc已经在cpu_init中更新
 void exec_once(){
 	//加载inst
 	set_cpu_inst();
@@ -153,7 +153,7 @@ void exec_once(){
 		printf("%#010x:\t%#010x\n",cpu_data.pc,cpu_data.inst);
 	}
 
-	//cpu_data更新pc
+	//cpu_data更新下一周期的pc
 	get_cpu_pc();
 
 }
