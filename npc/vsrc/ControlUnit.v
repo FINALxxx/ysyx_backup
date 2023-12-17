@@ -15,7 +15,7 @@ module ControlUnit(
 	output en_Wreg,
 	output load,//0表示将ALU结果给reg，1表示将PMEM结果给reg
 	output store,
-	output [2:0] op_PMEM,
+	output [7:0] op_PMEM,//DPIC的byte类型有限制
     
 	output op_ALU_Asrc,//0表示选择src1，1表示选择PC
     output [1:0] op_ALU_Bsrc,//00表示选择src2，01表示选择imm，10表示选择常数4（默认选择rs2）
@@ -148,7 +148,7 @@ module ControlUnit(
 /*  END PC操作数分类 */
 
 /* START PMEM字节数分类 */
-	assign op_PMEM = funct3;//funct3就足够分类b、h、w、bu、bh
+	assign op_PMEM = {5'b0,funct3};//funct3就足够分类b、h、w、bu、bh
 /* END PMEM字节数分类 */
 
 

@@ -24,7 +24,7 @@ module cpu(
     wire op_PC_Asrc;
     wire op_PC_Bsrc;
     
-	wire [2:0] op_PMEM;
+	wire [7:0] op_PMEM;
 	wire en_Wreg,load,store,en_PMEM;
     
     /* status setter */

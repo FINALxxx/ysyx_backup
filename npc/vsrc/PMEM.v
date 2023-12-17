@@ -20,7 +20,7 @@ module PMEM(
 	input wen,
 	input [31:0] waddr,
 	input [31:0] wdata,
-	input [2:0] wmask
+	input [7:0] wmask
 );
 
 	
