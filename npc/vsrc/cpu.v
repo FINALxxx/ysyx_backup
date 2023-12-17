@@ -1,5 +1,4 @@
 /* verilator lint_off PINCONNECTEMPTY */
-/* verilator lint_off UNDRIVEN */ 
 module cpu(
     input clk,
     input rst,
@@ -130,6 +129,15 @@ module cpu(
         .IS_ZERO(IS_ZERO)
     );
 
+	PMEM pmem1(
+		.vaild(en_PMEM),
+		.raddr(src_rd_ALU),
+		.rdata(src_rd_PMEM),//准备将pmem读取到reg(rd)
+		.wen(store),
+		.waddr(src_rd_ALU),
+		.wdata(src2),//准备将reg(rs2)写入到pmem
+		.wmask(op_PMEM)
+	);
 
 	//测试用，实现后一定要删除
     always @(*) begin
@@ -152,11 +160,11 @@ module cpu(
         $display("PCAsrc=%b",op_PC_Asrc);
         $display("PCBsrc=%b",op_PC_Bsrc);
         $display("a0=%b",a0);
-        $display("b0=%b",b0);*/
+        $display("b0=%b",b0);
 		$display("is_load=%b",load);
 		$display("is_store=%b",store);
 		$display("is_pmem_valid=%b",en_PMEM);
-		$display("pmem_catgory=%b",op_PMEM);
+		$display("pmem_catgory=%b",op_PMEM);*/
     end
 	
 
