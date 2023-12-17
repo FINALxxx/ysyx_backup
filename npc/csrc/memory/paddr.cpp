@@ -50,6 +50,10 @@ extern "C" void pmem_write(int waddr, int wdata, char wmask) {
 	// `wmask`中每比特表示`wdata`中1个字节的掩码,
 	// 如`wmask = 0x3`代表只写入最低2个字节, 内存中的其它字节保持不变
 	printf("PWRITE:%x,%x,%x\n",waddr,wdata,wmask);
+	if(wmask == 0x1) paddr_write((waddr & ~0x3u),1,wdata);
+	else if(wmask == 0x3) paddr_write((waddr & ~0x3u),2,wdata);
+	else paddr_write((waddr & ~0x3u),4,wdata);
+
 }
 
 
