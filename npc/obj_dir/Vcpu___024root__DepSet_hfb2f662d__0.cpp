@@ -86,6 +86,7 @@ VL_INLINE_OPT void Vcpu___024root___nba_sequent__TOP__0(Vcpu___024root* vlSelf) 
         vlSelf->cpu__DOT__rf1__DOT__rf[__Vdlyvdim0__cpu__DOT__rf1__DOT__rf__v0] 
             = __Vdlyvval__cpu__DOT__rf1__DOT__rf__v0;
     }
+    vlSelf->cpu__DOT__rf1__DOT__rf[0U] = 0U;
     if ((0U == (0x1fU & (vlSelf->cmd >> 0xfU)))) {
         vlSelf->cpu__DOT__mux2__DOT__i0__DOT__data_list[0U] = 0U;
         vlSelf->cpu__DOT__mux3__DOT__i0__DOT__data_list[1U] = 0U;
