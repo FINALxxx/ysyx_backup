@@ -14,6 +14,7 @@ static int diff_port = 3085;//ref_difftest_raise_intr中的port
 
 VerilatedContext* env = NULL;
 Vcpu* cpu = NULL;
+Verilated* tfp = NULL;
 
 unsigned char isa_logo[] = {
   0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x5f, 0x20, 0x20, 0x20, 0x20,
@@ -98,12 +99,16 @@ static inline void half_clk_update(){
 void cpu_init(){
 	env = new VerilatedContext;
 	cpu = new Vcpu(env);
-	
+	Verilated::traceEverOn(true);
+	tfp = new VerilatedVcdC();
+	cpu->trace(tfp,0);
+	tfp->open("wave.vcd");
+
 	cpu->clk = 0;
 	cpu->rst = 1;
 	clk_update();
 	cpu->rst = 0;
-	//clk_update();
+	
 	printf(ANSI_FMT("PC_INIT",ANSI_FG_GREEN) ":" FMT_PADDR "\n",cpu->pc);
 	get_cpu_pc();
 }
@@ -115,7 +120,7 @@ void elf_init(const char* fileName);
 void difftest_init(const char* ref_so_file, long img_size, int port);
 
 void std_monitor_init(int argc,char** argv){
-	//BASIS
+	//CPU BASIS
 	mem_init();
 	
 	bin_file = argv[1];
@@ -123,7 +128,8 @@ void std_monitor_init(int argc,char** argv){
 	elf_file = argv[3];
 	diff_file = argv[4];
 	long img_size = bin_init();
-	
+	cpu_init();
+
 	//ITRACE INIT	
 	log_init(log_file);
 	disasm_init("riscv32-pc-linux-gnu");
@@ -132,8 +138,7 @@ void std_monitor_init(int argc,char** argv){
 	//FTRACE INIT
 	elf_init(elf_file);
 	
-	cpu_init();
-
+	
 	//DIFFTEST INIT
 	//debug:difftest_init一定要在cpu_init之后进行
 	//否则初始的pc将无法被正确加载

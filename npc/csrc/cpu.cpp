@@ -44,6 +44,7 @@ extern "C" void halt(svBit is_halt){
 	return;
 }
 
+extern VerilatedVcdC* tfp;
 void cpu_terminate(){
 	if(cpu_status.state == ABORT){//ABORT
 		printf("\nNPC EXIT: \033[0m\033[1;31mABORT\033[0m at pc = %#010x\n\n",cpu_status.halt_pc);
@@ -54,7 +55,7 @@ void cpu_terminate(){
 		printf("\nNPC EXIT: \033[0m\033[1;31mHIT BAD TRAP\033[0m at pc = %#010x\n\n",cpu_status.halt_pc);
 	}
 
-	//m_trace->close();
+	tfp->close();
 	cpu->final();
 	delete cpu;
 }
@@ -175,6 +176,7 @@ void exec(uint64_t n){
 	for(;n>0;n--){
 		exec_once();
 		sim_time++;
+		tfp->dump(sim_time);
 		inst_cnt++;
 		if(cpu_status.state == ALIVE) single_inst_debug();
 		else break;
