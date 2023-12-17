@@ -10,6 +10,7 @@ WAVEFILE = wave.vcd
 BINSRC ?=
 LOGSRC = ${NPC_HOME}/npc-log.txt
 ELFSRC ?=
+SOSRC  ?=
 
 #CSRC = $(wildcard *${CFILE})
 #CSRC += $(wildcard include/*${CFILE})
@@ -31,6 +32,7 @@ CXXSRC = csrc/trace/disasm.cpp
 CXXFLAGS += $(shell llvm-config --cxxflags) -fPIE
 LIBS += -lreadline
 LIBS += $(shell llvm-config --libs)
+LIBS += -ldl
 
 $(OBJ_DIR)/%.o: %.cc
 	@echo + CXX $<
@@ -51,7 +53,7 @@ sim:
 	-CFLAGS "${CINC} -g -w" \
 	${CSRC} ${VSRC}
 	make -C obj_dir -f ${TGS}.mk ${TGS}
-	./obj_dir/${TGS} ${BINSRC} ${LOGSRC} ${ELFSRC}
+	./obj_dir/${TGS} ${BINSRC} ${LOGSRC} ${ELFSRC} ${SOSRC}
 	#gtkwave ./${WAVEFILE}
 
 gdb:
@@ -62,7 +64,7 @@ gdb:
 	-CFLAGS "${CINC} -g -w" \
 	${CSRC} ${VSRC}
 	make -C obj_dir -f ${TGS}.mk ${TGS}
-	gdb --args ./obj_dir/${TGS} ${BINSRC} ${LOGSRC} ${ELFSRC}
+	gdb --args ./obj_dir/${TGS} ${BINSRC} ${LOGSRC} ${ELFSRC} ${SOSRC}
 
 
 sim-clean:

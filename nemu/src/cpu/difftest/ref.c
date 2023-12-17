@@ -18,16 +18,54 @@
 #include <difftest-def.h>
 #include <memory/paddr.h>
 
-__EXPORT void difftest_memcpy(paddr_t addr, void *buf, size_t n, bool direction) {
-  assert(0);
+#define REG_NUM 32
+//兼容npc的cpu_data
+typedef struct {
+	word_t gpr[32];
+	vaddr_t pc;
+	vaddr_t dnpc;
+	word_t inst;
+} npc_CPU_state;
+
+//quiz:镜像在内存中一定是连续的么？可以直接使用memset复制img_file么
+static void npc_memcpy_to_nemu(paddr_t addr,void* buf, size_t n){
+	memcpy(guest_to_host(addr),buf,n);//将buf中的n字节复制到nemu内存的addr处	
 }
 
+
+//spike有类似的函数，在${HEMU_HOME}/tools/spike-diff/difftest.cc中
+__EXPORT void difftest_memcpy(paddr_t addr, void *buf, size_t n, bool direction) {
+	//assert(0);
+	if(direction == DIFFTEST_TO_REF){
+		npc_memcpy_to_nemu(addr,buf,n);
+	}else{
+		assert(0);
+	}	
+
+
+}
+
+
 __EXPORT void difftest_regcpy(void *dut, bool direction) {
-  assert(0);
+	//assert(0);
+	npc_CPU_state* cpu_data = (npc_CPU_state*)dut;
+	if(direction == DIFFTEST_TO_REF){
+		for(int i=0;i<REG_NUM;i++){
+			cpu.gpr[i] = cpu_data->gpr[i];
+		}
+		cpu.pc = cpu_data->pc;
+	}else{//DIFFTEST_TO_DUT
+		for(int i=0;i<REG_NUM;i++){
+			cpu_data->gpr[i] = cpu.gpr[i];
+		}
+		cpu_data->pc = cpu.pc;
+	}
+	
 }
 
 __EXPORT void difftest_exec(uint64_t n) {
-  assert(0);
+  cpu_exec(n); 
+  //assert(0);
 }
 
 __EXPORT void difftest_raise_intr(word_t NO) {

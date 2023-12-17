@@ -39,7 +39,7 @@ VM_USER_CFLAGS = \
 
 # User LDLIBS (from -LDFLAGS on Verilator command line)
 VM_USER_LDLIBS = \
-	-lreadline -lLLVM-14 -MMD \
+	-lreadline -lLLVM-14 -ldl -MMD \
 
 # User .cpp files (from .cpp's on Verilator command line)
 VM_USER_CLASSES = \
@@ -53,7 +53,9 @@ VM_USER_CLASSES = \
 	sdb \
 	watchpoint \
 	sim-npc \
+	difftest \
 	disasm \
+	ftrace \
 	itrace \
 	log \
 
@@ -94,7 +96,11 @@ watchpoint.o: /home/finalx/ysyx-workbench/npc/csrc/sdb/watchpoint.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 sim-npc.o: /home/finalx/ysyx-workbench/npc/csrc/sim-npc.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+difftest.o: /home/finalx/ysyx-workbench/npc/csrc/trace/difftest.cpp
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 disasm.o: /home/finalx/ysyx-workbench/npc/csrc/trace/disasm.cpp
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+ftrace.o: /home/finalx/ysyx-workbench/npc/csrc/trace/ftrace.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 itrace.o: /home/finalx/ysyx-workbench/npc/csrc/trace/itrace.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<

@@ -9,6 +9,8 @@ static char* bin_file = NULL;//img文件
 static char* elf_file = NULL;//elf文件
 static char* log_file = NULL;//log文件
 static char* diff_file = NULL;//diff动态链接库
+static int diff_port = 3085;//ref_difftest_raise_intr中的port
+
 
 VerilatedContext* env = NULL;
 Vcpu* cpu = NULL;
@@ -103,24 +105,39 @@ void cpu_init(){
 	cpu->rst = 0;
 	//clk_update();
 	printf(ANSI_FMT("PC_INIT",ANSI_FG_GREEN) ":" FMT_PADDR "\n",cpu->pc);
+	get_cpu_pc();
 }
 
 void log_init(const char* log_file);
 extern "C" void disasm_init(const char *triple); 
 void buffer_init();
+void elf_init(const char* fileName);
+void difftest_init(const char* ref_so_file, long img_size, int port);
+
 void std_monitor_init(int argc,char** argv){
+	//BASIS
 	mem_init();
 	
 	bin_file = argv[1];
 	log_file = argv[2];
-	bin_init();
+	elf_file = argv[3];
+	diff_file = argv[4];
+	long img_size = bin_init();
 	
 	//ITRACE INIT	
 	log_init(log_file);
 	disasm_init("riscv32-pc-linux-gnu");
 	buffer_init();
 	
+	//FTRACE INIT
+	elf_init(elf_file);
+	
 	cpu_init();
+
+	//DIFFTEST INIT
+	//debug:difftest_init一定要在cpu_init之后进行
+	//否则初始的pc将无法被正确加载
+	difftest_init(diff_file, img_size, diff_port);
 	welcome();
 }
 

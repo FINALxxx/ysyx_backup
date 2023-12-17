@@ -1,5 +1,4 @@
 /* verilator lint_off PINCONNECTEMPTY */
-//import "DPI-C" function bit[31:0] cmd_getter(input bit[31:0] pc_now);
 
 module cpu(
     input clk,
@@ -30,7 +29,7 @@ module cpu(
 
     /* status setter */
     ControlUnit cu1(
-		//.clk(clk),
+		.clk(clk),
         .opcode(cmd[6:0]),
         .funct3(cmd[14:12]),
         .funct7(cmd[30]),
@@ -38,9 +37,9 @@ module cpu(
         .IS_ZERO(IS_ZERO),
         .op_IMM(op_IMM),
         .en_Wreg(en_Wreg),
-		//.branch_signal(branch_signal),
         .store(),
         .load(),
+		//.op_PMEM(),
         .op_ALU_Asrc(op_ALU_Asrc),
         .op_ALU_Bsrc(op_ALU_Bsrc),
         .op_ALU_sel(op_ALU_sel),
@@ -127,10 +126,10 @@ module cpu(
 
 
 	//测试用，实现后一定要删除
-    always @(*) begin
-		//$display("cpu_dnpc=%x",dnpc);
-		//$display("cmd=%x",cmd);   
-		/*//$display("clk=%b",clk);
+    /*always @(*) begin
+		$display("cpu_dnpc=%x",dnpc);
+		$display("cmd=%x",cmd);   
+		//$display("clk=%b",clk);
 		//$display("pc=%x",pc);
 		$display("=========================================\n");
         $display("rs1=%b",rs1);
@@ -147,8 +146,8 @@ module cpu(
         $display("PCAsrc=%b",op_PC_Asrc);
         $display("PCBsrc=%b",op_PC_Bsrc);
         $display("a0=%b",a0);
-        $display("b0=%b",b0);*/
-    end
+        $display("b0=%b",b0);
+    end*/
 	
 
 endmodule

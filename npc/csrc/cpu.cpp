@@ -3,13 +3,20 @@
 #include <memory/vaddr.h>
 #include "Vcpu___024root.h"
 #include <svdpi.h>
-#include <trace/itrace.h>
 #include <sdb/watchpoint.h>
+#include <trace/itrace.h>
+#include <trace/ftrace.h>
+#include <trace/isa-difftest.h>
 
 vluint64_t sim_time = 0;
 CPU_state cpu_data = {};
 uint64_t inst_cnt =0;
+bool difftest_is_ebreak = false;//difftest中是否触发ebreak退出
 extern Vcpu* cpu;
+
+//仅用于显示
+//static vaddr_t current_pc = 0;
+//static word_t current_inst = 0,future_inst = 0;
 
 const char *regs[] = {
 	"$0", "ra", "sp", "gp", "tp", "t0", "t1", "t2",
@@ -28,9 +35,12 @@ void set_cpu_status(int state, vaddr_t pc, int halt_ret) {
 
 extern "C" void halt(svBit is_halt){
 	//NPCTRAP(cpu->pc,10号寄存器($a0)的内容);
-	get_cpu_pc();
-	get_cpu_reg();
-	if(is_halt) NPCTRAP(cpu_data.pc,gpr(10));	
+	if(is_halt){
+		get_cpu_pc();
+		get_cpu_reg();
+		NPCTRAP(cpu_data.pc,gpr(10));
+		difftest_is_ebreak = true;
+	}
 	return;
 }
 
@@ -39,8 +49,9 @@ void cpu_terminate(){
 		printf("\nNPC EXIT: \033[0m\033[1;31mABORT\033[0m at pc = %#010x\n\n",cpu_status.halt_pc);
 	}else if(cpu_status.halt_ret == 0){//GOOD
 		printf("\nNPC EXIT: \033[0m\033[1;32mHIT GOOD TRAP\033[0m at pc = %#010x\n\n",cpu_status.halt_pc);
-	}else{//BAD or unexpected situation
-		printf("\nNPC EXIT: \033[0m\033[1;31mHIT BAD TRAP\033[0m at pc = %#010x\n\n",cpu_status.halt_pc);	
+	}else{//BAD or unexpected situation	
+		buffer_disp();
+		printf("\nNPC EXIT: \033[0m\033[1;31mHIT BAD TRAP\033[0m at pc = %#010x\n\n",cpu_status.halt_pc);
 	}
 
 	//m_trace->close();
@@ -93,11 +104,28 @@ word_t reg_str2val(const char *s, bool *success) {
 	return 0;
 }
 
+bool difftest_checkregs(CPU_state* cpu_data_ref, vaddr_t pc){
+	for(int i=0;i<REG_NUM;i++){
+		if(gpr(i) != cpu_data_ref->gpr[i]){
+			//pc = cpu_data_ref->pc;
+			printf("LOG=%d,%#010x\n",i,cpu_data_ref->gpr[i]);
+			return false;
+		}
+		return true;
+	}
+}
+
 
 /* EXEC */
 
 static void single_inst_debug(){
+	//TRACE
+	buffer_insert();
+	elf_call(cpu_data.pc,cpu_data.dnpc,cpu_data.inst);
 	
+	//DIFFTEST(REF = NEMU)
+	difftest_step(cpu_data.pc,cpu_data.dnpc);
+
 	//watchpoint update
 	uint32_t new_result=0;
 	WP* wp=check_wp(&new_result);
@@ -109,19 +137,30 @@ static void single_inst_debug(){
 
 }
 
+
 extern void clk_update();
 void exec_once(){
-	//cpu_data更新pc
-	get_cpu_pc();
 	//加载inst
-	printf("%#010x:\t%#010x\n",cpu->pc,set_cpu_inst());
+	set_cpu_inst();
 	//cpu_data更新inst
 	get_cpu_inst();
-	buffer_insert();
+	//执行inst
 	clk_update();
+	//cpu_data更新reg
+	get_cpu_reg();
+	if(cpu_status.state == ALIVE){
+		printf("%#010x:\t%#010x\n",cpu_data.pc,cpu_data.inst);
+	}
+
+
 }
 
+
+//初始周期的pc已经在cpu_init中更新
 void exec(uint64_t n){
+	//每次执行前，注意先把difftest_ebreak标识为false
+	difftest_is_ebreak = false;
+
 	switch(cpu_status.state){
 		case TERMINATE:case ABORT:
 			printf("Program execution has ended. To restart the program, exit NPC and run again.\n");
@@ -131,16 +170,18 @@ void exec(uint64_t n){
 			cpu_status.state=ALIVE;
 		break;
 	}
-	log_write("\nSTART INST LOGGING:\n");
+	log_write("\n[START INST LOGGING]\n");
 	log_write("   %+7s\t\t%+15s\t\t\t%+10s\n","PC","INST","INST-HEX");
 	for(;n>0;n--){
 		exec_once();
 		sim_time++;
 		inst_cnt++;
-		single_inst_debug();
-		if(cpu_status.state != ALIVE) break;
+		if(cpu_status.state == ALIVE) single_inst_debug();
+		else break;
+		//cpu_data更新下一周期的pc
+		get_cpu_pc();
 	}
-
+	log_write("\n[TERMINATE INST LOGGING]\n");
 	switch(cpu_status.state){
 		case ALIVE:
 			cpu_status.state = STOP;
@@ -149,12 +190,13 @@ void exec(uint64_t n){
 		case TERMINATE: case ABORT:
 			if(cpu_status.halt_pc == 0){//运行结束
 				//TODO:输出调试信息
-				buffer_disp();
+
 			}
 			cpu_terminate();
 			
-		case QUIT://DEAD、ABORT时也成立
+		case QUIT://TERMINATE、ABORT时也成立
 			//TODO:输出统计信息
+
 		break;
 	}
 }

@@ -1,0 +1,14 @@
+#ifndef __FTRACE_H__
+#define __FTRACE_H__
+#include <common.h>
+
+typedef struct {
+	char func_name[32];
+	uint32_t start;
+	uint32_t end;
+} func;
+
+void elf_init(const char* fileName);
+void elf_call(uint32_t pc_src,uint32_t pc_dst,uint32_t cmd);
+
+#endif

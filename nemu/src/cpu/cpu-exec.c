@@ -99,7 +99,7 @@ static void execute(uint64_t n) {//如果传入很大的值n，for循环将执�
   Decode s;
   for (;n > 0; n --) { 
     exec_once(&s, cpu.pc);
-    g_nr_guest_inst ++; //记录客户指令的计数器
+	g_nr_guest_inst ++; //记录客户指令的计数器
     //trace_and_difftest(&s, cpu.pc);
 	single_inst_debug(&s, cpu.pc);
     if (nemu_state.state != NEMU_RUNNING) break;

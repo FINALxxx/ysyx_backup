@@ -33,13 +33,13 @@ void buffer_init(){
 }
 
 void buffer_disp(){
-	printf("\n\t\033[0m\033[1;31m[ITRACE RUNNING]\033[0m\n");
+	printf("\t\t\t" ANSI_FMT("[ITRACE RUNNING]",ANSI_FG_RED)"\n");
 	uint32_t disp_ptr = is_full ? (cur+1)%CONFIG_MAX_BUF_SIZE : 0 ;//从0或者从cur+1开始
 	while(disp_ptr != cur-1){
 		printf("   %#10x:\t%-40s\t:%#010x\n",buf[disp_ptr].pc, buf[disp_ptr].log, buf[disp_ptr].inst);
 		disp_ptr = (disp_ptr+1)%CONFIG_MAX_BUF_SIZE;
 	}
 	printf("-->%#10x:\t%-40s\t:%#010x\n",buf[cur-1].pc,buf[cur-1].log,buf[cur-1].inst);
-	printf("\t\033[0m\033[1;31m[ITRACE TERMINATE]\033[0m\n");
+	printf("\t\t\t" ANSI_FMT("[ITRACE TERMINATE]",ANSI_FG_RED) "\n");
 }
 

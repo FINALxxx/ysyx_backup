@@ -12,8 +12,9 @@ module RegisterFile #(DATA_WIDTH=32,REG_NUM=32,REG_NUM_BIT=5)  (
   reg [DATA_WIDTH-1:0] rf [REG_NUM-1:0];
   always @(posedge clk) begin
     if (wen) rf[waddr] <= wdata;
+	rf[0] <= 0; //debug:最好还是一直保持0号寄存器为0
   end
-
+  
   assign rdata_a = (raddr_a=='b0) ? 'b0 : rf[raddr_a];
   assign rdata_b = (raddr_b=='b0) ? 'b0 : rf[raddr_b];
   

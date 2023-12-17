@@ -5,6 +5,7 @@
 
 
 /* STATUS */
+extern bool difftest_is_ebreak;
 void set_cpu_status(int state, vaddr_t pc, int halt_ret);
 #define NPCTRAP(thispc, code) set_cpu_status(TERMINATE, thispc, code)
 

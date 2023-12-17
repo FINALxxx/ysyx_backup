@@ -15,6 +15,8 @@ LDFLAGS   += --gc-sections -e _start
 CFLAGS += -DMAINARGS=\"$(mainargs)\"
 .PHONY: $(AM_HOME)/am/src/riscv/npc/trm.c
 
+SOSRC = ${NEMU_HOME}/build/riscv32-nemu-interpreter-so
+
 image: $(IMAGE).elf
 	@$(OBJDUMP) -d $(IMAGE).elf > $(IMAGE).txt
 	@echo + OBJCOPY "->" $(IMAGE_REL).bin
@@ -22,10 +24,10 @@ image: $(IMAGE).elf
 
 run: image
 	#@echo cp ${IMAGE}.bin ${NPC_IMAGE}
-	make -C ${NPC_HOME} -f Makefile BINSRC=${IMAGE}.bin ELFSRC=${IMAGE}.elf sim
+	make -C ${NPC_HOME} -f Makefile BINSRC=${IMAGE}.bin ELFSRC=${IMAGE}.elf SOSRC=${SOSRC} sim
 
 gdb: image
-	make -C ${NPC_HOME} -f Makefile BINSRC=${IMAGE}.bin ELFSRC=${IMAGE}.elf gdb
+	make -C ${NPC_HOME} -f Makefile BINSRC=${IMAGE}.bin ELFSRC=${IMAGE}.elf SOSRC=${SOSRC} gdb
 
 sim-clean:
 	make -C ${NPC_HOME} -f Makefile sim-clean
