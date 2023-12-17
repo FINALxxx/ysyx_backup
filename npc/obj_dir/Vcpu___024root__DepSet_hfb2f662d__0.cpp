@@ -99,13 +99,13 @@ VL_INLINE_OPT void Vcpu___024root___ico_sequent__TOP__0(Vcpu___024root* vlSelf) 
                                               & (vlSelf->cmd 
                                                  >> 0xfU))];
     }
-    vlSelf->cpu__DOT__op_load_sext = (((IData)((0x4000U 
-                                                != 
+    vlSelf->cpu__DOT__op_load_sext = (((IData)((0x1000U 
+                                                == 
                                                 (0x5000U 
                                                  & vlSelf->cmd))) 
                                        << 1U) | (IData)(
-                                                        (0x7000U 
-                                                         != 
+                                                        (0U 
+                                                         == 
                                                          (0x7000U 
                                                           & vlSelf->cmd))));
     vlSelf->cpu__DOT__cu1__DOT__mux5__DOT__i0__DOT__lut_out 

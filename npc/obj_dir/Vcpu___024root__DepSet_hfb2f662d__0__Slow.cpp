@@ -87,13 +87,13 @@ VL_ATTR_COLD void Vcpu___024root___stl_sequent__TOP__0(Vcpu___024root* vlSelf) {
     vlSelf->cpu__DOT__dimm1__DOT__mux1__DOT__i0__DOT__pair_list[3U] 
         = (0x100000000ULL | (QData)((IData)((0xfffff000U 
                                              & vlSelf->cmd))));
-    vlSelf->cpu__DOT__op_load_sext = (((IData)((0x4000U 
-                                                != 
+    vlSelf->cpu__DOT__op_load_sext = (((IData)((0x1000U 
+                                                == 
                                                 (0x5000U 
                                                  & vlSelf->cmd))) 
                                        << 1U) | (IData)(
-                                                        (0x7000U 
-                                                         != 
+                                                        (0U 
+                                                         == 
                                                          (0x7000U 
                                                           & vlSelf->cmd))));
     vlSelf->cpu__DOT__mux2__DOT__i0__DOT__data_list[1U] 
