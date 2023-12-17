@@ -25,7 +25,7 @@ module PMEM(
 );
 
 	
-	wire [31:0] rdata_tmp;
+	reg [31:0] rdata_tmp;
 	always @(*) begin
   		if (valid) begin // 有读写请求时
     		pmem_read(raddr, rdata_tmp);
