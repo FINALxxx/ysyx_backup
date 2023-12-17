@@ -761,6 +761,8 @@ VL_INLINE_OPT void Vcpu___024root___ico_sequent__TOP__0(Vcpu___024root* vlSelf) 
         = cpu__DOT__alu1__DOT__SHIFT_result;
     vlSelf->cpu__DOT__alu1__DOT__mux1__DOT__i0__DOT__data_list[6U] 
         = cpu__DOT__alu1__DOT__SHIFT_result;
+    vlSelf->cpu__DOT__alu1__DOT__mux1__DOT__i0__DOT__data_list[7U] 
+        = ((IData)(1U) + cpu__DOT__alu1__DOT__ADDER_result);
     cpu__DOT__LESS = (1U & ((2U != (IData)(vlSelf->cpu__DOT__op_ALU_sel))
                              ? ((0U != (IData)(vlSelf->cpu__DOT__op_ALU_sel)) 
                                 ^ (IData)((1ULL & (
@@ -1110,6 +1112,8 @@ VL_INLINE_OPT void Vcpu___024root___nba_sequent__TOP__1(Vcpu___024root* vlSelf) 
         = cpu__DOT__alu1__DOT__SHIFT_result;
     vlSelf->cpu__DOT__alu1__DOT__mux1__DOT__i0__DOT__data_list[6U] 
         = cpu__DOT__alu1__DOT__SHIFT_result;
+    vlSelf->cpu__DOT__alu1__DOT__mux1__DOT__i0__DOT__data_list[7U] 
+        = ((IData)(1U) + cpu__DOT__alu1__DOT__ADDER_result);
     cpu__DOT__LESS = (1U & ((2U != (IData)(vlSelf->cpu__DOT__op_ALU_sel))
                              ? ((0U != (IData)(vlSelf->cpu__DOT__op_ALU_sel)) 
                                 ^ (IData)((1ULL & (
