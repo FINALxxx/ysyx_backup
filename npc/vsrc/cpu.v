@@ -25,7 +25,8 @@ module cpu(
     wire op_PC_Asrc;
     wire op_PC_Bsrc;
     
-	wire en_Wreg,load,store,op_PMEM,en_PMEM;
+	wire [2:0] op_PMEM;
+	wire en_Wreg,load,store,en_PMEM;
     
     /* status setter */
     ControlUnit cu1(

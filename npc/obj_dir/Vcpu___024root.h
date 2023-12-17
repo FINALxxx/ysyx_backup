@@ -35,7 +35,8 @@ class Vcpu___024root final : public VerilatedModule {
     VL_OUT(pc,31,0);
     VL_OUT(dnpc,31,0);
     IData/*31:0*/ cpu__DOT__src2;
-    IData/*31:0*/ cpu__DOT__src_rd;
+    IData/*31:0*/ cpu__DOT__src_rd_ALU;
+    IData/*31:0*/ cpu__DOT__src_rd_PMEM;
     IData/*31:0*/ __VstlIterCount;
     IData/*31:0*/ __VicoIterCount;
     IData/*31:0*/ __VactIterCount;

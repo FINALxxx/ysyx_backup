@@ -169,10 +169,10 @@ VL_ATTR_COLD void Vcpu___024root___stl_sequent__TOP__0(Vcpu___024root* vlSelf) {
     cpu__DOT__imm = 0;
     CData/*2:0*/ cpu__DOT__op_IMM;
     cpu__DOT__op_IMM = 0;
-    CData/*0:0*/ cpu__DOT__op_PC_Asrc;
-    cpu__DOT__op_PC_Asrc = 0;
     CData/*0:0*/ cpu__DOT__LESS;
     cpu__DOT__LESS = 0;
+    CData/*0:0*/ cpu__DOT__op_PC_Asrc;
+    cpu__DOT__op_PC_Asrc = 0;
     IData/*31:0*/ cpu__DOT__a0;
     cpu__DOT__a0 = 0;
     IData/*31:0*/ cpu__DOT__b0;
@@ -1065,9 +1065,9 @@ VL_ATTR_COLD void Vcpu___024root___stl_sequent__TOP__0(Vcpu___024root* vlSelf) {
          | ((7U & (IData)(vlSelf->cpu__DOT__op_ALU_sel)) 
             == vlSelf->cpu__DOT__alu1__DOT__mux1__DOT__i0__DOT__key_list
             [7U]));
-    vlSelf->cpu__DOT__src_rd = ((IData)(cpu__DOT__alu1__DOT__mux1__DOT__i0__DOT__hit)
-                                 ? cpu__DOT__alu1__DOT__mux1__DOT__i0__DOT__lut_out
-                                 : 0U);
+    vlSelf->cpu__DOT__src_rd_ALU = ((IData)(cpu__DOT__alu1__DOT__mux1__DOT__i0__DOT__hit)
+                                     ? cpu__DOT__alu1__DOT__mux1__DOT__i0__DOT__lut_out
+                                     : 0U);
     vlSelf->dnpc = (cpu__DOT__a0 + cpu__DOT__b0);
 }
 
@@ -1137,7 +1137,8 @@ VL_ATTR_COLD void Vcpu___024root___ctor_var_reset(Vcpu___024root* vlSelf) {
     vlSelf->pc = VL_RAND_RESET_I(32);
     vlSelf->dnpc = VL_RAND_RESET_I(32);
     vlSelf->cpu__DOT__src2 = VL_RAND_RESET_I(32);
-    vlSelf->cpu__DOT__src_rd = VL_RAND_RESET_I(32);
+    vlSelf->cpu__DOT__src_rd_ALU = VL_RAND_RESET_I(32);
+    vlSelf->cpu__DOT__src_rd_PMEM = VL_RAND_RESET_I(32);
     vlSelf->cpu__DOT__op_ALU_Asrc = VL_RAND_RESET_I(1);
     vlSelf->cpu__DOT__op_ALU_Bsrc = VL_RAND_RESET_I(2);
     vlSelf->cpu__DOT__op_ALU_sel = VL_RAND_RESET_I(4);

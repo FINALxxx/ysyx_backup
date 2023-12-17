@@ -70,7 +70,12 @@ VL_INLINE_OPT void Vcpu___024root___nba_sequent__TOP__0(Vcpu___024root* vlSelf) 
                                                     (0x7fU 
                                                      & vlSelf->cmd)) 
                                                    | (IData)(vlSelf->cpu__DOT__cu1__DOT____VdfgTmp_hd4cadad9__0)))))) {
-        __Vdlyvval__cpu__DOT__rf1__DOT__rf__v0 = vlSelf->cpu__DOT__src_rd;
+        __Vdlyvval__cpu__DOT__rf1__DOT__rf__v0 = ((3U 
+                                                   == 
+                                                   (0x7fU 
+                                                    & vlSelf->cmd))
+                                                   ? vlSelf->cpu__DOT__src_rd_PMEM
+                                                   : vlSelf->cpu__DOT__src_rd_ALU);
         __Vdlyvset__cpu__DOT__rf1__DOT__rf__v0 = 1U;
         __Vdlyvdim0__cpu__DOT__rf1__DOT__rf__v0 = (0x1fU 
                                                    & (vlSelf->cmd 

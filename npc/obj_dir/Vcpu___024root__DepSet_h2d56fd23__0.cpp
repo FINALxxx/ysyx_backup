@@ -16,10 +16,10 @@ VL_INLINE_OPT void Vcpu___024root___ico_sequent__TOP__0(Vcpu___024root* vlSelf) 
     cpu__DOT__imm = 0;
     CData/*2:0*/ cpu__DOT__op_IMM;
     cpu__DOT__op_IMM = 0;
-    CData/*0:0*/ cpu__DOT__op_PC_Asrc;
-    cpu__DOT__op_PC_Asrc = 0;
     CData/*0:0*/ cpu__DOT__LESS;
     cpu__DOT__LESS = 0;
+    CData/*0:0*/ cpu__DOT__op_PC_Asrc;
+    cpu__DOT__op_PC_Asrc = 0;
     IData/*31:0*/ cpu__DOT__a0;
     cpu__DOT__a0 = 0;
     IData/*31:0*/ cpu__DOT__b0;
@@ -908,9 +908,9 @@ VL_INLINE_OPT void Vcpu___024root___ico_sequent__TOP__0(Vcpu___024root* vlSelf) 
          | ((7U & (IData)(vlSelf->cpu__DOT__op_ALU_sel)) 
             == vlSelf->cpu__DOT__alu1__DOT__mux1__DOT__i0__DOT__key_list
             [7U]));
-    vlSelf->cpu__DOT__src_rd = ((IData)(cpu__DOT__alu1__DOT__mux1__DOT__i0__DOT__hit)
-                                 ? cpu__DOT__alu1__DOT__mux1__DOT__i0__DOT__lut_out
-                                 : 0U);
+    vlSelf->cpu__DOT__src_rd_ALU = ((IData)(cpu__DOT__alu1__DOT__mux1__DOT__i0__DOT__hit)
+                                     ? cpu__DOT__alu1__DOT__mux1__DOT__i0__DOT__lut_out
+                                     : 0U);
     vlSelf->dnpc = (cpu__DOT__a0 + cpu__DOT__b0);
 }
 
@@ -935,10 +935,10 @@ VL_INLINE_OPT void Vcpu___024root___nba_sequent__TOP__1(Vcpu___024root* vlSelf) 
     Vcpu__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vcpu___024root___nba_sequent__TOP__1\n"); );
     // Init
-    CData/*0:0*/ cpu__DOT__op_PC_Asrc;
-    cpu__DOT__op_PC_Asrc = 0;
     CData/*0:0*/ cpu__DOT__LESS;
     cpu__DOT__LESS = 0;
+    CData/*0:0*/ cpu__DOT__op_PC_Asrc;
+    cpu__DOT__op_PC_Asrc = 0;
     IData/*31:0*/ cpu__DOT__a0;
     cpu__DOT__a0 = 0;
     IData/*31:0*/ cpu__DOT__b0;
@@ -1259,9 +1259,9 @@ VL_INLINE_OPT void Vcpu___024root___nba_sequent__TOP__1(Vcpu___024root* vlSelf) 
          | ((7U & (IData)(vlSelf->cpu__DOT__op_ALU_sel)) 
             == vlSelf->cpu__DOT__alu1__DOT__mux1__DOT__i0__DOT__key_list
             [7U]));
-    vlSelf->cpu__DOT__src_rd = ((IData)(cpu__DOT__alu1__DOT__mux1__DOT__i0__DOT__hit)
-                                 ? cpu__DOT__alu1__DOT__mux1__DOT__i0__DOT__lut_out
-                                 : 0U);
+    vlSelf->cpu__DOT__src_rd_ALU = ((IData)(cpu__DOT__alu1__DOT__mux1__DOT__i0__DOT__hit)
+                                     ? cpu__DOT__alu1__DOT__mux1__DOT__i0__DOT__lut_out
+                                     : 0U);
     vlSelf->dnpc = (cpu__DOT__a0 + cpu__DOT__b0);
 }
 
