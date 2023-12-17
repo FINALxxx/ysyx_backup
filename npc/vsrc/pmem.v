@@ -19,8 +19,8 @@ module pmem(
 	//写请求
 	input wen,
 	input [31:0] waddr,
-	input [31:0] wdata
-	input [2:0] wmask,
+	input [31:0] wdata,
+	input [2:0] wmask
 );
 
 	
