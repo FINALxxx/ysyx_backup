@@ -3,9 +3,10 @@
 #include <memory/vaddr.h>
 #include "Vcpu___024root.h"
 #include <svdpi.h>
+#include <sdb/watchpoint.h>
 #include <trace/itrace.h>
 #include <trace/ftrace.h>
-#include <sdb/watchpoint.h>
+#include <trace/isa-difftest.h>
 
 vluint64_t sim_time = 0;
 CPU_state cpu_data = {};
@@ -112,6 +113,9 @@ static void single_inst_debug(){
 	//TRACE
 	buffer_insert();
 	elf_call(cpu_data.pc,cpu_data.dnpc,cpu_data.inst);
+	
+	//DIFFTEST(REF = NEMU)
+	difftest_step(cpu_data.pc,cpu_data.dnpc);
 
 	//watchpoint update
 	uint32_t new_result=0;
