@@ -39,6 +39,8 @@ VL_ATTR_COLD void Vcpu___024root___stl_sequent__TOP__0(Vcpu___024root* vlSelf) {
     Vcpu___024unit____Vdpiimwrap_halt_TOP____024unit(vlSelf->cpu__DOT__cu1__DOT__is_halt);
     vlSelf->cpu__DOT__mux2__DOT__i0__DOT__data_list[1U] 
         = vlSelf->pc;
+    vlSelf->cpu__DOT__alu1__DOT__mux1__DOT__i0__DOT__data_list[7U] 
+        = vlSelf->cpu__DOT__alu1__DOT__ADD_result;
     vlSelf->cpu__DOT__cu1__DOT__mux2__DOT__i0__DOT__lut_out 
         = ((- (IData)(((7U & (vlSelf->cmd >> 0xcU)) 
                        == vlSelf->cpu__DOT__cu1__DOT__mux2__DOT__i0__DOT__key_list
@@ -626,8 +628,6 @@ VL_ATTR_COLD void Vcpu___024root___stl_sequent__TOP__0(Vcpu___024root* vlSelf) {
         = vlSelf->cpu__DOT__alu1__DOT__SHIFT_result;
     vlSelf->cpu__DOT__alu1__DOT__mux1__DOT__i0__DOT__data_list[6U] 
         = vlSelf->cpu__DOT__alu1__DOT__SHIFT_result;
-    vlSelf->cpu__DOT__alu1__DOT__mux1__DOT__i0__DOT__data_list[7U] 
-        = ((IData)(1U) + vlSelf->cpu__DOT__alu1__DOT__ADDER_result);
     vlSelf->cpu__DOT__LESS = (1U & ((2U != (IData)(vlSelf->cpu__DOT__op_ALU_sel))
                                      ? ((0U != (IData)(vlSelf->cpu__DOT__op_ALU_sel)) 
                                         ^ (IData)((1ULL 

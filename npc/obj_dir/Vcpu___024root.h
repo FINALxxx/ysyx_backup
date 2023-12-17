@@ -47,6 +47,7 @@ class Vcpu___024root final : public VerilatedModule {
         CData/*0:0*/ cpu__DOT__cu1__DOT__mux4__DOT__i0__DOT__hit;
         CData/*0:0*/ cpu__DOT__dimm1__DOT__mux1__DOT__i0__DOT__hit;
         CData/*0:0*/ cpu__DOT__mux4__DOT__i0__DOT__hit;
+        CData/*0:0*/ cpu__DOT__alu1__DOT__ADD_result;
         CData/*1:0*/ cpu__DOT__alu1__DOT__shift1__DOT____Vcellinp__mux1____pinNumber2;
         CData/*0:0*/ cpu__DOT__alu1__DOT__shift1__DOT__mux1__DOT__i0__DOT__hit;
         CData/*0:0*/ cpu__DOT__alu1__DOT__mux1__DOT__i0__DOT__hit;
@@ -82,9 +83,9 @@ class Vcpu___024root final : public VerilatedModule {
         VlUnpacked<CData/*2:0*/, 7> cpu__DOT__cu1__DOT__mux2__DOT__i0__DOT__key_list;
         VlUnpacked<CData/*2:0*/, 7> cpu__DOT__cu1__DOT__mux2__DOT__i0__DOT__data_list;
         VlUnpacked<CData/*2:0*/, 8> cpu__DOT__cu1__DOT__mux3__DOT__i0__DOT__key_list;
-        VlUnpacked<CData/*3:0*/, 8> cpu__DOT__cu1__DOT__mux3__DOT__i0__DOT__data_list;
     };
     struct {
+        VlUnpacked<CData/*3:0*/, 8> cpu__DOT__cu1__DOT__mux3__DOT__i0__DOT__data_list;
         VlUnpacked<CData/*2:0*/, 8> cpu__DOT__cu1__DOT__mux4__DOT__i0__DOT__key_list;
         VlUnpacked<CData/*3:0*/, 8> cpu__DOT__cu1__DOT__mux4__DOT__i0__DOT__data_list;
         VlUnpacked<CData/*2:0*/, 5> cpu__DOT__dimm1__DOT__mux1__DOT__i0__DOT__key_list;
