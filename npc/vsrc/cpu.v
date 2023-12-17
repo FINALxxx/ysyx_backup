@@ -146,6 +146,7 @@ module cpu(
 
 	//测试用，实现后一定要删除
     always @(*) begin
+		$display("result=%x",src_rd_ALU);
 		/*$display("cpu_dnpc=%x",dnpc);
 		$display("cmd=%x",cmd);   
 		//$display("clk=%b",clk);
