@@ -35,7 +35,6 @@ static void npc_memcpy_to_nemu(paddr_t addr,void* buf, size_t n){
 
 //spike有类似的函数，在${HEMU_HOME}/tools/spike-diff/difftest.cc中
 __EXPORT void difftest_memcpy(paddr_t addr, void *buf, size_t n, bool direction) {
-  	printf("INIT_MEM = %#010x, size = %ld\n",addr,n);
 	//assert(0);
 	if(direction == DIFFTEST_TO_REF){
 		npc_memcpy_to_nemu(addr,buf,n);
