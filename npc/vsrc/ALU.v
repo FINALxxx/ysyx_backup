@@ -48,7 +48,7 @@ module ALU(
 	
     /* result select */
     MuxKeyWithDefault #(8, 3, 32) mux1(result,sel,32'b0,{
-        3'b000,   3'b0,//bug on purpose
+        3'b000,   32'b0,//bug on purpose
 		//3'b000,	  ADDER_result,
 		3'b001,   SHIFT_result,
 		3'b010,   {31'b0,LESS},
