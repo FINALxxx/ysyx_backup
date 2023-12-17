@@ -10,7 +10,7 @@ import "DPI-C" function void pmem_write(
 );
 
 
-module pmem(
+module PMEM(
 	//读写请求
 	input vaild,
 	input [31:0] raddr,
