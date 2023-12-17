@@ -135,6 +135,7 @@ extern void clk_update();
 
 //第一周期的pc已经在cpu_init中加载完毕
 void exec_once(){
+	get_cpu_pc();
 	//加载inst
 	printf("%#010x:\t%#010x\n",cpu->pc,set_cpu_inst());
 	//cpu_data更新inst
@@ -143,7 +144,7 @@ void exec_once(){
 	clk_update();
 	
 	//cpu_data更新下一周期的pc
-	get_cpu_pc();
+	//get_cpu_pc();
 
 }
 
