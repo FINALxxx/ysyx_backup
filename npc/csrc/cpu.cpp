@@ -139,12 +139,12 @@ void exec_once(){
 
 	//加载当前周期的pc
 	get_cpu_pc();
-	clk_update();
 	//加载inst
 	printf("%#010x:\t%#010x\n",cpu->pc,set_cpu_inst());
 	//cpu_data更新inst
 	get_cpu_inst();
 
+	clk_update();
 	
 }
 
