@@ -1,5 +1,4 @@
 /* verilator lint_off PINCONNECTEMPTY */
-//import "DPI-C" function bit[31:0] cmd_getter(input bit[31:0] pc_now);
 
 module cpu(
     input clk,
@@ -41,6 +40,7 @@ module cpu(
 		//.branch_signal(branch_signal),
         .store(),
         .load(),
+		.op_PMEM(),
         .op_ALU_Asrc(op_ALU_Asrc),
         .op_ALU_Bsrc(op_ALU_Bsrc),
         .op_ALU_sel(op_ALU_sel),
