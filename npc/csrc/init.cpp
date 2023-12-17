@@ -14,7 +14,7 @@ static int diff_port = 3085;//ref_difftest_raise_intr中的port
 
 VerilatedContext* env = NULL;
 Vcpu* cpu = NULL;
-Verilated* tfp = NULL;
+VerilatedVcdC* tfp = NULL;
 
 unsigned char isa_logo[] = {
   0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x5f, 0x20, 0x20, 0x20, 0x20,
