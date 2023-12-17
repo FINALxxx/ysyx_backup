@@ -18,12 +18,46 @@
 #include <difftest-def.h>
 #include <memory/paddr.h>
 
+#define REG_NUM 32
+//兼容npc的cpu_data
+typedef struct {
+	word_t gpr[32];
+	vaddr_t pc;
+	vaddr_t dnpc;
+	word_t inst;
+} npc_CPU_state;
+
+
+//spike有类似的函数，在${HEMU_HOME}/tools/spike-diff/difftest.cc中
 __EXPORT void difftest_memcpy(paddr_t addr, void *buf, size_t n, bool direction) {
-  assert(0);
+  	//assert(0);
+	if(direction == DIFFTEST_TO_REF){
+		for(int i=0;i<n;++i){
+			paddr_write(addr+i,1, *((int8_t*)buf) );//写入1Byte数据
+		}
+	}else{
+		assert(0);
+	}	
+
+
 }
 
+
 __EXPORT void difftest_regcpy(void *dut, bool direction) {
-  assert(0);
+	//assert(0);
+	npc_CPU_state* cpu_data = (npc_CPU_state*)dut;
+	if(direction == DIFFTEST_TO_REF){
+		for(int i=0;i<REG_NUM;i++){
+			cpu.gpr[i] = cpu_data->gpr[i];
+		}
+		cpu.pc = cpu_data->pc;
+	}else{//DIFFTEST_TO_DUT
+		for(int i=0;i<REG_NUM;i++){
+			cpu_data->gpr[i] = cpu.gpr[i];
+		}
+		cpu_data->pc = cpu.pc;
+	}
+	
 }
 
 __EXPORT void difftest_exec(uint64_t n) {
