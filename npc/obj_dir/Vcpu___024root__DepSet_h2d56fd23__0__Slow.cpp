@@ -115,6 +115,8 @@ VL_ATTR_COLD void Vcpu___024root___eval_initial__TOP(Vcpu___024root* vlSelf) {
     vlSelf->cpu__DOT__cu1__DOT__mux5__DOT__i0__DOT__data_list[3U] = 0xfU;
     vlSelf->cpu__DOT__cu1__DOT__mux5__DOT__i0__DOT__data_list[4U] = 1U;
     vlSelf->cpu__DOT__pmem1__DOT__mux1__DOT__i0__DOT__key_list[0U] = 2U;
+    vlSelf->cpu__DOT__pmem1__DOT__mux1__DOT__i0__DOT__key_list[1U] = 1U;
+    vlSelf->cpu__DOT__pmem1__DOT__mux1__DOT__i0__DOT__key_list[2U] = 0U;
 }
 
 VL_ATTR_COLD void Vcpu___024root___eval_final(Vcpu___024root* vlSelf) {
@@ -376,8 +378,6 @@ VL_ATTR_COLD void Vcpu___024root___ctor_var_reset(Vcpu___024root* vlSelf) {
     }
     vlSelf->cpu__DOT__pmem1__DOT__mux1__DOT__i0__DOT__lut_out = VL_RAND_RESET_I(32);
     vlSelf->cpu__DOT__pmem1__DOT__mux1__DOT__i0__DOT__hit = VL_RAND_RESET_I(1);
-    VL_ZERO_RESET_W(67, vlSelf->__VdfgTmp_hd6d2a32b__0);
-    vlSelf->__VdfgTmp_h2326aaa9__0 = 0;
     vlSelf->__Vtask_pmem_read__1__rdata = 0;
     vlSelf->__Vtrigrprev__TOP__clk = VL_RAND_RESET_I(1);
 }
