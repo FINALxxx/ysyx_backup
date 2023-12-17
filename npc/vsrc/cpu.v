@@ -11,6 +11,7 @@ module cpu(
 	//rs1、rs2、rd是寄存器序号，src1、src2、src_rd、imm是数据
     wire [4:0] rs1,rs2,rd;
     wire [31:0] src1,src2,imm,src_rd;
+	wire [31:0] src_rd_ALU,src_rd_PMEM;
     wire [2:0] op_IMM;
     assign rs1 = cmd[19:15];
     assign rs2 = cmd[24:20];
@@ -19,14 +20,13 @@ module cpu(
     wire op_ALU_Asrc;
     wire [1:0] op_ALU_Bsrc;
     wire [3:0]op_ALU_sel;
-	
-	//wire branch_signal;
+	wire LESS,IS_ZERO;
+
     wire op_PC_Asrc;
     wire op_PC_Bsrc;
     
-	wire en_Wreg;
-    wire LESS,IS_ZERO;
-
+	wire en_Wreg,load,store,op_PMEM,en_PMEM;
+    
     /* status setter */
     ControlUnit cu1(
 		.clk(clk),
@@ -37,9 +37,9 @@ module cpu(
         .IS_ZERO(IS_ZERO),
         .op_IMM(op_IMM),
         .en_Wreg(en_Wreg),
-        .store(),
-        .load(),
-		//.op_PMEM(),
+        .store(store),
+        .load(load),
+		.op_PMEM(op_PMEM),
         .op_ALU_Asrc(op_ALU_Asrc),
         .op_ALU_Bsrc(op_ALU_Bsrc),
         .op_ALU_sel(op_ALU_sel),
@@ -99,6 +99,11 @@ module cpu(
     assign L_R = (op_ALU_sel!=`SLL);
     assign S_U = (op_ALU_sel!=`SLT);
     assign A_L = (op_ALU_sel!=`SRA);
+
+	//PMEM_mux
+	assign src_rd = load?src_rd_PMEM:src_rd_ALU;
+	assign en_PMEM = load | store;
+
     /* end */
 
     PC pc1(
@@ -119,7 +124,7 @@ module cpu(
         .Add_Sub(Add_Sub),
         .a(a1),
         .b(b1),
-        .result(src_rd),
+        .result(src_rd_ALU),
         .LESS(LESS),
         .IS_ZERO(IS_ZERO)
     );

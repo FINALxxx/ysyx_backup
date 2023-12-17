@@ -9,12 +9,15 @@ module ControlUnit(
     input funct7,
     input IS_ZERO,
     input LESS,
-    output [2:0] op_IMM,
-    output en_Wreg,
-    output store,
-    output load,
-	//output [2:0] op_PMEM,
-    output op_ALU_Asrc,//0表示选择src1，1表示选择PC
+    
+	output [2:0] op_IMM,
+    
+	output en_Wreg,
+	output load,//0表示将ALU结果给reg，1表示将PMEM结果给reg
+	output store,
+	output [2:0] op_PMEM,
+    
+	output op_ALU_Asrc,//0表示选择src1，1表示选择PC
     output [1:0] op_ALU_Bsrc,//00表示选择src2，01表示选择imm，10表示选择常数4（默认选择rs2）
     output [3:0] op_ALU_sel,
     output op_PC_Asrc,
@@ -82,7 +85,6 @@ module ControlUnit(
             3'b110,   3'b111
     });
 
-	//assign branch_signal = 1'b1;
     assign load = I_LOAD;
     assign store = S;
 
@@ -105,7 +107,7 @@ module ControlUnit(
 
 /* END ALU操作数分类 */
 
-/* START 运算分类 */
+/* START ALU运算分类 */
 
     MuxKeyWithDefault #(8, 3, 4) mux3(R_sel,funct3,`AND,{
             3'b100,	  (funct7?`SUB:`ADD),
@@ -134,7 +136,7 @@ module ControlUnit(
                     R?R_sel:
                     (I_JALR|J)?`ADD:`ADD;
 
-/* END 运算分类 */
+/* END ALU运算分类 */
 
 
 
@@ -144,6 +146,11 @@ module ControlUnit(
     assign op_PC_Bsrc = ~branch[2] & branch[1] & ~branch[0];
 
 /*  END PC操作数分类 */
+
+/* START PMEM字节数分类 */
+	assign op_PMEM = funct3;//funct3就足够分类b、h、w、bu、bh
+/* END PMEM字节数分类 */
+
 
 
     reg is_halt;
