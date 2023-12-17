@@ -85,13 +85,21 @@ long bin_init(){
 void clk_update(){//1clk
 	cpu->eval();
 	cpu->clk^=1;
+	sim_time++;
+	tfp->dump(sim_time);
+
 	cpu->eval();
 	cpu->clk^=1;
+	sim_time++;
+	tfp->dump(sim_time);
+
 }
 
 static inline void half_clk_update(){
 	cpu->eval();
 	cpu->clk^=1;
+	sim_time++;
+	tfp->trace();
 } 
 
 //下降沿读取

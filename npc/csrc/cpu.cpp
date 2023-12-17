@@ -176,8 +176,6 @@ void exec(uint64_t n){
 	log_write("   %+7s\t\t%+15s\t\t\t%+10s\n","PC","INST","INST-HEX");
 	for(;n>0;n--){
 		exec_once();
-		sim_time++;
-		tfp->dump(sim_time);
 		inst_cnt++;
 		if(cpu_status.state == ALIVE) single_inst_debug();
 		else break;
