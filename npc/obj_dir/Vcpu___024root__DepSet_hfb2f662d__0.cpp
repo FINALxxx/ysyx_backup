@@ -831,7 +831,7 @@ VL_INLINE_OPT void Vcpu___024root___ico_sequent__TOP__0(Vcpu___024root* vlSelf) 
             Vcpu___024unit____Vdpiimwrap_pmem_write_TOP____024unit(vlSelf->cpu__DOT__src_rd_ALU, vlSelf->cpu__DOT__src2, (IData)(vlSelf->cpu__DOT__op_PMEM));
         }
     } else {
-        vlSelf->cpu__DOT__src_rd_PMEM = 0U;
+        vlSelf->cpu__DOT__pmem1__DOT__rdata_tmp = 0U;
     }
     vlSelf->cpu__DOT__pmem1__DOT__mux1__DOT__i0__DOT__key_list[1U] 
         = (2U | (1U & (vlSelf->cpu__DOT__pmem1__DOT__rdata_tmp 
@@ -1293,7 +1293,7 @@ VL_INLINE_OPT void Vcpu___024root___nba_sequent__TOP__1(Vcpu___024root* vlSelf) 
             Vcpu___024unit____Vdpiimwrap_pmem_write_TOP____024unit(vlSelf->cpu__DOT__src_rd_ALU, vlSelf->cpu__DOT__src2, (IData)(vlSelf->cpu__DOT__op_PMEM));
         }
     } else {
-        vlSelf->cpu__DOT__src_rd_PMEM = 0U;
+        vlSelf->cpu__DOT__pmem1__DOT__rdata_tmp = 0U;
     }
     vlSelf->cpu__DOT__pmem1__DOT__mux1__DOT__i0__DOT__key_list[1U] 
         = (2U | (1U & (vlSelf->cpu__DOT__pmem1__DOT__rdata_tmp 
