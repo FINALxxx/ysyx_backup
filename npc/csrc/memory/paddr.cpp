@@ -17,10 +17,11 @@ paddr_t ptr_to_paddr(byte_t* ptr){
 	return (ptr - pmem) + PMEM_LEFT;
 }
 
+extern VerilatedVcdC* tfp;
 static void out_pmem(paddr_t addr){
 	Assert(0,"<MEMORY> addr = " FMT_PADDR " is out of bound of pmem [" FMT_PADDR "," FMT_PADDR "] at pc = " FMT_WORD, addr, PMEM_LEFT, PMEM_RIGHT, cpu_data.pc);
 	//printf("WRONG\n");
-	cpu->final();
+	tfp->close();
 
 }
 
