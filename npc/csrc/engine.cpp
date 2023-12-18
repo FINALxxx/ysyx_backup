@@ -2,7 +2,7 @@
 
 enum mode{STD,SDB};
 
-mode launch_mode = SDB;
+mode launch_mode = STD;
 
 void std_monitor_init(int argc,char** argv);
 void exec(uint64_t n);
