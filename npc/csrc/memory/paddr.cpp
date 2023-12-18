@@ -1,6 +1,7 @@
 #include <memory/host.h>
 #include <memory/paddr.h>
 #include <isa.h>
+#include <verilated_vcd_c.h>
 
 
 #ifdef CONFIG_PMEM_MALLOC
