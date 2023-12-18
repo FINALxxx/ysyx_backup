@@ -6,8 +6,8 @@ module RegisterFile #(DATA_WIDTH=32,REG_NUM=32,REG_NUM_BIT=5)  (
   input [DATA_WIDTH-1:0] wdata,//写rd
   input [REG_NUM_BIT-1:0] waddr,//写rd
   input wen,//写使能
-  output [DATA_WIDTH-1:0] rdata_a,//读rs1
-  output [DATA_WIDTH-1:0] rdata_b//读rs2
+  output reg [DATA_WIDTH-1:0] rdata_a,//读rs1
+  output reg [DATA_WIDTH-1:0] rdata_b//读rs2
 );
   reg [DATA_WIDTH-1:0] rf [REG_NUM-1:0];
   always @(posedge clk) begin
