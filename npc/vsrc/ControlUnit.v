@@ -133,9 +133,9 @@ module ControlUnit(
     });
 
 
-    assign op_ALU_sel = I?I_sel:
-                    R?R_sel:
-                    (I_JALR|J)?`ADD:`ADD;
+    assign op_ALU_sel = I ?	I_sel :
+						R ?	R_sel :
+               (I_JALR|J) ?	`ADD  :	`ADD;
 
 /* END ALU运算分类 */
 
