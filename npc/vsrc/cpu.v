@@ -151,6 +151,7 @@ module cpu(
 		//$display("clk=%b",clk);*/
 		$display("=========================================\n");
         $display("pc=%x",pc);
+		$display("dnpc=%x",dnpc);
 		$display("rs1=%b",rs1);
         $display("rs2=%b",rs2);
         $display("src1=%b",src1);
