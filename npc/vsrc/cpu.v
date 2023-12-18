@@ -149,9 +149,9 @@ module cpu(
 		/*$display("cpu_dnpc=%x",dnpc);
 		$display("cmd=%x",cmd);   
 		//$display("clk=%b",clk);*/
-		$display("pc=%x",pc);
 		$display("=========================================\n");
-        $display("rs1=%b",rs1);
+        $display("pc=%x",pc);
+		$display("rs1=%b",rs1);
         $display("rs2=%b",rs2);
         $display("src1=%b",src1);
         $display("src2=%b",src2);
