@@ -38,6 +38,7 @@ void paddr_write(paddr_t addr, int len, word_t data){
 	if(likely(in_pmem(addr))){
 		printf("[PADDR_WRITE:%x,%d,%x]\n",addr,len,data);
 		ptr_write(paddr_to_ptr(addr),len,data);
+		printf("[CHECK_DATA:%x\n]",*paddr_to_ptr(addr));
 		return;
 	}
 	out_pmem(addr);
