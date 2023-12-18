@@ -80,7 +80,7 @@ VL_INLINE_OPT void Vcpu___024root___nba_sequent__TOP__0(Vcpu___024root* vlSelf) 
     if (VL_UNLIKELY(vlSelf->cpu__DOT__en_PMEM)) {
         Vcpu___024unit____Vdpiimwrap_pmem_read_TOP____024unit(vlSelf->cpu__DOT__src_rd_ALU, __Vtask_pmem_read__1__rdata);
         vlSelf->cpu__DOT__src_rd_PMEM_origin = __Vtask_pmem_read__1__rdata;
-        VL_WRITEF("RESV:%x\n",32,vlSelf->cpu__DOT__src_rd_PMEM_origin);
+        VL_WRITEF("[RESV:%x]\n",32,vlSelf->cpu__DOT__src_rd_PMEM_origin);
         if ((0x23U == (0x7fU & vlSelf->cmd))) {
             Vcpu___024unit____Vdpiimwrap_pmem_write_TOP____024unit(vlSelf->cpu__DOT__src_rd_ALU, vlSelf->cpu__DOT__src2, (IData)(vlSelf->cpu__DOT__op_PMEM));
         }

@@ -12,7 +12,7 @@ import "DPI-C" function void pmem_write(
 
 
 module PMEM(
-	input clk,
+	//input clk,
 	//读写请求
 	input valid,
 	input [31:0] raddr,
@@ -28,7 +28,7 @@ module PMEM(
 
 	
 	//reg [31:0] rdata_tmp;
-	always @(posedge clk) begin
+	always @(*) begin
   		if (valid) begin // 有读写请求时
     		pmem_read(raddr, rdata);
     		$display("[RESV:%x]",rdata);
