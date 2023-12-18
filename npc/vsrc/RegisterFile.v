@@ -6,8 +6,8 @@ module RegisterFile #(DATA_WIDTH=32,REG_NUM=32,REG_NUM_BIT=5)  (
   input [DATA_WIDTH-1:0] wdata,//写rd
   input [REG_NUM_BIT-1:0] waddr,//写rd
   input wen,//写使能
-  output reg [DATA_WIDTH-1:0] rdata_a,//读rs1
-  output reg [DATA_WIDTH-1:0] rdata_b//读rs2
+  output [DATA_WIDTH-1:0] rdata_a,//读rs1
+  output [DATA_WIDTH-1:0] rdata_b//读rs2
 );
   reg [DATA_WIDTH-1:0] rf [REG_NUM-1:0];
   always @(posedge clk) begin
@@ -15,12 +15,11 @@ module RegisterFile #(DATA_WIDTH=32,REG_NUM=32,REG_NUM_BIT=5)  (
 	rf[0] <= 0; //debug:最好还是一直保持0号寄存器为0
 	if (waddr==5'b1111) $display("WRITING TO a5,VAL=%b",wdata);
 	if (raddr_a==5'b1111) $display("READING TO a5,VAL=%b",rdata_a);
-	rdata_a <= (raddr_a=='b0) ? 'b0 : rf[raddr_a];
-	rdata_b <= (raddr_b=='b0) ? 'b0 : rf[raddr_b];
-
   end
   
-    
+  assign rdata_a = (raddr_a=='b0) ? 'b0 : rf[raddr_a];
+  assign rdata_b = (raddr_b=='b0) ? 'b0 : rf[raddr_b];
+  
   always @(posedge clk) begin
 		/*$display("==FROM RF==\n");
 		$display("wdata=%b",wdata);
