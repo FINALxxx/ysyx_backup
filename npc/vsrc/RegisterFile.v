@@ -13,6 +13,7 @@ module RegisterFile #(DATA_WIDTH=32,REG_NUM=32,REG_NUM_BIT=5)  (
   always @(posedge clk) begin
     if (wen) rf[waddr] <= wdata;
 	rf[0] <= 0; //debug:最好还是一直保持0号寄存器为0
+	if (waddr==5'b1111) $display("WRITING TO a5")
   end
   
   assign rdata_a = (raddr_a=='b0) ? 'b0 : rf[raddr_a];
@@ -28,8 +29,8 @@ module RegisterFile #(DATA_WIDTH=32,REG_NUM=32,REG_NUM_BIT=5)  (
 		$display("wdata=%b",wdata);
 		$display("waddr=%b",waddr);*/
 		$display("sp=%b\n",rf[5'b0010]);
-		$display("a5=%b\n",rf[5'b1110]);
-		$display("a4=%b\n",rf[5'b1111]);
+		$display("a4=%b\n",rf[5'b1110]);
+		$display("a5=%b\n",rf[5'b1111]);
 		$display("\n");
   end
 endmodule

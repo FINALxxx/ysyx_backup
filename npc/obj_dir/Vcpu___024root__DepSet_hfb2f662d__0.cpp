@@ -947,7 +947,7 @@ VL_INLINE_OPT void Vcpu___024root___ico_sequent__TOP__0(Vcpu___024root* vlSelf) 
                                      ? vlSelf->cpu__DOT__alu1__DOT__mux1__DOT__i0__DOT__lut_out
                                      : 0U);
     vlSelf->dnpc = (vlSelf->cpu__DOT__a0 + vlSelf->cpu__DOT__b0);
-    VL_WRITEF("pc=%x\n=========================================\n\nrs1=%b\nrs2=%b\nsrc1=%b\nsrc2=%b\nrd=%b\nop-imm=%b\nimm=%b\n\n\nALUsel=%b\nALUAsrc=%b\nALUBsrc=%b\nALU_result=%x\na1=%b\nb1=%b\n",
+    VL_WRITEF("=========================================\n\npc=%x\nrs1=%b\nrs2=%b\nsrc1=%b\nsrc2=%b\nrd=%b\nop-imm=%b\nimm=%b\n\n\nALUsel=%b\nALUAsrc=%b\nALUBsrc=%b\nALU_result=%x\na1=%b\nb1=%b\n",
               32,vlSelf->pc,5,(0x1fU & (vlSelf->cmd 
                                         >> 0xfU)),5,
               (0x1fU & (vlSelf->cmd >> 0x14U)),32,vlSelf->cpu__DOT__src1,
@@ -1463,7 +1463,7 @@ VL_INLINE_OPT void Vcpu___024root___nba_sequent__TOP__1(Vcpu___024root* vlSelf) 
                                      ? vlSelf->cpu__DOT__alu1__DOT__mux1__DOT__i0__DOT__lut_out
                                      : 0U);
     vlSelf->dnpc = (vlSelf->cpu__DOT__a0 + vlSelf->cpu__DOT__b0);
-    VL_WRITEF("pc=%x\n=========================================\n\nrs1=%b\nrs2=%b\nsrc1=%b\nsrc2=%b\nrd=%b\nop-imm=%b\nimm=%b\n\n\nALUsel=%b\nALUAsrc=%b\nALUBsrc=%b\nALU_result=%x\na1=%b\nb1=%b\n",
+    VL_WRITEF("=========================================\n\npc=%x\nrs1=%b\nrs2=%b\nsrc1=%b\nsrc2=%b\nrd=%b\nop-imm=%b\nimm=%b\n\n\nALUsel=%b\nALUAsrc=%b\nALUBsrc=%b\nALU_result=%x\na1=%b\nb1=%b\n",
               32,vlSelf->pc,5,(0x1fU & (vlSelf->cmd 
                                         >> 0xfU)),5,
               (0x1fU & (vlSelf->cmd >> 0x14U)),32,vlSelf->cpu__DOT__src1,
