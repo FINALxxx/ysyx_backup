@@ -10,7 +10,7 @@ module cpu(
 	//rs1、rs2、rd是寄存器序号，src1、src2、src_rd、imm是数据
     wire [4:0] rs1,rs2,rd;
     wire [31:0] src1,src2,imm,src_rd;
-	wire [31:0] src_rd_ALU,src_rd_PMEM;
+	wire [31:0] src_rd_ALU,src_rd_PMEM,src_rd_PMEM_origin;
     wire [2:0] op_IMM;
     assign rs1 = cmd[19:15];
     assign rs2 = cmd[24:20];
@@ -106,7 +106,12 @@ module cpu(
 	//PMEM_src_mux
 	assign src_rd = load?src_rd_PMEM:src_rd_ALU;
 	assign en_PMEM = load | store;
-	
+	MuxKeyWithDefault #(3, 2, 32) mux5(src_rd_PMEM,op_load_sext,src_rd_PMEM_origin,{
+            2'b00,	  src_rd_PMEM_origin,
+            2'b01,	  { {24{src_rd_PMEM_origin[7]}}, src_rd_PMEM_origin[7:0]},
+            2'b10,	  { {16{src_rd_PMEM_origin[15]}}, src_rd_PMEM_origin[15:0]}
+    });
+
 
     /* end */
 
@@ -134,15 +139,18 @@ module cpu(
     );
 
 	PMEM pmem1(
+		.clk(clk),
 		.valid(en_PMEM),
 		.raddr(src_rd_ALU),
-		.rdata(src_rd_PMEM),//准备将pmem读取到reg(rd)
+		.rdata(src_rd_PMEM_origin),//准备将pmem读取到reg(rd)
 		.wen(store),
 		.waddr(src_rd_ALU),
 		.wdata(src2),//准备将reg(rs2)写入到pmem
 		.wmask(op_PMEM),
-		.op_load_sext(op_load_sext)
+		//.op_load_sext(op_load_sext)
 	);
+
+	
 
 	//测试用，实现后一定要删除
     always @(*) begin
