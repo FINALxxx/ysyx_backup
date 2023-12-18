@@ -160,7 +160,9 @@ module ControlUnit(
 	assign op_load_sext[1] = ~funct3[2] & funct3[0];
 /* END PMEM掩码与移位分类 */
 
-
+	always @(*) begin 
+		$display("CU_op_ALU_sel=%b",op_ALU_sel);
+	end
 
     reg is_halt;
 	always @(posedge clk) begin
