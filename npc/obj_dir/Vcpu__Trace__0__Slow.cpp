@@ -1100,19 +1100,18 @@ VL_ATTR_COLD void Vcpu___024root__trace_full_sub_0(Vcpu___024root* vlSelf, Veril
     bufp->fullBit(oldp+355,((0x37U == (0x7fU & vlSelf->cmd))));
     bufp->fullCData(oldp+356,((0x1fU & (vlSelf->cmd 
                                         >> 2U))),5);
-    bufp->fullQData(oldp+357,((0x804511a8940000ULL 
-                               | (((QData)((IData)(
-                                                   ((0x40000000U 
-                                                     & vlSelf->cmd)
-                                                     ? 8U
-                                                     : 0U))) 
-                                   << 0x31U) | (QData)((IData)(
-                                                               (0x3377U 
-                                                                | (((0x40000000U 
-                                                                     & vlSelf->cmd)
-                                                                     ? 0xdU
-                                                                     : 5U) 
-                                                                   << 0xeU))))))),56);
+    bufp->fullQData(oldp+357,((0x4511a8940000ULL | 
+                               (((QData)((IData)(((0x40000000U 
+                                                   & vlSelf->cmd)
+                                                   ? 8U
+                                                   : 0U))) 
+                                 << 0x31U) | (QData)((IData)(
+                                                             (0x3377U 
+                                                              | (((0x40000000U 
+                                                                   & vlSelf->cmd)
+                                                                   ? 0xdU
+                                                                   : 5U) 
+                                                                 << 0xeU))))))),56);
     bufp->fullQData(oldp+359,((0x89d44cddc8d0ULL | (QData)((IData)(
                                                                    ((0x40000000U 
                                                                      & vlSelf->cmd)

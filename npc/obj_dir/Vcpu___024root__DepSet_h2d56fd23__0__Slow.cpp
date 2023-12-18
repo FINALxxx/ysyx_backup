@@ -39,7 +39,7 @@ VL_ATTR_COLD void Vcpu___024root___eval_initial__TOP(Vcpu___024root* vlSelf) {
     vlSelf->cpu__DOT__cu1__DOT__mux3__DOT__i0__DOT__key_list[4U] = 1U;
     vlSelf->cpu__DOT__cu1__DOT__mux3__DOT__i0__DOT__key_list[5U] = 2U;
     vlSelf->cpu__DOT__cu1__DOT__mux3__DOT__i0__DOT__key_list[6U] = 1U;
-    vlSelf->cpu__DOT__cu1__DOT__mux3__DOT__i0__DOT__key_list[7U] = 4U;
+    vlSelf->cpu__DOT__cu1__DOT__mux3__DOT__i0__DOT__key_list[7U] = 0U;
     vlSelf->cpu__DOT__cu1__DOT__mux3__DOT__i0__DOT__data_list[0U] = 7U;
     vlSelf->cpu__DOT__cu1__DOT__mux3__DOT__i0__DOT__data_list[1U] = 6U;
     vlSelf->cpu__DOT__cu1__DOT__mux3__DOT__i0__DOT__data_list[3U] = 4U;

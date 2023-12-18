@@ -491,18 +491,20 @@ void Vcpu___024root__trace_chg_sub_0(Vcpu___024root* vlSelf, VerilatedVcd::Buffe
     bufp->chgBit(oldp+354,((0x37U == (0x7fU & vlSelf->cmd))));
     bufp->chgCData(oldp+355,((0x1fU & (vlSelf->cmd 
                                        >> 2U))),5);
-    bufp->chgQData(oldp+356,((0x804511a8940000ULL | 
-                              (((QData)((IData)(((0x40000000U 
-                                                  & vlSelf->cmd)
-                                                  ? 8U
-                                                  : 0U))) 
-                                << 0x31U) | (QData)((IData)(
-                                                            (0x3377U 
-                                                             | (((0x40000000U 
-                                                                  & vlSelf->cmd)
-                                                                  ? 0xdU
-                                                                  : 5U) 
-                                                                << 0xeU))))))),56);
+    bufp->chgQData(oldp+356,((0x4511a8940000ULL | (
+                                                   ((QData)((IData)(
+                                                                    ((0x40000000U 
+                                                                      & vlSelf->cmd)
+                                                                      ? 8U
+                                                                      : 0U))) 
+                                                    << 0x31U) 
+                                                   | (QData)((IData)(
+                                                                     (0x3377U 
+                                                                      | (((0x40000000U 
+                                                                           & vlSelf->cmd)
+                                                                           ? 0xdU
+                                                                           : 5U) 
+                                                                         << 0xeU))))))),56);
     bufp->chgQData(oldp+358,((0x89d44cddc8d0ULL | (QData)((IData)(
                                                                   ((0x40000000U 
                                                                     & vlSelf->cmd)
