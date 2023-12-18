@@ -67,6 +67,7 @@ class Vcpu___024root final : public VerilatedModule {
         IData/*31:0*/ cpu__DOT__src1;
         IData/*31:0*/ cpu__DOT__src2;
         IData/*31:0*/ cpu__DOT__imm;
+        IData/*31:0*/ cpu__DOT__src_PMEM;
         IData/*31:0*/ cpu__DOT__src_rd_ALU;
         IData/*31:0*/ cpu__DOT__src_rd_PMEM;
         IData/*31:0*/ cpu__DOT__a0;
@@ -82,13 +83,14 @@ class Vcpu___024root final : public VerilatedModule {
         IData/*31:0*/ cpu__DOT__alu1__DOT__ADDER_result;
         IData/*31:0*/ cpu__DOT__alu1__DOT__SHIFT_result;
         IData/*31:0*/ cpu__DOT__alu1__DOT__add1__DOT__add_cin;
-        IData/*31:0*/ cpu__DOT__alu1__DOT__shift1__DOT____Vcellinp__mux1____pinNumber3;
     };
     struct {
+        IData/*31:0*/ cpu__DOT__alu1__DOT__shift1__DOT____Vcellinp__mux1____pinNumber3;
         IData/*31:0*/ cpu__DOT__alu1__DOT__shift1__DOT__mux1__DOT__i0__DOT__lut_out;
         IData/*31:0*/ cpu__DOT__alu1__DOT__mux1__DOT__i0__DOT__lut_out;
         IData/*31:0*/ cpu__DOT__pmem1__DOT__rdata_tmp;
         IData/*31:0*/ cpu__DOT__pmem1__DOT__mux1__DOT__i0__DOT__lut_out;
+        IData/*31:0*/ __VdfgTmp_h216426bd__0;
         IData/*31:0*/ __Vtask_pmem_read__1__rdata;
         IData/*31:0*/ __VstlIterCount;
         IData/*31:0*/ __VicoIterCount;
