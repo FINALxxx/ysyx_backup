@@ -86,7 +86,7 @@ module ControlUnit(
             3'b110,   3'b111
     });
 
-    assign load = I_LOAD;
+    assign load = I_LOAD | S;
     assign store = S;
 
 /* END 操作分类 */
