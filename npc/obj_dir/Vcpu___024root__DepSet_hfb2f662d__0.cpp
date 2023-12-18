@@ -624,10 +624,6 @@ VL_INLINE_OPT void Vcpu___024root___ico_sequent__TOP__0(Vcpu___024root* vlSelf) 
     vlSelf->cpu__DOT__a1 = vlSelf->cpu__DOT__mux3__DOT__i0__DOT__lut_out;
     vlSelf->cpu__DOT__cu1__DOT____VdfgTmp_h7f183419__0 
         = (IData)((2U == (6U & (IData)(vlSelf->cpu__DOT__cu1__DOT__branch))));
-    VL_WRITEF("CU_funct3=%b\nCU_op_ALU_sel=%b\nCU_I_sel=%b\nCU_R_sel=%b\n",
-              3,(7U & (vlSelf->cmd >> 0xcU)),4,(IData)(vlSelf->cpu__DOT__op_ALU_sel),
-              4,vlSelf->cpu__DOT__cu1__DOT__I_sel,4,
-              (IData)(vlSelf->cpu__DOT__cu1__DOT__R_sel));
     vlSelf->cpu__DOT__alu1__DOT__shift1__DOT____Vcellinp__mux1____pinNumber2 
         = (((0xdU != (IData)(vlSelf->cpu__DOT__op_ALU_sel)) 
             << 1U) | (1U != (IData)(vlSelf->cpu__DOT__op_ALU_sel)));
@@ -1061,10 +1057,6 @@ VL_INLINE_OPT void Vcpu___024root___nba_sequent__TOP__0(Vcpu___024root* vlSelf) 
         VL_WRITEF("WRITING TO a5\n");
     }
     Vcpu___024unit____Vdpiimwrap_halt_TOP____024unit(vlSelf->cpu__DOT__cu1__DOT__is_halt);
-    VL_WRITEF("sp=%b\n\na4=%b\n\na5=%b\n\n\n\n",32,
-              vlSelf->cpu__DOT__rf1__DOT__rf[2U],32,
-              vlSelf->cpu__DOT__rf1__DOT__rf[0xeU],
-              32,vlSelf->cpu__DOT__rf1__DOT__rf[0xfU]);
     __Vdlyvset__cpu__DOT__rf1__DOT__rf__v0 = 0U;
     if (((IData)(vlSelf->cpu__DOT__cu1__DOT____VdfgTmp_hf442cbef__0) 
          | ((0x6fU == (0x7fU & vlSelf->cmd)) | ((3U 
