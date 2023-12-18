@@ -9,7 +9,7 @@ module cpu(
 
 	//rs1、rs2、rd是寄存器序号，src1、src2、src_rd、imm是数据
     wire [4:0] rs1,rs2,rd;
-    wire [31:0] src1,src2,imm,src_rd,src_PMEM;
+    wire [31:0] src1,src2,imm,src_rd;
 	wire [31:0] src_rd_ALU,src_rd_PMEM;
     wire [2:0] op_IMM;
     assign rs1 = cmd[19:15];
@@ -106,16 +106,7 @@ module cpu(
 	//PMEM_src_mux
 	assign en_PMEM = load | store;
 	assign src_rd = load?src_rd_PMEM:src_rd_ALU;
-	adder add1(
-		.mode(1'b0),
-		.a(src1),
-		.b(imm),
-		.S_U(1'b1),
-		.result(src_PMEM),
-		.LESS(),
-		.IS_ZERO()
-	);
-
+	
 
     /* end */
 
@@ -144,10 +135,10 @@ module cpu(
 
 	PMEM pmem1(
 		.valid(en_PMEM),
-		.raddr(src_PMEM),
+		.raddr(src_rd_ALU),
 		.rdata(src_rd_PMEM),//准备将pmem读取到reg(rd)
 		.wen(store),
-		.waddr(src_PMEM),//debug:raddr和waddr不要用alu结果那条线，专线应该专用
+		.waddr(src_rd_ALU),
 		.wdata(src2),//准备将reg(rs2)写入到pmem
 		.wmask(op_PMEM),
 		.op_load_sext(op_load_sext)
