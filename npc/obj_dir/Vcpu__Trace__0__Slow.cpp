@@ -31,6 +31,7 @@ VL_ATTR_COLD void Vcpu___024root__trace_init_sub__TOP__0(Vcpu___024root* vlSelf,
     tracep->declBus(c+342,"src_rd", false,-1, 31,0);
     tracep->declBus(c+183,"src_rd_ALU", false,-1, 31,0);
     tracep->declBus(c+184,"src_rd_PMEM", false,-1, 31,0);
+    tracep->declBus(c+287,"src_rd_PMEM_origin", false,-1, 31,0);
     tracep->declBus(c+85,"op_IMM", false,-1, 2,0);
     tracep->declBit(c+86,"op_ALU_Asrc", false,-1);
     tracep->declBus(c+87,"op_ALU_Bsrc", false,-1, 1,0);
@@ -184,7 +185,7 @@ VL_ATTR_COLD void Vcpu___024root__trace_init_sub__TOP__0(Vcpu___024root* vlSelf,
     tracep->declBit(c+355,"U_LUI", false,-1);
     tracep->declBus(c+101,"branch", false,-1, 2,0);
     tracep->declBus(c+102,"branch_tmp", false,-1, 2,0);
-    tracep->declBit(c+301,"is_halt", false,-1);
+    tracep->declBit(c+288,"is_halt", false,-1);
     tracep->pushNamePrefix("mux1 ");
     tracep->declBus(c+381,"NR_KEY", false,-1, 31,0);
     tracep->declBus(c+390,"KEY_LEN", false,-1, 31,0);
@@ -511,6 +512,38 @@ VL_ATTR_COLD void Vcpu___024root__trace_init_sub__TOP__0(Vcpu___024root* vlSelf,
     tracep->declBus(c+389,"i", false,-1, 31,0);
     tracep->pushNamePrefix("genblk1 ");
     tracep->popNamePrefix(3);
+    tracep->pushNamePrefix("mux5 ");
+    tracep->declBus(c+381,"NR_KEY", false,-1, 31,0);
+    tracep->declBus(c+387,"KEY_LEN", false,-1, 31,0);
+    tracep->declBus(c+382,"DATA_LEN", false,-1, 31,0);
+    tracep->declBus(c+184,"out", false,-1, 31,0);
+    tracep->declBus(c+92,"key", false,-1, 1,0);
+    tracep->declBus(c+287,"default_out", false,-1, 31,0);
+    tracep->declArray(c+289,"lut", false,-1, 101,0);
+    tracep->pushNamePrefix("i0 ");
+    tracep->declBus(c+381,"NR_KEY", false,-1, 31,0);
+    tracep->declBus(c+387,"KEY_LEN", false,-1, 31,0);
+    tracep->declBus(c+382,"DATA_LEN", false,-1, 31,0);
+    tracep->declBus(c+384,"HAS_DEFAULT", false,-1, 31,0);
+    tracep->declBus(c+184,"out", false,-1, 31,0);
+    tracep->declBus(c+92,"key", false,-1, 1,0);
+    tracep->declBus(c+287,"default_out", false,-1, 31,0);
+    tracep->declArray(c+289,"lut", false,-1, 101,0);
+    tracep->declBus(c+388,"PAIR_LEN", false,-1, 31,0);
+    for (int i = 0; i < 3; ++i) {
+        tracep->declQuad(c+293+i*2,"pair_list", true,(i+0), 33,0);
+    }
+    for (int i = 0; i < 3; ++i) {
+        tracep->declBus(c+81+i*1,"key_list", true,(i+0), 1,0);
+    }
+    for (int i = 0; i < 3; ++i) {
+        tracep->declBus(c+299+i*1,"data_list", true,(i+0), 31,0);
+    }
+    tracep->declBus(c+284,"lut_out", false,-1, 31,0);
+    tracep->declBit(c+285,"hit", false,-1);
+    tracep->declBus(c+389,"i", false,-1, 31,0);
+    tracep->pushNamePrefix("genblk1 ");
+    tracep->popNamePrefix(3);
     tracep->pushNamePrefix("pc1 ");
     tracep->declBit(c+334,"clk", false,-1);
     tracep->declBit(c+335,"rst", false,-1);
@@ -525,11 +558,11 @@ VL_ATTR_COLD void Vcpu___024root__trace_init_sub__TOP__0(Vcpu___024root* vlSelf,
     tracep->declBus(c+189,"b", false,-1, 31,0);
     tracep->declBit(c+408,"S_U", false,-1);
     tracep->declBus(c+338,"result", false,-1, 31,0);
-    tracep->declBit(c+284,"LESS", false,-1);
+    tracep->declBit(c+286,"LESS", false,-1);
     tracep->declBit(c+377,"IS_ZERO", false,-1);
     tracep->declBit(c+378,"overflow", false,-1);
-    tracep->declBit(c+284,"carry", false,-1);
-    tracep->declBit(c+284,"LESS_u", false,-1);
+    tracep->declBit(c+286,"carry", false,-1);
+    tracep->declBit(c+286,"LESS_u", false,-1);
     tracep->declBit(c+379,"LESS_s", false,-1);
     tracep->declBus(c+189,"add_cin", false,-1, 31,0);
     tracep->popNamePrefix(1);
@@ -543,47 +576,16 @@ VL_ATTR_COLD void Vcpu___024root__trace_init_sub__TOP__0(Vcpu___024root* vlSelf,
     tracep->declBit(c+408,"wen", false,-1);
     tracep->popNamePrefix(2);
     tracep->pushNamePrefix("pmem1 ");
+    tracep->declBit(c+334,"clk", false,-1);
     tracep->declBit(c+91,"valid", false,-1);
     tracep->declBus(c+183,"raddr", false,-1, 31,0);
     tracep->declBus(c+92,"op_load_sext", false,-1, 1,0);
-    tracep->declBus(c+184,"rdata", false,-1, 31,0);
+    tracep->declBus(c+287,"rdata", false,-1, 31,0);
     tracep->declBit(c+345,"wen", false,-1);
     tracep->declBus(c+183,"waddr", false,-1, 31,0);
     tracep->declBus(c+182,"wdata", false,-1, 31,0);
     tracep->declBus(c+90,"wmask", false,-1, 7,0);
-    tracep->declBus(c+285,"rdata_tmp", false,-1, 31,0);
-    tracep->pushNamePrefix("mux1 ");
-    tracep->declBus(c+381,"NR_KEY", false,-1, 31,0);
-    tracep->declBus(c+387,"KEY_LEN", false,-1, 31,0);
-    tracep->declBus(c+382,"DATA_LEN", false,-1, 31,0);
-    tracep->declBus(c+184,"out", false,-1, 31,0);
-    tracep->declBus(c+92,"key", false,-1, 1,0);
-    tracep->declBus(c+285,"default_out", false,-1, 31,0);
-    tracep->declArray(c+286,"lut", false,-1, 101,0);
-    tracep->pushNamePrefix("i0 ");
-    tracep->declBus(c+381,"NR_KEY", false,-1, 31,0);
-    tracep->declBus(c+387,"KEY_LEN", false,-1, 31,0);
-    tracep->declBus(c+382,"DATA_LEN", false,-1, 31,0);
-    tracep->declBus(c+384,"HAS_DEFAULT", false,-1, 31,0);
-    tracep->declBus(c+184,"out", false,-1, 31,0);
-    tracep->declBus(c+92,"key", false,-1, 1,0);
-    tracep->declBus(c+285,"default_out", false,-1, 31,0);
-    tracep->declArray(c+286,"lut", false,-1, 101,0);
-    tracep->declBus(c+388,"PAIR_LEN", false,-1, 31,0);
-    for (int i = 0; i < 3; ++i) {
-        tracep->declQuad(c+290+i*2,"pair_list", true,(i+0), 33,0);
-    }
-    for (int i = 0; i < 3; ++i) {
-        tracep->declBus(c+81+i*1,"key_list", true,(i+0), 1,0);
-    }
-    for (int i = 0; i < 3; ++i) {
-        tracep->declBus(c+296+i*1,"data_list", true,(i+0), 31,0);
-    }
-    tracep->declBus(c+299,"lut_out", false,-1, 31,0);
-    tracep->declBit(c+300,"hit", false,-1);
-    tracep->declBus(c+389,"i", false,-1, 31,0);
-    tracep->pushNamePrefix("genblk1 ");
-    tracep->popNamePrefix(4);
+    tracep->popNamePrefix(1);
     tracep->pushNamePrefix("rf1 ");
     tracep->declBus(c+382,"DATA_WIDTH", false,-1, 31,0);
     tracep->declBus(c+382,"REG_NUM", false,-1, 31,0);
@@ -645,7 +647,7 @@ VL_ATTR_COLD void Vcpu___024root__trace_full_sub_0(Vcpu___024root* vlSelf, Veril
     VlWide<9>/*287:0*/ __Vtemp_h0b480982__0;
     VlWide<4>/*127:0*/ __Vtemp_hedab82a1__0;
     VlWide<4>/*127:0*/ __Vtemp_h2a03d93b__0;
-    VlWide<4>/*127:0*/ __Vtemp_hecfd874a__0;
+    VlWide<4>/*127:0*/ __Vtemp_h0be88f99__0;
     VlWide<6>/*191:0*/ __Vtemp_hdace3dd2__0;
     VlWide<3>/*95:0*/ __Vtemp_hb5bfc05d__0;
     VlWide<3>/*95:0*/ __Vtemp_hfc952c0a__0;
@@ -730,9 +732,9 @@ VL_ATTR_COLD void Vcpu___024root__trace_full_sub_0(Vcpu___024root* vlSelf, Veril
     bufp->fullCData(oldp+78,(vlSelf->cpu__DOT__mux4__DOT__i0__DOT__key_list[0]),2);
     bufp->fullCData(oldp+79,(vlSelf->cpu__DOT__mux4__DOT__i0__DOT__key_list[1]),2);
     bufp->fullCData(oldp+80,(vlSelf->cpu__DOT__mux4__DOT__i0__DOT__key_list[2]),2);
-    bufp->fullCData(oldp+81,(vlSelf->cpu__DOT__pmem1__DOT__mux1__DOT__i0__DOT__key_list[0]),2);
-    bufp->fullCData(oldp+82,(vlSelf->cpu__DOT__pmem1__DOT__mux1__DOT__i0__DOT__key_list[1]),2);
-    bufp->fullCData(oldp+83,(vlSelf->cpu__DOT__pmem1__DOT__mux1__DOT__i0__DOT__key_list[2]),2);
+    bufp->fullCData(oldp+81,(vlSelf->cpu__DOT__mux5__DOT__i0__DOT__key_list[0]),2);
+    bufp->fullCData(oldp+82,(vlSelf->cpu__DOT__mux5__DOT__i0__DOT__key_list[1]),2);
+    bufp->fullCData(oldp+83,(vlSelf->cpu__DOT__mux5__DOT__i0__DOT__key_list[2]),2);
     bufp->fullIData(oldp+84,(vlSelf->cpu__DOT__imm),32);
     bufp->fullCData(oldp+85,(vlSelf->cpu__DOT__op_IMM),3);
     bufp->fullBit(oldp+86,(vlSelf->cpu__DOT__op_ALU_Asrc));
@@ -983,57 +985,57 @@ VL_ATTR_COLD void Vcpu___024root__trace_full_sub_0(Vcpu___024root* vlSelf, Veril
     bufp->fullIData(oldp+281,(vlSelf->cpu__DOT__mux4__DOT__i0__DOT__data_list[2]),32);
     bufp->fullIData(oldp+282,(vlSelf->cpu__DOT__mux4__DOT__i0__DOT__lut_out),32);
     bufp->fullBit(oldp+283,(vlSelf->cpu__DOT__mux4__DOT__i0__DOT__hit));
-    bufp->fullBit(oldp+284,((1U & (IData)((1ULL & (
+    bufp->fullIData(oldp+284,(vlSelf->cpu__DOT__mux5__DOT__i0__DOT__lut_out),32);
+    bufp->fullBit(oldp+285,(vlSelf->cpu__DOT__mux5__DOT__i0__DOT__hit));
+    bufp->fullBit(oldp+286,((1U & (IData)((1ULL & (
                                                    ((QData)((IData)(vlSelf->cpu__DOT__a0)) 
                                                     + (QData)((IData)(vlSelf->cpu__DOT__b0))) 
                                                    >> 0x20U))))));
-    bufp->fullIData(oldp+285,(vlSelf->cpu__DOT__pmem1__DOT__rdata_tmp),32);
-    __Vtemp_hecfd874a__0[0U] = (IData)((0x200000000ULL 
+    bufp->fullIData(oldp+287,(vlSelf->cpu__DOT__src_rd_PMEM_origin),32);
+    bufp->fullBit(oldp+288,(vlSelf->cpu__DOT__cu1__DOT__is_halt));
+    __Vtemp_h0be88f99__0[0U] = (IData)((0x200000000ULL 
                                         | (QData)((IData)(
                                                           (((- (IData)(
                                                                        (1U 
-                                                                        & (vlSelf->cpu__DOT__pmem1__DOT__rdata_tmp 
+                                                                        & (vlSelf->cpu__DOT__src_rd_PMEM_origin 
                                                                            >> 0xfU)))) 
                                                             << 0x10U) 
                                                            | (0xffffU 
-                                                              & vlSelf->cpu__DOT__pmem1__DOT__rdata_tmp))))));
-    __Vtemp_hecfd874a__0[1U] = ((0xfffffffcU & (((- (IData)(
+                                                              & vlSelf->cpu__DOT__src_rd_PMEM_origin))))));
+    __Vtemp_h0be88f99__0[1U] = ((0xfffffffcU & (((- (IData)(
                                                             (1U 
-                                                             & (vlSelf->cpu__DOT__pmem1__DOT__rdata_tmp 
+                                                             & (vlSelf->cpu__DOT__src_rd_PMEM_origin 
                                                                 >> 7U)))) 
                                                  << 0xaU) 
                                                 | (0x3fcU 
-                                                   & (vlSelf->cpu__DOT__pmem1__DOT__rdata_tmp 
+                                                   & (vlSelf->cpu__DOT__src_rd_PMEM_origin 
                                                       << 2U)))) 
                                 | (IData)(((0x200000000ULL 
                                             | (QData)((IData)(
                                                               (((- (IData)(
                                                                            (1U 
-                                                                            & (vlSelf->cpu__DOT__pmem1__DOT__rdata_tmp 
+                                                                            & (vlSelf->cpu__DOT__src_rd_PMEM_origin 
                                                                                >> 0xfU)))) 
                                                                 << 0x10U) 
                                                                | (0xffffU 
-                                                                  & vlSelf->cpu__DOT__pmem1__DOT__rdata_tmp))))) 
+                                                                  & vlSelf->cpu__DOT__src_rd_PMEM_origin))))) 
                                            >> 0x20U)));
-    __Vtemp_hecfd874a__0[2U] = (4U | ((vlSelf->cpu__DOT__pmem1__DOT__rdata_tmp 
+    __Vtemp_h0be88f99__0[2U] = (4U | ((vlSelf->cpu__DOT__src_rd_PMEM_origin 
                                        << 4U) | (3U 
                                                  & ((- (IData)(
                                                                (1U 
-                                                                & (vlSelf->cpu__DOT__pmem1__DOT__rdata_tmp 
+                                                                & (vlSelf->cpu__DOT__src_rd_PMEM_origin 
                                                                    >> 7U)))) 
                                                     >> 0x16U))));
-    __Vtemp_hecfd874a__0[3U] = (vlSelf->cpu__DOT__pmem1__DOT__rdata_tmp 
+    __Vtemp_h0be88f99__0[3U] = (vlSelf->cpu__DOT__src_rd_PMEM_origin 
                                 >> 0x1cU);
-    bufp->fullWData(oldp+286,(__Vtemp_hecfd874a__0),102);
-    bufp->fullQData(oldp+290,(vlSelf->cpu__DOT__pmem1__DOT__mux1__DOT__i0__DOT__pair_list[0]),34);
-    bufp->fullQData(oldp+292,(vlSelf->cpu__DOT__pmem1__DOT__mux1__DOT__i0__DOT__pair_list[1]),34);
-    bufp->fullQData(oldp+294,(vlSelf->cpu__DOT__pmem1__DOT__mux1__DOT__i0__DOT__pair_list[2]),34);
-    bufp->fullIData(oldp+296,(vlSelf->cpu__DOT__pmem1__DOT__mux1__DOT__i0__DOT__data_list[0]),32);
-    bufp->fullIData(oldp+297,(vlSelf->cpu__DOT__pmem1__DOT__mux1__DOT__i0__DOT__data_list[1]),32);
-    bufp->fullIData(oldp+298,(vlSelf->cpu__DOT__pmem1__DOT__mux1__DOT__i0__DOT__data_list[2]),32);
-    bufp->fullIData(oldp+299,(vlSelf->cpu__DOT__pmem1__DOT__mux1__DOT__i0__DOT__lut_out),32);
-    bufp->fullBit(oldp+300,(vlSelf->cpu__DOT__pmem1__DOT__mux1__DOT__i0__DOT__hit));
-    bufp->fullBit(oldp+301,(vlSelf->cpu__DOT__cu1__DOT__is_halt));
+    bufp->fullWData(oldp+289,(__Vtemp_h0be88f99__0),102);
+    bufp->fullQData(oldp+293,(vlSelf->cpu__DOT__mux5__DOT__i0__DOT__pair_list[0]),34);
+    bufp->fullQData(oldp+295,(vlSelf->cpu__DOT__mux5__DOT__i0__DOT__pair_list[1]),34);
+    bufp->fullQData(oldp+297,(vlSelf->cpu__DOT__mux5__DOT__i0__DOT__pair_list[2]),34);
+    bufp->fullIData(oldp+299,(vlSelf->cpu__DOT__mux5__DOT__i0__DOT__data_list[0]),32);
+    bufp->fullIData(oldp+300,(vlSelf->cpu__DOT__mux5__DOT__i0__DOT__data_list[1]),32);
+    bufp->fullIData(oldp+301,(vlSelf->cpu__DOT__mux5__DOT__i0__DOT__data_list[2]),32);
     bufp->fullIData(oldp+302,(vlSelf->cpu__DOT__rf1__DOT__rf[0]),32);
     bufp->fullIData(oldp+303,(vlSelf->cpu__DOT__rf1__DOT__rf[1]),32);
     bufp->fullIData(oldp+304,(vlSelf->cpu__DOT__rf1__DOT__rf[2]),32);

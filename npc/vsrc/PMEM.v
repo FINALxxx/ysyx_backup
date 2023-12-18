@@ -15,7 +15,7 @@ module PMEM(
 	//读写请求
 	input valid,
 	input [31:0] raddr,
-	input [1:0] op_load_sext,
+	//input [1:0] op_load_sext,
 	output reg [31:0] rdata,
 
 	//写请求
