@@ -13,8 +13,8 @@ module RegisterFile #(DATA_WIDTH=32,REG_NUM=32,REG_NUM_BIT=5)  (
   always @(posedge clk) begin
     if (wen) rf[waddr] <= wdata;
 	rf[0] <= 0; //debug:最好还是一直保持0号寄存器为0
-	if (waddr==5'b1111) $display("WRITING TO a5,VAL=%b",wdara);
-	if (raddr==5'b1111) $display("READING TO a5,VAL=%b",rdara);
+	if (waddr==5'b1111) $display("WRITING TO a5,VAL=%b",wdata_a);
+	if (raddr_a==5'b1111) $display("READING TO a5,VAL=%b",rdata_a);
 	rdata_a <= (raddr_a=='b0) ? 'b0 : rf[raddr_a];
 	rdata_b <= (raddr_b=='b0) ? 'b0 : rf[raddr_b];
 
