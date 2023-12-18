@@ -42,6 +42,7 @@ extern "C" void halt(svBit is_halt){
 		NPCTRAP(cpu_data.pc,gpr(10));
 		difftest_is_ebreak = true;
 	}
+	tfp->close();
 	return;
 }
 
@@ -56,7 +57,6 @@ void cpu_terminate(){
 		printf("\nNPC EXIT: \033[0m\033[1;31mHIT BAD TRAP\033[0m at pc = %#010x\n\n",cpu_status.halt_pc);
 	}
 
-	tfp->close();
 	cpu->final();
 	delete cpu;
 }
