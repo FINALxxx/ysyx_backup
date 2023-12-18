@@ -146,7 +146,7 @@ module cpu(
 		.wen(store),
 		.waddr(src_rd_ALU),
 		.wdata(src2),//准备将reg(rs2)写入到pmem
-		.wmask(op_PMEM),
+		.wmask(op_PMEM)
 		//.op_load_sext(op_load_sext)
 	);
 
