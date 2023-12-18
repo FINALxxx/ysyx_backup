@@ -31,7 +31,7 @@ module PMEM(
 	always @(posedge clk) begin
   		if (valid) begin // 有读写请求时
     		pmem_read(raddr, rdata);
-    		$display("RESV:%x",rdata);
+    		$display("[RESV:%x]",rdata);
 			if (wen) begin // 有写请求时
       			pmem_write(waddr, wdata, wmask);
     		end
