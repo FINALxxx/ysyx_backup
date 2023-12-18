@@ -149,7 +149,7 @@ module cpu(
 		/*$display("cpu_dnpc=%x",dnpc);
 		$display("cmd=%x",cmd);   
 		//$display("clk=%b",clk);*/
-		$display("=========================================\n");
+		/*$display("=========================================\n");
         $display("pc=%x",pc);
 		$display("dnpc=%x",dnpc);
 		$display("rs1=%b",rs1);
@@ -164,7 +164,7 @@ module cpu(
 		$display("ALUBsrc=%b",op_ALU_Bsrc);
         $display("ALU_result=%x",src_rd_ALU);
 		$display("a1=%b",a1);
-        $display("b1=%b",b1);
+        $display("b1=%b",b1);*/
         /*display("src_rd=%b",src_rd);
         $display("PCAsrc=%b",op_PC_Asrc);
         $display("PCBsrc=%b",op_PC_Bsrc);
