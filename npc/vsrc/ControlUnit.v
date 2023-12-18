@@ -111,7 +111,7 @@ module ControlUnit(
 /* START ALU运算分类 */
 
     MuxKeyWithDefault #(8, 3, 4) mux3(R_sel,funct3,`AND,{
-            3'b100,	  (funct7?`SUB:`ADD),
+            3'b000,	  (funct7?`SUB:`ADD),
             3'b001,	  `SLL,
             3'b010,	  `SLT,
             3'b001,	  `SLTU,
