@@ -58,7 +58,7 @@ void difftest_init(const char* ref_so_file, long img_size, int port){
 }
 
 static void checkregs(CPU_state *cpu_data_ref, vaddr_t pc) {
-  if (!difftest_checkregs(cpu_data_ref, pc)) {//difftest_checkreg放在了cpu.cpp中
+  if (!difftest_checkregs(cpu_data_ref, pc) && !difftest_is_ebreak) {//difftest_checkreg放在了cpu.cpp中
     cpu_status.state = ABORT;
     cpu_status.halt_pc = pc;
     reg_display();
@@ -89,6 +89,7 @@ void difftest_step(vaddr_t pc, vaddr_t npc) {
 	ref_difftest_exec(1);
 	ref_difftest_regcpy(&cpu_data_ref, DIFFTEST_TO_DUT);
 	checkregs(&cpu_data_ref, pc);
+	reg_display();
 }
 
 
