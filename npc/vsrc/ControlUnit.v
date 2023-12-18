@@ -162,6 +162,8 @@ module ControlUnit(
 
 	always @(*) begin 
 		$display("CU_op_ALU_sel=%b",op_ALU_sel);
+		$display("CU_I_sel=%b",I_sel);
+		$display("CU_R_sel=%b",R_sel);
 	end
 
     reg is_halt;

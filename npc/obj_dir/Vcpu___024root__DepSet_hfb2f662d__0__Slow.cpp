@@ -633,6 +633,7 @@ VL_ATTR_COLD void Vcpu___024root___stl_sequent__TOP__0(Vcpu___024root* vlSelf) {
     vlSelf->cpu__DOT__a1 = vlSelf->cpu__DOT__mux3__DOT__i0__DOT__lut_out;
     vlSelf->cpu__DOT__cu1__DOT____VdfgTmp_h7f183419__0 
         = (IData)((2U == (6U & (IData)(vlSelf->cpu__DOT__cu1__DOT__branch))));
+    VL_WRITEF("CU_op_ALU_sel=%b\n",4,vlSelf->cpu__DOT__op_ALU_sel);
     vlSelf->cpu__DOT__alu1__DOT__shift1__DOT____Vcellinp__mux1____pinNumber2 
         = (((0xdU != (IData)(vlSelf->cpu__DOT__op_ALU_sel)) 
             << 1U) | (1U != (IData)(vlSelf->cpu__DOT__op_ALU_sel)));
