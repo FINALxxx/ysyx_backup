@@ -142,15 +142,15 @@ static void single_inst_debug(){
 
 extern void clk_update();
 void exec_once(){
-	if(cpu_status.state == ALIVE){
-		printf("%#010x:\t%#010x\n",cpu_data.pc,cpu_data.inst);
-	}
 	/* 执行前 */
 	//加载inst
 	set_cpu_inst();
 	//cpu_data更新inst
 	get_cpu_inst();
-	
+	if(cpu_status.state == ALIVE){
+		printf("%#010x:\t%#010x\n",cpu_data.pc,cpu_data.inst);
+	}
+
 	//执行inst
 	clk_update();
 

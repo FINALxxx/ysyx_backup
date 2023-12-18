@@ -151,7 +151,7 @@ module cpu(
 		//$display("clk=%b",clk);
 		//$display("pc=%x",pc);
 		$display("=========================================\n");*/
-        /*$display("rs1=%b",rs1);
+        $display("rs1=%b",rs1);
         $display("rs2=%b",rs2);
         $display("src1=%b",src1);
         $display("src2=%b",src2);
@@ -161,9 +161,9 @@ module cpu(
         $display("ALUsel=%b",op_ALU_sel);
 		$display("ALUAsrc=%b",op_ALU_Asrc);
 		$display("ALUBsrc=%b",op_ALU_Bsrc);
-        $display("ALU_result=%x",src_rd_ALU);*/
-		//$display("a1=%b",a1);
-        //$display("b1=%b",b1);
+        $display("ALU_result=%x",src_rd_ALU);
+		$display("a1=%b",a1);
+        $display("b1=%b",b1);
         /*display("src_rd=%b",src_rd);
         $display("PCAsrc=%b",op_PC_Asrc);
         $display("PCBsrc=%b",op_PC_Bsrc);
