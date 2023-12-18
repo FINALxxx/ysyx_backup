@@ -991,6 +991,40 @@ VL_INLINE_OPT void Vcpu___024root___nba_sequent__TOP__1(Vcpu___024root* vlSelf) 
     Vcpu__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vcpu___024root___nba_sequent__TOP__1\n"); );
     // Body
+    vlSelf->cpu__DOT__mux5__DOT__i0__DOT__lut_out = 
+        ((- (IData)(((IData)(vlSelf->cpu__DOT__op_load_sext) 
+                     == vlSelf->cpu__DOT__mux5__DOT__i0__DOT__key_list
+                     [0U]))) & vlSelf->cpu__DOT__mux5__DOT__i0__DOT__data_list
+         [0U]);
+    vlSelf->cpu__DOT__mux5__DOT__i0__DOT__hit = ((IData)(vlSelf->cpu__DOT__op_load_sext) 
+                                                 == 
+                                                 vlSelf->cpu__DOT__mux5__DOT__i0__DOT__key_list
+                                                 [0U]);
+    vlSelf->cpu__DOT__mux5__DOT__i0__DOT__lut_out = 
+        (vlSelf->cpu__DOT__mux5__DOT__i0__DOT__lut_out 
+         | ((- (IData)(((IData)(vlSelf->cpu__DOT__op_load_sext) 
+                        == vlSelf->cpu__DOT__mux5__DOT__i0__DOT__key_list
+                        [1U]))) & vlSelf->cpu__DOT__mux5__DOT__i0__DOT__data_list
+            [1U]));
+    vlSelf->cpu__DOT__mux5__DOT__i0__DOT__hit = ((IData)(vlSelf->cpu__DOT__mux5__DOT__i0__DOT__hit) 
+                                                 | ((IData)(vlSelf->cpu__DOT__op_load_sext) 
+                                                    == 
+                                                    vlSelf->cpu__DOT__mux5__DOT__i0__DOT__key_list
+                                                    [1U]));
+    vlSelf->cpu__DOT__mux5__DOT__i0__DOT__lut_out = 
+        (vlSelf->cpu__DOT__mux5__DOT__i0__DOT__lut_out 
+         | ((- (IData)(((IData)(vlSelf->cpu__DOT__op_load_sext) 
+                        == vlSelf->cpu__DOT__mux5__DOT__i0__DOT__key_list
+                        [2U]))) & vlSelf->cpu__DOT__mux5__DOT__i0__DOT__data_list
+            [2U]));
+    vlSelf->cpu__DOT__mux5__DOT__i0__DOT__hit = ((IData)(vlSelf->cpu__DOT__mux5__DOT__i0__DOT__hit) 
+                                                 | ((IData)(vlSelf->cpu__DOT__op_load_sext) 
+                                                    == 
+                                                    vlSelf->cpu__DOT__mux5__DOT__i0__DOT__key_list
+                                                    [2U]));
+    vlSelf->cpu__DOT__src_rd_PMEM = ((IData)(vlSelf->cpu__DOT__mux5__DOT__i0__DOT__hit)
+                                      ? vlSelf->cpu__DOT__mux5__DOT__i0__DOT__lut_out
+                                      : vlSelf->cpu__DOT__src_rd_PMEM_origin);
     vlSelf->cpu__DOT__mux3__DOT__i0__DOT__lut_out = 
         ((- (IData)(((IData)(vlSelf->cpu__DOT__op_ALU_Asrc) 
                      == vlSelf->cpu__DOT__mux3__DOT__i0__DOT__key_list

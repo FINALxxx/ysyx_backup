@@ -1,3 +1,4 @@
+/* verilator lint_off BLKSEQ */
 import "DPI-C" function void pmem_read(
 	input int raddr,
 	output int rdata
