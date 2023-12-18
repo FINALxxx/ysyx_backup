@@ -288,7 +288,7 @@ VL_ATTR_COLD void Vcpu___024root___ctor_var_reset(Vcpu___024root* vlSelf) {
     vlSelf->cpu__DOT__op_PC_Asrc = VL_RAND_RESET_I(1);
     vlSelf->cpu__DOT__op_PC_Bsrc = VL_RAND_RESET_I(1);
     vlSelf->cpu__DOT__op_PMEM = VL_RAND_RESET_I(8);
-    vlSelf->cpu__DOT__load = VL_RAND_RESET_I(1);
+    vlSelf->cpu__DOT__en_PMEM = VL_RAND_RESET_I(1);
     vlSelf->cpu__DOT__op_load_sext = VL_RAND_RESET_I(2);
     vlSelf->cpu__DOT__a0 = VL_RAND_RESET_I(32);
     vlSelf->cpu__DOT__b0 = VL_RAND_RESET_I(32);
