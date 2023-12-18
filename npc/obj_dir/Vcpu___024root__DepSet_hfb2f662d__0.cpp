@@ -1055,6 +1055,10 @@ VL_INLINE_OPT void Vcpu___024root___nba_sequent__TOP__0(Vcpu___024root* vlSelf) 
     // Body
     Vcpu___024unit____Vdpiimwrap_halt_TOP____024unit(vlSelf->cpu__DOT__cu1__DOT__is_halt);
     if (VL_UNLIKELY((0xfU == (0x1fU & (vlSelf->cmd 
+                                       >> 0xfU))))) {
+        VL_WRITEF("READING TO a5,VAL=%b\n",32,vlSelf->cpu__DOT__src1);
+    }
+    if (VL_UNLIKELY((0xfU == (0x1fU & (vlSelf->cmd 
                                        >> 7U))))) {
         VL_WRITEF("WRITING TO a5,VAL=%b\n",32,((3U 
                                                 == 
@@ -1062,10 +1066,6 @@ VL_INLINE_OPT void Vcpu___024root___nba_sequent__TOP__0(Vcpu___024root* vlSelf) 
                                                  & vlSelf->cmd))
                                                 ? vlSelf->cpu__DOT__src_rd_PMEM
                                                 : vlSelf->cpu__DOT__src_rd_ALU));
-    }
-    if (VL_UNLIKELY((0xfU == (0x1fU & (vlSelf->cmd 
-                                       >> 0xfU))))) {
-        VL_WRITEF("READING TO a5,VAL=%b\n",32,vlSelf->cpu__DOT__src1);
     }
     __Vdlyvset__cpu__DOT__rf1__DOT__rf__v0 = 0U;
     if (((IData)(vlSelf->cpu__DOT__cu1__DOT____VdfgTmp_hf442cbef__0) 
