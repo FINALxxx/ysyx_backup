@@ -27,7 +27,10 @@ static void out_pmem(paddr_t addr){
 
 word_t paddr_read(paddr_t addr, int len){
 	if(likely(in_pmem(addr))){
-		return ptr_read(paddr_to_ptr(addr),len);
+		//printf("[PADDR_READ:%x,%d]\n",addr,len);
+		word_t check = ptr_read(addr,len);
+		//printf("[CHECK_DATA:%x]\n",paddr_read(addr,len));
+		return check;
 	}
 
 	out_pmem(addr);
@@ -36,9 +39,9 @@ word_t paddr_read(paddr_t addr, int len){
 
 void paddr_write(paddr_t addr, int len, word_t data){
 	if(likely(in_pmem(addr))){
-		printf("[PADDR_WRITE:%x,%d,%x]\n",addr,len,data);
+		//printf("[PADDR_WRITE:%x,%d,%x]\n",addr,len,data);
 		ptr_write(paddr_to_ptr(addr),len,data);
-		printf("[CHECK_DATA:%x\n]",paddr_read(addr,len));
+		//printf("[CHECK_DATA:%x]\n",paddr_read(addr,len));
 		return;
 	}
 	out_pmem(addr);
