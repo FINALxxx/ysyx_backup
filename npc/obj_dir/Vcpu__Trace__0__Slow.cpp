@@ -579,7 +579,6 @@ VL_ATTR_COLD void Vcpu___024root__trace_init_sub__TOP__0(Vcpu___024root* vlSelf,
     tracep->declBit(c+334,"clk", false,-1);
     tracep->declBit(c+91,"valid", false,-1);
     tracep->declBus(c+183,"raddr", false,-1, 31,0);
-    tracep->declBus(c+92,"op_load_sext", false,-1, 1,0);
     tracep->declBus(c+287,"rdata", false,-1, 31,0);
     tracep->declBit(c+345,"wen", false,-1);
     tracep->declBus(c+183,"waddr", false,-1, 31,0);
