@@ -96,9 +96,9 @@ void clk_update(){//1clk
 
 void half_clk_update(){
 	cpu->eval();
-	cpu->clk^=1;
 	sim_time++;
 	tfp->dump(sim_time);
+	cpu->clk^=1;
 } 
 
 //下降沿读取
@@ -111,7 +111,7 @@ void cpu_init(){
 	cpu->trace(tfp,0);
 	tfp->open("wave.vcd");
 
-	cpu->clk = 1;
+	cpu->clk = 0;
 	cpu->rst = 1;
 	clk_update();
 	cpu->rst = 0;
