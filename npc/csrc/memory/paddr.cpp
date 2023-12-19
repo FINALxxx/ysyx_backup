@@ -27,9 +27,9 @@ static void out_pmem(paddr_t addr){
 
 word_t paddr_read(paddr_t addr, int len){
 	if(likely(in_pmem(addr))){
-		printf("[PADDR_READ:%x,%d]\n",addr,len);
+		//printf("[PADDR_READ:%x,%d]\n",addr,len);
 		word_t check = ptr_read(paddr_to_ptr(addr),len);
-		printf("[CHECK_DATA:%x]\n",check);
+		//printf("[CHECK_DATA:%x]\n",check);
 		return check;
 	}
 
