@@ -200,8 +200,6 @@ void exec(uint64_t n){
 				//TODO:输出调试信息
 
 			}
-			assert(0);
-
 			cpu_terminate();
 			
 		case QUIT://TERMINATE、ABORT时也成立
