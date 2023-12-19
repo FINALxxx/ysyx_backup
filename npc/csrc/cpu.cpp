@@ -142,24 +142,24 @@ static void single_inst_debug(){
 
 
 extern void half_clk_update();
+extern bool is_init;
 void exec_once(){
 	/* 执行前 */
-	//加载inst
 	set_cpu_inst();
 	
-	//执行inst
 	half_clk_update();
 	
-	//cpu_data更新inst
 	get_cpu_inst();
 
 	if(cpu_status.state == ALIVE){
 		printf("%#010x:\t%#010x\n",cpu_data.pc,cpu_data.inst);
 	}
-	half_clk_update();
+	if(!is_init){
+		half_clk_update();
+		is_init = false;
+	}
 	
 	/* 执行后 */
-	//cpu_data更新reg
 	get_cpu_reg();
 	inst_cnt++;
 
