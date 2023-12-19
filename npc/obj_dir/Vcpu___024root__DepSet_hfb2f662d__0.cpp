@@ -1087,7 +1087,7 @@ VL_INLINE_OPT void Vcpu___024root___nba_sequent__TOP__0(Vcpu___024root* vlSelf) 
                                                    & (vlSelf->cmd 
                                                       >> 7U));
     }
-    vlSelf->pc = ((IData)(vlSelf->rst) ? 0x7ffffffcU
+    vlSelf->pc = ((IData)(vlSelf->rst) ? 0x7ffffff8U
                    : vlSelf->dnpc);
     vlSelf->cpu__DOT__cu1__DOT__is_halt = (IData)((0x73U 
                                                    == 
