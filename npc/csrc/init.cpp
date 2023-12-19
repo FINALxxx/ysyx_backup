@@ -15,8 +15,6 @@ static int diff_port = 3085;//ref_difftest_raise_intr中的port
 VerilatedContext* env = NULL;
 Vcpu* cpu = NULL;
 VerilatedVcdC* tfp = NULL;
-bool is_init = true;
-
 unsigned char isa_logo[] = {
   0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x5f, 0x20, 0x20, 0x20, 0x20,
   0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20,
@@ -112,10 +110,9 @@ void cpu_init(){
 	cpu->trace(tfp,0);
 	tfp->open("wave.vcd");
 
-	cpu->clk = 1;
+	cpu->clk = 0;
 	cpu->rst = 1;
 
-	clk_update();
 	clk_update();
 	cpu->rst = 0;
 	printf(ANSI_FMT("PC_INIT",ANSI_FG_GREEN) ":" FMT_PADDR "\n",cpu->pc);
