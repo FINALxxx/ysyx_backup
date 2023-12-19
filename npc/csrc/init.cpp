@@ -111,7 +111,7 @@ void cpu_init(){
 	cpu->trace(tfp,0);
 	tfp->open("wave.vcd");
 
-	cpu->clk = 0;
+	cpu->clk = 1;
 	cpu->rst = 1;
 	clk_update();
 	cpu->rst = 0;
