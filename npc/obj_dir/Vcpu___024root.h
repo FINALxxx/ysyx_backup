@@ -38,7 +38,6 @@ class Vcpu___024root final : public VerilatedModule {
         CData/*0:0*/ cpu__DOT__cu1__DOT__is_halt;
         CData/*0:0*/ cpu__DOT__cu1__DOT____VdfgTmp_hf442cbef__0;
         CData/*0:0*/ cpu__DOT__cu1__DOT____VdfgTmp_hd4cadad9__0;
-        CData/*0:0*/ cpu__DOT__cu1__DOT____VdfgTmp_ha0272f88__0;
         CData/*0:0*/ cpu__DOT__cu1__DOT____VdfgTmp_h7f183419__0;
         CData/*2:0*/ cpu__DOT__cu1__DOT__mux1__DOT__i0__DOT__lut_out;
         CData/*0:0*/ cpu__DOT__cu1__DOT__mux1__DOT__i0__DOT__hit;
@@ -83,13 +82,12 @@ class Vcpu___024root final : public VerilatedModule {
         IData/*31:0*/ cpu__DOT__mux5__DOT__i0__DOT__lut_out;
         IData/*31:0*/ cpu__DOT__alu1__DOT__ADDER_result;
         IData/*31:0*/ cpu__DOT__alu1__DOT__SHIFT_result;
+        IData/*31:0*/ cpu__DOT__alu1__DOT__add1__DOT__add_cin;
     };
     struct {
-        IData/*31:0*/ cpu__DOT__alu1__DOT__add1__DOT__add_cin;
         IData/*31:0*/ cpu__DOT__alu1__DOT__shift1__DOT____Vcellinp__mux1____pinNumber3;
         IData/*31:0*/ cpu__DOT__alu1__DOT__shift1__DOT__mux1__DOT__i0__DOT__lut_out;
         IData/*31:0*/ cpu__DOT__alu1__DOT__mux1__DOT__i0__DOT__lut_out;
-        IData/*31:0*/ __Vtask_pmem_read__1__rdata;
         IData/*31:0*/ __VstlIterCount;
         IData/*31:0*/ __VicoIterCount;
         IData/*31:0*/ __VactIterCount;
