@@ -143,6 +143,7 @@ static void single_inst_debug(){
 
 extern void half_clk_update();
 void exec_once(){
+	/* 执行前 */
 	//执行inst
 	half_clk_update();
 
@@ -155,6 +156,9 @@ void exec_once(){
 	}
 	half_clk_update();
 	
+	/* 执行后 */
+	//cpu_data更新reg
+	get_cpu_reg();
 	
 
 }
@@ -183,7 +187,6 @@ void exec(uint64_t n){
 		inst_cnt++;
 		if(cpu_status.state == ALIVE) single_inst_debug();
 		else break;
-		get_cpu_reg();
 		//cpu_data更新下一周期的pc
 		get_cpu_pc();
 	}

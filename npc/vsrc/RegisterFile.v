@@ -19,8 +19,8 @@ module RegisterFile #(DATA_WIDTH=32,REG_NUM=32,REG_NUM_BIT=5)  (
   assign rdata_b = (raddr_b=='b0) ? 'b0 : rf[raddr_b];
   
   always @(posedge clk) begin
-		if (raddr_a==5'b1111) $display("READING TO a5,VAL=%b",rdata_a);
-		if (waddr==5'b1111) $display("WRITING TO a5,VAL=%b",wdata);
+		if (raddr_a==5'b10) $display("READING TO sp,VAL=%b",rdata_a);
+		if (waddr==5'b10) $display("WRITING TO sp,VAL=%b",wdata);
 
 		/*$display("==FROM RF==\n");
 		$display("wdata=%b",wdata);
