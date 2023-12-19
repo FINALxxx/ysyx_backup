@@ -142,6 +142,9 @@ static void single_inst_debug(){
 extern void clk_update();
 void exec_once(){
 	/* 执行前 */
+	//执行inst
+	clk_update();
+
 	//加载inst
 	set_cpu_inst();
 	//cpu_data更新inst
@@ -150,9 +153,7 @@ void exec_once(){
 		printf("%#010x:\t%#010x\n",cpu_data.pc,cpu_data.inst);
 	}
 
-	//执行inst
-	clk_update();
-
+	
 	/* 执行后 */
 	//cpu_data更新reg
 	get_cpu_reg();
