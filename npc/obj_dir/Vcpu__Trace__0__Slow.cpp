@@ -1283,5 +1283,5 @@ VL_ATTR_COLD void Vcpu___024root__trace_full_sub_0(Vcpu___024root* vlSelf, Veril
     bufp->fullIData(oldp+407,(2U),32);
     bufp->fullBit(oldp+408,(1U));
     bufp->fullBit(oldp+409,(0U));
-    bufp->fullIData(oldp+410,(0x7ffffff8U),32);
+    bufp->fullIData(oldp+410,(0x80000000U),32);
 }
