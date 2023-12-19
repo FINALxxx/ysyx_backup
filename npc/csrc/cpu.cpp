@@ -145,6 +145,7 @@ extern void half_clk_update();
 extern bool is_init;
 void exec_once(){
 	/* 执行前 */
+	half_clk_update();
 	set_cpu_inst();
 	
 	half_clk_update();
@@ -154,11 +155,7 @@ void exec_once(){
 	if(cpu_status.state == ALIVE){
 		printf("%#010x:\t%#010x\n",cpu_data.pc,cpu_data.inst);
 	}
-	if(!is_init){
-		half_clk_update();
-		is_init = false;
-	}
-	
+		
 	/* 执行后 */
 	get_cpu_reg();
 	inst_cnt++;
