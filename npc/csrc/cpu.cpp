@@ -170,8 +170,7 @@ void exec(uint64_t n){
 
 	switch(cpu_status.state){
 		case TERMINATE:case ABORT:
-			assert(0);
-
+			
 			printf("Program execution has ended. To restart the program, exit NPC and run again.\n");
 			
 		return;
@@ -201,6 +200,8 @@ void exec(uint64_t n){
 				//TODO:输出调试信息
 
 			}
+			assert(0);
+
 			cpu_terminate();
 			
 		case QUIT://TERMINATE、ABORT时也成立
