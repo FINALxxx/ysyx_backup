@@ -158,9 +158,10 @@ void exec_once(){
 	
 	/* 执行后 */
 	//cpu_data更新reg
-	get_cpu_reg();
 	single_inst_debug();
 
+	get_cpu_reg();
+	
 }
 
 
