@@ -153,14 +153,13 @@ void exec_once(){
 	get_cpu_inst();
 	if(cpu_status.state == ALIVE){
 		printf("%#010x:\t%#010x\n",cpu_data.pc,cpu_data.inst);
-		single_inst_debug();
 	}
 	half_clk_update();
 	
 	/* 执行后 */
 	//cpu_data更新reg
 	get_cpu_reg();
-	
+	single_inst_debug();
 
 }
 
