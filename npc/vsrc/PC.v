@@ -23,7 +23,7 @@ module PC(
     );
 
     //assign reset = ~(|npc) | rst;
-    Reg #(32,32'h7FFFFFFC) dnpc2pc (
+    Reg #(32,32'h7FFFFFF8) dnpc2pc (
         .clk(clk),
         .rst(rst),
         .din(dnpc),
