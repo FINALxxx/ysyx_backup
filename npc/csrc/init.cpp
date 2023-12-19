@@ -116,7 +116,7 @@ void cpu_init(){
 	clk_update();
 	cpu->rst = 0;
 	clk_update();
-	half_clk_update();
+	clk_update();
 	set_cpu_inst();
 	printf(ANSI_FMT("PC_INIT",ANSI_FG_GREEN) ":" FMT_PADDR "\n",cpu->pc);
 	get_cpu_pc();
