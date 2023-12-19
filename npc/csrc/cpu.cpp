@@ -58,8 +58,7 @@ void cpu_terminate(){
 	tfp->close();
 	cpu->final();
 	delete cpu;
-	Assert(0,"HALT\n");
-
+	
 }
 
 
@@ -172,6 +171,8 @@ void exec(uint64_t n){
 	switch(cpu_status.state){
 		case TERMINATE:case ABORT:
 			printf("Program execution has ended. To restart the program, exit NPC and run again.\n");
+		Assert(0,"HALT\n");
+
 		return;
 
 		default://STOP、ALIVE
