@@ -140,7 +140,7 @@ static void single_inst_debug(){
 }
 
 
-extern void clk_update();
+extern void half_clk_update();
 void exec_once(){
 	/* 执行前 */
 	//执行inst
