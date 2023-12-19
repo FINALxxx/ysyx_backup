@@ -159,7 +159,7 @@ void exec_once(){
 	/* 执行后 */
 	//cpu_data更新reg
 	get_cpu_reg();
-	single_inst_debug();
+	
 
 }
 
@@ -185,7 +185,8 @@ void exec(uint64_t n){
 	for(;n>0;n--){
 		exec_once();
 		inst_cnt++;
-		if(cpu_status.state != ALIVE) break;
+		if(cpu_status.state == ALIVE) single_inst_debug();
+		else break;
 		//cpu_data更新下一周期的pc
 		get_cpu_pc();
 	}
