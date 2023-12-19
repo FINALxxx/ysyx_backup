@@ -127,7 +127,7 @@ static void single_inst_debug(){
 	elf_call(cpu_data.pc,cpu_data.dnpc,cpu_data.inst);
 	
 	//DIFFTEST(REF = NEMU)
-	difftest_step(cpu_data.pc,cpu_data.dnpc);
+	//difftest_step(cpu_data.pc,cpu_data.dnpc);
 
 	//watchpoint update
 	uint32_t new_result=0;
