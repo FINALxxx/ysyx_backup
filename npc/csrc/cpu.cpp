@@ -111,11 +111,11 @@ bool difftest_checkregs(CPU_state* cpu_data_ref, vaddr_t pc){
 		if(gpr(i) != cpu_data_ref->gpr[i]){
 			//pc = cpu_data_ref->pc;
 			//printf("LOG=%d,%#010x\n",i,cpu_data_ref->gpr[i]);
-			assert(0);
 			return false;
 		}
-		return true;
 	}
+	return true;
+
 }
 
 
