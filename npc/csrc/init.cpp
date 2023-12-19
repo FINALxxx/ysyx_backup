@@ -113,7 +113,7 @@ void cpu_init(){
 	cpu->clk = 0;
 	cpu->rst = 1;
 
-	clk_update();
+	half_clk_update();
 	cpu->rst = 0;
 	half_clk_update();
 	set_cpu_inst();
