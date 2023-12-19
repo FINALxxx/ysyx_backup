@@ -153,6 +153,7 @@ void exec_once(){
 	get_cpu_inst();
 	if(cpu_status.state == ALIVE){
 		printf("%#010x:\t%#010x\n",cpu_data.pc,cpu_data.inst);
+		single_inst_debug();
 	}
 	half_clk_update();
 	
@@ -185,8 +186,7 @@ void exec(uint64_t n){
 	for(;n>0;n--){
 		exec_once();
 		inst_cnt++;
-		if(cpu_status.state == ALIVE) single_inst_debug();
-		else break;
+		if(cpu_status.state != ALIVE) break;
 		//cpu_data更新下一周期的pc
 		get_cpu_pc();
 	}

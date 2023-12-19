@@ -1054,13 +1054,11 @@ VL_INLINE_OPT void Vcpu___024root___nba_sequent__TOP__0(Vcpu___024root* vlSelf) 
     __Vdlyvset__cpu__DOT__rf1__DOT__rf__v0 = 0;
     // Body
     Vcpu___024unit____Vdpiimwrap_halt_TOP____024unit(vlSelf->cpu__DOT__cu1__DOT__is_halt);
-    if (VL_UNLIKELY((0xfU == (0x1fU & (vlSelf->cmd 
-                                       >> 0xfU))))) {
-        VL_WRITEF("READING TO a5,VAL=%b\n",32,vlSelf->cpu__DOT__src1);
+    if (VL_UNLIKELY((2U == (0x1fU & (vlSelf->cmd >> 0xfU))))) {
+        VL_WRITEF("READING TO sp,VAL=%b\n",32,vlSelf->cpu__DOT__src1);
     }
-    if (VL_UNLIKELY((0xfU == (0x1fU & (vlSelf->cmd 
-                                       >> 7U))))) {
-        VL_WRITEF("WRITING TO a5,VAL=%b\n",32,((3U 
+    if (VL_UNLIKELY((2U == (0x1fU & (vlSelf->cmd >> 7U))))) {
+        VL_WRITEF("WRITING TO sp,VAL=%b\n",32,((3U 
                                                 == 
                                                 (0x7fU 
                                                  & vlSelf->cmd))
