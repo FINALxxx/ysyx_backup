@@ -171,7 +171,7 @@ void exec(uint64_t n){
 	switch(cpu_status.state){
 		case TERMINATE:case ABORT:
 			printf("Program execution has ended. To restart the program, exit NPC and run again.\n");
-		Assert(0,"HALT\n");
+		Assert(1,"HALT\n");
 
 		return;
 
