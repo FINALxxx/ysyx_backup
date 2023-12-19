@@ -18,7 +18,8 @@ paddr_t ptr_to_paddr(byte_t* ptr){
 }
 
 static void out_pmem(paddr_t addr){
-	Assert(0,"<MEMORY> addr = " FMT_PADDR " is out of bound of pmem [" FMT_PADDR "] at pc = " FMT_WORD, addr, PMEM_LEFT, PMEM_RIGHT, cpu_data.pc);
+	Assert(0,"<MEMORY> addr = " FMT_PADDR " is out of bound of pmem [" FMT_PADDR "," FMT_PADDR "] at pc = " FMT_WORD, addr, PMEM_LEFT, PMEM_RIGHT, cpu_data.pc);
+	//printf("WRONG\n");
 
 }
 
@@ -26,7 +27,10 @@ static void out_pmem(paddr_t addr){
 
 word_t paddr_read(paddr_t addr, int len){
 	if(likely(in_pmem(addr))){
-		return ptr_read(paddr_to_ptr(addr),len);
+		//printf("[PADDR_READ:%x,%d]\n",addr,len);
+		word_t check = ptr_read(paddr_to_ptr(addr),len);
+		//printf("[CHECK_DATA:%x]\n",check);
+		return check;
 	}
 
 	out_pmem(addr);
@@ -35,9 +39,29 @@ word_t paddr_read(paddr_t addr, int len){
 
 void paddr_write(paddr_t addr, int len, word_t data){
 	if(likely(in_pmem(addr))){
+		//printf("[PADDR_WRITE:%x,%d,%x]\n",addr,len,data);
 		ptr_write(paddr_to_ptr(addr),len,data);
+		//printf("[CHECK_DATA:%x]\n",paddr_read(addr,len));
+		return;
 	}
 	out_pmem(addr);
+}
+
+extern "C" void pmem_read(int raddr, int *rdata) {
+	// 总是读取地址为`raddr & ~0x3u`的4字节返回给`rdata`
+	printf("PREAD:%x\n",raddr);
+	*rdata = paddr_read(raddr,4);
+	
+}
+extern "C" void pmem_write(int waddr, int wdata, char wmask) {
+	// 总是往地址为`waddr & ~0x3u`的4字节按写掩码`wmask`写入`wdata`
+	// `wmask`中每比特表示`wdata`中1个字节的掩码,
+	// 如`wmask = 0x3`代表只写入最低2个字节, 内存中的其它字节保持不变
+	printf("PWRITE:%x,%x,%x\n",waddr,wdata,wmask);
+	if(wmask == 0x1) paddr_write(waddr,1,wdata);
+	else if(wmask == 0x3) paddr_write(waddr,2,wdata);
+	else paddr_write(waddr,4,wdata);
+
 }
 
 

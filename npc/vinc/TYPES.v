@@ -35,6 +35,8 @@
 `define TYPE_S          7'b0100011
 `define TYPE_B          7'b1100011
 
-
-
+//此处的掩码是字掩码，最小单位是Byte，不是位掩码
+`define BYTE 8'b0000_0001
+`define HALF_WORD 8'b0000_1111
+`define WORD 8'b1111_1111
 

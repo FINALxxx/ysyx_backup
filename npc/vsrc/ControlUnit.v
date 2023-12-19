@@ -9,12 +9,16 @@ module ControlUnit(
     input funct7,
     input IS_ZERO,
     input LESS,
-    output [2:0] op_IMM,
-    output en_Wreg,
-    output store,
-    output load,
-	//output [2:0] op_PMEM,
-    output op_ALU_Asrc,//0表示选择src1，1表示选择PC
+    
+	output [2:0] op_IMM,
+    
+	output en_Wreg,
+	output load,//0表示将ALU结果给reg，1表示将PMEM结果给reg
+	output store,
+	output [7:0] op_PMEM,
+	output [1:0] op_load_sext,//00表示不扩展，01表示b拓展，10表示h拓展
+    
+	output op_ALU_Asrc,//0表示选择src1，1表示选择PC
     output [1:0] op_ALU_Bsrc,//00表示选择src2，01表示选择imm，10表示选择常数4（默认选择rs2）
     output [3:0] op_ALU_sel,
     output op_PC_Asrc,
@@ -82,9 +86,9 @@ module ControlUnit(
             3'b110,   3'b111
     });
 
-	//assign branch_signal = 1'b1;
+    //assign load = I_LOAD | S;
     assign load = I_LOAD;
-    assign store = S;
+	assign store = S;
 
 /* END 操作分类 */
 
@@ -105,10 +109,10 @@ module ControlUnit(
 
 /* END ALU操作数分类 */
 
-/* START 运算分类 */
+/* START ALU运算分类 */
 
-    MuxKeyWithDefault #(8, 3, 4) mux3(R_sel,funct3,`AND,{
-            3'b100,	  (funct7?`SUB:`ADD),
+    MuxKeyWithDefault #(8, 3, 4) mux3(R_sel,funct3,`ADD,{
+            3'b000,	  (funct7?`SUB:`ADD),
             3'b001,	  `SLL,
             3'b010,	  `SLT,
             3'b001,	  `SLTU,
@@ -118,7 +122,7 @@ module ControlUnit(
             3'b111,	  `AND
     });
 
-    MuxKeyWithDefault #(8, 3, 4) mux4(I_sel,funct3,`AND,{
+    MuxKeyWithDefault #(8, 3, 4) mux4(I_sel,funct3,`ADD,{
             3'b000,   `ADD,
             3'b010,   `SLT,
             3'b011,	  `SLTU,
@@ -130,11 +134,11 @@ module ControlUnit(
     });
 
 
-    assign op_ALU_sel = I?I_sel:
-                    R?R_sel:
-                    (I_JALR|J)?`ADD:`ADD;
+    assign op_ALU_sel = I ?	I_sel :
+						R ?	R_sel :
+               (I_JALR|J) ?	`ADD  :	`ADD;
 
-/* END 运算分类 */
+/* END ALU运算分类 */
 
 
 
@@ -145,6 +149,24 @@ module ControlUnit(
 
 /*  END PC操作数分类 */
 
+/* START PMEM掩码与移位分类 */
+	MuxKeyWithDefault #(5, 3, 8) mux5(op_PMEM,funct3,`BYTE,{
+            3'b000,   `BYTE,
+            3'b001,   `HALF_WORD,
+            3'b010,	  `WORD,
+            3'b100,	  `BYTE,
+            3'b101,	  `HALF_WORD
+    });
+	assign op_load_sext[0] = ~funct3[0] & ~funct3[1] & ~funct3[2];
+	assign op_load_sext[1] = ~funct3[2] & funct3[0];
+/* END PMEM掩码与移位分类 */
+
+	/*always @(*) begin
+		$display("CU_funct3=%b",funct3);
+		$display("CU_op_ALU_sel=%b",op_ALU_sel);
+		$display("CU_I_sel=%b",I_sel);
+		$display("CU_R_sel=%b",R_sel);
+	end*/
 
     reg is_halt;
 	always @(posedge clk) begin

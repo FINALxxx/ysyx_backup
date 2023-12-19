@@ -18,16 +18,21 @@ module RegisterFile #(DATA_WIDTH=32,REG_NUM=32,REG_NUM_BIT=5)  (
   assign rdata_a = (raddr_a=='b0) ? 'b0 : rf[raddr_a];
   assign rdata_b = (raddr_b=='b0) ? 'b0 : rf[raddr_b];
   
-  /*always @(posedge clk) begin
-		$display("==FROM RF==\n");
+  always @(posedge clk) begin
+		if (raddr_a==5'b10) $display("READING TO sp,VAL=%b",rdata_a);
+		if (waddr==5'b10) $display("WRITING TO sp,VAL=%b",wdata);
+
+		/*$display("==FROM RF==\n");
 		$display("wdata=%b",wdata);
 		$display("waddr=%b",waddr);
 		$display("wen=%b",wen);
 		$display("clk=%b",clk);
 		$display("wen=%b",wen);
 		$display("wdata=%b",wdata);
-		$display("waddr=%b",waddr);
-		$display("x1=%b\n",rf[5'b00001]);
-		$display("\n");
-  end*/
+		$display("waddr=%b",waddr);*/
+		/*$display("sp=%b\n",rf[5'b0010]);
+		$display("a4=%b\n",rf[5'b1110]);
+		$display("a5=%b\n",rf[5'b1111]);
+		$display("\n");*/
+  end
 endmodule

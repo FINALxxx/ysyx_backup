@@ -18,6 +18,10 @@ extern "C" {
     // DPI IMPORTS
     // DPI import at /home/finalx/ysyx-workbench/npc/vsrc/ControlUnit.v:3:30
     extern void halt(svBit is_halt);
+    // DPI import at /home/finalx/ysyx-workbench/npc/vsrc/PMEM.v:2:30
+    extern void pmem_read(int raddr, int* rdata);
+    // DPI import at /home/finalx/ysyx-workbench/npc/vsrc/PMEM.v:7:30
+    extern void pmem_write(int waddr, int wdata, char wmask);
 
 #ifdef __cplusplus
 }

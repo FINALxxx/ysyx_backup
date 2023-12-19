@@ -64,7 +64,8 @@ __EXPORT void difftest_regcpy(void *dut, bool direction) {
 }
 
 __EXPORT void difftest_exec(uint64_t n) {
-  cpu_exec(n); 
+  cpu_exec(n);
+  isa_reg_display();
   //assert(0);
 }
 

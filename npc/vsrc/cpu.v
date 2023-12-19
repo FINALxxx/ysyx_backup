@@ -1,5 +1,4 @@
 /* verilator lint_off PINCONNECTEMPTY */
-
 module cpu(
     input clk,
     input rst,
@@ -11,6 +10,7 @@ module cpu(
 	//rs1、rs2、rd是寄存器序号，src1、src2、src_rd、imm是数据
     wire [4:0] rs1,rs2,rd;
     wire [31:0] src1,src2,imm,src_rd;
+	wire [31:0] src_rd_ALU,src_rd_PMEM,src_rd_PMEM_origin;
     wire [2:0] op_IMM;
     assign rs1 = cmd[19:15];
     assign rs2 = cmd[24:20];
@@ -19,14 +19,15 @@ module cpu(
     wire op_ALU_Asrc;
     wire [1:0] op_ALU_Bsrc;
     wire [3:0]op_ALU_sel;
-	
-	//wire branch_signal;
+	wire LESS,IS_ZERO;
+
     wire op_PC_Asrc;
     wire op_PC_Bsrc;
     
-	wire en_Wreg;
-    wire LESS,IS_ZERO;
-
+	wire [7:0] op_PMEM;
+	wire en_Wreg,load,store,en_PMEM;
+	wire [1:0] op_load_sext;
+    
     /* status setter */
     ControlUnit cu1(
 		.clk(clk),
@@ -37,9 +38,10 @@ module cpu(
         .IS_ZERO(IS_ZERO),
         .op_IMM(op_IMM),
         .en_Wreg(en_Wreg),
-        .store(),
-        .load(),
-		//.op_PMEM(),
+        .store(store),
+        .load(load),
+		.op_load_sext(op_load_sext),
+		.op_PMEM(op_PMEM),
         .op_ALU_Asrc(op_ALU_Asrc),
         .op_ALU_Bsrc(op_ALU_Bsrc),
         .op_ALU_sel(op_ALU_sel),
@@ -67,7 +69,8 @@ module cpu(
         .rdata_a(src1),
         .rdata_b(src2)
     );
-    /* end */
+
+	/* end */
 
 
     /* data mux */
@@ -99,6 +102,17 @@ module cpu(
     assign L_R = (op_ALU_sel!=`SLL);
     assign S_U = (op_ALU_sel!=`SLT);
     assign A_L = (op_ALU_sel!=`SRA);
+
+	//PMEM_src_mux
+	assign en_PMEM = load | store;
+	assign src_rd = load?src_rd_PMEM:src_rd_ALU;
+	MuxKeyWithDefault #(3, 2, 32) mux5(src_rd_PMEM,op_load_sext,src_rd_PMEM_origin,{
+            2'b00,	  src_rd_PMEM_origin,
+            2'b01,	  { {24{src_rd_PMEM_origin[7]}}, src_rd_PMEM_origin[7:0]},
+            2'b10,	  { {16{src_rd_PMEM_origin[15]}}, src_rd_PMEM_origin[15:0]}
+    });
+
+
     /* end */
 
     PC pc1(
@@ -119,35 +133,55 @@ module cpu(
         .Add_Sub(Add_Sub),
         .a(a1),
         .b(b1),
-        .result(src_rd),
+        .result(src_rd_ALU),
         .LESS(LESS),
         .IS_ZERO(IS_ZERO)
     );
 
+	PMEM pmem1(
+		//.clk(clk),
+		.valid(en_PMEM),
+		.raddr(src_rd_ALU),
+		.rdata(src_rd_PMEM_origin),//准备将pmem读取到reg(rd)
+		.wen(store),
+		.waddr(src_rd_ALU),
+		.wdata(src2),//准备将reg(rs2)写入到pmem
+		.wmask(op_PMEM)
+		//.op_load_sext(op_load_sext)
+	);
 
 	//测试用，实现后一定要删除
-    /*always @(*) begin
-		$display("cpu_dnpc=%x",dnpc);
+    always @(*) begin
+		/*$display("cpu_dnpc=%x",dnpc);
 		$display("cmd=%x",cmd);   
-		//$display("clk=%b",clk);
-		//$display("pc=%x",pc);
-		$display("=========================================\n");
-        $display("rs1=%b",rs1);
+		//$display("clk=%b",clk);*/
+		/*$display("=========================================\n");
+        $display("pc=%x",pc);
+		$display("dnpc=%x",dnpc);
+		$display("rs1=%b",rs1);
         $display("rs2=%b",rs2);
-        $display("rd=%b",rd);
+        $display("src1=%b",src1);
+        $display("src2=%b",src2);
+		$display("rd=%b",rd);
         $display("op-imm=%b",op_IMM);
 		$display("imm=%b\n\n",imm);
         $display("ALUsel=%b",op_ALU_sel);
 		$display("ALUAsrc=%b",op_ALU_Asrc);
 		$display("ALUBsrc=%b",op_ALU_Bsrc);
-        $display("a1=%b",a1);
-        $display("b1=%b",b1);
-        $display("src_rd=%b",src_rd);
+        $display("ALU_result=%x",src_rd_ALU);
+		$display("a1=%b",a1);
+        $display("b1=%b",b1);*/
+        /*display("src_rd=%b",src_rd);
         $display("PCAsrc=%b",op_PC_Asrc);
         $display("PCBsrc=%b",op_PC_Bsrc);
         $display("a0=%b",a0);
         $display("b0=%b",b0);
-    end*/
+		$display("is_load=%b",load);
+		$display("is_store=%b",store);
+		$display("is_pmem_valid=%b",en_PMEM);
+		$display("pmem_catgory=%b",op_PMEM);
+		*/
+    end
 	
 
 endmodule

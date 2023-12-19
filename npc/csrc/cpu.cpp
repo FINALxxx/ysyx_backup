@@ -1,6 +1,7 @@
 #include <cpu.h>
 #include <isa.h>
 #include <memory/vaddr.h>
+#include <verilated_vcd_c.h>
 #include "Vcpu___024root.h"
 #include <svdpi.h>
 #include <sdb/watchpoint.h>
@@ -44,6 +45,7 @@ extern "C" void halt(svBit is_halt){
 	return;
 }
 
+extern VerilatedVcdC* tfp;
 void cpu_terminate(){
 	if(cpu_status.state == ABORT){//ABORT
 		printf("\nNPC EXIT: \033[0m\033[1;31mABORT\033[0m at pc = %#010x\n\n",cpu_status.halt_pc);
@@ -53,10 +55,10 @@ void cpu_terminate(){
 		buffer_disp();
 		printf("\nNPC EXIT: \033[0m\033[1;31mHIT BAD TRAP\033[0m at pc = %#010x\n\n",cpu_status.halt_pc);
 	}
-
-	//m_trace->close();
+	tfp->close();
 	cpu->final();
 	delete cpu;
+	
 }
 
 
@@ -111,8 +113,9 @@ bool difftest_checkregs(CPU_state* cpu_data_ref, vaddr_t pc){
 			printf("LOG=%d,%#010x\n",i,cpu_data_ref->gpr[i]);
 			return false;
 		}
-		return true;
 	}
+	return true;
+
 }
 
 
@@ -124,7 +127,7 @@ static void single_inst_debug(){
 	elf_call(cpu_data.pc,cpu_data.dnpc,cpu_data.inst);
 	
 	//DIFFTEST(REF = NEMU)
-	difftest_step(cpu_data.pc,cpu_data.dnpc);
+	//difftest_step(cpu_data.pc,cpu_data.dnpc);
 
 	//watchpoint update
 	uint32_t new_result=0;
@@ -138,20 +141,19 @@ static void single_inst_debug(){
 }
 
 
-extern void clk_update();
+extern void half_clk_update();
 void exec_once(){
-	//加载inst
+	/* 执行前 */
 	set_cpu_inst();
-	//cpu_data更新inst
 	get_cpu_inst();
-	//执行inst
-	clk_update();
-	//cpu_data更新reg
-	get_cpu_reg();
 	if(cpu_status.state == ALIVE){
 		printf("%#010x:\t%#010x\n",cpu_data.pc,cpu_data.inst);
 	}
-
+		
+	half_clk_update();
+	/* 执行后 */
+	get_cpu_reg();
+	inst_cnt++;
 
 }
 
@@ -163,7 +165,9 @@ void exec(uint64_t n){
 
 	switch(cpu_status.state){
 		case TERMINATE:case ABORT:
+			
 			printf("Program execution has ended. To restart the program, exit NPC and run again.\n");
+			
 		return;
 
 		default://STOP、ALIVE
@@ -174,8 +178,6 @@ void exec(uint64_t n){
 	log_write("   %+7s\t\t%+15s\t\t\t%+10s\n","PC","INST","INST-HEX");
 	for(;n>0;n--){
 		exec_once();
-		sim_time++;
-		inst_cnt++;
 		if(cpu_status.state == ALIVE) single_inst_debug();
 		else break;
 		//cpu_data更新下一周期的pc
