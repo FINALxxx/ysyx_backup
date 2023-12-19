@@ -36,8 +36,8 @@ void set_cpu_status(int state, vaddr_t pc, int halt_ret) {
 
 extern "C" void halt(svBit is_halt){
 	//NPCTRAP(cpu->pc,10号寄存器($a0)的内容);
-	Assert(0,"HALT\n");
 	if(is_halt){
+		Assert(0,"HALT\n");
 		get_cpu_pc();
 		get_cpu_reg();
 		NPCTRAP(cpu_data.pc,gpr(10));
