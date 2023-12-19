@@ -146,12 +146,12 @@ void exec_once(){
 	/* 执行前 */
 	//加载inst
 	set_cpu_inst();
-	//cpu_data更新inst
-	get_cpu_inst();
-
-
+	
 	//执行inst
 	half_clk_update();
+	
+	//cpu_data更新inst
+	get_cpu_inst();
 
 	if(cpu_status.state == ALIVE){
 		printf("%#010x:\t%#010x\n",cpu_data.pc,cpu_data.inst);
@@ -161,7 +161,7 @@ void exec_once(){
 	/* 执行后 */
 	//cpu_data更新reg
 	get_cpu_reg();
-	
+	inst_cnt++;
 
 }
 
@@ -186,7 +186,6 @@ void exec(uint64_t n){
 	log_write("   %+7s\t\t%+15s\t\t\t%+10s\n","PC","INST","INST-HEX");
 	for(;n>0;n--){
 		exec_once();
-		inst_cnt++;
 		if(cpu_status.state == ALIVE) single_inst_debug();
 		else break;
 		//cpu_data更新下一周期的pc

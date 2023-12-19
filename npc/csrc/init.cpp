@@ -84,20 +84,20 @@ long bin_init(){
 extern vluint64_t sim_time; 
 void clk_update(){//1clk
 	cpu->eval();
-	sim_time++;
 	tfp->dump(sim_time);
+	sim_time++;
 	cpu->clk^=1;
 
-	cpu->eval();
-	sim_time++;
+	cpu->eval();	
 	tfp->dump(sim_time);
+	sim_time++;
 	cpu->clk^=1;
 }
 
 void half_clk_update(){
 	cpu->eval();
-	sim_time++;
 	tfp->dump(sim_time);
+	sim_time++;
 	cpu->clk^=1;
 } 
 
