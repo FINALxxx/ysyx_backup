@@ -94,7 +94,7 @@ void clk_update(){//1clk
 	cpu->clk^=1;
 }
 
-static inline void half_clk_update(){
+void half_clk_update(){
 	cpu->eval();
 	cpu->clk^=1;
 	sim_time++;
