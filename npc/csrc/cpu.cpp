@@ -144,11 +144,9 @@ static void single_inst_debug(){
 extern void half_clk_update();
 void exec_once(){
 	/* 执行前 */
-	set_cpu_inst();
-	
-		
-	get_cpu_inst();
 	half_clk_update();
+	set_cpu_inst();
+	get_cpu_inst();
 
 	if(cpu_status.state == ALIVE){
 		printf("%#010x:\t%#010x\n",cpu_data.pc,cpu_data.inst);
