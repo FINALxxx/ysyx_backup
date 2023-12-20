@@ -34,9 +34,9 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
               	fmt++;
                 switch(*fmt){
 					case 'd':
-						int_val = (long long)va_arg(ap,long long);
+						int_val = (int)va_arg(ap,int);
 						if(int_val<0) *out_ptr='-',out_ptr++,int_val=-int_val;
-						//if(int_val==0) int_reg[0]=0,int_cnt++;
+						if(int_val==0) int_reg[0]=0,int_cnt++;
 						for(;int_val;int_cnt++){
 							int_reg[int_cnt]=int_val%10;
 							//putch('0'+int_reg[int_cnt]);
