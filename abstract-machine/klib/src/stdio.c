@@ -13,6 +13,7 @@ int printf(const char *fmt, ...) {
 	char out[25536];
 	va_start(args,fmt);
 	int cnt = vsprintf(out,fmt,args); 
+	putch('2');
 	va_end(args);
 	
 	char* out_ptr=out;
