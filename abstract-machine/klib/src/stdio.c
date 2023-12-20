@@ -38,7 +38,7 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 						if(int_val<0) *out_ptr='-',out_ptr++,int_val=-int_val;
 						for(;int_val;int_cnt++){
 							int_reg[int_cnt]=int_val%10;
-							putch(int_reg[int_cnt]);
+							putch('0'+int_reg[int_cnt]);
 							int_val/=10;
 						}
 						cnt+=int_cnt;
