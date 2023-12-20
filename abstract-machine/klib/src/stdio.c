@@ -36,13 +36,13 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 					case 'd':
 						int_val = (int)va_arg(ap,int);
 						if(int_val<0) *out_ptr='-',out_ptr++,int_val=-int_val;
-						if(int_val==0) putch('F');
+						if(int_val==0) int_reg[0]=0,int_cnt++;
 						for(;int_val;int_cnt++){
 							int_reg[int_cnt]=int_val%10;
-							putch('0'+int_reg[int_cnt]);
+							//putch('0'+int_reg[int_cnt]);
 							int_val/=10;
 						}
-						putch('\n');
+						//putch('\n');
 						cnt+=int_cnt;
 						for(int i=int_cnt-1;i>=0;i--){
 							*out_ptr = '0'+int_reg[i];
