@@ -8,12 +8,14 @@
 int printf(const char *fmt, ...) {
 	//panic("Not implemented");
 	va_list args=NULL;
-	char* out=NULL;
+	//感觉printf内部不会调用vsprintf，因为这样会需要定义一个额外的buffer，而不是直接用可变参数
+	char out[25536];
 	va_start(args,fmt);
 	int cnt = vsprintf(out,fmt,args); 
 	va_end(args);
-
-	while(*out!='\0') putch(*out),out++;
+	
+	char* out_ptr=out;
+	while(*out_ptr!='\0') putch(*out_ptr),out_ptr++;
 
 	return cnt;	
 }
