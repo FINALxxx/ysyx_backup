@@ -57,6 +57,7 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 					default://ERROR
             			*out = ' ';
             			out_ptr++,cnt++;
+						assert(0);
 					break;
                 }
             break;
