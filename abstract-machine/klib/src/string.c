@@ -20,6 +20,7 @@ char *strncpy(char *dst, const char *src, size_t n) {
 }
 
 char *strcat(char *dst, const char *src) {
+	printf("%d\n",__LINE__);
 	char* dst_ptr = dst;
 	while(*dst_ptr != '\0') dst_ptr++;
 	while((*dst_ptr = *src) != '\0') dst_ptr++,src++;
