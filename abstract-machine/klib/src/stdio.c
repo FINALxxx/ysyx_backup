@@ -6,21 +6,24 @@
 #if !defined(__ISA_NATIVE__) || defined(__NATIVE_USE_KLIB__)
 
 int printf(const char *fmt, ...) {
-  panic("Not implemented");
+	//panic("Not implemented");
+	va_list args=NULL;
+	char* out=NULL;
+	va_start(args,fmt);
+	int cnt = vsprintf(out,fmt,args); 
+	va_end(args);
+
+	while(*out!='\0') putch(*out),out++;
+
+	return cnt;	
 }
 
 int vsprintf(char *out, const char *fmt, va_list ap) {
-  panic("Not implemented");
-}
-
-int sprintf(char *out, const char *fmt, ...) {
+	//panic("Not implemented");
 	int cnt=0;
 	char* out_ptr = out;
-	//while(*out_ptr!='\0') out_ptr++;
-	
-    va_list args=NULL;
-    va_start(args,fmt);
-    while(*fmt!='\0'){
+
+	while(*fmt!='\0'){
 		int int_val=0,int_cnt=0;
 		char int_reg[12]={'\0'};
         switch(*fmt){
@@ -28,7 +31,7 @@ int sprintf(char *out, const char *fmt, ...) {
               	fmt++;
                 switch(*fmt){
 					case 'd':
-						int_val = (int)va_arg(args,int);
+						int_val = (int)va_arg(ap,int);
 						if(int_val<0) *out_ptr='-',out_ptr++,int_val=-int_val;
 						for(;int_val;int_cnt++){
 							int_reg[int_cnt]=int_val%10;
@@ -42,12 +45,12 @@ int sprintf(char *out, const char *fmt, ...) {
 					break;
 
                 	case 'c':
-						*out_ptr = (char)va_arg(args,int);
+						*out_ptr = (char)va_arg(ap,int);
 						out_ptr++,cnt++;
 					break;
 					
                     case 's':
-                    	strcat(out_ptr,va_arg(args,char*));
+                    	strcat(out_ptr,va_arg(ap,char*));
                     	while(*out_ptr!='\0') out_ptr++,cnt++;
 					break;
 					
@@ -65,10 +68,17 @@ int sprintf(char *out, const char *fmt, ...) {
         }
         fmt++; 
     }
-    va_end(args);
     *out_ptr='\0';
-    return cnt;
+	return cnt;
+}
 
+int sprintf(char *out, const char *fmt, ...) {
+	//while(*out_ptr!='\0') out_ptr++;
+	va_list args=NULL;
+	va_start(args,fmt);
+	int cnt = vsprintf(out,fmt,args); 
+	va_end(args);
+	return cnt;
 }
 
 int snprintf(char *out, size_t n, const char *fmt, ...) {
