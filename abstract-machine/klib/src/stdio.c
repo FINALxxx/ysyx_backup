@@ -34,7 +34,7 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
               	fmt++;
                 switch(*fmt){
 					case 'd':
-						int_val = (int)va_arg(ap,int);
+						int_val = (int)va_arg(ap,signed int);
 						if(int_val<0) *out_ptr='-',out_ptr++,int_val=-int_val;
 						if(int_val==0) int_reg[0]=0,int_cnt++;
 						for(;int_val;int_cnt++){
@@ -63,7 +63,7 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 					default://ERROR
             			*out = ' ';
             			out_ptr++,cnt++;
-						//assert(0);
+						assert(0);
 					break;
                 }
             break;
