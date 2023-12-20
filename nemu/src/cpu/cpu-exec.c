@@ -123,12 +123,14 @@ void assert_fail_msg() {
 
 /* Simulate how the CPU works. */
 void cpu_exec(uint64_t n) {//如果赋值为-1，会下溢到uint64_t的max值，使得g_print_step为假，execute传入一个很大的值
+if(nemu_state.halt_pc == 0){
 #ifdef CONFIG_ITRACE
   init_buffer();//pa2.2:缓冲区初始化
 #endif
 #ifdef CONFIG_MTRACE
   init_mem_buffer();
 #endif
+}
   g_print_step = (n < MAX_INST_TO_PRINT);
   switch (nemu_state.state) {
     case NEMU_END: case NEMU_ABORT:
