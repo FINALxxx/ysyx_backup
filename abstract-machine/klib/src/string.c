@@ -5,7 +5,10 @@
 #if !defined(__ISA_NATIVE__) || defined(__NATIVE_USE_KLIB__)
 
 size_t strlen(const char *s) {
-  panic("Not implemented");
+	//panic("Not implemented");
+	size_t cnt = 0;
+	while(s[cnt]!='\0') cnt++;
+	return cnt;
 }
 
 char *strcpy(char *dst, const char *src) {
@@ -20,7 +23,6 @@ char *strncpy(char *dst, const char *src, size_t n) {
 }
 
 char *strcat(char *dst, const char *src) {
-	printf("TEST\n");
 	char* dst_ptr = dst;
 	while(*dst_ptr != '\0') dst_ptr++;
 	while((*dst_ptr = *src) != '\0') dst_ptr++,src++;
