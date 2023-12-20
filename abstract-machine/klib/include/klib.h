@@ -4,7 +4,7 @@
 #include <am.h>
 #include <stddef.h>
 #include <stdarg.h>
-#define __NATIVE_USE_KLIB__ 1
+//#define __NATIVE_USE_KLIB__ 1
 
 #ifdef __cplusplus
 extern "C" {
