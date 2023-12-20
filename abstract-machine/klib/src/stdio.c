@@ -41,6 +41,7 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 							putch('0'+int_reg[int_cnt]);
 							int_val/=10;
 						}
+						putch('\n');
 						cnt+=int_cnt;
 						for(int i=int_cnt-1;i>=0;i--){
 							*out_ptr = '0'+int_reg[i];
