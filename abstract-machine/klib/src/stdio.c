@@ -3,6 +3,7 @@
 #include <klib-macros.h>
 #include <stdarg.h>
 
+
 #if !defined(__ISA_NATIVE__) || defined(__NATIVE_USE_KLIB__)
 
 int printf(const char *fmt, ...) {
@@ -37,6 +38,7 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 						if(int_val<0) *out_ptr='-',out_ptr++,int_val=-int_val;
 						for(;int_val;int_cnt++){
 							int_reg[int_cnt]=int_val%10;
+							putch(int_reg[int_cnt]);
 							int_val/=10;
 						}
 						cnt+=int_cnt;
