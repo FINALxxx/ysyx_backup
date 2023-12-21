@@ -63,6 +63,7 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 						}
 						
 						if(int_cnt < width && USE_ZERO_EXPAND){
+							putch('a');
 							cnt += (width - int_cnt);
 							zero_expand((width-int_cnt), out_ptr);
 						}
