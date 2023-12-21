@@ -31,8 +31,8 @@ void zero_expand(int num,char* str){
 int record_num(const char* fmt){
 	int tmp = 0;
 	while(*(fmt+1) >= '1' && *(fmt+1) <= '9'){
-		tmp += *fmt - '0';
-		tmp *=10;
+		tmp *= 10;
+		tmp += *(fmt+1) - '0';
 		fmt++;
 		putch('a');
 	}
