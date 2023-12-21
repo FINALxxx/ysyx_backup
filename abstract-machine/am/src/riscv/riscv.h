@@ -3,6 +3,7 @@
 
 #include <stdint.h>
 
+//接受一个ptr，取地址的1BYTE/HALF_WORD/WORD
 static inline uint8_t  inb(uintptr_t addr) { return *(volatile uint8_t  *)addr; }
 static inline uint16_t inw(uintptr_t addr) { return *(volatile uint16_t *)addr; }
 static inline uint32_t inl(uintptr_t addr) { return *(volatile uint32_t *)addr; }
