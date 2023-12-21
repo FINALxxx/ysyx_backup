@@ -3,7 +3,6 @@
 #include <klib-macros.h>
 #include <stdarg.h>
 
-
 #if !defined(__ISA_NATIVE__) || defined(__NATIVE_USE_KLIB__)
 
 int printf(const char *fmt, ...) {
@@ -57,8 +56,7 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 					
                     case 's':
 						char* str = (char*)va_arg(ap,char*);
-						putch(str[0]);
-						putch('\n');
+						while(*str!='\0') putch(*str),str++;
 						while(*out_ptr!='\0') out_ptr++,cnt++;
 					break;
 					
