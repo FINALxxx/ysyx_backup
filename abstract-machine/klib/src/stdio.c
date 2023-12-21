@@ -28,14 +28,15 @@ void zero_expand(int num,char* str){
 	while(*str!='\0') str++;//追上strcat的部分
 }
 
-int record_num(const char* fmt){
-	int tmp = 0;
+int record_num(int* width,const char* fmt){
+	int tmp = 0, cnt = 0;
 	while(*(fmt+1) >= '1' && *(fmt+1) <= '9'){
 		tmp *= 10;
 		tmp += *(fmt+1) - '0';
-		fmt++;
+		fmt++,cnt++;
 	}
-	return tmp;
+	*width = tmp;
+	return cnt;
 }
 
 int vsprintf(char *out, const char *fmt, va_list ap) {
@@ -87,8 +88,7 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 
 					case '0'://左填充0
 						USE_ZERO_EXPAND = 1;
-						width = record_num(fmt);
-						fmt += width;
+						fmt += record_num(&width,fmt);
 					break;
 					
 				/* TODO
