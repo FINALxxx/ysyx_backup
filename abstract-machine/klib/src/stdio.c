@@ -9,7 +9,7 @@ int printf(const char *fmt, ...) {
 	//panic("Not implemented");
 	va_list args;
 	//感觉printf内部不会调用vsprintf，因为这样会需要定义一个额外的buffer，而不是直接用可变参数
-	char out[25536];
+	char out[25536];//没实现malloc之前别用
 	va_start(args,fmt);
 	int cnt = vsprintf(out,fmt,args); 
 	va_end(args);
