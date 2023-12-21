@@ -56,9 +56,10 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 					break;
 					
                     case 's':
-                    	strcat(out_ptr,va_arg(ap,char*));
-                    	while(*out_ptr!='\0') putch(*out_ptr),out_ptr++,cnt++;
+						char* str = (char*)va_arg(ap,char*);
+						putch(str[0]);
 						putch('\n');
+						while(*out_ptr!='\0') out_ptr++,cnt++;
 					break;
 					
 					default://ERROR
