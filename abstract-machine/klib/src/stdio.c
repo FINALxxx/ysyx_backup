@@ -57,6 +57,7 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
                     case 's':
 						char* str = (char*)va_arg(ap,char*);
 						while(*str!='\0') putch(*str),str++;
+						putch('\n');
 						while(*out_ptr!='\0') out_ptr++,cnt++;
 					break;
 					
