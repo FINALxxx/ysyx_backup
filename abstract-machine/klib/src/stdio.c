@@ -89,7 +89,7 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 
 					case '0'://左填充0
 						USE_ZERO_EXPAND = 1;
-						fmt += record_num(&width,fmt);
+						fmt += record_num(&width,fmt)-1;
 					break;
 					
 				/* TODO
