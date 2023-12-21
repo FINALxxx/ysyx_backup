@@ -34,7 +34,6 @@ int record_num(const char* fmt){
 		tmp *= 10;
 		tmp += *(fmt+1) - '0';
 		fmt++;
-		putch('a');
 	}
 	return tmp;
 }
@@ -89,6 +88,7 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 					case '0'://左填充0
 						USE_ZERO_EXPAND = 1;
 						width = record_num(fmt);
+						putch('a'+width);
 					break;
 					
 				/* TODO
