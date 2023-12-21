@@ -80,6 +80,7 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 					break;
 					
 					case '1' ... '9'://width
+						putch('T');
 						width += *fmt - '0';
 						width *= 10;
 					break;
