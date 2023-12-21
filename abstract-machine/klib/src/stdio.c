@@ -88,7 +88,7 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 					case '0'://左填充0
 						USE_ZERO_EXPAND = 1;
 						width = record_num(fmt);
-						putch(width);
+						putch(width+'a');
 					break;
 					
 				/* TODO
