@@ -28,6 +28,16 @@ void zero_expand(int num,char* str){
 	while(*str!='\0') str++;//追上strcat的部分
 }
 
+int record_num(const char* fmt){
+	int tmp = 0;
+	while(*(fmt+1) >= '1' && *(fmt+1) <= '9'){
+		tmp += *fmt - '0';
+		tmp *=10;
+		fmt++;
+	}
+	return tmp;
+}
+
 int vsprintf(char *out, const char *fmt, va_list ap) {
 	//panic("Not implemented");
 	int cnt=0;
@@ -77,14 +87,9 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 
 					case '0'://左填充0
 						USE_ZERO_EXPAND = 1;
+						width = record_num(fmt);
 					break;
 					
-					case '1' ... '9'://width
-						putch('T');
-						width += *fmt - '0';
-						width *= 10;
-					break;
-
 				/* TODO
 					case ' ':
 
