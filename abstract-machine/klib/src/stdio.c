@@ -73,7 +73,7 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 							out_ptr++; 
 						}
 
-						width = 0;//将width复位
+						USE_ZERO_EXPAND = 0,width = 0;//复位参数
 					break;
 
                 	case 'c':
