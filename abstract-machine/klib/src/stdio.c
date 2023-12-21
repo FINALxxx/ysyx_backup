@@ -34,6 +34,7 @@ int record_num(const char* fmt){
 		tmp += *fmt - '0';
 		tmp *=10;
 		fmt++;
+		putch('a');
 	}
 	return tmp;
 }
