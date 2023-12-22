@@ -47,8 +47,8 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 	while(*fmt!='\0'){
 		int int_val=0,int_cnt=0;
 		char int_reg[12]={'\0'};
-		int width = 0;//填充位数
-		char USE_ZERO_EXPAND = 0;
+		//int width = 0;//填充位数
+		//char USE_ZERO_EXPAND = 0;
         switch(*fmt){
             case '%':
               	fmt++;
@@ -62,11 +62,11 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 							int_val/=10;
 						}
 						
-						if(int_cnt < width && USE_ZERO_EXPAND){
+						/*if(int_cnt < width && USE_ZERO_EXPAND){
 							putch('a');
 							cnt += (width - int_cnt);
 							zero_expand((width-int_cnt), out_ptr);
-						}
+						}*/
 						
 						cnt+=int_cnt;
 						for(int i=int_cnt-1;i>=0;i--){
@@ -74,7 +74,7 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 							out_ptr++; 
 						}
 
-						USE_ZERO_EXPAND = 0,width = 0;//复位参数
+						//USE_ZERO_EXPAND = 0,width = 0;//复位参数
 					break;
 
                 	case 'c':
@@ -88,8 +88,8 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 					break;
 
 					case '0'://左填充0
-						USE_ZERO_EXPAND = 1;
-						fmt += record_num(&width,fmt)-1;
+						//USE_ZERO_EXPAND = 1;
+						//fmt += record_num(&width,fmt)-1;
 					break;
 					
 				/* TODO
