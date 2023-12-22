@@ -48,6 +48,7 @@ static void single_inst_debug(Decode *_this, vaddr_t dnpc) {
 
   //打印每一步的指令
   if (g_print_step) { IFDEF(CONFIG_ITRACE, puts(_this->logbuf)); }
+  //ON DEL
   IFDEF(CONFIG_DIFFTEST, difftest_step(_this->pc, dnpc));
 
   //断点调试
@@ -123,12 +124,14 @@ void assert_fail_msg() {
 
 /* Simulate how the CPU works. */
 void cpu_exec(uint64_t n) {//如果赋值为-1，会下溢到uint64_t的max值，使得g_print_step为假，execute传入一个很大的值
+if(nemu_state.halt_pc == 0){
 #ifdef CONFIG_ITRACE
   init_buffer();//pa2.2:缓冲区初始化
 #endif
 #ifdef CONFIG_MTRACE
   init_mem_buffer();
 #endif
+}
   g_print_step = (n < MAX_INST_TO_PRINT);
   switch (nemu_state.state) {
     case NEMU_END: case NEMU_ABORT:
@@ -149,14 +152,14 @@ void cpu_exec(uint64_t n) {//如果赋值为-1，会下溢到uint64_t的max值�
 
     case NEMU_END: case NEMU_ABORT:
 
-	  if(nemu_state.halt_pc == 0){//HIT GOOD TRAP时，不输出
+	  //if(nemu_state.halt_pc == 0){//HIT GOOD TRAP时，不输出
 		#ifdef CONFIG_MTRACE_COND
 	      disp_mem_buffer();
 		#endif
 		#ifdef CONFIG_ITRACE_COND
 		  disp_buffer();//pa2.2:缓冲区输出
 		#endif
-	  }
+	  //}
 
 	  Log("nemu: %s at pc = " FMT_WORD,
           (nemu_state.state == NEMU_ABORT ? ANSI_FMT("ABORT", ANSI_FG_RED) :

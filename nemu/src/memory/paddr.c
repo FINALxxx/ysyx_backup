@@ -64,7 +64,7 @@ word_t paddr_read(paddr_t addr, int len) {
 #endif
   }
 #ifdef CONFIG_MTRACE_COND
-  IFDEF(CONFIG_DEVICE, uint32_t data = mmio_read(addr, len);insert_mem_buffer(0,addr,data,len));
+  IFDEF(CONFIG_DEVICE, uint32_t data = mmio_read(addr, len);insert_mem_buffer(0,addr,data,len);return data);//debug:忘记return了
 #else
   IFDEF(CONFIG_DEVICE, return mmio_read(addr, len));
 #endif  

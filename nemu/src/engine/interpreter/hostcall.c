@@ -19,7 +19,7 @@
 #include <cpu/difftest.h>
 
 void set_nemu_state(int state, vaddr_t pc, int halt_ret) {
-  difftest_skip_ref();
+  IFDEF(CONFIG_DIFFTEST,difftest_skip_ref());
   nemu_state.state = state;
   nemu_state.halt_pc = pc;
   nemu_state.halt_ret = halt_ret;
