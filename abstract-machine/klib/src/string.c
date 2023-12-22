@@ -11,8 +11,10 @@ size_t strlen(const char *s) {
 	return cnt;
 }
 
+//WARN:dst与src有重叠部分时会UB，应使用memmove
+//WARN:dst无法容纳src时会UB
 char *strcpy(char *dst, const char *src) {
-	//可以加个断言
+	assert(dst!=NULL&&src!=NULL);
 	char* backup = dst;
     while((*dst++ = *src ++) != '\0');
     return backup;
@@ -47,11 +49,31 @@ void *memset(void *s, int c, size_t n) {
 }
 
 void *memmove(void *dst, const void *src, size_t n) {
-  panic("Not implemented");
+  assert(dst!=NULL&&src!=NULL);
+  char* d = dst;
+  const char* s = src;
+
+  if(d==s) return d;
+
+  if(d+n<=s || s+n<=d) return memcpy(d,s,n);
+
+  //出现重叠
+  if(d<s){//重叠左边
+	for(size_t i=0;i<n;++i) d[i] = s[i];
+  }else{//重叠右边
+	for(size_t i=n;i>0;--i) d[i-1] = s[i-1];
+  }
+  return d;
 }
 
 void *memcpy(void *out, const void *in, size_t n) {
-  panic("Not implemented");
+  assert(out!=NULL&&in!=NULL);
+  char* d = out;
+  const char* s = in;
+
+  for(size_t i=0;i<n;++i) d[i] = s[i];
+
+  return out;
 }
 
 int memcmp(const void *s1, const void *s2, size_t n) {
