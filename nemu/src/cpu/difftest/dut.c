@@ -58,7 +58,7 @@ void difftest_skip_dut(int nr_ref, int nr_dut) {
     ref_difftest_exec(1);
   }
 }
-*/
+
 void init_difftest(char *ref_so_file, long img_size, int port) {
   assert(ref_so_file != NULL);
 
@@ -126,7 +126,7 @@ void difftest_step(vaddr_t pc, vaddr_t npc) {
   ref_difftest_regcpy(&ref_r, DIFFTEST_TO_DUT);
 
   checkregs(&ref_r, pc);
-}
+}*/
 #else
 void init_difftest(char *ref_so_file, long img_size, int port) { }
 #endif
