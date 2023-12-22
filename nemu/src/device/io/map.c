@@ -32,10 +32,10 @@ uint8_t* new_space(int size) {
   return p;
 }
 
-void disp_buffer();
+//void disp_buffer();
 static void check_bound(IOMap *map, paddr_t addr) {
   if (map == NULL) {
-	disp_buffer();
+	//disp_buffer();
     Assert(map != NULL, "address (" FMT_PADDR ") is out of bound at pc = " FMT_WORD, addr, cpu.pc);
   } else {
     Assert(addr <= map->high && addr >= map->low,
