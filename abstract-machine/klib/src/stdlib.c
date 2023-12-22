@@ -29,12 +29,25 @@ int atoi(const char* nptr) {
   return x;
 }
 
+
+//使用malloc申请比较小的空间时，返回值应该位于0x40000000以内，而当malloc申请的空间比较大时，会使用mmap的私有匿名映射实现，所以malloc的返回值应该大于0x40000000
+static char* mptr;
+char is_init_malloc = 1;
 void *malloc(size_t size) {
   // On native, malloc() will be called during initializaion of C runtime.
   // Therefore do not call panic() here, else it will yield a dead recursion:
   //   panic() -> putchar() -> (glibc) -> malloc() -> panic()
 #if !(defined(__ISA_NATIVE__) && defined(__NATIVE_USE_KLIB__))
-  panic("Not implemented");
+	if(is_init_malloc){
+		mptr = (void*)ROUNDUP(heap.start,8);
+		is_init_malloc = 0;
+	}
+	size = (size_t)ROUNDUP(size,8);
+	char* backup = mptr;
+	mptr += size;
+	assert((uintptr_t)heap.start <= (uintptr_t)mptr && (uintptr_t)mptr < (uintptr_t)heap.end);
+	for (uint64_t *p = (uint64_t *)backup; p != (uint64_t *)mptr; p ++) *p = 0;
+	return backup;
 #endif
   return NULL;
 }

@@ -1,6 +1,7 @@
 #ifndef KLIB_MACROS_H__
 #define KLIB_MACROS_H__
 
+//接受一个指针a，将a转换成一个uintptr变量，将地址增加sz-1以对齐边界，并通过位运算限制转换后的地址是sz的倍数
 #define ROUNDUP(a, sz)      ((((uintptr_t)a) + (sz) - 1) & ~((sz) - 1))
 #define ROUNDDOWN(a, sz)    ((((uintptr_t)a)) & ~((sz) - 1))
 #define LENGTH(arr)         (sizeof(arr) / sizeof((arr)[0]))
