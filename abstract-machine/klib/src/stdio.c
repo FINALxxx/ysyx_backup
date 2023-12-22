@@ -21,6 +21,24 @@ int printf(const char *fmt, ...) {
 }
 
 
+void zero_expand(int num,char* str){
+	char expand[num+5];
+	memset(expand,'0',num);
+	strcat(str,expand);
+	while(*str!='\0') str++;//追上strcat的部分
+}
+
+int record_num(int* width,const char* fmt){
+	int tmp = 0, cnt = 0;
+	while(*(fmt+1) >= '1' && *(fmt+1) <= '9'){
+		tmp *= 10;
+		tmp += *(fmt+1) - '0';
+		fmt++,cnt++;
+	}
+	*width = tmp;
+	return cnt;
+}
+
 int vsprintf(char *out, const char *fmt, va_list ap) {
 	//panic("Not implemented");
 	int cnt=0;
@@ -29,7 +47,9 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 	while(*fmt!='\0'){
 		int int_val=0,int_cnt=0;
 		char int_reg[12]={'\0'};
-		switch(*fmt){
+		int width = 0;//填充位数
+		char USE_ZERO_EXPAND = 0;
+        switch(*fmt){
             case '%':
               	fmt++;
                 switch(*fmt){
@@ -41,12 +61,20 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 							int_reg[int_cnt]=int_val%10;
 							int_val/=10;
 						}
+						
+						if(int_cnt < width && USE_ZERO_EXPAND){
+							putch('a');
+							cnt += (width - int_cnt);
+							zero_expand((width-int_cnt), out_ptr);
+						}
+						
 						cnt+=int_cnt;
 						for(int i=int_cnt-1;i>=0;i--){
 							*out_ptr = '0'+int_reg[i];
 							out_ptr++; 
 						}
 
+						USE_ZERO_EXPAND = 0,width = 0;//复位参数
 					break;
 
                 	case 'c':
@@ -59,6 +87,24 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 						while(*out_ptr!='\0') out_ptr++,cnt++;//追上strcat的部分
 					break;
 
+					case '0'://左填充0
+						USE_ZERO_EXPAND = 1;
+						fmt += record_num(&width,fmt)-1;
+					break;
+					
+				/* TODO
+					case ' ':
+
+					break;
+						
+					case '-'://右对齐
+
+					break;
+
+					case '+'://(默认)左对齐
+
+					break;
+												*/
 					default://ERROR
             			*out = ' ';
             			out_ptr++,cnt++;
