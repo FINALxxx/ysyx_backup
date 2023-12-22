@@ -26,7 +26,7 @@ void (*ref_difftest_regcpy)(void *dut, bool direction) = NULL;
 void (*ref_difftest_exec)(uint64_t n) = NULL;
 void (*ref_difftest_raise_intr)(uint64_t NO) = NULL;
 
-//#ifdef CONFIG_DIFFTEST
+#ifdef CONFIG_DIFFTEST
 
 static bool is_skip_ref = false;
 static int skip_dut_nr_inst = 0;
@@ -58,7 +58,7 @@ void difftest_skip_dut(int nr_ref, int nr_dut) {
     ref_difftest_exec(1);
   }
 }
-/*
+
 void init_difftest(char *ref_so_file, long img_size, int port) {
   assert(ref_so_file != NULL);
 
@@ -90,7 +90,7 @@ void init_difftest(char *ref_so_file, long img_size, int port) {
   ref_difftest_memcpy(RESET_VECTOR, guest_to_host(RESET_VECTOR), img_size, DIFFTEST_TO_REF);
   ref_difftest_regcpy(&cpu, DIFFTEST_TO_REF);
 }
-*/
+
 static void checkregs(CPU_state *ref, vaddr_t pc) {
   if (!isa_difftest_checkregs(ref, pc)) {
     nemu_state.state = NEMU_ABORT;
@@ -127,6 +127,6 @@ void difftest_step(vaddr_t pc, vaddr_t npc) {
 
   checkregs(&ref_r, pc);
 }
-//#else
+#else
 void init_difftest(char *ref_so_file, long img_size, int port) { }
-//#endif
+#endif
