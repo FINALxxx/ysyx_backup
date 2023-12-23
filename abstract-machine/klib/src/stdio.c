@@ -106,7 +106,9 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 					break;
 												*/
 					default://ERROR
-            			*out = ' ';
+            			putch(*fmt);
+						putch('\n');
+						*out = ' ';
             			out_ptr++,cnt++;
 						assert(0);
 					break;
