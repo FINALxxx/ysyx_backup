@@ -4,12 +4,12 @@
 #define SYNC_ADDR (VGACTL_ADDR + 4)
 
 void __am_gpu_init() {
-	int i;
+	/*int i;
 	int w = inw(VGACTL_ADDR);
 	int h = inw(VGACTL_ADDR + 2);
 	uint32_t *fb = (uint32_t *)(uintptr_t)FB_ADDR;
 	for (i = 0; i < w * h; i ++) fb[i] = i;
-	outl(SYNC_ADDR, 1);
+	outl(SYNC_ADDR, 1);*/
 }
 
 void __am_gpu_config(AM_GPU_CONFIG_T *cfg) {
@@ -20,10 +20,23 @@ void __am_gpu_config(AM_GPU_CONFIG_T *cfg) {
   };
 }
 
+//绘制画面
+//参见 am/src/native/ioe/gpu.c
 void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) {
-  if (ctl->sync) {
-    outl(SYNC_ADDR, 1);//向内存SYNC_ADDR写入一个整字数据1
-  }
+	int x = ctl->x, y = ctl->y;
+	int w = ctl->w, h = ctl->h;
+	if(w == 0 || h == 0) return;
+	
+	uint32_t* fb_ptr = (uint32_t*)(uintptr_t)FB_ADDR;
+	uint32_t sw = inw(VGACTL_ADDR+2);//界面宽度
+	uint32_t* pixel_ptr = ctl->pixels;
+	for(int i=0;i<w;++i) //w行
+		for(int j=0;j<h;++j) //h列
+			fb_ptr[(i+y)*sw+(j+x)] = pixel_ptr[i*w+j]; 
+
+	if (ctl->sync) {
+		outl(SYNC_ADDR, 1);//向内存SYNC_ADDR写入一个整字数据1
+	}
 }
 
 void __am_gpu_status(AM_GPU_STATUS_T *status) {

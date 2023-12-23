@@ -62,7 +62,7 @@ static inline void update_screen() {
   SDL_RenderCopy(renderer, texture, NULL, NULL);
   SDL_RenderPresent(renderer);
 }
-#else
+#else//ifdef CONFIG_TARGET_AM
 static void init_screen() {}
 
 static inline void update_screen() {
