@@ -17,7 +17,7 @@ void __am_gpu_init() {
 void __am_gpu_config(AM_GPU_CONFIG_T *cfg) {
   *cfg = (AM_GPU_CONFIG_T) {
     .present = true, .has_accel = false,
-    .width = inw(VGACTL_ADDR+2), .height = inw(VGACTL_ADDR),
+    .width = inw(VGACTL_ADDR+2), .height = inw(VGACTL_ADDR),//debug:不小心把witdh和height的表达式写反了
     .vmemsz = 0
   };
 }
