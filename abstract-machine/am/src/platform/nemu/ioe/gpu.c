@@ -25,7 +25,7 @@ void __am_gpu_config(AM_GPU_CONFIG_T *cfg) {
 //绘制画面
 //参见 am/src/native/ioe/gpu.c
 void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) {
-	int x = ctl->x, y = ctl->y;
+	/*int x = ctl->x, y = ctl->y;
 	int w = ctl->w, h = ctl->h;
 	if( (w == 0 || h == 0)) return;
 	
@@ -35,7 +35,7 @@ void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) {
 	for(int i=y;i<y+h;++i) //横轴
 		for(int j=x;j<x+w;++j) //纵轴
 			fb_ptr[sw*i+j] = pixel_ptr[w*(i-y)+(j-x)]; 
-
+*/
 	if (ctl->sync) {
 		outl(SYNC_ADDR, 1);//向内存SYNC_ADDR写入一个整字数据1
 	}
