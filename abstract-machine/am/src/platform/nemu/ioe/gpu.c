@@ -32,9 +32,9 @@ void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) {
 	uint32_t* fb_ptr = (uint32_t*)(uintptr_t)FB_ADDR;
 	uint32_t sw = inw(VGACTL_ADDR+2);//界面宽度
 	uint32_t* pixel_ptr = ctl->pixels;
-	for(int i=0;i<w;++i) //w列
-		for(int j=0;j<h;++j) //h行
-			fb_ptr[(i+x)+(j+y)*sw] = pixel_ptr[i+j*w]; 
+	for(int i=x;i<x+w;++i) //横轴
+		for(int j=y;j<y+h;++j) //纵轴
+			fb_ptr[i+j*sw] = pixel_ptr[(i-x)+(j-y)*w]; 
 
 	if (ctl->sync) {
 		outl(SYNC_ADDR, 1);//向内存SYNC_ADDR写入一个整字数据1
