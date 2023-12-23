@@ -16,6 +16,10 @@
 #define putstr(s) \
   ({ for (const char *p = s; *p; p++) putch(*p); })
 
+//实例化一个寄存器__io_param（am/include/amdev.h）
+//使用ioe_read，找到reg的对应handler，传入寄存器地址并调用（am/src/platform/nemu/ioe/ioe.c）
+//handler会读取<设备在map中注册的内存地址>，更新寄存器的内容	
+//表达式的最终值为__io_param
 #define io_read(reg) \
   ({ reg##_T __io_param; \
     ioe_read(reg, &__io_param); \

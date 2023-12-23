@@ -182,13 +182,6 @@ config DTRACE
   bool "Enable device tracer"
   default y
 
-config DTRACE_COND
-  depends on DTRACE
-  string "Only trace device when the condition is true"
-  default "true"
-  
- 
-
 config DIFFTEST
   depends on TARGET_NATIVE_ELF
   bool "Enable differential testing"
