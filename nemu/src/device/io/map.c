@@ -23,6 +23,7 @@
 static uint8_t *io_space = NULL;
 static uint8_t *p_space = NULL;
 
+//给设备申请size字节的对齐内存
 uint8_t* new_space(int size) {
   uint8_t *p = p_space;
   // page aligned;
@@ -32,10 +33,8 @@ uint8_t* new_space(int size) {
   return p;
 }
 
-//void disp_buffer();
 static void check_bound(IOMap *map, paddr_t addr) {
   if (map == NULL) {
-	//disp_buffer();
     Assert(map != NULL, "address (" FMT_PADDR ") is out of bound at pc = " FMT_WORD, addr, cpu.pc);
   } else {
     Assert(addr <= map->high && addr >= map->low,
