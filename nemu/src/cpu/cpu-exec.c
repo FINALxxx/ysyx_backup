@@ -48,7 +48,7 @@ static void single_inst_debug(Decode *_this, vaddr_t dnpc) {
 
   //打印每一步的指令
   if (g_print_step) { IFDEF(CONFIG_ITRACE, puts(_this->logbuf)); }
-  IFDEF(CONFIG_DIFFTEST, difftest_step(_this->pc, dnpc));
+  //IFDEF(CONFIG_DIFFTEST, difftest_step(_this->pc, dnpc));
 
   //断点调试
   uint32_t new_result=0;
@@ -57,7 +57,6 @@ static void single_inst_debug(Decode *_this, vaddr_t dnpc) {
 	nemu_state.state=NEMU_STOP;
 	printf("Watchpoint change:In No.%d,[%s],(%d==>%d)\n",wp->NO,wp->expr_s,wp->val,new_result);
 	wp->val=new_result;
-	//sdb_mainloop(); //不用重新调用mainloop
   }
 }
 
