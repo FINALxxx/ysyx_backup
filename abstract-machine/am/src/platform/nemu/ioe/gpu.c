@@ -4,12 +4,15 @@
 #define SYNC_ADDR (VGACTL_ADDR + 4)
 
 void __am_gpu_init() {
+	
+	/* CODE FOR TEST GPU
 	int i;
 	int w = inw(VGACTL_ADDR);
 	int h = inw(VGACTL_ADDR + 2);
 	uint32_t *fb = (uint32_t *)(uintptr_t)FB_ADDR;
 	for (i = 0; i < w * h; i ++) fb[i] = i;
 	outl(SYNC_ADDR, 1);
+	*/
 }
 
 void __am_gpu_config(AM_GPU_CONFIG_T *cfg) {
@@ -30,8 +33,8 @@ void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) {
 	uint32_t* fb_ptr = (uint32_t*)(uintptr_t)FB_ADDR;
 	uint32_t sw = inw(VGACTL_ADDR+2);//界面宽度
 	uint32_t* pixel_ptr = ctl->pixels;
-	for(int i=0;i<w;++i) //w行
-		for(int j=0;j<h;++j) //h列
+	for(int i=0;i<w;++i) //w列
+		for(int j=0;j<h;++j) //h行
 			fb_ptr[(i+x)*sw+(j+y)] = pixel_ptr[i*w+j]; 
 
 	if (ctl->sync) {
