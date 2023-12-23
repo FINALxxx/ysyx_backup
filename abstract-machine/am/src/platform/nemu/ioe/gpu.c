@@ -34,7 +34,7 @@ void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) {
 	uint32_t* pixel_ptr = ctl->pixels;
 	for(int i=0;i<w;++i) //w列
 		for(int j=0;j<h;++j) //h行
-			fb_ptr[(i+x)*sw+(j+y)] = pixel_ptr[i*w+j]; 
+			fb_ptr[(i+x)+(j+y)*sw] = pixel_ptr[i+j*w]; 
 
 	if (ctl->sync) {
 		outl(SYNC_ADDR, 1);//向内存SYNC_ADDR写入一个整字数据1
