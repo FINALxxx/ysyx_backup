@@ -27,7 +27,7 @@ void __am_gpu_config(AM_GPU_CONFIG_T *cfg) {
 void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) {
 	int x = ctl->x, y = ctl->y;
 	int w = ctl->w, h = ctl->h;
-	if(!ctl->sync || w == 0 || h == 0) return;
+	if(!ctl->sync && (w == 0 || h == 0)) return;
 	
 	uint32_t* fb_ptr = (uint32_t*)(uintptr_t)FB_ADDR;
 	uint32_t sw = inw(VGACTL_ADDR+2);//界面宽度
