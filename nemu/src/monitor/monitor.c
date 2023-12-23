@@ -85,7 +85,7 @@ static int parse_args(int argc, char *argv[]) {
     switch (o) {
       case 'b': sdb_set_batch_mode(); break;
       case 'p': sscanf(optarg, "%d", &difftest_port); break;
-      case 'l': log_file = optarg;
+      case 'l': log_file = optarg;printf("TEST:%s\n",log_file);break;
       case 'd': diff_so_file = optarg; break;
 	  case 'e': 
 		#ifdef CONFIG_FTRACE
@@ -129,10 +129,9 @@ void init_monitor(int argc, char *argv[]) {
 
   /* Load the image to memory. This will overwrite the built-in image. */
   long img_size = load_img();
-
+  printf("img_size = %ld\n",img_size);
   /* Initialize differential testing. */
   //init_difftest(diff_so_file, img_size, difftest_port);
-  printf("TEST:%ld\n",img_size);
   /* Initialize the simple debugger. */
   init_sdb();
 

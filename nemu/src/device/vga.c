@@ -62,7 +62,7 @@ static inline void update_screen() {
   SDL_RenderCopy(renderer, texture, NULL, NULL);
   SDL_RenderPresent(renderer);
 }
-#else
+#else//ifdef CONFIG_TARGET_AM
 static void init_screen() {}
 
 static inline void update_screen() {
@@ -72,8 +72,12 @@ static inline void update_screen() {
 #endif
 
 void vga_update_screen() {
-  // TODO: call `update_screen()` when the sync register is non-zero,
+  // call `update_screen()` when the sync register is non-zero,
   // then zero out the sync register
+
+  // vga_port_base申请了8个字节（两个整字），第一个整字存放宽高，第二个整字存放是否同步
+  uint32_t is_sync = vgactl_port_base[1];
+  if(is_sync) update_screen();
 }
 
 void init_vga() {
