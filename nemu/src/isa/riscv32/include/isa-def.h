@@ -21,10 +21,10 @@
 typedef struct {
   word_t gpr[MUXDEF(CONFIG_RVE, 16, 32)];
   vaddr_t pc;
-  csr_t mcause;//参见：spike-diff/repo/riscv/processor.h
-  csr_t mepc;
-  csr_t mtvec;
-  csr_t mstatus;
+  ncsr_t mcause;//参见：spike-diff/repo/riscv/processor.h
+  ncsr_t mepc;
+  ncsr_t mtvec;
+  ncsr_t mstatus;
 } MUXDEF(CONFIG_RV64, riscv64_CPU_state, riscv32_CPU_state);
 
 // decode

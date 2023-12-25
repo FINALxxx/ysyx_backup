@@ -32,7 +32,7 @@ static inline const char* reg_name(int idx) {
 }
 
 
-static inline csr_t* getCsrByImm(word_t imm){
+static inline ncsr_t* getCsrByImm(word_t imm){
 	switch(imm){
 		case 0x341: return &(cpu.mepc);
 		case 0x342: return &(cpu.mcause);
