@@ -22,7 +22,7 @@ extern void __am_asm_trap(void);
 
 bool cte_init(Context*(*handler)(Event, Context*)) {
   // initialize exception entry
-  asm volatile("csrw mtvec, %0" : : "r"(__am_asm_trap));
+  asm volatile("csrw mtvec, %0" : : "r"(__am_asm_trap));//将入口地址传给了mtvec
 
   // register event handler
   user_handler = handler;
@@ -36,7 +36,7 @@ Context *kcontext(Area kstack, void (*entry)(void *), void *arg) {
 
 void yield() {
 #ifdef __riscv_e
-  asm volatile("li a5, -1; ecall");
+  asm volatile("li a5, -1; ecall");//自陷时需要先设置寄存器a5，类似ebreak前设置a0
 #else
   asm volatile("li a7, -1; ecall");
 #endif
