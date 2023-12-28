@@ -40,6 +40,8 @@ f(30) f(31)
 .align 3
 .globl __am_asm_trap
 __am_asm_trap:
+  #在栈中开辟CONTEXT_SIZE大小的空间（向下生长），来存储异常之前的寄存器状态
+  #实际上这段空间就是context结构体
   addi sp, sp, -CONTEXT_SIZE
 
   MAP(REGS, PUSH)
