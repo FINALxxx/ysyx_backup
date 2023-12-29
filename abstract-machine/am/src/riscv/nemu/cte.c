@@ -8,6 +8,7 @@ Context* __am_irq_handle(Context *c) {
   if (user_handler) {
     Event ev = {0};
     switch (c->mcause) {
+	  0xb: ev.event = EVENT_YIELD;break;
       default: ev.event = EVENT_ERROR; break;
     }
 
@@ -36,7 +37,7 @@ Context *kcontext(Area kstack, void (*entry)(void *), void *arg) {
 
 void yield() {
 #ifdef __riscv_e
-  asm volatile("li a5, -1; ecall");//自陷时需要先设置寄存器a5，类似ebreak前设置a0
+  asm volatile("li a5, -1; ecall");//自陷时需要先设置寄存器，类似ebreak前设置a0
 #else
   asm volatile("li a7, -1; ecall");
 #endif
