@@ -18,7 +18,7 @@
 #include "../local-include/reg.h"
 
 #define DIFFER(csr) if(cpu.csr != ref_r->csr){ \
-					printf(ANSI_FMT("<DIFFTEST-csr> %#010x(IN dut:NEMU) != %#010x(IN ref:spike)\n",ANSI_FG_YELLOW),cpu.csr,ref_r->csr);\
+					printf(ANSI_FMT("<DIFFTEST-%s> %#010x(IN dut:NEMU) != %#010x(IN ref:spike)\n",ANSI_FG_YELLOW),"csr",cpu.csr,ref_r->csr);\
 					return false;}
 	
 bool isa_difftest_checkregs(CPU_state *ref_r, vaddr_t pc) {
