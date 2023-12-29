@@ -167,12 +167,12 @@ static int decode_exec(Decode *s) {
   
   //CTE相关指令
   INSTPAT("??????? ????? ????? 011 ????? 11100 11", csrrc  , I, ncsr_t t = *csr(imm); *csr(imm) = t & ~src1; R(rd) = t);
-  INSTPAT("??????? ????? ????? 010 ????? 11100 11", csrrs  , I, ncsr_t t = *csr(imm); *csr(imm) = t | ~src1; R(rd) = t);
+  INSTPAT("??????? ????? ????? 010 ????? 11100 11", csrrs  , I, ncsr_t t = *csr(imm); *csr(imm) = t | ~src1;printf("rst=%#010x\n",t|~src1); R(rd) = t);
   INSTPAT("??????? ????? ????? 001 ????? 11100 11", csrrw  , I, ncsr_t t = *csr(imm); *csr(imm) = src1;R(rd) = t);
 
 
   //TODO: 这里是传入s->pc还是s->snpc?
-  INSTPAT("0000000 00000 00000 000 00000 11100 11",	ecall  , I, s->dnpc = isa_raise_intr(0xb,s->pc);printf("TEST:mcause=%x\n",cpu.mcause));//R(17) 为 $a7);
+  INSTPAT("0000000 00000 00000 000 00000 11100 11",	ecall  , I, s->dnpc = isa_raise_intr(0xb,s->pc));//R(17) 为 $a7);
   INSTPAT("0011000 00010 00000 000 00000 11100 11", mret   , R, s->dnpc = cpu.mepc);
 
   //其他
