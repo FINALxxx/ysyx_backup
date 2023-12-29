@@ -18,9 +18,9 @@
 #include "../local-include/reg.h"
 
 #define DIFFER(csr) if(cpu.csr != ref_r->csr){ \
-					printf(ANSI_FMT("<DIFFTEST-%s> %#010x(IN dut:NEMU) != %#010x(IN ref:spike)\n",ANSI_FG_YELLOW),"csr",cpu.csr,ref_r->csr);\
+					printf(ANSI_FMT("<DIFFTEST-" #csr "> %#010x(IN dut:NEMU) != %#010x(IN ref:spike)\n",ANSI_FG_YELLOW),cpu.csr,ref_r->csr);\
 					return false;}
-	
+
 bool isa_difftest_checkregs(CPU_state *ref_r, vaddr_t pc) {
 	//dut用的CPU_state是extern的一个cpu，在isa.h中定义
 	uint32_t reg_len = sizeof(cpu.gpr)/sizeof(cpu.gpr[0]);
