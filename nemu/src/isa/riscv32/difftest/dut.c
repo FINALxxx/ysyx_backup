@@ -17,8 +17,8 @@
 #include <cpu/difftest.h>
 #include "../local-include/reg.h"
 
-#define DIFFER(csr) if(cpu.csr != ref_r->csr){ \
-					printf(ANSI_FMT("<DIFFTEST-" #csr "> %#010x(IN dut:NEMU) != %#010x(IN ref:spike)\n",ANSI_FG_YELLOW),cpu.csr,ref_r->csr);\
+#define DIFFER(csr,pc) if(cpu.csr != ref_r->csr){ \
+					printf(ANSI_FMT("<DIFFTEST-" #csr "> %#010x(IN dut:NEMU) != %#010x(IN ref:spike) at pc=%#010x\n",ANSI_FG_YELLOW),cpu.csr,ref_r->csr,pc);\
 					return false;}
 
 bool isa_difftest_checkregs(CPU_state *ref_r, vaddr_t pc) {
@@ -26,13 +26,13 @@ bool isa_difftest_checkregs(CPU_state *ref_r, vaddr_t pc) {
 	uint32_t reg_len = sizeof(cpu.gpr)/sizeof(cpu.gpr[0]);
 	for(int i=0;i<reg_len;i++){
 		if(cpu.gpr[i]!=ref_r->gpr[i]) {
-			printf(ANSI_FMT("<DIFFTEST-%s> %#010x(IN dut:NEMU) != %#010x(IN ref:spike)\n",ANSI_FG_YELLOW),reg_name(i),cpu.gpr[i],ref_r->gpr[i]);
+			printf(ANSI_FMT("<DIFFTEST-%s> %#010x(IN dut:NEMU) != %#010x(IN ref:spike) at pc=%#010x\n",ANSI_FG_YELLOW),reg_name(i),cpu.gpr[i],ref_r->gpr[i],pc);
 			return false;
 		}
 	}
-	DIFFER(mcause);
-	DIFFER(mepc);
-	DIFFER(mtvec);
+	DIFFER(mcause,pc);
+	DIFFER(mepc,pc);
+	DIFFER(mtvec,pc);
 	
 	return true;
 }
