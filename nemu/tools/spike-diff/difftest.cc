@@ -19,6 +19,9 @@
 #include <difftest-def.h>
 
 #define NR_GPR MUXDEF(CONFIG_RVE, 16, 32)
+#define RCSR(state,csr) (state->csr.get()->read())
+#define WCSR(state,csr,wdata) (state->csr.get()->write(wdata))
+
 
 static std::vector<std::pair<reg_t, abstract_device_t*>> difftest_plugin_devices;
 static std::vector<std::string> difftest_htif_args;
@@ -61,9 +64,9 @@ void sim_t::diff_get_regs(void* diff_context) {
     ctx->gpr[i] = state->XPR[i];
   }
   ctx->pc = state->pc;
-  ctx->mcause = state->mcause.get()->read();
-  ctx->mepc = state->mepc.get()->read();
-  ctx->mtvec = state->mtvec.get()->read();
+  ctx->mcause = RCSR(state,mcause);
+  ctx->mepc = RCSR(state,mepc);
+  ctx->mtvec = RCSR(state,mtvec);
 }
 
 void sim_t::diff_set_regs(void* diff_context) {
@@ -72,9 +75,9 @@ void sim_t::diff_set_regs(void* diff_context) {
     state->XPR.write(i, (sword_t)ctx->gpr[i]);
   }
   state->pc = ctx->pc;
-  state->mcause.get()->write(ctx->mcause);
-  state->mepc.get()->write(ctx->mepc);
-  state->mtvec.get()->write(ctx->mtvec);
+  WCSR(state,mcause,ctx->mcause);
+  WCSR(state,mepc,ctx->mepc);
+  WCSR(state,mtvec,ctx->mtvec);
 }
 
 void sim_t::diff_memcpy(reg_t dest, void* src, size_t n) {
