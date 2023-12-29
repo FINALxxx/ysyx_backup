@@ -21,6 +21,7 @@ word_t isa_raise_intr(word_t NO, vaddr_t epc) {
    */
   cpu.mcause = NO;
   cpu.mepc = epc;
+  IFDEF(DTRACE,printf("<DTRACE> mcause = %#010x mepc = %#010x mtvec = %#010x\n",cpu.mcause,cpu.mepc,cpu.mtvec));
   return cpu.mtvec;
 }
 
