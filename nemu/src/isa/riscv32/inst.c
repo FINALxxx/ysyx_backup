@@ -172,7 +172,7 @@ static int decode_exec(Decode *s) {
 
 
   //TODO: 这里是传入s->pc还是s->snpc?
-  INSTPAT("0000000 00000 00000 000 00000 11100 11",	ecall  , I, s->dnpc = isa_raise_intr(R(17),s->pc));//R(17) 为 $a7);
+  INSTPAT("0000000 00000 00000 000 00000 11100 11",	ecall  , I, s->dnpc = isa_raise_intr(0xb,s->pc));//R(17) 为 $a7);
   INSTPAT("0011000 00010 00000 000 00000 11100 11", mret   , R, s->dnpc = cpu.mepc);
 
   //其他
