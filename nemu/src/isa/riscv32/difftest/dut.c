@@ -17,7 +17,8 @@
 #include <cpu/difftest.h>
 #include "../local-include/reg.h"
 
-//可恶，2格缩进看得有点难受，终有一天我要把所有的缩进换成4格的www
+#define DIFFER(csr) if(cpu.csr != ref_r->csr) return false;
+	
 bool isa_difftest_checkregs(CPU_state *ref_r, vaddr_t pc) {
 	//dut用的CPU_state是extern的一个cpu，在isa.h中定义
 	uint32_t reg_len = sizeof(cpu.gpr)/sizeof(cpu.gpr[0]);
@@ -26,9 +27,11 @@ bool isa_difftest_checkregs(CPU_state *ref_r, vaddr_t pc) {
 			printf(ANSI_FMT("<DIFFTEST-%s> %#010x(IN dut:NEMU) != %#010x(IN ref:spike)\n",ANSI_FG_YELLOW),reg_name(i),cpu.gpr[i],ref_r->gpr[i]);
 			return false;
 		}
-		/* TODO:除了上面对比gpr以外，还要比较几个csr */
-
 	}
+	DIFFER(mcause);
+	DIFFER(mepc);
+	DIFFER(mtvec);
+	
 	return true;
 }
 
