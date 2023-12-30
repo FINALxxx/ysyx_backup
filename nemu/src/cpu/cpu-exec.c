@@ -48,7 +48,7 @@ static void single_inst_debug(Decode *_this, vaddr_t dnpc) {
 
   //打印每一步的指令
   if (g_print_step) { IFDEF(CONFIG_ITRACE, puts(_this->logbuf)); }
-  //IFDEF(CONFIG_DIFFTEST, difftest_step(_this->pc, dnpc));
+  IFDEF(CONFIG_DIFFTEST_COND, difftest_step(_this->pc, dnpc));
 
   //断点调试
   uint32_t new_result=0;

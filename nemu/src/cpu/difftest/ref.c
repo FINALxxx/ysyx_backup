@@ -18,10 +18,10 @@
 #include <difftest-def.h>
 #include <memory/paddr.h>
 
-#define REG_NUM 32
+#define REG_NUM 32//TODO:在实现csr寄存器后，需要将这个值改了
 //兼容npc的cpu_data
 typedef struct {
-	word_t gpr[32];
+	word_t gpr[REG_NUM];
 	vaddr_t pc;
 	vaddr_t dnpc;
 	word_t inst;

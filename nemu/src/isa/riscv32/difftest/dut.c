@@ -17,13 +17,23 @@
 #include <cpu/difftest.h>
 #include "../local-include/reg.h"
 
-//可恶，2格缩进看得有点难受，终有一天我要把所有的缩进换成4格的www
+#define DIFFER(csr,pc) if(cpu.csr != ref_r->csr){ \
+					printf(ANSI_FMT("<DIFFTEST-" #csr "> %#010x(IN dut:NEMU) != %#010x(IN ref:spike) at pc=%#010x\n",ANSI_FG_YELLOW),cpu.csr,ref_r->csr,pc);\
+					return false;}
+
 bool isa_difftest_checkregs(CPU_state *ref_r, vaddr_t pc) {
 	//dut用的CPU_state是extern的一个cpu，在isa.h中定义
 	uint32_t reg_len = sizeof(cpu.gpr)/sizeof(cpu.gpr[0]);
 	for(int i=0;i<reg_len;i++){
-		if(cpu.gpr[i]!=ref_r->gpr[i]) return false;
+		if(cpu.gpr[i]!=ref_r->gpr[i]) {
+			printf(ANSI_FMT("<DIFFTEST-%s> %#010x(IN dut:NEMU) != %#010x(IN ref:spike) at pc=%#010x\n",ANSI_FG_YELLOW),reg_name(i),cpu.gpr[i],ref_r->gpr[i],pc);
+			return false;
+		}
 	}
+	DIFFER(mcause,pc);
+	DIFFER(mepc,pc);
+	DIFFER(mtvec,pc);
+	
 	return true;
 }
 
